@@ -1,0 +1,23 @@
+\chapter{Popis problému, specifikace cíle}
+
+\begin{itemize}
+ \item Popis uživatele a jeho potřeb.
+ \item Popis řešeného problému, vymezení cílů BP a požadavků na implementovaný systém.
+ \item Popis struktury BP ve vztahu k vytyčeným cílům.
+ \item Rešeršní zpracování existujících implementací, pokud jsou známy.
+\end{itemize}
+Max 2 strany.
+
+efektivní vyhledávání (rychlost na množství výsledků)
+efektivní vizualizace (co nejmíň kroků k vyhledání)
+použitelnost
+multiplatformita
+
+\section{Popis uživatele a jeho potřeb}
+Aplikace je zaměřena na nejširší skupinu potencionálních uživatelů -- studenty Fakulty elektrotechnické. Tito uživatelé mají své specifické potřeby, které jsou od potřeb běžných uživatelů v některých faktorech odlišné. U studentů FELu se dá předpokládat určitá technická zručnost a informační gramotnost. Dalším předpokladem je lepší technické vybavení studentů -- jejich studijní zaměření bylo u markantní podmnožiny zvoleno na základě jejich vztahu k technice -- z čehož můžeme usuzovat, že i třeba jejich mobilní telefony budou nabízet větší možnosti pro běh aplikace.
+
+Aplikace se nijak výrazně nezabývá přístupností pro handicapované uživatele. Zejména zrakově postižení uživatelé by potřebovali, aby byla aplikace 
+
+\section{Rešeršní zpracování existujících implementací}
+\subsection{Průvodce ČVUT}
+Výsledný program v mnohém připomíná mobilní aplikaci Průvodce ČVUT\footnote{Aplikace Průvodce ČVUT byla, pravděpodobně kvůli neaktualizovanému obsahu, stažena a již není veřejně dostupná.} vytvořenou v Javě ME. Ačkoliv bylo jednou z motivací vytvořit náhradníka již neaktualizovaného, nepřenositelného a zastaralého Průvodce ČVUT, výsledný program autor nechtěl při návrhu původní aplikací příliš ovlivnit (případnými špatnými aspekty návrhu) a postupoval proto nezávisle od začátku a původní aplikaci používal pouze až zpětně k validaci rozhodnutí.

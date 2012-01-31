@@ -1,0 +1,72 @@
+\chapter{Popis problému, specifikace cíle}
+\section{Popis řešeného problému}
+\todo{...}.
+
+\section{Popis uživatele a jeho potřeb}
+\todo{...}
+
+\section{Vymezení cílů diplomové práce}
+\todo{...}
+
+% \section{Rešeršní zpracování existujících ontologií}
+% \todo{Použití slova \textit{ontologie}. Zjistit obdobné ontologie.}
+
+\section{Rešeršní zpracování existujících mobilních aplikací}
+Práce volně navazuje na bakalářskou práci \textit{Mobilní navigační systém pro FEL ČVUT} \cite{Bakalarka}, ta ale není jediným zdrojem, který byl prozkoumán. Ostatní zdroje zpravidla směřují jinými směry, proto jim nebude věnováno tolik prostoru.
+
+Jako důsledek relativně nedávného prudkého vzestupu počtu chytrých telefonů se objevilo mnoho aplikací zabývajících se podobnými tématy, jako tato práce. Ne vždy se jedná o studentovy průvodce po univerzitě, problém ale řeší obdobný. Nabídka jejich funkcí bývá vzájemně podobná, proto zde uvedu pouze výběr.
+
+V první části této sekce se budu věnovat pracem obdobným této, později se budou oběvovat práce stále více odlišné, přesto ale v některých ohledech inspirativní.
+
+\subsection{Mobilní navigační systém pro FEL ČVUT}
+Bakalářská práce \emph{Mobilní navigační systém pro FEL ČVUT} \cite{Bakalarka} byla zaměřená především na multiplatformnost a použitelnost. Bylo tedy nutné v některých oblastech (včetně funkcionality) podstoupit určité kompromisy. Aplikace vyhledá místnost na základě zadaného označení a přehledným plánem k ní uživatele navede. Cílem této práce je naopak vytvoření robustní ontologie a samotná mobilní aplikace slouží pouze jako ukázka implementace za využití moderních mobilních technologií, takže ke kompromisům dojde v rozdílných oblastech. Návaznost na bakalářskou práci se bude projevovat převážně v poučení se z předchozích chyb ve shodné zpracovávané doméně.
+
+\subsection{Průvodce ČVUT}
+Nyní již zastaralá mobilní aplikace \emph{Průvodce ČVUT FEL} (\url{http://lr.czechian.net/j2me/}\footnote{Aplikace \emph{Průvodce ČVUT FEL} byla, pravděpodobně kvůli neaktualizovanému obsahu a celkovému nedokončení, stažena a nyní již není veřejně dostupná. Nachází se na přiloženém CD v adresáři \textit{data/Průvodce ČVUT FEL} \todo{přiložit aplikaci}.}) vytvořená v J2ME poskytovala vyhledávání místností s následným textovým popisem cesty, případnou mapou a dopravním spojením.
+
+\subsection{Ostatní průvodci ČVUT}
+Mezi další průvodce patří tištěný \emph{Průvodce prváka po ČVUT} \cite{PruvodcePrvaka}, nově vznikající \emph{ČVUT navigátor} (\url{http://navigator.fit.cvut.cz/}) nebo například specializovaný \emph{Průvodce prváka po koleji Podolí} (\url{http://pruvodce.pod.cvut.cz/}).
+
+\subsection{Ostatní průvodci univerzitami}
+Mobilní průvodci univerzitami, tak jako se děje i v jiných oblastech mobilních aplikací, se v poslední době začínají velmi rozmáhat. Uvedu zde tedy pouze ty, kteří mě nějakým způsobem zaujali.
+
+\subsubsection{Vlastní průvodci}
+Velké mnoství univerzit nabízí svým studentům na vlastní půdě vytvořené aplikace, ať již studenty, nebo výpočetními centry. Tyto aplikace bývají šité na míru potřebám univerzit, na druhou stranu ale nemusí být tolik odladěné, jako to bývá u větších projektů. Nabídka funkcionalit sahá od minimalistických až po velmi rozsáhlé. S podporovanými platformami je to podobné -- od jedné až po univerzální aplikace.
+
+\subsubsection{campusM}
+Univerzity jako Imperial College London, London School of Economics, University College London, Trinity College Dublin a pár desítek dalších využívají komerční aplikace z dílen společnosti \emph{campusM} (\url{http://www.campusm.com/}).
+
+Řešení je nabízeno pro různé mobilní platformy a nabízí následující funkcionality:
+\begin{itemize}
+\item Vyhledání cesty.
+\item Lokalizace přátel.
+\item Novinky a události.
+\item Upozornění studentů.
+\item Integrace se systémem knihovny.
+\item Integrace s univerzitním adresářem.
+\item Přístup k rozvrhům.
+\item Informace o předmětech.
+\end{itemize}
+
+\subsection{Ostatní průvodci}
+V této široce zaměřené podsekci zmíním hlavně průvodce z jednotlivých akcí -- ti totiž představují nezanedbatelnou podmnožinu. V poslední době se stává, hlavně na technicky zaměřených odborných konferencích,\footnote{Na odborných konferencích má většina účastníků u sebe zařízení schopné s touto aplikací pracovat.} zvykem poskytnout účastníkům mobilní aplikaci disponující informacemi o konferenci -- vypadá to moderně, přináší to více možností (ankety, upomínky...) a jsou tu mimo jiné i taková pozitiva, jako možnost aktualizace v případě nenadálé události. Další mobilní průvodci se vyskytují například na hudebních festivalech nebo po městech.
+
+\subsubsection{Příklady funkcionalit}
+Žádná z nalezených aplikací nenabízí všechny níže uvedené funkcionality, poměrně velká část se k tomu ale blíží.
+\begin{itemize}
+\item Registrace účastníků.
+\item Zobrazování harmonogramu.
+\item Sestavení vlastního programu s upomínkami.
+\item Zobrazování plánů.
+\item Zobrazování informací o přednášejících, vystavovatelích, účinkujících\dots
+\item Zobrazování doplňujících materiálů (slidy a podrobnosti k přednáškám, texty písní u koncertů\dots).
+\item Interakce se sociálními sítěmi.
+\item Získávání zpětné odezvy (otázky přednášejícím, ankety\dots).
+\item Vytvoření prostoru pro reklamu sponzorů. 
+\end{itemize}
+
+\subsubsection{Příklad aplikací}
+Po úvaze jsem se rozhodl neodkazovat na žádnou komerční aplikaci -- je jich příliš velké množství. Na druhou stranu nebude problém pro případného zájemce komerční aplikace vyhledat. Jako ukázku předkládám jedinou, svobodnou, aplikaci, která demonstruje velkou část výše zmíněných funkcionalit:
+
+\textit{iosched} (\url{http://code.google.com/p/iosched/}) je svobodnou aplikací vyvíjenou pro konferenci Google I/O. Nabízí všechny výše uvedené funkcionality vyjma: registrace, sestavování vlastního programu a prostoru pro reklamu.
+

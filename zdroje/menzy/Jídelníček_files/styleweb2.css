@@ -1,0 +1,332 @@
+body {
+background-color: #E6EBDE;
+margin-left : 0px;
+margin-bottom : 0px;
+margin-right : 0px;
+margin-top : 0px;
+}
+
+A:link		{ 
+color: #000000;
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana; 
+font-size: 13px;
+font-weight: bold; 
+font-style: normal; 
+text-decoration: none;
+}
+
+A:visited	{ 
+color: #000000;  
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana; 
+font-size: 13px;
+font-weight: bold; 
+font-style: normal; 
+text-decoration: none; 
+}
+
+A:hover {
+color: #0C8FCE;
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 13px;
+font-weight: bold; 
+font-style: normal; 
+text-decoration: none;
+}
+
+A:active {
+color: #0C8FCE;  
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 13px;
+font-weight: bold;
+font-style: normal;
+text-decoration: none;
+}
+
+table.podkladHL	{
+height: 100%;
+background-color: #FFFFFF;
+border-collapse: collapse;
+border: 0px solid #999999;
+}
+
+td.tdHL	{
+background-color: #FFFFFF;
+}
+
+table.podklad	{
+background-color: #E6E6E6;
+border-collapse: collapse;
+border: 0px solid #999999;
+}
+
+table.toteviracka1	{
+background-color: #FFFFFF;
+border-collapse: collapse;
+}
+
+table.toteviracka	{
+background-color: #E6E6E6;
+border-collapse: collapse;
+margin-bottom: 10px;
+}
+
+td.tdotevirackapodlad	{
+background-color: #FFFFFF;
+}
+
+td.tdoteviracky	{
+background-color: #F1F1F1;
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 15px;	
+font-weight: normal; 
+color:#000000;
+border-left: 0px solid #999999; 
+border-right: 0px solid #999999;
+border-top: 0px solid #999999;
+border-bottom: 0px solid #999999;
+}
+
+td.otevirackaVydejna	{
+background-color: #FFFFFF;
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 15px;	
+font-weight: bold; 
+color:#89ad06;
+border-left: 0px solid #999999; 
+border-right: 0px solid #999999;
+border-top: 0px solid #999999;
+border-bottom: 1px solid #999999;
+}
+
+td.aktuality	{
+background-color: #F7F7F7;
+border-left: 0px solid #999999; 
+border-right: 0px solid #999999;
+border-top: 0px solid #999999;
+border-bottom: 0px solid #999999;
+}
+
+td.nadpis {
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 25px;	
+font-weight: bold; 
+color:#FFFFFF;
+background-color: #89ad06;
+border-left: 0px solid #999999; 
+border-right: 0px solid #999999;
+border-top: 0px solid #999999;
+border-bottom: 0px solid #999999;
+}
+
+td.nic_neni {
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 20px;	
+font-weight: bold; 
+color:#000000;
+background-color: #D4ECF7;
+border-left: 0px solid #999999; 
+border-right: 0px solid #999999;
+border-top: 0px solid #999999;
+border-bottom: 0px solid #999999;
+}
+
+
+td.datum	{
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 13px;	
+font-weight: bold; 
+color:#0C8FCE;
+background-color: #E6E6E6;
+border-left: 1px solid #999999; 
+border-right: 1px solid #999999;
+border-top: 1px solid #999999;
+border-bottom: 1px solid #999999;
+}
+
+td.hlavicka	{
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 15px;	
+font-weight: bold; 
+color:#FFFF00;
+background-color: #4c6700;
+border-left: 0px solid #FFFFFF; 
+border-right: 0px solid #999999;
+border-top: 0px solid #ffffff;
+border-bottom: 0px solid #999999;
+}
+td.hlavicka2	{
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana; 
+font-size: 15px;	
+font-weight: bold; 
+color: #FFFFFF;
+background-color: #89AD06;
+border-left: 0px solid #FFFFFF; 
+border-right: 0px solid #999999;
+border-top: 0px solid #ffffff;
+border-bottom: 2px solid #4c6700;
+}
+td.hlavicka3	{
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana; 
+font-size: 15px;	
+font-weight: bold; 
+color: #FFFFFF;
+background-color: #89AD06;
+border-left: 0px solid #FFFFFF; 
+border-right: 0px solid #999999;
+border-top: 0px solid #ffffff;
+border-bottom: 2px solid #4c6700;
+}
+td.oteviracka	{
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 13px;	
+font-weight: bold; 
+color:rgb(0,0,0);
+background-color: rgb(255,255,255);
+border-left: 0px solid #FFFFFF; 
+border-right: 0px solid #999999;
+border-top: 0px solid #ffffff;
+border-bottom: 0px solid #999999;
+}
+
+td.oteviracka2	{
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 13px;	
+font-weight: bold; 
+color:rgb(0,0,0);
+height: 20px;
+background-color: rgb(255,255,255);
+border-left: 0px solid #FFFFFF; 
+border-right: 0px solid #999999;
+border-top: 0px solid #ffffff;
+border-bottom: 0px solid #999999;
+}
+
+td.typ_stravy	{
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 15px;	
+font-weight: bold; 
+color: #89ad06;
+background-color: #FFFFFF;
+border-left: 0px solid #999999; 
+border-right: 0px solid #999999;
+border-top: 0px solid #999999;
+border-bottom: 1px solid #4c6700;
+}
+
+td.typ_stravy_akcni	{
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 15px;	
+font-weight: bold; 
+color: red;
+background-color: #FFFFFF;
+border-left: 0px solid #999999; 
+border-right: 0px solid #999999;
+border-top: 0px solid #999999;
+border-bottom: 1px solid #4c6700;
+}
+
+td.seznam	{
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 15px;	
+font-weight: normal; 
+color:#000000;
+background-color: #F1F1F1;
+border-left: 0px solid #999999; 
+border-right: 0px solid #999999;
+border-top: 0px solid #999999;
+border-bottom: 0px solid #999999;
+}
+
+td.jmena	{
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 14px;	
+font-weight: bold; 
+color:#0C8FCE;
+background-color: #FFFFFF;
+border-left: 0px solid #FFFFFF; 
+border-right: 0px solid #999999;
+border-top: 0px solid #ffffff;
+border-bottom: 1px solid #999999;
+}
+td.oddelovac1	{
+background-color: #E6EBDE;
+}
+
+td.oddelovac2	{
+background-color: #FFFFFF;
+}
+
+div.TerminalInfo {
+position: absolute;
+width : 230px;
+height : 80px;
+
+
+
+background-color: #ffffcc;
+border-left: 2px solid #FF6600;
+border-right: 2px solid #FF6600;
+border-top: 2px solid #FF6600;
+border-bottom: 2px solid #FF6600;
+
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 15px;
+font-weight: bold;
+}
+
+div.TerminalInfoV {
+background-color: #ffffcc;
+border-left: 5px solid #ffffcc;
+border-right: 5px solid #ffffcc;
+border-top: 5px solid #ffffcc;
+border-bottom: 5px solid #ffffcc;
+
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 15px;
+font-weight: bold;
+}
+
+div.LeftPanel {
+border-left: 0px solid #000000;
+border-right: 0px solid #ffffcc;
+border-top: 0px solid #ffffcc;
+border-bottom: 0px solid #FF6600;
+
+}
+
+div.RightPanel {
+border-left: 0px solid #000000;
+border-right: 0px solid #ffffcc;
+border-top: 0px solid #ffffcc;
+border-bottom: 0px solid #FF6600;
+}
+
+
+div.icoClose {
+position: relative;
+width : 18px;
+height : 16px;
+
+
+background-color: #ffffcc;
+border-left: 0px solid #FF6600;
+border-right: 0px solid #ffffcc;
+border-top: 0px solid #ffffcc;
+border-bottom: 0px solid #FF6600;
+}
+
+.textlittle {
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 12px;	
+}
+
+.textnormal {
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 15px;	
+}
+
+.textbig {
+font-family: "Arial CE", "Helvetica CE", "Verdana CE", Arial, Helvetica, Verdana;
+font-size: 18px;	
+}
+

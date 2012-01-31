@@ -1,0 +1,35 @@
+===== Nápady =====
+Začlenit kuchařku
+POI dát do vrstev - nechat uživatele zobrazit třeba jen vrstvu s hasícími přístroji a úniky
+Rozlišovat sekce práce podle části projektu - zvlášť rešerše ontologií / mobilních aplikací...
+
+
+===== Node.js =====
+http://notes.3kbo.com/node-js (různé použitelné technologie, včetně RDF)
+
+
+===== Úložiště =====
+http://neo4j.org/ (přehled, s nodem používat REST API - http://neo4j.org/forums/#nabble-td3550518)
+Virtuoso
+http://openjena.org/SDB/
+http://openjena.org/TDB/
+
+
+===== SPARQL =====
+http://www.w3.org/wiki/SparqlImplementations (přehled SPARQL implementací)
+https://github.com/aldonline/node-sparql
+
+===== RDF v JS =====
+Tabulator - nevypadá dostatečně vyzrálý (určen převážně pro Firefox), jiné zaměření
+http://webr3.org/blog/uncategorized/rdf-support-in-node-js/ (knihovny z Tabulatoru portované na node.js)
+http://code.google.com/p/rdfquery/ (konkurence)
+
+
+===== Technologie =====
+- OpenLink Virtuoso Open
+  - Virtuoso Conductor
+  - Virtuoso Faceted Browser
+
+===== Dlouhodobé TODO =====
+Změnit hesla databáze
+Změnit heslo uživatele Ubuntu

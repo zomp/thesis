@@ -1,0 +1,129 @@
+% Šablona vychází z té použité pro bakalářskou práci.
+
+\documentclass[11pt,oneside,a4paper]{book}
+% \documentclass[11pt,twoside,a4paper]{book}
+
+
+\usepackage{default}
+\usepackage[czech,english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+% \usepackage[bookmarks=true,unicode=true,breaklinks=true,colorlinks=true,urlcolor=red,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage[bookmarks=true,unicode=true,breaklinks=true,colorlinks=true,urlcolor=black,citecolor=black,linkcolor=black]{hyperref}
+
+
+\usepackage{k336_thesis_macros}
+\usepackage{threeparttable}
+\usepackage{color}
+\definecolor{poznamka}{rgb}{1.0,0.7,0.0}
+
+
+\newcommand\TypeOfWork{Diplomová práce}  \typeout{Diplomova prace}
+\newcommand\StudProgram{Informatika, Magisterský}
+\newcommand\StudBranch{Webové a softwarové inženýrství}
+
+\newcommand\WorkTitle{Průvodce studenta FIT ČVUT}
+\newcommand\FirstandFamilyName{Bc. Jan Molnár} % Je nutné se titulovat?
+\newcommand\Supervisor{Ing. Michal Havryluk}
+
+
+
+\begin{document}
+\selectlanguage{czech}
+\hypersetup{pdftitle={\WorkTitle}, pdfauthor={\FirstandFamilyName}}
+
+
+\newcommand\Department{Katedra softwarového inženýrství}
+\newcommand\Faculty{Fakulta informačních technologií}
+\newcommand\University{České vysoké učení technické v Praze}
+\newcommand\labelSupervisor{Vedoucí práce}
+\newcommand\labelStudProgram{Studijní program}
+\newcommand\labelStudBranch{Obor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%    Poznamky ke kompletaci prace
+% Nasledujici pasaz uzavrenou v {} ve sve praci samozrejme 
+% zakomentujte nebo odstrante. 
+% Ve vysledne svazane praci bude nahrazena skutecnym 
+% oficialnim zadanim vasi prace.
+% {
+% \pagenumbering{roman} \cleardoublepage \thispagestyle{empty}
+% \chapter*{Na tomto místě bude oficiální zadání vaší práce}
+% \begin{itemize}
+% \item Toto zadání je podepsané děkanem a vedoucím katedry,
+% \item musíte si ho vyzvednout na studiijním oddělení Katedry počítačů na Karlově náměstí,
+% \item v jedné odevzdané práci bude originál tohoto zadání (originál zůstává po obhajobě na katedře),
+% \item ve druhé bude na stejném místě neověřená kopie tohoto dokumentu (tato se vám vrátí po obhajobě).
+% \end{itemize}
+% 
+% Vytvořte mobilní navigační systém po elektrotechnické fakultě ČVUT.
+% Systém musí co nejlépe sloužit svému účelu a vyhovovat potřebám typického uživatele -- studenta. Je nutné, aby vhodným způsobem naváděl uživatele k cílovému bodu a byl spustitelný na co největším počtu současných mobilních zařízení. Systém umožní lokalizaci zadaného cílového místa (konkrétní učebnu, nejbližší toalety...) a dokáže do něj najít optimální cestu ze zadaného výchozího bodu. Vytvořenou aplikaci testujte s uživateli a zohledněte zjištěné problémy.
+% 
+% \newpage
+% }
+
+\coverpagestarts
+
+
+\acknowledgements
+\noindent
+Velmi rád bych zde poděkoval \todo{...}
+
+
+\declaration{V~Praze dne 26.\,května\,2011} \todo{zkontrolovat datum}
+
+ 
+\abstractpage \noindent
+\todo{...}
+
+
+\vglue60mm
+
+\noindent{\Huge \textbf{Abstrakt}}
+\vskip 2.75 \baselineskip \noindent
+\todo{...}
+
+
+\tableofcontents
+% \listoffigures
+% \listoftables
+
+
+\mainbodystarts
+% horizontalní mezera mezi dvema odstavci
+%\parskip=5pt
+%11.12.2008 parskip + tolerance
+\normalfont
+\parskip=0.2\baselineskip plus 0.2\baselineskip minus 0.1\baselineskip
+
+
+% \include{1_uvod}
+
+
+\include{2_problem}
+
+
+% \include{3_analyza}
+
+
+% \include{4_realizace}
+
+
+% \include{5_testovani}
+
+
+% \include{6_zaver}
+
+
+%bibliographystyle{plain}
+%\bibliographystyle{psc}
+\bibliographystyle{abbrv}{\bibliography{reference}}
+
+
+\appendix
+% \include{apendix}
+
+
+\end{document}

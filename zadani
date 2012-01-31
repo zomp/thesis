@@ -1,0 +1,26 @@
+Název práce - česky: Průvodce studenta ČVUT FIT
+Název práce - anglicky: The Student's Guide to the CTU FIT
+Obor: Webové a softwarové inženýrství (1801T044)
+Zaměření: Webové inženýrství
+Katedra obhajoby: Katedra softwarového inženýrství (KSI-18102)
+Vedoucí: Ing. Michal Havryluk
+Oponent: 
+Student: Bc. Jan Molnár
+Literatura: Dodá vedoucí práce.
+Pokyny: 
+
+Cílem práce je na základě vybraných zdrojů vytvořit ontologii ČVUT FIT a demonstrovat její využití mobilní aplikací sloužící jako průvodce studenta.
+Analyzujte zdroje vhodné pro vznik ontologie reprezentující ČVUT FIT, tu na základě automatického dolování vybraných zdrojů vytvořte a perzistentně ukládejte.
+Analyzujte, navrhněte, vytvořte a otestujte ukázkovou mobilní aplikaci sloužící jako průvodce studenta ČVUT FIT, na níž demonstrujete využití ontologie.
+
+Prozkoumejte používaná řešení.
+
+
+Vytvořte aplikaci poskytující navigaci po Fakultě informačních technologií ČVUT. Aplikace má být multiplatformní a použitelná na současných mobilních zařízeních udávajících trendy. Aplikace dokáže lokalizovat cílové umístění a ze zadané pozice k němu uživatele navede. Pro zajištění těchto cílů použijte moderní technologie webu. Aplikaci v průběhu tvorby testujte a zjištěné problémy zohledňujte.
+
+Vytvořte mobilní navigační systém po elektrotechnické fakultě ČVUT. Systém musí co nejlépe sloužit svému účelu a vyhovovat potřebám typického uživatele - studenta. Je nutné, aby vhodným způsobem naváděl uživatele k cílovému bodu a byl spustitelný na co největším počtu současných mobilních zařízení. Systém umožní lokalizaci zadaného cílového místa (konkrétní učebnu, nejbližší toalety...) a dokáže do něj najít optimální cestu ze zadaného výchozího bodu. Vytvořenou aplikaci testujte s uživateli a zohledněte zjištěné problémy.
+
+
+Rád bych vytvořil aplikaci, kterou bude moci poskytnout škola pro pomoc studentům. Od tohoto zadání předpokládám, že ho zvládnu vypracovat sám a nikdo jiný do něj nebude zainteresovaný natolik, že budou vznikat spory a případné nekonzistence v rámci programu, takže bude vytvořené ucelené a funkční řešení. Pokud to škola dovolí, rád bych celou aplikaci včetně podkladů zveřejnil pod svobodnou licencí, nejlépe pod GNU-GPL (aplikace) a CC BY-SA (podklady), umožnilo by to snazší správu, nasazení a vylepšování aplikace.
+Rád bych také vytvořil rozhraní pro tvorbu podkladů (map), aby je mohl někdo do budoucna spravovat.
+Integraci s KOSem pro zjištění studentských rozvrhů a následné vyhledávání místností podle rozvrhu nevidím jako klíčovou vlastnost, dokud není nějaké hezké (nebo alespoň finální) API pro přístup do KOSu, obešel bych se bez integrace – do budoucna mi nepřijde moc rozumné si určit špatný směr a pak se ho kvůli zpětné kompatibilitě držet, na druhou stranu není kompatibilita v tomto případě moc důležitá, takže tam ta integrace být může a alespoň využiji v práci něco, co je Vám blízké.
