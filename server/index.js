@@ -2,12 +2,13 @@ var http = require('http');
 var express = require('express');
 var url = require('url');
 var Iconv = require('iconv').Iconv;
-// var $ = require('jquery');
-// var jsdom = require('jsdom');
+var $ = require('jquery');
+var icalendar = require('icalendar');
 
 var port = 1337; //port serveru
 
 var app = express.createServer();
+
 
 
 app.get('/jidelnicky', function (req, res) {
@@ -27,37 +28,134 @@ app.get('/jidelnicky', function (req, res) {
 	});
 	
 	request.on('response', function (r) {
+		var iconv = new Iconv('windows-1250', 'utf-8');
+		var html = '';
+		
 		r.on('data', function (chunk) {
+			html += iconv.convert(chunk).toString();;
+		});
+		
+		r.on('end', function () {
+			var jqo = $(html);
 			
-			//v html je stažená stránka s diakritikou
-			var iconv = new Iconv('windows-1250', 'utf-8');
-			var html = iconv.convert(chunk).toString();
-// 			console.log("\n\n"+html+"\n\n");
-
+			//otevírací doby
+			var jqoopen = $(".toteviracka", jqo);
+			console.log(jqoopen.text());
+// 			console.log($(".toteviracka", jqoopen).text());
 			
-			//vypíše nalezený text s diakritikou
-// 			var $ = require('jquery');
-// 			var jqo = $('<!DOCTYPE html><html xml:lang="cs" lang="cs"><head>	<meta http-equiv="content-type" content="text/html; charset=windows-1250" /><meta name="author" content="Jan Molnár" /><title>Zpěvník</title><script>alert("baf");</script></head><body onload="document.write(\"ahoj\");"><div id="mojeid"><p>čau!</p></div></body></html>');
-// 			console.log($("#mojeid", jqo).html());
+			//jídla
+			var jqomeals = $(".typ_stravy", jqo).parent();
 			
-			//vypíše nalezený text s diakritikou
-			var $ = require('jquery');
-			var jqo = $(html.toString());
-			console.log($("a", jqo).length);
-/**/
-// 			var $ = require('jquery').create(jsdom(html).createWindow());
-// 			$(html).appendTo("body");
-// 			console.log($("body").html());
+			//zodpovědné osoby
+			var jqorespon = $("table:last", jqo);
+			$.each($("tr:last td", jqorespon), function(i, val) {
+				console.log($("tr:first td:nth-child(" + i + ")", jqorespon).text());
+				console.log($("tr:last td:nth-child(" + i + ")", jqorespon).text());
+			});
 		});
 	});
 	
-	
-	res.send("Source '" + name + "' processed\n");
+	res.send("Source '" + name + "' enqueued for processing\n");
 });
 
-app.get('/dva', function (req, res) {
-	res.send("2: Hello World\n");
+
+
+app.get('/akce', function (req, res) {
+	var icsuri = 'https://akce.cvut.cz/ical.php?group=0';
+	var xmluri = 'http://akce.cvut.cz/?node=rss&group=0';
+	var name = 'http://akce.cvut.cz/';
+	
+	var ical = null;
+	var xml = null;
+	
+	var icsrequest = http.get({
+		host: url.parse(icsuri).host,
+		port: url.parse(icsuri).port || 80,
+		path: url.parse(icsuri).pathname + url.parse(icsuri).search
+	});
+	icsrequest.on('error', function(e) {
+		console.error("Error: " + e.message);
+	});
+	icsrequest.on('response', function (r) {
+		var data = '';
+		r.on('data', function (chunk) {
+			data += chunk;
+		});
+		r.on('end', function () {
+			ical = icalendar.parse_calendar(data);
+			if (xml)
+				onAllLoad();
+		});
+	});
+	
+	var xmlrequest = http.get({
+		host: url.parse(xmluri).host,
+		port: url.parse(xmluri).port || 80,
+		path: url.parse(xmluri).pathname + url.parse(xmluri).search
+	});
+	xmlrequest.on('error', function(e) {
+		console.error("Error: " + e.message);
+	});
+	xmlrequest.on('response', function (r) {
+		var data = '';
+		r.on('data', function (chunk) {
+			data += chunk;
+		});
+		r.on('end', function () {
+			xml = $(data);
+			if (ical)
+				onAllLoad();
+		});
+	});
+	
+	var onAllLoad = function () {
+		console.log(ical.events());///příklad
+		console.log(xml.find("title").text());///příklad
+		
+		
+		
+		var rdfstore = require('rdfstore');
+
+		var store = rdfstore.create(
+			{
+				persistent: true, 
+				engine: 'mongodb', 
+				name: 'pruvodcefitcvut',
+				overwrite: false,
+				mongoDomain: 'localhost',
+				mongoPort: 27017
+			},
+			function (store) {
+				var graph = store.rdf.createGraph();
+				
+				store.rdf.setPrefix("ex", "http://example.org/people/");
+				
+				for (var i; i < ical.events().length; ++i) {
+					graph.add(
+						store.rdf.createTriple(
+							store.rdf.createNamedNode(store.rdf.resolve("ex:Alice")),
+							store.rdf.createNamedNode(store.rdf.resolve("foaf:name")),
+							store.rdf.createLiteral("alice")
+						)
+					);
+				}
+				
+				store.insert(
+					graph,
+					null,
+					function () {console.log("Graph has been inserted.")}
+				);
+			}
+		);
+		
+		
+		
+	};
+	
+	res.send("Source '" + name + "' enqueued for processing\n");
 });
+
+
 
 app.get('*', function (req, res) {
 	res.send("Error: Service not found\n", 404);

@@ -4,10 +4,21 @@
 {\em Průvodce prváka po {ČVUT}}.
 \newblock {IAESTE} {ČVUT} Praha, 2011.
 
+\bibitem{Lubm}
+Y.~Guo.
+\newblock {L}ehigh {U}niversity {B}enchmark.
+\newblock \\ \url{http://swat.cse.lehigh.edu/projects/lubm/}.
+
 \bibitem{Bakalarka}
 J.~Molnár.
 \newblock {\em Mobilní navigační systém pro {FEL} {ČVUT}}.
 \newblock České vysoké učení technické v Praze, Fakulta
   elektrotechnická, May 2010.
+
+\bibitem{Aiiso}
+R.~Styles and N.~Shabir.
+\newblock Academic {I}nstitution {I}nternal {S}tructure {O}ntology ({AIISO}),
+  2008.
+\newblock \\ \url{http://purl.org/vocab/aiiso/schema}.
 
 \end{thebibliography}

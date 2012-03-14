@@ -1,0 +1,70 @@
+\documentclass[thesis=M,czech]{FITthesis}[2011/06/14]
+
+\usepackage[utf8]{inputenc} % LaTeX source encoded as UTF-8
+
+\usepackage{graphicx} %graphics files inclusion
+% \usepackage{amsmath} %advanced maths
+% \usepackage{amssymb} %additional math symbols
+
+\usepackage[acronym,nonumberlist,toc,sanitize={name=false,description=false},xindy={language=czech,codepage=utf8,glsnumbers=false}]{glossaries}
+\addto\captionsczech{\renewcommand\acronymname{Seznam pou{\v z}it{\' y}ch zkratek}}
+\addto\captionsczech{\renewcommand\glossaryname{Glosář}}
+\deftranslation[to=czech]{Acronyms}{Seznam pou{\v z}it{\' y}ch zkratek}
+\deftranslation[to=czech]{Glossary}{Glosář}
+
+\newcommand{\tg}{\mathop{\mathrm{tg}}} %cesky tangens
+\newcommand{\cotg}{\mathop{\mathrm{cotg}}} %cesky cotangens
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% ODTUD DAL VSE ZMENTE
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\definecolor{poznamka}{rgb}{1.0,0.7,0.0}
+\newglossary[tlg]{todo}{tdo}{tdu}{Seznam úkolů}
+\newcounter{todo}
+\newcommand{\todo}[1]{{{\newglossaryentry{\arabic{todo}}{type=todo,name={\arabic{todo}},description={#1},sort={#1}}} {\colorbox{poznamka}{TODO \glsdesc{\arabic{todo}}}} {\stepcounter{todo}}}}
+% \newcommand{\todo}[1]{{\color{poznamka}{TODO #1}}}
+\newcommand{\mytitle}{Průvodce studenta FIT ČVUT}
+\newcommand{\myauthor}{Jan Molnár}
+
+\department{Katedra softwarového inženýrství}
+\title{\mytitle}
+\author{\myauthor} %jméno autora bez akademických titulů
+\authorWithDegrees{Bc. Jan Molnár} %jméno autora včetně akademických titulů
+\supervisor{Ing. Michal Havryluk}
+\acknowledgements{Doplňte, máte-li komu a za co děkovat. V~opačném případě úplně odstraňte tento příkaz.}
+\abstractCS{V~několika větách shrňte obsah a přínos této práce v~češtině. Po přečtení abstraktu by se čtenář měl mít čtenář dost informací pro rozhodnutí, zda chce Vaši práci číst.}
+\abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
+\placeForDeclarationOfAuthenticity{V~Praze}
+\keywordsCS{Nahraďte seznamem klíčových slov v češtině oddělených čárkou.}
+\keywordsEN{Nahraďte seznamem klíčových slov v angličtině oddělených čárkou.}
+
+
+\hypersetup{pdftitle={\mytitle},pdfauthor={\myauthor}}
+\makeglossaries
+\begin{document}
+% \selectlanguage{czech}
+\include{acronym}
+
+\begin{introduction}
+%  \include{1_uvod}
+\end{introduction}
+
+\include{2_problematika}
+
+\include{3_analyza}
+
+% \include{4_realizace}
+
+% \include{5_testovani}
+
+\begin{conclusion}
+%  \include{6_zaver}
+\end{conclusion}
+
+\bibliographystyle{csn690}{\bibliography{reference}}
+
+\appendix
+\include{apendix}
+
+\end{document}

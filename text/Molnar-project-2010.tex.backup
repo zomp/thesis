@@ -11,74 +11,33 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{indentfirst}
+% \usepackage[bookmarks=true,unicode=true,breaklinks=true,colorlinks=true,urlcolor=red,citecolor=blue,linkcolor=blue]{hyperref}
 \usepackage[bookmarks=true,unicode=true,breaklinks=true,colorlinks=true,urlcolor=black,citecolor=black,linkcolor=black]{hyperref}
 
 
 \usepackage{k336_thesis_macros}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Own defined styles
 \usepackage{threeparttable}
 \usepackage{color}
 \definecolor{poznamka}{rgb}{1.0,0.7,0.0}
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Zvolte jednu z moznosti
 \newcommand\TypeOfWork{Diplomová práce}  \typeout{Diplomova prace}
+\newcommand\StudProgram{Informatika, Magisterský}
+\newcommand\StudBranch{Webové a softwarové inženýrství}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Zvolte jednu z moznosti
-% nabidky jsou z: http://www.fel.cvut.cz/cz/education/bk/prehled.html
-\newcommand\StudProgram{Softwarové technologie a management, Bakalářský}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Zvolte jednu z moznosti
-% nabidky jsou z: http://www.fel.cvut.cz/cz/education/bk/prehled.html
-\newcommand\StudBranch{Softwarové inženýrství}            %pro STM
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Vyplnte nazev prace, autora a vedouciho
-\newcommand\WorkTitle{Mobilní navigační systém pro FEL ČVUT}
-\newcommand\FirstandFamilyName{Jan Molnár}
-\newcommand\Supervisor{Ing. }
-
-
-% Pouzijete-li pdflatex, tak je prijemne, kdyz bude mit vase prace
-% funkcni odkazy i v pdf formatu
-\usepackage[
-bookmarks=true,
-colorlinks=true,
-breaklinks=true,
-urlcolor=red,
-citecolor=blue,
-linkcolor=blue,
-% urlcolor=black,
-% citecolor=black,
-% linkcolor=black,
-unicode=true,
-]
-{hyperref}
-
+\newcommand\WorkTitle{Průvodce studenta FIT ČVUT}
+\newcommand\FirstandFamilyName{Bc. Jan Molnár} % Je nutné se titulovat?
+\newcommand\Supervisor{Ing. Michal Havryluk}
 
 
 
 \begin{document}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Zvolte jednu z moznosti 
-% Choose one of the following options
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \selectlanguage{czech}
 \hypersetup{pdftitle={\WorkTitle}, pdfauthor={\FirstandFamilyName}}
 
 
-\newcommand\Department{Katedra počítačů}
-\newcommand\Faculty{Fakulta elektrotechnická}
+\newcommand\Department{Katedra softwarového inženýrství}
+\newcommand\Faculty{Fakulta informačních technologií}
 \newcommand\University{České vysoké učení technické v Praze}
 \newcommand\labelSupervisor{Vedoucí práce}
 \newcommand\labelStudProgram{Studijní program}
@@ -105,54 +64,32 @@ unicode=true,
 % \newpage
 % }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    Titulni stranka / Title page 
-
 \coverpagestarts
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    Podekovani / Acknowledgements 
 
 \acknowledgements
 \noindent
-Velmi rád bych zde poděkoval Ing.~Zdeňku Míkovcovi,~Ph.D., vedoucímu práce, za příkladné vedení, mnoho hodin věnovaných konzultacím a především za neocenitelné rady, bez kterých by práce nevznikla. Dále bych chtěl poděkovat Ing.~Janu Vystrčilovi za~poskytnutí mapových podkladů, zapůjčení testovacích telefonů a konstruktivní kritiku v době tvorby práce. Také bych rád vyjádřil své díky Kristýně Řehákové, Aliaksandru Aniskovi, Patriku Krupičkovi, Pavlu Nedomovi a Jakubu Podlahovi za~dobré rady a pomoc s testováním aplikace. Kristýně Řehákové bych ještě rád poděkoval za jazykovou korekturu.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    Prohlaseni / Declaration 
-
-\declaration{V~Praze dne 26.\,května\,2010}
+Velmi rád bych zde poděkoval \todo{...}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    Abstract 
+\declaration{V~Praze dne 26.\,května\,2011} \todo{zkontrolovat datum}
+
  
-\abstractpage
-\noindent
-The Bachelor's Project intends to find out a solution of students' navigation through CTU Faculty of Electrical Engineering problem by creating a mobile application, which would lead the students to the desired destination. The project is focused on the analysis, design, development and testing of this application. The emphasis is placed on the usability, platform compatibility and the functionality. The only thing which impedes the application deployment is a creation of map bases according to the representative sample.
+\abstractpage \noindent
+\todo{...}
 
-% Prace v cestine musi krome abstraktu v anglictine obsahovat i
-% abstrakt v cestine.
+
 \vglue60mm
 
 \noindent{\Huge \textbf{Abstrakt}}
-\vskip 2.75\baselineskip
+\vskip 2.75 \baselineskip \noindent
+\todo{...}
 
-\noindent
-Bakalářská práce se snaží nalézt řešení problému navigace studentů po Fakultě elektronické ČVUT do neznámých míst tvorbou mobilní aplikace, která by uživatele navedla k hledanému cíli. Práce je zaměřena na analýzu, návrh, realizaci a testování této aplikace. Důraz je kladen na použitelnost, multiplatformnost a funkčnost. Nasazení aplikace brání už jen vytvoření mapových podkladů podle reprezentativního vzorku.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    Obsah / Table of Contents 
 
 \tableofcontents
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    Seznam obrazku / List of Figures 
-
 % \listoffigures
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    Seznam tabulek / List of Tables
-
 % \listoftables
 
-
-%**************************************************************
 
 \mainbodystarts
 % horizontalní mezera mezi dvema odstavci
@@ -162,63 +99,31 @@ Bakalářská práce se snaží nalézt řešení problému navigace studentů p
 \parskip=0.2\baselineskip plus 0.2\baselineskip minus 0.1\baselineskip
 
 
-
-%*****************************************************************************
-% Úvod
-\include{1_uvod}
+% \include{1_uvod}
 
 
-%*****************************************************************************
-% Popis problému, specifikace cíle
-\include{2_problem}
+\include{2_problematika}
 
 
-%*****************************************************************************
-% Analýza a návrh řešení
-\include{3_analyza}
+% \include{3_analyza}
 
 
-%*****************************************************************************
-% Realizace
 \include{4_realizace}
 
 
-
-%*****************************************************************************
-% Testování
-\include{5_testovani}
+% \include{5_testovani}
 
 
-%*****************************************************************************
-% Závěr
-\include{6_zaver}
+% \include{6_zaver}
 
 
-%*****************************************************************************
-% Seznam literatury je v samostatnem souboru reference.bib. Ten
-% upravte dle vlastnich potreb, potom zpracujte (a do textu
-% zapracujte) pomoci prikazu bibtex a nasledne pdflatex (nebo
-% latex). Druhy z nich alespon 2x, aby se poresily odkazy.
-
-\bibliographystyle{abbrv}
 %bibliographystyle{plain}
 %\bibliographystyle{psc}
-{
-%JZ: 11.12.2008 Kdo chce mit v techto ukazkovych odkazech take odkaz na CSTeX:
-\def\CS{$\cal C\kern-0.1667em\lower.5ex\hbox{$\cal S$}\kern-0.075em $}
-\bibliography{reference}
-}
+\bibliographystyle{abbrv}{\bibliography{reference}}
 
-% M. Dušek radi:
-%\bibliographystyle{alpha}
-% kdy citace ma tvar [AutorRok] (napriklad [Cook97]). Sice to asi neni  podle ceske normy (BTW BibTeX stejne neodpovida ceske norme), ale je to nejprehlednejsi.
-% 3.5.2009 JZ polemizuje: BibTeX neobvinujte, napiste a poskytnete nam styl (.bst) splnujici citacni normu CSN/ISO.
 
-%*****************************************************************************
-%*****************************************************************************
 \appendix
-% Přílohy
-\include{apendix}
+% \include{apendix}
 
 
 \end{document}

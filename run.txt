@@ -1,0 +1,23 @@
+NA STRANĚ SERVERU:
+
+Spuštění MongoDB:
+mongod --rest &
+
+Spuštění serveru:
+node mi-dip/index.js &
+
+Spuštění SPARQL endpointu:
+~/node_modules/rdfstore/bin/rdfstorejs webserver --store-name pruvodcefitcvut --store-engine mongodb -p 8080 &
+
+
+
+NA STRANĚ KLIENTA:
+
+Spuštění serveru:
+VirtualBox --startvm UbuntuServer &
+
+Test SPARQL endpointu:
+curl --data-urlencode "query=select * { ?s ?p ?o } limit 3" -v server:8080/sparql && echo
+
+Test serveru:
+curl server:1337/akce

@@ -1,17 +1,27 @@
 \select@language {english}
 \select@language {czech}
 \contentsline {chapter}{\numberline {1}Popis probl\IeC {\'e}mu, specifikace c\IeC {\'\i }le}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Popis \IeC {\v r}e\IeC {\v s}en\IeC {\'e}ho probl\IeC {\'e}mu}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Popis u\IeC {\v z}ivatele a jeho pot\IeC {\v r}eb}{1}{section.1.2}
-\contentsline {section}{\numberline {1.3}Vymezen\IeC {\'\i } c\IeC {\'\i }l\IeC {\r u} diplomov\IeC {\'e} pr\IeC {\'a}ce}{1}{section.1.3}
-\contentsline {section}{\numberline {1.4}Re\IeC {\v s}er\IeC {\v s}n\IeC {\'\i } zpracov\IeC {\'a}n\IeC {\'\i } existuj\IeC {\'\i }c\IeC {\'\i }ch mobiln\IeC {\'\i }ch aplikac\IeC {\'\i }}{1}{section.1.4}
-\contentsline {subsection}{\numberline {1.4.1}Mobiln\IeC {\'\i } naviga\IeC {\v c}n\IeC {\'\i } syst\IeC {\'e}m pro FEL \IeC {\v C}VUT}{1}{subsection.1.4.1}
-\contentsline {subsection}{\numberline {1.4.2}Pr\IeC {\r u}vodce \IeC {\v C}VUT}{2}{subsection.1.4.2}
-\contentsline {subsection}{\numberline {1.4.3}Ostatn\IeC {\'\i } pr\IeC {\r u}vodci \IeC {\v C}VUT}{2}{subsection.1.4.3}
-\contentsline {subsection}{\numberline {1.4.4}Ostatn\IeC {\'\i } pr\IeC {\r u}vodci univerzitami}{2}{subsection.1.4.4}
-\contentsline {subsubsection}{\numberline {1.4.4.1}Vlastn\IeC {\'\i } pr\IeC {\r u}vodci}{2}{subsubsection.1.4.4.1}
-\contentsline {subsubsection}{\numberline {1.4.4.2}campusM}{2}{subsubsection.1.4.4.2}
-\contentsline {subsection}{\numberline {1.4.5}Ostatn\IeC {\'\i } pr\IeC {\r u}vodci}{3}{subsection.1.4.5}
-\contentsline {subsubsection}{\numberline {1.4.5.1}P\IeC {\v r}\IeC {\'\i }klady funkcionalit}{3}{subsubsection.1.4.5.1}
-\contentsline {subsubsection}{\numberline {1.4.5.2}P\IeC {\v r}\IeC {\'\i }klad aplikac\IeC {\'\i }}{4}{subsubsection.1.4.5.2}
-\contentsline {chapter}{Literatura}{5}{chapter*.3}
+\contentsline {section}{\numberline {1.1}Re\IeC {\v s}er\IeC {\v s}n\IeC {\'\i } zpracov\IeC {\'a}n\IeC {\'\i } existuj\IeC {\'\i }c\IeC {\'\i }ch ontologi\IeC {\'\i }}{1}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Univ-Bench}{1}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Academic Institution Internal Structure Ontology}{1}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Higher Education Reference Ontology}{1}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.4}University Ontology}{2}{subsection.1.1.4}
+\contentsline {subsection}{\numberline {1.1.5}University Ontology}{2}{subsection.1.1.5}
+\contentsline {section}{\numberline {1.2}Re\IeC {\v s}er\IeC {\v s}n\IeC {\'\i } zpracov\IeC {\'a}n\IeC {\'\i } existuj\IeC {\'\i }c\IeC {\'\i }ch mobiln\IeC {\'\i }ch aplikac\IeC {\'\i }}{2}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Mobiln\IeC {\'\i } naviga\IeC {\v c}n\IeC {\'\i } syst\IeC {\'e}m pro FEL \IeC {\v C}VUT}{2}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Pr\IeC {\r u}vodce \IeC {\v C}VUT}{2}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}\IeC {\v C}VUT navig\IeC {\'a}tor}{3}{subsection.1.2.3}
+\contentsline {subsection}{\numberline {1.2.4}Ostatn\IeC {\'\i } pr\IeC {\r u}vodci \IeC {\v C}VUT}{3}{subsection.1.2.4}
+\contentsline {subsection}{\numberline {1.2.5}Ostatn\IeC {\'\i } pr\IeC {\r u}vodci univerzitami}{3}{subsection.1.2.5}
+\contentsline {subsubsection}{\numberline {1.2.5.1}Vlastn\IeC {\'\i } pr\IeC {\r u}vodci}{3}{subsubsection.1.2.5.1}
+\contentsline {subsubsection}{\numberline {1.2.5.2}campusM}{3}{subsubsection.1.2.5.2}
+\contentsline {subsubsection}{\numberline {1.2.5.3}guidebook}{4}{subsubsection.1.2.5.3}
+\contentsline {subsection}{\numberline {1.2.6}Ostatn\IeC {\'\i } pr\IeC {\r u}vodci}{4}{subsection.1.2.6}
+\contentsline {subsubsection}{\numberline {1.2.6.1}P\IeC {\v r}\IeC {\'\i }klady funkcionalit}{4}{subsubsection.1.2.6.1}
+\contentsline {subsubsection}{\numberline {1.2.6.2}P\IeC {\v r}\IeC {\'\i }klady aplikac\IeC {\'\i }}{5}{subsubsection.1.2.6.2}
+\contentsline {chapter}{\numberline {2}Anal\IeC {\'y}za a n\IeC {\'a}vrh \IeC {\v r}e\IeC {\v s}en\IeC {\'\i }}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}Funk\IeC {\v c}n\IeC {\'\i } po\IeC {\v z}adavky na serverovou aplikaci}{6}{section.2.1}
+\contentsline {section}{\numberline {2.2}Nefunk\IeC {\v c}n\IeC {\'\i } po\IeC {\v z}adavky na serverovou aplikaci}{7}{section.2.2}
+\contentsline {section}{\numberline {2.3}Funk\IeC {\v c}n\IeC {\'\i } po\IeC {\v z}adavky na mobiln\IeC {\'\i } aplikaci}{8}{section.2.3}
+\contentsline {section}{\numberline {2.4}Nefunk\IeC {\v c}n\IeC {\'\i } po\IeC {\v z}adavky na mobiln\IeC {\'\i } aplikaci}{8}{section.2.4}
+\contentsline {chapter}{Literatura}{9}{chapter*.3}

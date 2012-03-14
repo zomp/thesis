@@ -9,6 +9,10 @@ Student: Bc. Jan Molnár
 Literatura: Dodá vedoucí práce.
 Pokyny: 
 
+Na základě vybraných zdrojů vytvořte ontologii ČVUT FIT a demonstrujte její využití mobilní aplikací sloužící jako průvodce studenta. Analyzujte zdroje vhodné pro vznik ontologie reprezentující ČVUT FIT, tu na základě automatického dolování vybraných zdrojů vytvořte a perzistentně ukládejte. Analyzujte, navrhněte, vytvořte a otestujte ukázkovou mobilní aplikaci sloužící jako průvodce studenta ČVUT FIT, na níž demonstrujete využití ontologie.
+
+
+
 Cílem práce je na základě vybraných zdrojů vytvořit ontologii ČVUT FIT a demonstrovat její využití mobilní aplikací sloužící jako průvodce studenta.
 Analyzujte zdroje vhodné pro vznik ontologie reprezentující ČVUT FIT, tu na základě automatického dolování vybraných zdrojů vytvořte a perzistentně ukládejte.
 Analyzujte, navrhněte, vytvořte a otestujte ukázkovou mobilní aplikaci sloužící jako průvodce studenta ČVUT FIT, na níž demonstrujete využití ontologie.

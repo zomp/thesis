@@ -72,7 +72,7 @@
 Velmi rád bych zde poděkoval \todo{...}
 
 
-\declaration{V~Praze dne 26.\,května\,2011} \todo{zkontrolovat}
+\declaration{V~Praze dne 26.\,května\,2011} \todo{zkontrolovat datum}
 
  
 \abstractpage \noindent
@@ -102,10 +102,10 @@ Velmi rád bych zde poděkoval \todo{...}
 % \include{1_uvod}
 
 
-\include{2_problem}
+\include{2_problematika}
 
 
-% \include{3_analyza}
+\include{3_analyza}
 
 
 % \include{4_realizace}

@@ -279,76 +279,132 @@
 \section{Funkční požadavky na serverovou aplikaci}
 Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na jednotlivé funkcionality. Pro serverovou aplikaci mezi ně patří především:
 \begin{enumerate}
+ \item Vytvořte/nalezněte ontologii reprezentující univerzitu.
  \item Aplikace bude čerpat informace o názvech budov z předstíraného adaptéru.
  \item Aplikace bude čerpat informace o umístění budov z předstíraného adaptéru.
+ \item Aplikace bude čerpat informace o názvech místností z předstíraného adaptéru.
+ \item Aplikace bude čerpat informace o umístění místností z předstíraného adaptéru.
+ \item Aplikace bude čerpat informace o rozvrzích místností z KOSapi (\url{http://kosapi.fit.cvut.cz/}). \todo{Vynechám -- chybí API.}
+ \item Aplikace bude čerpat informace o rozvrzích studentů z formátu iCalendar.
+ \item Aplikace bude čerpat informace o kontakech studentů z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o rozvrzích vyučujících z KOSapi (\url{http://kosapi.fit.cvut.cz/}). \todo{Vynechám -- chybí API.}
+ \item Aplikace bude čerpat informace o kancelářích vyučujících z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o kontakech vyučujících z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o kancelářích neakademických pracovníků z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o kontaktech neakademických pracovníků z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o akcích \glsname{CVUT} z Kalendáře akcí ČVUT (\url{http://akce.cvut.cz/}).
+ \item Aplikace bude čerpat informace o harmonogramu akademického roku z předstíraného adaptéru (na základě \url{http://fit.cvut.cz/}).
+ \item Aplikace bude čerpat informace o datech \glsname{MAR} dostupných zdrojů (prozatím Orlík a Masarykova kolej, snaha o T9).
+ \item Aplikace bude čerpat informace o jídelníčcích menz z Jídelníčků menz (\url{http://agata.suz.cvut.cz/jidelnicky/}).
+ \item Aplikace bude čerpat informace o otvírací době menz z Jídelníčků menz (\url{http://agata.suz.cvut.cz/jidelnicky/}).
+ \item Aplikace bude čerpat informace o otvírací době \glsname{NTK} z Národní technické knihovny (\url{http://www.techlib.cz/}).
+ \item Aplikace bude čerpat informace o otvírací době Vydavatelství průkazů (\url{http://www.cvut.cz/informace-pro-studenty/prukazy}). \todo{Vynechám -- chybí API.}
+ \item Aplikace bude čerpat informace o počtu lidí ve frontě ve Vydavatelství průkazů (\url{http://ke.customer.decent.cz/a021/mon/}).
+ \item Informace získané z jednotlivých zdrojů převádějte dle výše požadované ontologie pro další zpracování do \glsname{RDF}.
+ \item Aplikace uloží získané informace do databáze.
+ \item Aplikace umožní vykonávat \glsname{SPARQL} dotazy nad uloženými daty.
 \end{enumerate}
 
-\subsection{FR-S-1: Informace týkající se akcí ČVUT}
-Aplikace bude čerpat informace z webových stránek Kalendář akcí ČVUT (\url{http://akce.cvut.cz/}).
-\subsection{FR-S-2: Informace týkající se budov}
-Aplikace bude čerpat informace z předstíraného adaptéru obsahujícího informace týkající se budov.
-\subsection{FR-S-3: Informace týkající se místností}
-Aplikace bude čerpat informace z předstíraného adaptéru obsahujícího informace týkající se místností.
-\subsection{FR-S-4: Informace týkající se menz}
-Aplikace bude čerpat informace z webových stránek menz SUZ ČVUT (\url{http://agata.suz.cvut.cz/jidelnicky/}).
-\subsection{FR-S-5: Informace týkající se osob spjatých s ČVUT}
-Aplikace bude čerpat informace z webových stránek Usermap ČVUT (\url{http://usermap.cvut.cz/}).
-\subsection{FR-S-6: Převod informací do \emph{RDF}}
-Informace získané z jednotlivých zdrojů převádějte pro další zpracování do \emph{RDF}.
-\subsection{FR-S-7: Perzistentní uložení do databáze}
-Aplikace uloží získané informace do databáze.
-\subsection{FR-S-8: \emph{SPARQL} endpoint}
-Aplikace umožní vykonávat \emph{SPARQL} dotazy nad uloženými daty.
+% \subsection{FR-S-1: Informace týkající se akcí ČVUT}
+% Aplikace bude čerpat informace z webových stránek Kalendář akcí ČVUT (\url{http://akce.cvut.cz/}).
+% \subsection{FR-S-2: Informace týkající se budov}
+% Aplikace bude čerpat informace z předstíraného adaptéru obsahujícího informace týkající se budov.
+% \subsection{FR-S-3: Informace týkající se místností}
+% Aplikace bude čerpat informace z předstíraného adaptéru obsahujícího informace týkající se místností.
+% \subsection{FR-S-4: Informace týkající se menz}
+% Aplikace bude čerpat informace z webových stránek menz SUZ ČVUT (\url{http://agata.suz.cvut.cz/jidelnicky/}).
+% \subsection{FR-S-5: Informace týkající se osob spjatých s ČVUT}
+% Aplikace bude čerpat informace z webových stránek Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+% \subsection{FR-S-6: Převod informací do \emph{RDF}}
+% Informace získané z jednotlivých zdrojů převádějte pro další zpracování do \emph{RDF}.
+% \subsection{FR-S-7: Perzistentní uložení do databáze}
+% Aplikace uloží získané informace do databáze.
+% \subsection{FR-S-8: \emph{SPARQL} endpoint}
+% Aplikace umožní vykonávat \emph{SPARQL} dotazy nad uloženými daty.
 
 
 \section{Nefunkční požadavky na serverovou aplikaci}
 Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na dílo jako celek, nikoliv na jednotlivé funkcionality. Pro serverovou aplikaci mezi ně patří především:
-\subsection{NFR-S-1: Aplikaci naprogramujte v \emph{JavaScript}u}
-V poslední době dochází k prudkému rozvoji \emph{JavaScript}u a dá se mu do budoucna předpovídat vyšší nasazení, aplikaci tedy naprogramujte v \emph{JavaScript}u.
-\subsection{NFR-S-2: Pro běh serveru využijte \emph{Node.js}}
-Pro běh aplikace využijte systém \emph{Node.js} a naučte se práci s touto novou a progresivní technologií.
-\subsection{NFR-S-3: Využijte úložiště sémantických dat}
-Sémantická data ukládejte do takového úložiště, aby nad ním bylo možné vykonávat dotazy přímo (případně přes nezávislého prostředníka) a nebylo nutné přistupovat přes vlastní aplikaci.
-\subsection{NFR-S-4: Dejte přednost kvalitě zpracování}
-Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
-\subsection{NFR-S-5: Svobodné licence}
-Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
+
+\begin{enumerate}
+ \item Aplikaci naprogramujte v \emph{JavaScript}u.
+ \item Pro běh serveru využijte \emph{Node.js}.
+ \item Sémantická data ukládejte do takového úložiště, aby nad ním bylo možné vykonávat dotazy přímo (případně přes nezávislého prostředníka) a nebylo nutné přistupovat přes vlastní aplikaci.
+ \item Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
+ \item Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{\glsname{GNU}}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
+\end{enumerate}
+
+% \subsection{NFR-S-1: Aplikaci naprogramujte v \emph{JavaScript}u}
+% V poslední době dochází k prudkému rozvoji \emph{JavaScript}u a dá se mu do budoucna předpovídat vyšší nasazení, aplikaci tedy naprogramujte v \emph{JavaScript}u.
+% \subsection{NFR-S-2: Pro běh serveru využijte \emph{Node.js}}
+% Pro běh aplikace využijte systém \emph{Node.js} a naučte se práci s touto novou a progresivní technologií.
+% \subsection{NFR-S-3: Využijte úložiště sémantických dat}
+% Sémantická data ukládejte do takového úložiště, aby nad ním bylo možné vykonávat dotazy přímo (případně přes nezávislého prostředníka) a nebylo nutné přistupovat přes vlastní aplikaci.
+% \subsection{NFR-S-4: Dejte přednost kvalitě zpracování}
+% Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
+% \subsection{NFR-S-5: Svobodné licence}
+% Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
 
 
 
 \section{Funkční požadavky na mobilní aplikaci}
 Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na jednotlivé funkcionality. Pro mobilní aplikaci mezi ně patří především:
-\subsection{FR-M-1: Možnost vlastních \emph{SPARQL} dotazů}
-Aplikace umožní pokročilému uživateli zadat vlastní \emph{SPARQL} dotaz. Ten se odešle na server, kde se zpracuje, a výslek se navrátí uživateli.
-\subsection{FR-M-2: Výběr předpřipravených dotazů}
-Pro méně znalé uživatele \emph{SPARQL} a pro uživatele minimalizující použití klávesnice vytvořte předpřipravené dotazy pro základní scénáře použití aplikace.
-% \subsection{FR-M-: Vyhledání místností}
-% Připravte aplikaci mimo předem nespecifických dotazů i na ty požadující vyhledání místností. 
-% \subsection{FR-M-: Vyhledání bodů zájmu}
-% Připravte aplikaci mimo předem nespecifických dotazů i na ty požadující vyhledání bodů zájmu. 
-\subsection{FR-M-3: Určení aktuální pozice}
-Implementujte funkcionalitu umožňující určení aktuální pozice a její předání dalšímu zpracování.
-\subsection{FR-M-4: Vizualizace pozice}
-Aplikace dokáže na mapě vizualizovat určitou pozici.
-\subsection{FR-M-5: Vizualizace \emph{HTML} dat}
-Aplikace dokáže vizualizovat \emph{HTML} data nebo data jako \emph{HTML}.
-\subsection{FR-M-6: Nápověda}
-Aplikace bude poskytovat nápovědu pro snazší použití.
+
+\begin{enumerate}
+ \item Aplikace umožní pokročilému uživateli zadat vlastní \glsname{SPARQL} dotaz. Ten se odešle na server, kde se zpracuje, a výslek se navrátí uživateli.
+ \item Pro méně znalé uživatele \glsname{SPARQL} a pro uživatele minimalizující použití klávesnice vytvořte předpřipravené dotazy pro základní scénáře použití aplikace.
+ \item Implementujte funkcionalitu umožňující určení aktuální pozice a její předání dalšímu zpracování.
+ \item Aplikace dokáže na mapě vizualizovat určitou pozici.
+%  \item Aplikace umožní vizualizovat polohu uživatele na základě GPS souřadnic.
+%  \item Aplikace umožní vizualizovat polohu uživatele na základě známého blízkého objektu (např. čísla místnosti).
+%  \item Aplikace umožní vizualizovat polohu hledaného objektu.
+ \item Aplikace dokáže vizualizovat \glsname{HTML} data nebo data jako \glsname{HTML}.
+ \item Aplikace bude poskytovat nápovědu pro snazší použití.
+ \item Aplikace bude postavená nad daty reprezentovanými výše uvedenou ontologií.
+\end{enumerate}
+
+% \subsection{FR-M-1: Možnost vlastních \emph{SPARQL} dotazů}
+% Aplikace umožní pokročilému uživateli zadat vlastní \emph{SPARQL} dotaz. Ten se odešle na server, kde se zpracuje, a výslek se navrátí uživateli.
+% \subsection{FR-M-2: Výběr předpřipravených dotazů}
+% Pro méně znalé uživatele \emph{SPARQL} a pro uživatele minimalizující použití klávesnice vytvořte předpřipravené dotazy pro základní scénáře použití aplikace.
+% % \subsection{FR-M-: Vyhledání místností}
+% % Připravte aplikaci mimo předem nespecifických dotazů i na ty požadující vyhledání místností. 
+% % \subsection{FR-M-: Vyhledání bodů zájmu}
+% % Připravte aplikaci mimo předem nespecifických dotazů i na ty požadující vyhledání bodů zájmu. 
+% \subsection{FR-M-3: Určení aktuální pozice}
+% Implementujte funkcionalitu umožňující určení aktuální pozice a její předání dalšímu zpracování.
+% \subsection{FR-M-4: Vizualizace pozice}
+% Aplikace dokáže na mapě vizualizovat určitou pozici.
+% \subsection{FR-M-5: Vizualizace \emph{HTML} dat}
+% Aplikace dokáže vizualizovat \emph{HTML} data nebo data jako \emph{HTML}.
+% \subsection{FR-M-6: Nápověda}
+% Aplikace bude poskytovat nápovědu pro snazší použití.
 
 
 \section{Nefunkční požadavky na mobilní aplikaci}
 Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na dílo jako celek, nikoliv na jednotlivé funkcionality. Pro mobilní aplikaci mezi ně patří především:
-\subsection{NFR-M-1: Multiplatformnost}
-Aplikaci vytvořte v \emph{HTML5}, aby byla na současných, obzvláště mobilních, zařízeních co nejvíce multiplatformní. Bude funkční minimálně v nejnovějších verzích OS Android, iOS a Symbian.
-\subsection{NFR-M-2: Použitelnost}
-Při vývoji se zaměřte i na použitelnost, aplikaci by měl být schopný, po krátkém zaškolení, používat jakýkoliv běžný student Fakulty informačních technologií.
-\subsection{NFR-M-3: Omezené použití klávesnice}
-Snažte se nabízet alternativy k zadávání dlouhých textů, aby byla usnadněna obsluha uživatelům mobilních zařízení bez hardwarových klávesnic.
-% \subsection{NFR-M-: Offline provoz}
-\subsection{NFR-M-4: Dejte přednost kvalitě zpracování}
-Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
-\subsection{NFR-M-5: Svobodné licence}
-Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
+
+\begin{enumerate}
+ \item Aplikaci vytvořte v \glsname{HTML}5, aby byla na současných, obzvláště mobilních, zařízeních multiplatformní. Bude funkční minimálně v nejnovějších verzích \glsname{OS} Android, iOS a Symbian.
+ \item Při vývoji se zaměřte i na použitelnost, aplikaci by měl být schopný, po krátkém zaškolení, používat jakýkoliv běžný student Fakulty informačních technologií.
+ \item Snažte se nabízet alternativy k zadávání dlouhých textů, aby byla usnadněna obsluha uživatelům mobilních zařízení bez hardwarových klávesnic.
+ \item Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
+ \item Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \glsname{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
+ \item Aplikace umožní využití off-line. \todo{Vynechám -- muselo by se složitě indexovat.}
+\end{enumerate}
+
+
+% \subsection{NFR-M-1: Multiplatformnost}
+% Aplikaci vytvořte v \emph{HTML5}, aby byla na současných, obzvláště mobilních, zařízeních co nejvíce multiplatformní. Bude funkční minimálně v nejnovějších verzích OS Android, iOS a Symbian.
+% \subsection{NFR-M-2: Použitelnost}
+% Při vývoji se zaměřte i na použitelnost, aplikaci by měl být schopný, po krátkém zaškolení, používat jakýkoliv běžný student Fakulty informačních technologií.
+% \subsection{NFR-M-3: Omezené použití klávesnice}
+% Snažte se nabízet alternativy k zadávání dlouhých textů, aby byla usnadněna obsluha uživatelům mobilních zařízení bez hardwarových klávesnic.
+% % \subsection{NFR-M-: Offline provoz}
+% \subsection{NFR-M-4: Dejte přednost kvalitě zpracování}
+% Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
+% \subsection{NFR-M-5: Svobodné licence}
+% Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
 
 
 

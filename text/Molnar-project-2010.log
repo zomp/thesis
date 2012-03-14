@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.11.13)  30 NOV 2011 21:18
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.11.13)  1 MAR 2012 12:04
 entering extended mode
  %&-line parsing enabled.
 **Molnar-project-2010.tex
@@ -477,7 +477,7 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 Package color Info: Driver file: pdftex.def on input line 130.
 )
 Diplomova prace
-(./Molnar-project-2010.aux (./2_problem.aux))
+(./Molnar-project-2010.aux (./2_problematika.aux) (./3_analyza.aux))
 \openout1 = `Molnar-project-2010.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
@@ -532,7 +532,7 @@ LaTeX Info: Redefining \pageref on input line 34.
 
 \AtBeginShipoutBox=\box31
 
-<figures/LogoCVUT.pdf, id=63, 93.34875pt x 70.2625pt>
+<figures/LogoCVUT.pdf, id=103, 93.34875pt x 70.2625pt>
 File: figures/LogoCVUT.pdf Graphic file (type pdf)
 
 <use figures/LogoCVUT.pdf> [3
@@ -580,62 +580,83 @@ LaTeX Font Info:    External font `lmex10' loaded for size
  [7
 
 ]
-\openout2 = `2_problem.aux'.
+\openout2 = `2_problematika.aux'.
 
- (./2_problem.tex
+ (./2_problematika.tex
 Kapitola 1.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 15.
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Overfull \hbox (0.89233pt too wide) in paragraph at lines 18--19
+\T1/lmtt/m/n/10.95 / / xmlns . com / foaf / 0 . 1/$[][]\T1/lmr/m/n/10.95 ) a \T
+1/lmr/m/it/10.95 AIISO Ro-les \T1/lmr/m/n/10.95 ([][]$\T1/lmtt/m/n/10.95 http :
+ / / purl . org / vocab / aiiso-[]roles / schema$[][]\T1/lmr/m/n/10.95 )
+ []
+
 [1
 
 
 
 ]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 25.
- (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 25.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 25.
+Overfull \hbox (20.40237pt too wide) in paragraph at lines 28--31
+[]\T1/lmr/m/it/10.95 University On-to-logy \T1/lmr/m/n/10.95 ([][]$\T1/lmtt/m/n
+/10.95 http : / / www . cs . umd . edu / projects / plus / SHOE / onts / univ1 
+. 0 . html$[][]\T1/lmr/m/n/10.95 )
+ []
 
-Overfull \hbox (2.51132pt too wide) in paragraph at lines 37--38
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 36.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 36.
+[2]
+Overfull \hbox (2.51132pt too wide) in paragraph at lines 59--60
 []\T1/lmr/m/n/10.95 Univerzity jako Im-pe-rial College Lon-don, Lon-don School 
 of Eco-no-mics, Uni-ver-sity College
  []
 
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 41.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 63.
 (/usr/share/texmf/tex/latex/lm/omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 41.
- [2] [3]) [4]
-(./Molnar-project-2010.bbl) [5
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 63.
+ [3] [4]) [5]
+\openout2 = `3_analyza.aux'.
+
+ (./3_analyza.tex
+Kapitola 2.
+[6
 
 
-] (./Molnar-project-2010.aux (./2_problem.aux)) ) 
+
+] [7]) [8] (./Molnar-project-2010.bbl) [9
+
+
+] (./Molnar-project-2010.aux
+(./2_problematika.aux) (./3_analyza.aux)) ) 
 Here is how much of TeX's memory you used:
- 6618 strings out of 494789
- 89193 string characters out of 1177653
- 159724 words of memory out of 3000000
- 9587 multiletter control sequences out of 15000+50000
+ 6698 strings out of 494789
+ 90017 string characters out of 1177653
+ 162762 words of memory out of 3000000
+ 9600 multiletter control sequences out of 15000+50000
  78031 words of font info for 50 fonts, out of 3000000 for 9000
  264 hyphenation exceptions out of 8191
- 38i,8n,38p,803b,375s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts/enc/dv
-ips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share
-/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm
-/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf
-/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.p
-fb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/typ
-e1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/
-share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/publ
-ic/lm/lmri9.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/share/
-texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/
-lmtt10.pfb>
-Output written on Molnar-project-2010.pdf (10 pages, 334678 bytes).
+ 38i,8n,38p,1213b,394s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf/fonts/enc/dvips/lm
+/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf
+/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx1
+2.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts
+/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></u
+sr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/pub
+lic/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/
+texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/
+lmri9.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10
+.pfb>
+Output written on Molnar-project-2010.pdf (14 pages, 383852 bytes).
 PDF statistics:
- 207 PDF objects out of 1000 (max. 8388607)
- 32 named destinations out of 1000 (max. 500000)
- 126 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 377 PDF objects out of 1000 (max. 8388607)
+ 92 named destinations out of 1000 (max. 500000)
+ 206 words of extra memory for PDF output out of 10000 (max. 10000000)
 

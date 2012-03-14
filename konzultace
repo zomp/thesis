@@ -1,0 +1,4 @@
+Ukázka prostředí a funkčnosti
+Mobilní aplikaci založit na technologiích Google (Maps)? (Podle obtížnosti implementace Geo v prohlížeči...)
+Databáze jen aktuálních informací? (Jak jinak třeba pracovat s otvíracími dobami? Každý den stáhnout a prodloužit platnost?)
+Klidně použiji canvas místo svg (Zkoušel jsem ho, horší členění kódu, lepší integrace.)

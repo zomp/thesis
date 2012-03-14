@@ -160,10 +160,49 @@
   key    = "doc:bakalarka",
   author = "Jan Molnár",
   title  = "Mobilní navigační systém pro {FEL} {ČVUT}",
-  organization= "České vysoké učení technické v Praze, Fakulta elektrotechnická",
+  publisher= "České vysoké učení technické v Praze, Fakulta elektrotechnická",
   year   = 2010,
   month  = may,
 }
+
+@Book{PruvodcePrvaka,
+  key    = "doc:pruvodce",
+  title  = "Průvodce prváka po {ČVUT}",
+  publisher= "{IAESTE} {ČVUT} Praha",
+  year   = 2011,
+}
+
+@Misc{PruvodcePrvakaPod,
+  key    = "web:pruvodce:pod",
+  author = "Studentská samospráva Podolí",
+  title  = "Průvodce prváka po koleji Podolí",
+  note   = "\\ \url{http://pruvodce.pod.cvut.cz/}",
+}
+
+@Misc{CvutNavigator,
+  key    = "web:pruvodce:navigator",
+  author = "Jiří Chludil and Marián Šuch and Václav Starý and Vojtěch Vopařil and Michal Skala and Tomáš Babják",
+  title  = "ČVUT navigátor",
+  note   = "\\ \url{http://navigator.fit.cvut.cz/}",
+}
+
+@Misc{Lubm,
+  key    = "web:ontologie:lubm",
+  author = "Yuanbo Guo",
+  title  = "Lehigh University Benchmark",
+  publisher= "Lehigh University",
+  note   = "\\ \url{http://swat.cse.lehigh.edu/projects/lubm/}",
+}
+
+@Misc{Aiiso,
+  key    = "web:ontologie:aiiso",
+  author = "Rob Styles and Nadeem Shabir",
+  title  = "Academic Institution Internal Structure Ontology (AIISO)",
+  publisher= "Talis Information Ltd",
+  year   = 2008,
+  note   = "\\ \url{http://purl.org/vocab/aiiso/schema}",
+}
+
 
 
 

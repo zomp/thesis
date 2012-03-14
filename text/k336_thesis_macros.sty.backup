@@ -73,7 +73,8 @@
 \bigskip
 {\labelStudBranch: \StudBranch}\\
 \bigskip
-\today
+28. prosince 2012 \todo{zkontrolovat datum!}
+% \today
 \end{center}
 \newpage
 }
@@ -181,12 +182,17 @@ I have no objection to usage of this work in compliance with the act \S 60 Záko
 {\color{poznamka}{TODO #1}}
 }
 
+% horizontální zarovnání
+\newcommand{\algn}[2]{
+\multicolumn{1}{#1}{#2}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % description bez odsazeni
 \newenvironment{description*}
        {\begin{list}{}{
          \setlength{\topsep}{0pt}
-         \setlength{\leftmargin}{-2.3em}
+         \setlength{\leftmargin}{-2.25em}
          \setlength{\listparindent}{0em}
          \setlength{\itemindent}{0em}
         } \item \begin{description}
