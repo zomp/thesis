@@ -109,9 +109,8 @@ app.get('/akce', function (req, res) {
 	});
 	
 	var onAllLoad = function () {
-		console.log(ical.events());///příklad
-		console.log(xml.find("title").text());///příklad
-		
+// 		console.log(ical.events());///příklad
+// 		console.log(xml.find("title").text());///příklad
 		
 		
 		var rdfstore = require('rdfstore');
@@ -121,28 +120,77 @@ app.get('/akce', function (req, res) {
 				persistent: true, 
 				engine: 'mongodb', 
 				name: 'pruvodcefitcvut',
-				overwrite: false,
+				overwrite: true,
 				mongoDomain: 'localhost',
 				mongoPort: 27017
 			},
 			function (store) {
 				var graph = store.rdf.createGraph();
 				
-				store.rdf.setPrefix("ex", "http://example.org/people/");
+				store.rdf.setPrefix("lode", "http://linkedevents.org/ontology/");
+				store.rdf.setPrefix("time", "http://www.w3.org/2006/time#");
+				store.rdf.setPrefix("prf", "http://pruvodce.fit.cvut.cz/#");
 				
-				for (var i; i < ical.events().length; ++i) {
-					graph.add(
-						store.rdf.createTriple(
-							store.rdf.createNamedNode(store.rdf.resolve("ex:Alice")),
-							store.rdf.createNamedNode(store.rdf.resolve("foaf:name")),
-							store.rdf.createLiteral("alice")
-						)
-					);
+				for (var e in ical.events()) {
+					var event;
+					if (!ical.events()[e].properties.URL) event = store.rdf.createBlankNode();
+					else event = store.rdf.createNamedNode(ical.events()[e].properties.URL.value);
+					
+					if (ical.events()[e].properties.LOCATION) {
+						graph.add(
+							store.rdf.createTriple(
+								event,
+								store.rdf.createNamedNode(store.rdf.resolve("lode:atPlace")),
+								store.rdf.createLiteral(ical.events()[e].properties.LOCATION.value)
+							)
+						);
+					}
+					if (ical.events()[e].properties.DTSTART) {
+						var time = store.rdf.createBlankNode();
+						graph.add(
+							store.rdf.createTriple(
+								event,
+								store.rdf.createNamedNode(store.rdf.resolve("lode:atTime")),
+								time
+							)
+						);
+						graph.add(
+							store.rdf.createTriple(
+								time,
+								store.rdf.createNamedNode(store.rdf.resolve("rdf:type")),
+								store.rdf.createNamedNode(store.rdf.resolve("time:Interval"))
+							)
+						);
+						graph.add(
+							store.rdf.createTriple(
+								time,
+								store.rdf.createNamedNode(store.rdf.resolve("time:hasBeginning")),
+								store.rdf.createLiteral(ical.events()[e].properties.DTSTART.value.toJSON())
+							)
+						);
+						if (ical.events()[e].properties.DTEND) {
+							graph.add(
+								store.rdf.createTriple(
+									time,
+									store.rdf.createNamedNode(store.rdf.resolve("time:hasEnd")),
+									store.rdf.createLiteral(ical.events()[e].properties.DTEND.value.toJSON())
+								)
+							);
+						}
+					}
+					if (ical.events()[e].properties.DESCRIPTION) {
+						graph.add(
+							store.rdf.createTriple(
+								event,
+								store.rdf.createNamedNode(store.rdf.resolve("lode:Event")),
+								store.rdf.createLiteral(ical.events()[e].properties.DESCRIPTION.value)
+							)
+						);
+					}
 				}
 				
 				store.insert(
 					graph,
-					null,
 					function () {console.log("Graph has been inserted.")}
 				);
 			}
