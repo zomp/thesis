@@ -1,9 +1,12 @@
 Jiná kódování v node.js
 Nevalidní XML v jQuery
+<literal>> - https://github.com/antoniogarrote/rdfstore-js/issues/26
+
+Příště si pořádně rozmyslím se pouštět do kompletně neznámých a navíc ještě ani pořádně nezdokumentovaných technologií.
 
 Zpracování iCalendar
 https://github.com/peterbraden/node-ical - 
-https://github.com/tritech/node-icalendar - 
+https://github.com/tritech/node-icalendar - Vybráno!
 https://github.com/marook/icalendar - pouze formátování výstupu
 
 Rozepsat FIT Navigátor
