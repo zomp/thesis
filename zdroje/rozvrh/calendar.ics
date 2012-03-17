@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+PRODID:-//molnaja2@fit.cvut.cz//CVUT FIT Calendar//KOSapi 1.0//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+DTSTAMP:20120316T182619Z
+UID:20120316T182619Z-0@kosapi.fit.cvut.cz
+TZID:Europe/Prague
+DTSTART:20120216T180000
+DTEND:20120216T201500
+RRULE:FREQ=WEEKLY;UNTIL=20120916T235959
+SUMMARY;ALTREP="https://kosapi.fit.cvut.cz/api/2/courses/MI-CIO":MI-CIO (předn.)
+DESCRIPTION;LANGUAGE=cs:Podpora IT byznysu a role CIO\nVyučující: Prof.Ing. Jan Dohnal CSc. <>
+CATEGORIES:LECTURE
+COMMENT:PARNUM=1\;
+LOCATION;ALTREP="https://kosapi.fit.cvut.cz/api/2/rooms/T9:105":T9:105
+ORGANIZER;CN=Prof.Ing. Jan Dohnal CSc.:mailto:unknown@do-not-reply.cz
+END:VEVENT
+END:VCALENDAR
