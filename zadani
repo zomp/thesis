@@ -13,6 +13,23 @@ Na základě vybraných zdrojů vytvořte ontologii ČVUT FIT a demonstrujte jej
 
 
 
+22.02.2012 - přepsání požadavků
+27.02.2012 - dokončení rešerše ontologií
+05.03.2012 - refaktoring textů (šablona, TODO...)
+12.03.2012 - SPARQL endpoint
+19.03.2012 - získání dat a uložení do databáze
+26.03.2012 - sepsání implementace serverové aplikace
+02.04.2012 - tvorba mapových podkladů
+16.04.2012 - dokončení mobilní aplikace
+23.04.2012 - sepsání implementace mobilní aplikace
+30.04.2012 - dokončení testování
+30.04.2012 - podání přihlášky k SZZ
+04.05.2012 - dokončení práce a předběžné odevzdání (vedoucímu a oponentovi)
+11.05.2012 - odevzdání práce
+11.05.2012 - konec semestru
+
+
+
 Cílem práce je na základě vybraných zdrojů vytvořit ontologii ČVUT FIT a demonstrovat její využití mobilní aplikací sloužící jako průvodce studenta.
 Analyzujte zdroje vhodné pro vznik ontologie reprezentující ČVUT FIT, tu na základě automatického dolování vybraných zdrojů vytvořte a perzistentně ukládejte.
 Analyzujte, navrhněte, vytvořte a otestujte ukázkovou mobilní aplikaci sloužící jako průvodce studenta ČVUT FIT, na níž demonstrujete využití ontologie.

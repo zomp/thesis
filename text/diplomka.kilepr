@@ -4,7 +4,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.1.0
-lastDocument=2_problematika.tex
+lastDocument=Molnar-project-2010.tex
 masterDocument=
 name=Diplomka
 pkg_extIsRegExp=false
@@ -231,7 +231,7 @@ encoding=UTF-8
 highlight=BibTeX
 line=191
 mode=BibTeX
-open=true
+open=false
 order=1
 
 [view-settings,view=0,item:1_uvod.tex]
