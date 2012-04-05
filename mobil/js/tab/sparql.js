@@ -7,20 +7,27 @@ tab.sparql.getName = function () {
 };
 
 tab.sparql.getContent = function () {
-	return 'Zde bude text input pro zadání dotazu a vizualizace výsledků.';
+	var query = $('<textarea>select * { ?s ?p ?o }</textarea>');
+	
+	var submit = $('<a href="#">Hledej!</a>');
+	
+	var form = $('<form id="search"></form>');
+	form.append(query);
+	form.append(submit);
+	
+	var ressults = $('<div class="group" id="ressults">Nalezené výsledky.</div>');
+	
+	submit.click(function () {
+		ressults.html('Vyhledávám...');
+		
+		querySparql(query.val(), function (data) {
+			ressults.html('<pre>' + JSON.stringify(data, null, 4) + '</pre>');
+		}, function (error) {
+			ressults.html('<span class="error">' + error + '</span>');
+		});
+		
+		return false;
+	});
+	
+	return $('<div></div>').append($('<div class="group"></div>').append(form)).append(ressults);
 };
-
-
-// $(document).ready(function () {
-// 	$.ajax({
-// 		url: config.sparql.url,
-// 		accepts: 'application/json',
-// 		data: {
-// 			query: 'select * { ?s ?p ?o }'
-// 		},
-// 		dataType: 'json',
-// 		success: function (data) {
-// 			alert(JSON.stringify(data));
-// 		}
-// 	});
-// });

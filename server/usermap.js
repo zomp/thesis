@@ -82,7 +82,7 @@ var processPerson = function (login) {
 							store.rdf.createTriple(
 								person,
 								store.rdf.createNamedNode(store.rdf.resolve("foaf:name")),
-								store.rdf.createLiteral(store.rdf.resolve(jqo.find("#name").text()))
+								store.rdf.createLiteral(jqo.find("#name").text())
 							)
 						);
 					}
@@ -114,7 +114,7 @@ var processPerson = function (login) {
 									store.rdf.createTriple(
 										person,
 										store.rdf.createNamedNode(store.rdf.resolve("foaf:phone")),
-										store.rdf.createNamedNode("tel:" + $.trim($(phones[ph].replace(/(^.+?)\(.*/m, "$1")).text()))
+										store.rdf.createNamedNode("tel:" + $.trim(phones[ph].replace(/(^.+?)\(.*/m, "$1")))
 									)
 								);
 					}
@@ -126,7 +126,7 @@ var processPerson = function (login) {
 									store.rdf.createTriple(
 										person,
 										store.rdf.createNamedNode(store.rdf.resolve("foaf:phone")),
-										store.rdf.createNamedNode("tel:" + $.trim($(phones[ph].replace(/(^.+?)\(.*/m, "$1")).text()))
+										store.rdf.createNamedNode("tel:" + $.trim(phones[ph].replace(/(^.+?)\(.*/m, "$1")))
 									)
 								);
 					}

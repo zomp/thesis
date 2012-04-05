@@ -1,15 +1,27 @@
+/**
+ * Moduly menu.
+ */
+var tab = {};
 
-var tab = {}; //moduly menu
-
-//přepínání modulů menu
-var setTab = function (name) {
-	$('#content').html(tab[name].getContent());
-};
-
-//akce prováděné po načtení stránky
+/**
+ * Akce prováděné po načtení stránky.
+ */
 $(document).ready(function () {
-	var tabnames = config.tab.used; //použité moduly menu
+
+	/**
+	 * Přepínání modulů menu.
+	 * @param name Jméno modulu.
+	 */
+	var setTab = function (name) {
+		$('#content').html(tab[name].getContent());
+	};
 	
+	/**
+	 * Použité moduly menu.
+	 */
+	var tabnames = config.tab.used;
+	
+	// Přidání jednotlivých modulů do menu.
 	for (var tabname in tabnames) {
 		(function () {
 			var t = tabname;
@@ -27,4 +39,36 @@ $(document).ready(function () {
 			});
 		})();
 	}
+	
+	
 });
+
+
+/**
+ * Vykonání SPARQL dotazu nad endpointem.
+ * @param query SPARQL dotaz.
+ * @return Objekt reprezentující výsledek.
+ */
+var querySparql = function (query, success, error) {
+	$.ajax({
+		url: config.sparql.url,
+		accepts: 'application/json',
+		data: {
+			query: query
+		},
+		dataType: 'json',
+		success: function (data, textStatus, jqXHR) {
+			success(data);
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			if (jqXHR.responseText === 'Query malformed') {
+				error('V syntaxi dotazu se vyskytuje chyba.');
+				return;
+			}
+// 			alert(JSON.stringify(jqXHR, null, 2));///
+// 			alert(JSON.stringify(textStatus, null, 2));///
+// 			alert(JSON.stringify(errorThrown, null, 2));///
+			error(textStatus);
+		}
+	});
+};
