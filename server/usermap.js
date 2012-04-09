@@ -36,7 +36,7 @@ var processPerson = function (login) {
 		path: (url.parse(uri).pathname || '') + (url.parse(uri).search || '')
 	});
 	request.on('error', function(e) {
-		console.error("Error: " + e.message);
+		console.error("Error (" + login + "): " + e.message);
 	});
 	request.on('response', function (r) {
 		if (r.statusCode != 200) {
@@ -51,8 +51,7 @@ var processPerson = function (login) {
 			var jqo = $(data);
 			
 			var rdfstore = require('rdfstore');
-			
-			var store = rdfstore.create(
+			rdfstore.create(
 				require('./rdfstore.js').config,
 				function (store) {
 					var graph = store.rdf.createGraph();
@@ -145,7 +144,9 @@ var processPerson = function (login) {
 					
 					store.insert(
 						graph,
-						function () {console.log("Graph has been inserted.")}
+						function () {
+							console.log("Graph has been inserted.")
+						}
 					);
 				}
 			);

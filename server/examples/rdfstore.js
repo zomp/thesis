@@ -1,4 +1,74 @@
-var rdfstore = require('rdfstore');
+
+
+/**
+ * Výchozí konfigurace rdfstore.
+ */
+var conf = {
+	persistent: true, 
+	engine: 'mongodb', 
+	name: 'pruvodcefitcvut',
+	overwrite: false,///
+	mongoDomain: 'localhost',
+	mongoPort: 27017
+};
+
+/**
+ * Kolekce rdfstore indexovaná konfiguracemi.
+ */
+var stores = [];
+
+/**
+ * Singleton pro získání rdfstore o určité konfiguraci. Pro každý jiný konfigurační objekt je vytvořen nový rdfstore (byť mají stejné hodnoty).
+ * @param conf Konfigurace požadovaného rdfstore. Nepovinný parametr.
+ * @return rdfstore o daných parametrech.
+ */
+var getStore = function (config) {
+	var config = config || conf;
+	
+	alert(stores)
+	if (stores[config]) return stores[config];
+	
+	var rdfstore = require('rdfstore');
+	
+	var store = rdfstore.create(config, callback);
+	stores[config] = store;
+	
+	return store;
+}
+
+
+require('./rdfstore.js').getStore(require('./rdfstore.js').config)
+
+
+var store = rdfstore.create(
+	require('./rdfstore.js').config,
+	function (store) {
+		var graph = store.rdf.createGraph();
+		
+		store.rdf.setPrefix("prf", "http://pruvodce.fit.cvut.cz/ontology/");
+		store.rdf.setPrefix("usmp", "https://usermap.cvut.cz/profile/");
+		
+		var person = store.rdf.createNamedNode(store.rdf.resolve("usmp:" + login));
+		
+		graph.add(
+			store.rdf.createTriple(
+				person,
+				store.rdf.createNamedNode(store.rdf.resolve("rdf:type")),
+				store.rdf.createNamedNode(store.rdf.resolve("foaf:Person"))
+			)
+		);
+		
+		store.insert(
+			graph,
+			function () {console.log("Graph has been inserted.")}
+		);
+	}
+);
+
+
+
+
+/*var rdfstore = require('rdfstore');
 
 var store = rdfstore.create({
 	persistent: true, 
@@ -13,7 +83,8 @@ var store = rdfstore.create({
 			console.log('select returned ' + success + ' and results ' + JSON.stringify(results) );
 		});
 	});
-});
+});*/
+
 
 
 

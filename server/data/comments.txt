@@ -5,6 +5,9 @@ Soubory v tomto adresáři slouží jako náhrada za chybějící zdroje informa
 ===== students.txt =====
 Soubor slouží jako zdroj jmen a loginů studentů FIT ČVUT. Data jsou získána z https://timetable.fit.cvut.cz/public/cz/studenti/index.html, nebylo by těžké je získat přímo, byl by ale třeba účet, kterým by se ke zdroji přihlásilo (případně by stačilo umístit server do sítě FIT ČVUT - pak by k autentizaci nedocházelo). V budoucnu bude zřejmě lepší tato data získávat z KOSapi.
 
+===== students_complete.txt =====
+Soubor totožný se students.txt, pouze obsahuje jména všech studentů - pro předprodukční nasazení byla používaná databáze studentů zkrácena, aby nedocházelo ke zbytečnému přetěžování usermapu.
+
 ===== employees.txt =====
 Soubor slouží jako zdroj jmen a loginů zaměstnanců FIT ČVUT. Jména jsou získána z http://fit.cvut.cz/fakulta/kontakty/zamestnanci (alternativně by se dal použít seznam vyučujících na https://timetable.fit.cvut.cz/public/cz/ucitele/index.html, ten ale neobsahuje ostatní zaměstnance a je pro tuto činnost méně vhodný), loginy manuálně dohledány na Usermap. (Vzhledem k manuální tvorbě byl zahrnut pouze nereprezentativní vzorek osob.) V budoucnu bude zřejmě lepší tato data získávat z KOSapi. (Mimochodem, za povšimnutí stojí některá uživatelská jména, například matondan vygenerované ze jména Matocha Daniel.)
 
