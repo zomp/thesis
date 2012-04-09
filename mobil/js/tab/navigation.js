@@ -11,14 +11,11 @@ tab.navigation.getContent = function () {
 	
 	var submit = $('<a href="#">Hledej!</a>');
 	
-	var form = $('<form id="search"></form>');
-	form.append(query);
-	form.append(submit);
+	var form = $('<form id="search" action="#"></form>');
 	
 	var ressults = $('<div class="group" id="ressults">Nalezené výsledky.</div>');
 	
-	try {
-	submit.click(function () {
+	var search = function () {
 		ressults.html('Vyhledávám...');
 		
 		querySparql(query.val(), function (data) {
@@ -28,10 +25,13 @@ tab.navigation.getContent = function () {
 		});
 		
 		return false;
-	});
-	} catch (e) {
-		alert(e + ' ... čau');
 	}
+	
+	form.submit(search);
+	submit.click(search);
+	
+	form.append(query);
+	form.append(submit);
 	
 	return $('<div></div>').append($('<div class="group"></div>').append(form)).append(ressults);
 };

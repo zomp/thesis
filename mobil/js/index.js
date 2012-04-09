@@ -65,10 +65,7 @@ var querySparql = function (query, success, error) {
 				error('V syntaxi dotazu se vyskytuje chyba.');
 				return;
 			}
-// 			alert(JSON.stringify(jqXHR, null, 2));///
-// 			alert(JSON.stringify(textStatus, null, 2));///
-// 			alert(JSON.stringify(errorThrown, null, 2));///
-			error(textStatus);
+			error('Došlo k chybě označené \'' + textStatus + '\', pravděpodobně se nepodařilo navázat spojení se serverem.');
 		}
 	});
 };
