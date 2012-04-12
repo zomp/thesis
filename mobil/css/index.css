@@ -1,22 +1,19 @@
+/* Všeobecné styly */
 body {
 	font-size: 120%;
 }
-
 a {
 	color: #00A2C0;
 	text-decoration: none;
 	font-weight: bold;
 }
-
 h2 {
 	color: #00A2C0;
 	font-family: Arial, sans-serif;
 }
-
 .error {
 	color: #FF0000;
 }
-
 .group {
 	margin: 0.6em 0.3em;
 	padding: 0.3em;
@@ -25,17 +22,14 @@ h2 {
 	border-radius: 3px;
 	overflow: auto;
 }
-
 #menu ul{
 	padding: 0;
 	text-align: center;
 }
-
 #menu li {
 	display: inline-block;
 }
-
-#menu li a {
+#menu li a, .button {
 	display: inline-block;
 	padding: 0.3em 0.6em;
 	margin: 0.3em;
@@ -45,41 +39,118 @@ h2 {
 	border: 2px solid #888888;
 	border-radius: 3px;
 }
-
-#menu li a:hover {
+#menu li a:hover, .button:hover {
 	background-color: #00A2C0;
 	cursor: pointer;
 }
-
 #content {
 	padding: 0.3em 0.6em;
 	background-color: #EEEEEE;
 	border: 2px solid #888888;
 	border-radius: 3px;
 }
-
 #search {
 	text-align: center;
 }
-
 #search textarea, #search input {
 	width: 99%;
 	margin: 2px;
 	border: 2px solid #888888;
 	border-radius: 3px;
 }
-
 #search a {
 	width: 99%;
 	display: inline-block;
+	margin: 2px;
 	font-family: Arial, sans-serif;
 	color: #555555;
 	background-color: #38C5E0;
 	border: 2px solid #888888;
 	border-radius: 3px;
 }
-
 #search a:hover {
 	background-color: #00A2C0;
 	cursor: pointer;
+}
+
+
+/* Styly SVG mapy */
+.light {
+	fill: #FFFFFF;
+}
+.dark {
+	fill: #000000;
+}
+.label {
+	font-size: 14px;
+	font-family: Arial;
+	text-anchor: middle;
+	font-weight: bold;
+	text-align: center;
+}
+.buildingpartlabel {
+	fill: #FFFFFF;
+}
+.buildinglabel {
+	fill: #000000;
+}
+.big1 {
+	stroke-width: 1px;
+}
+.big2 {
+	stroke-width: 2px;
+}
+.small1 {
+	stroke-width: 0.15px;
+}
+.small2 {
+	stroke-width: 0.3px;
+}
+.area {
+	stroke: #000000;
+}
+.fitarea {
+	fill: #0066FF;
+}
+.neutralarea {
+	fill: #FFFFFF;
+}
+.ctuarea {
+	fill: #8DA6CC;
+}
+.otherarea {
+	fill: #BBBBBB;
+}
+.floor {
+	visibility: hidden;
+}
+.floorframe {
+	stroke: #000000;
+	fill: #FFFFFF;
+}
+.wall {
+	stroke: #000000;
+	fill: none;
+}
+.door {
+	stroke-dasharray: none;
+	stroke: #D40000;
+	fill: none;
+}
+.smallicon {
+	/*stroke: #FFFFFF;
+	stroke-width: 0.02;*/
+	stroke: none;
+	fill: #000000;
+}
+.iconlabel {
+	font-size: 5px;
+	font-family: Arial;
+	fill: #000000;
+	text-anchor: middle;
+	font-weight: bold;
+	text-align: center;
+}
+.point, .point path {
+	fill: #00D400;
 }
