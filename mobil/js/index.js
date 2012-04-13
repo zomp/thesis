@@ -57,12 +57,17 @@ var querySparql = function (query, success, error) {
 			query: query
 		},
 		dataType: 'json',
+		timeout: config.sparql.timeout,
 		success: function (data, textStatus, jqXHR) {
 			success(data);
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
 			if (jqXHR.responseText === 'Query malformed') {
 				error('V syntaxi dotazu se vyskytuje chyba.');
+				return;
+			}
+			if (textStatus === 'timeout') {
+				error('V daném čase se nepodařilo navázat spojení se serverem.');
 				return;
 			}
 			error('Došlo k chybě označené \'' + textStatus + '\', pravděpodobně se nepodařilo navázat spojení se serverem.');

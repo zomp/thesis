@@ -17,3 +17,7 @@ maps.google.com/floorplans
 http://guidebook.com/
 Rozepsat komerční aplikace
 Přidat obrázky, platformy, 
+Knihovny serverové: 
+Knihovny mobilní: jQuery
+Vložení JS: inline, <script>, ajax...
+Mapa canvas x SVG; vložení SVG: JS string, img, element, object, inline, ajax...

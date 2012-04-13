@@ -72,6 +72,9 @@ h2 {
 	background-color: #00A2C0;
 	cursor: pointer;
 }
+#map {
+	padding: 0;
+}
 
 
 /* Styly SVG mapy */

@@ -13,10 +13,10 @@ tab.sparql.getContent = function () {
 	
 	var form = $('<form id="search" action="#"></form>');
 	
-	var ressults = $('<div class="group" id="ressults">Nalezené výsledky.</div>');
+	var ressults = $('<div class="group" id="ressults"><p>Nalezené výsledky.</p></div>');
 	
 	var search = function () {
-		ressults.html('Vyhledávám...');
+		ressults.html('<p>Vyhledávám...</p>');
 		
 		querySparql(query.val(), function (data) {
 			if (data.head.variables.length == 0)
@@ -24,7 +24,7 @@ tab.sparql.getContent = function () {
 			else
 				ressults.html('<pre>' + JSON.stringify(data, null, 4) + '</pre>');
 		}, function (error) {
-			ressults.html('<span class="error">' + error + '</span>');
+			ressults.html('<p class="error">' + error + '</p>');
 		});
 		
 		return false;

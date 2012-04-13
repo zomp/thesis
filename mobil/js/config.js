@@ -11,5 +11,6 @@ config.tab = { //moduly menu
 
 config.sparql = { //SPARQL endpoint
 // 	url: 'http://webdev.fit.cvut.cz/~molnaja2/store.json' //adresa endpointu
-	url: 'http://server:8080/sparql' //adresa endpointu
+	url: 'http://server:8080/sparql', //adresa endpointu
+	timeout: 5000 //timeout pro získání odpovědi
 };
