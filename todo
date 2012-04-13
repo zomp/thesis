@@ -1,3 +1,4 @@
+===== Ontologie =====
 ==== Usermap ====
 - typ stud. programu?
 - fakulta?
@@ -15,3 +16,8 @@ zdroje: http://xmlns.com/foaf/spec/ (vyčerpané), aiiso...
 
 ==== Agata ====
 - 
+
+===== Mobilní aplikace =====
+- modularizace mapového zobrazovače pro vizualizaci map i jinde
+- vytvoření přepřipravených dotazů
+  - 

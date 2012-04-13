@@ -157,3 +157,12 @@ h2 {
 .point, .point path {
 	fill: #00D400;
 }
+.visible {
+	visibility: visible;
+}
+.hidden {
+	visibility: hidden;
+}
+.unimportant {
+	opacity: 0.3;
+}

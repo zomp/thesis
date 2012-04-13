@@ -121,30 +121,53 @@ tab.navigation.getContent = function () {
 	form.append(submit);
 	
 	/**
+	 * Rozšíření jQuery pro práci s SVG (má jiný DOM, než HTML).
+	 */
+	jQuery.fn.extend({
+		/**
+		* Přidání třídy SVG elementu.
+		* @param value Název třídy.
+		*/
+		addSvgClass: function (value) {
+			return this.each(function () {
+				value && (this.className.baseVal += ' ' + value);
+			});
+		},
+		/**
+		* Odstranění třídy SVG elementu.
+		* @param value Název třídy.
+		*/
+		removeSvgClass: function (value) {
+			return this.each(function () {
+				value && (this.className.baseVal = this.className.baseVal.replace(new RegExp('\\s*\\b' + value + '\\b', 'g'), ''));
+			});
+		}
+	});
+	
+	/**
 	 * Vyznačení místa na mapě.
 	 * @param id Identifikátor místa.
 	 */
 	var pointArea = function (id) {
-		$('#' + id.replace(/:/g, '-'), map).each(function () {
-			this.className.baseVal += ' point';
+		$('#' + id.replace(/:/g, '-'), $(svgmap)).each(function () {
+			$(this).addSvgClass('point');
+			$(this).css('visibility') === 'hidden' && $(this).closest('.floor').addSvgClass('visible').closest('.building').addSvgClass('hidden');
+			$(this).closest('.floor, .building').parentsUntil($(svgmap)).andSelf().siblings().addSvgClass('unimportant');
 		});
 	};
 	/**
 	 * Odznačení místa na mapě.
+	 * Není úplným protikladem pointArea()!
 	 * @param id Identifikátor místa.
 	 */
 	var unpointArea = function (id) {
-		$('#' + id.replace(/:/g, '-'), map).each(function () {
-			this.className.baseVal = this.className.baseVal.replace(/ ?\bpoint\b/g, '');
-		});
+		$('#' + id.replace(/:/g, '-'), map).removeSvgClass('point');
 	};
 	/**
 	 * Odznačení všech míst na mapě.
 	 */
 	var unpointAllAreas = function () {
-		map.find('*').each(function () {
-			this.className.baseVal = this.className.baseVal.replace(/ ?\bpoint\b/g, '');
-		});
+		map.find('*').removeSvgClass('point').removeSvgClass('visible').removeSvgClass('hidden').removeSvgClass('unimportant');
 	};
 	
 	position.click(function () {

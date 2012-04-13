@@ -1,3 +1,15 @@
+2012/04/16
+Licence (email z 13.04.2012).
+Předvedení serverové části.
+Domluva na zdrojích (možné: agata, teplota; zpracovávané: usermap, akce, "timetable").
+Předvedení mobilního sparqlu.
+Předvedení mobilní navigace.
+Domluva na předpřipravených dotazech.
+Domluva na nápovědě (co do jakého pole zadat, klávesové zkratky, obecný princip aplikace, SPARQL).
+
+
+
+
 Ukázka prostředí a funkčnosti
 Mobilní aplikaci založit na technologiích Google (Maps)? (Podle obtížnosti implementace Geo v prohlížeči...)
 Databáze jen aktuálních informací? (Jak jinak třeba pracovat s otvíracími dobami? Každý den stáhnout a prodloužit platnost?)
