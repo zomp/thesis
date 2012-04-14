@@ -11,7 +11,7 @@ tab.navigation.getContent = function () {
 	var submit = $('<a href="#">Hledej!</a>');
 	var form = $('<form id="search" action="#"></form>');
 	
-	var ressults = $('<div class="group" id="ressults"></div>');
+	var ressults = $('<div class="group" id="ressults"><p>Do vyhledávacího formuláře zadejte místo, které si přejete vyhledat.</p></div>');
 	
 	var position = $('<a href="#" class="button">Aktuální poloha</a>');
 	var scaleup = $('<a href="#" class="button">Zvětšit</a>');
@@ -27,7 +27,7 @@ tab.navigation.getContent = function () {
 	var mapsize = {width: null, height: null}; //původní velikost SVG mapy
 	var map = $('<div class="group" id="map"><p>Zdá se, že aplikace nefunguje úplně správně &ndash; místo tohoto upozornění by se měla zobrazit mapa. Podporuje Váš prohlížeč SVG? V případě přetrvávajích problémů se, prosím, ozvěte autorovi, pokusí se Vám pomoci.</p></div>');
 	
-	map.load('data/map.svg', function () {
+	map.load(config.map.path, function () {
 		svgmap = $('#svgmap', map)[0];
 		
 		mapsize.width = svgmap.width.baseVal.valueAsString;
@@ -153,6 +153,8 @@ tab.navigation.getContent = function () {
 			$(this).addSvgClass('point');
 			$(this).css('visibility') === 'hidden' && $(this).closest('.floor').addSvgClass('visible').closest('.building').addSvgClass('hidden');
 			$(this).closest('.floor, .building').parentsUntil($(svgmap)).andSelf().siblings().addSvgClass('unimportant');
+			move(svgToViewPosition({x: this.getBBox().x+this.getBBox().width/2, y: this.getBBox().y+this.getBBox().height/2}));
+			$(this).closest('.floor, .building').length && scale(2);
 		});
 	};
 	/**
@@ -170,10 +172,61 @@ tab.navigation.getContent = function () {
 		map.find('*').removeSvgClass('point').removeSvgClass('visible').removeSvgClass('hidden').removeSvgClass('unimportant');
 	};
 	
+	/**
+	 * Určení, zda se souřadnice nachází v rozsahu mapy.
+	 * Metoda není vhodná na rozsáhlá území - aproximuje na vizualizaci plochy.
+	 * @param geo Ověřované souřadnice.
+	 * @return Pozice se nachází na mapě.
+	 */
+	var inMapRange = function (geo) {
+		if (geo.lat >= config.map.corners.northwest.lat) return false;
+		if (geo.lon <= config.map.corners.northwest.lon) return false;
+		if (geo.lat <= config.map.corners.southeast.lat) return false;
+		if (geo.lon >= config.map.corners.southeast.lon) return false;
+		return true;
+	}
+	
+	/**
+	 * Převedení pozice z neškálované neořezané mapy na zobrazovanou část mapy.
+	 * @param svgp Pozice v px na SVG mapě (jako kdyby nebyla ořezaná a škálovaná).
+	 * @return Pozice v px na zobrazené škálované výseči.
+	 */
+	var svgToViewPosition = function (svgp) {
+		var viewp = {}; //souřadnice x, y
+		
+		svgp && ('x' in svgp) && (viewp.x = (svgp.x - svgmap.viewBox.baseVal.x)*(svgmap.viewBox.baseVal.width/svgmap.width.baseVal.valueAsString));
+		svgp && ('y' in svgp) && (viewp.y = (svgp.y - svgmap.viewBox.baseVal.y)*(svgmap.viewBox.baseVal.height/svgmap.height.baseVal.valueAsString));
+		
+		return viewp;
+	};
+	
+	/**
+	 * Převedení zeměpisných souřadnic na pozici na mapě.
+	 * Metoda není vhodná na rozsáhlá území - aproximuje na vizualizaci plochy.
+	 * @param geop Souřadnice.
+	 * @return Pozice na mapě.
+	 */
+	var geoToViewPosition = function (geop) {
+		var viewp = {}; //souřadnice x, y
+		
+// 		geop && ('lon' in geop) && (viewp.x = ((geop.lon - config.map.corners.northwest.lon)*(mapsize.width/(config.map.corners.southeast.lon - config.map.corners.northwest.lon)) - svgmap.viewBox.baseVal.x)*(svgmap.viewBox.baseVal.width/svgmap.width.baseVal.valueAsString));
+// 		geop && ('lat' in geop) && (viewp.y = ((config.map.corners.northwest.lat - geop.lat)*(mapsize.height/(config.map.corners.northwest.lat - config.map.corners.southeast.lat)) - svgmap.viewBox.baseVal.y)*(svgmap.viewBox.baseVal.height/svgmap.height.baseVal.valueAsString));
+		
+		geop && ('lon' in geop) && (viewp.x = svgToViewPosition({x: (geop.lon - config.map.corners.northwest.lon)*(mapsize.width/(config.map.corners.southeast.lon - config.map.corners.northwest.lon)) }).x);
+		geop && ('lat' in geop) && (viewp.y = svgToViewPosition({y: (config.map.corners.northwest.lat - geop.lat)*(mapsize.height/(config.map.corners.northwest.lat - config.map.corners.southeast.lat))}).y);
+		
+		return viewp;
+	};
+	
 	position.click(function () {
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(function (position) {
-				ressults.append("<p>[" + position.coords.latitude + " ; " + position.coords.longitude + "]</p>");
+			navigator.geolocation.getCurrentPosition(function (pos) {
+				var geo = {lat: pos.coords.latitude, lon: pos.coords.longitude};
+				var geo = {lat: 50.104575, lon: 14.387451};///
+				if (inMapRange(geo))
+					move(geoToViewPosition(geo));
+				else
+					ressults.append('<p class="error">Nacházíte se mimo mapu (pozice: ' + pos.coords.latitude + ', ' + pos.coords.longitude + ').</p>');
 			});
 		} else {
 			ressults.append('<p class="error">Prohlížeč nepodporuje Geolocation API.</p>');
@@ -218,10 +271,21 @@ tab.navigation.getContent = function () {
 	 * @param center Bod o souřadnicích x a y udávající střed vycentrování.
 	 */
 	var move = function (center) {
-		center || (mapsize.width && (svgmap.viewBox.baseVal.x = (mapsize.width - svgmap.viewBox.baseVal.width)/2));
-		center || (mapsize.height && (svgmap.viewBox.baseVal.y = (mapsize.height - svgmap.viewBox.baseVal.height)/2));
-		center && ('x' in center) && (svgmap.viewBox.baseVal.x += svgmap.viewBox.baseVal.width * (center.x/svgmap.width.baseVal.valueAsString - 1/2));
-		center && ('y' in center) && (svgmap.viewBox.baseVal.y += svgmap.viewBox.baseVal.height * (center.y/svgmap.height.baseVal.valueAsString - 1/2));
+		if (center) {
+			var xDiff = 0, yDiff = 0; //posun po osách
+			('x' in center) && (xDiff = svgmap.viewBox.baseVal.width * (center.x/svgmap.width.baseVal.valueAsString - 1/2));
+			('y' in center) && (yDiff = svgmap.viewBox.baseVal.height * (center.y/svgmap.height.baseVal.valueAsString - 1/2));
+			
+			var step = 0;
+			var timer = setInterval(function () {
+				svgmap.viewBox.baseVal.x += xDiff/config.map.animation.steps;
+				svgmap.viewBox.baseVal.y += yDiff/config.map.animation.steps;
+				if (++step >= config.map.animation.steps) clearInterval(timer);
+			}, config.map.animation.delay);
+		} else {
+			svgmap.viewBox.baseVal.x = (mapsize.width - svgmap.viewBox.baseVal.width)/2;
+			svgmap.viewBox.baseVal.y = (mapsize.height - svgmap.viewBox.baseVal.height)/2;
+		}
 	};
 	
 	center.click(function () {

@@ -11,6 +11,9 @@ h2 {
 	color: #00A2C0;
 	font-family: Arial, sans-serif;
 }
+p {
+	margin: 0.3em;
+}
 .error {
 	color: #FF0000;
 }
