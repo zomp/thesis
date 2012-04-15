@@ -201,7 +201,7 @@ archive=true
 column=0
 encoding=UTF-8
 highlight=LaTeX
-line=21
+line=64
 mode=LaTeX
 open=true
 order=0
@@ -308,7 +308,7 @@ ViMarks=
 
 [view-settings,view=0,item:DP_Molnár_Jan_2012.tex]
 CursorColumn=0
-CursorLine=21
+CursorLine=64
 JumpList=
 ViMarks=
 

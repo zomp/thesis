@@ -20,4 +20,11 @@ zdroje: http://xmlns.com/foaf/spec/ (vyčerpané), aiiso...
 ===== Mobilní aplikace =====
 - modularizace mapového zobrazovače pro vizualizaci map i jinde
 - vytvoření přepřipravených dotazů
-  - 
+  - info o člověku
+  - telefon člověka
+  - všechny emaily
+  - nejbližší akce
+  - akce na místě
+  - (můj) rozvrh
+  - místa?
+- synchronizovat animaci při škálování a posunu

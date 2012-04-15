@@ -3,6 +3,7 @@ Nevalidní XML v jQuery
 <literal>> - https://github.com/antoniogarrote/rdfstore-js/issues/26
 nenalezena pořádná ontologie menu a domény menz vůbec -> události
 Same Resource Policy vs. Accept na endpointu -> vynucení výchozího na application/json místo application/xml+rdf
+Práce s SVG ve FF (pomalé)
 
 
 Příště si pořádně rozmyslím se pouštět do kompletně neznámých a navíc ještě ani pořádně nezdokumentovaných technologií.

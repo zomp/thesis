@@ -160,6 +160,13 @@ p {
 .point, .point path {
 	fill: #00D400;
 }
+#position-pointer, #search-pointer {
+	visibility: hidden;
+	opacity: 0.6;
+}
+#position-pointer .dark, #search-pointer .dark {
+	fill: #D40000;
+}
 .visible {
 	visibility: visible;
 }

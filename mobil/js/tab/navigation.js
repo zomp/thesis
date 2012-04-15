@@ -151,10 +151,17 @@ tab.navigation.getContent = function () {
 	var pointArea = function (id) {
 		$('#' + id.replace(/:/g, '-'), $(svgmap)).each(function () {
 			$(this).addSvgClass('point');
+			
+			var pointer = $('#search-pointer');
+			pointer[0].transform.baseVal[0].setTranslate(
+				this.getBBox().x+this.getBBox().width/2,
+				this.getBBox().y+this.getBBox().height/2);
+			pointer.css('visibility', 'visible');
+			
 			$(this).css('visibility') === 'hidden' && $(this).closest('.floor').addSvgClass('visible').closest('.building').addSvgClass('hidden');
 			$(this).closest('.floor, .building').parentsUntil($(svgmap)).andSelf().siblings().addSvgClass('unimportant');
 			move(svgToViewPosition({x: this.getBBox().x+this.getBBox().width/2, y: this.getBBox().y+this.getBBox().height/2}));
-			$(this).closest('.floor, .building').length && scale(2);
+// 			$(this).closest('.floor, .building').length && scale(2);
 		});
 	};
 	/**
@@ -188,8 +195,8 @@ tab.navigation.getContent = function () {
 	
 	/**
 	 * Převedení pozice z neškálované neořezané mapy na zobrazovanou část mapy.
-	 * @param svgp Pozice v px na SVG mapě (jako kdyby nebyla ořezaná a škálovaná).
-	 * @return Pozice v px na zobrazené škálované výseči.
+	 * @param svgp Pozice {x, y} v px na SVG mapě (jako kdyby nebyla ořezaná a škálovaná).
+	 * @return Pozice {x, y} v px na zobrazené škálované výseči.
 	 */
 	var svgToViewPosition = function (svgp) {
 		var viewp = {}; //souřadnice x, y
@@ -201,19 +208,31 @@ tab.navigation.getContent = function () {
 	};
 	
 	/**
-	 * Převedení zeměpisných souřadnic na pozici na mapě.
+	 * Převedení zeměpisných souřadnic na pozici na originální mapě.
 	 * Metoda není vhodná na rozsáhlá území - aproximuje na vizualizaci plochy.
-	 * @param geop Souřadnice.
-	 * @return Pozice na mapě.
+	 * @param geop Souřadnice {lon, lat}.
+	 * @return Pozice {x, y} na mapě.
+	 */
+	var geoToSvgPosition = function (geop) {
+		var svgp = {}; //souřadnice x, y
+		
+		geop && ('lon' in geop) && (svgp.x = (geop.lon - config.map.corners.northwest.lon)*(mapsize.width/(config.map.corners.southeast.lon - config.map.corners.northwest.lon)));
+		geop && ('lat' in geop) && (svgp.y = (config.map.corners.northwest.lat - geop.lat)*(mapsize.height/(config.map.corners.northwest.lat - config.map.corners.southeast.lat)));
+		
+		return svgp;
+	};
+	
+	/**
+	 * Převedení zeměpisných souřadnic na pozici na zobrazované mapě.
+	 * Metoda není vhodná na rozsáhlá území - aproximuje na vizualizaci plochy.
+	 * @param geop Souřadnice {lon, lat}.
+	 * @return Pozice {x, y} na mapě.
 	 */
 	var geoToViewPosition = function (geop) {
 		var viewp = {}; //souřadnice x, y
 		
-// 		geop && ('lon' in geop) && (viewp.x = ((geop.lon - config.map.corners.northwest.lon)*(mapsize.width/(config.map.corners.southeast.lon - config.map.corners.northwest.lon)) - svgmap.viewBox.baseVal.x)*(svgmap.viewBox.baseVal.width/svgmap.width.baseVal.valueAsString));
-// 		geop && ('lat' in geop) && (viewp.y = ((config.map.corners.northwest.lat - geop.lat)*(mapsize.height/(config.map.corners.northwest.lat - config.map.corners.southeast.lat)) - svgmap.viewBox.baseVal.y)*(svgmap.viewBox.baseVal.height/svgmap.height.baseVal.valueAsString));
-		
-		geop && ('lon' in geop) && (viewp.x = svgToViewPosition({x: (geop.lon - config.map.corners.northwest.lon)*(mapsize.width/(config.map.corners.southeast.lon - config.map.corners.northwest.lon)) }).x);
-		geop && ('lat' in geop) && (viewp.y = svgToViewPosition({y: (config.map.corners.northwest.lat - geop.lat)*(mapsize.height/(config.map.corners.northwest.lat - config.map.corners.southeast.lat))}).y);
+		geop && ('lon' in geop) && (viewp.x = svgToViewPosition({x: geoToSvgPosition({lon: geop.lon}).x}).x);
+		geop && ('lat' in geop) && (viewp.y = svgToViewPosition({y: geoToSvgPosition({lat: geop.lat}).y}).y);
 		
 		return viewp;
 	};
@@ -223,10 +242,16 @@ tab.navigation.getContent = function () {
 			navigator.geolocation.getCurrentPosition(function (pos) {
 				var geo = {lat: pos.coords.latitude, lon: pos.coords.longitude};
 				var geo = {lat: 50.104575, lon: 14.387451};///
-				if (inMapRange(geo))
+				if (inMapRange(geo)) {
+					var pointer = $('#position-pointer');
+					pointer[0].transform.baseVal[0].setTranslate(
+						geoToSvgPosition({lon: geo.lon}).x - pointer[0].getBBox().width/2,
+						geoToSvgPosition({lat: geo.lat}).y - pointer[0].getBBox().height/2);
+					pointer.css('visibility', 'visible');
 					move(geoToViewPosition(geo));
-				else
+				} else {
 					ressults.append('<p class="error">Nacházíte se mimo mapu (pozice: ' + pos.coords.latitude + ', ' + pos.coords.longitude + ').</p>');
+				}
 			});
 		} else {
 			ressults.append('<p class="error">Prohlížeč nepodporuje Geolocation API.</p>');

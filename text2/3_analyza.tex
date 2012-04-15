@@ -279,7 +279,6 @@
 \section{Funkční požadavky na serverovou aplikaci}
 Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na jednotlivé funkcionality. Pro serverovou aplikaci mezi ně patří především:
 \begin{enumerate}
- \item Vytvořte/nalezněte ontologii reprezentující univerzitu.
  \item Aplikace bude čerpat informace o názvech budov z předstíraného adaptéru.
  \item Aplikace bude čerpat informace o umístění budov z předstíraného adaptéru.
  \item Aplikace bude čerpat informace o názvech místností z předstíraného adaptéru.
@@ -300,8 +299,9 @@ Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové 
  \item Aplikace bude čerpat informace o otvírací době \glsname{NTK} z Národní technické knihovny (\url{http://www.techlib.cz/}).
  \item Aplikace bude čerpat informace o otvírací době Vydavatelství průkazů (\url{http://www.cvut.cz/informace-pro-studenty/prukazy}). \todo{Vynechám -- chybí API.}
  \item Aplikace bude čerpat informace o počtu lidí ve frontě ve Vydavatelství průkazů (\url{http://ke.customer.decent.cz/a021/mon/}).
+ \item Vytvořte / nalezněte / sestavte z dílčích částí ontologii reprezentující výše uvedené informace.
  \item Informace získané z jednotlivých zdrojů převádějte dle výše požadované ontologie pro další zpracování do \glsname{RDF}.
- \item Aplikace uloží získané informace do databáze.
+ \item Aplikace uloží získané sémantické informace do databáze.
  \item Aplikace umožní vykonávat \glsname{SPARQL} dotazy nad uloženými daty.
 \end{enumerate}
 
