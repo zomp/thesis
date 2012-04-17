@@ -4,7 +4,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.1.0
-lastDocument=DP_Molnár_Jan_2012.tex
+lastDocument=4_realizace.tex
 masterDocument=
 name=DP
 pkg_extIsRegExp=false
@@ -158,23 +158,23 @@ order=2
 
 [item:3_analyza.tex]
 archive=true
-column=0
+column=69
 encoding=UTF-8
 highlight=LaTeX
-line=300
+line=389
 mode=LaTeX
 open=true
 order=5
 
 [item:4_realizace.tex]
 archive=true
-column=300
+column=148
 encoding=UTF-8
 highlight=LaTeX
-line=26
+line=61
 mode=LaTeX
 open=true
-order=3
+order=1
 
 [item:5_testovani.tex]
 archive=true
@@ -224,7 +224,7 @@ highlight=LaTeX
 line=17
 mode=LaTeX
 open=true
-order=1
+order=2
 
 [item:apendix.tex]
 archive=true
@@ -268,13 +268,13 @@ order=4
 
 [item:reference.bib]
 archive=true
-column=19
+column=24
 encoding=UTF-8
 highlight=BibTeX
-line=214
+line=229
 mode=BibTeX
 open=true
-order=2
+order=3
 
 [view-settings,view=0,item:1_uvod.tex]
 CursorColumn=0
@@ -289,14 +289,14 @@ JumpList=
 ViMarks=
 
 [view-settings,view=0,item:3_analyza.tex]
-CursorColumn=0
-CursorLine=300
+CursorColumn=69
+CursorLine=389
 JumpList=
 ViMarks=
 
 [view-settings,view=0,item:4_realizace.tex]
-CursorColumn=300
-CursorLine=26
+CursorColumn=148
+CursorLine=61
 JumpList=
 ViMarks=
 
@@ -343,7 +343,7 @@ JumpList=
 ViMarks=
 
 [view-settings,view=0,item:reference.bib]
-CursorColumn=19
-CursorLine=214
+CursorColumn=24
+CursorLine=229
 JumpList=
 ViMarks=

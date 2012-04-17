@@ -46,12 +46,33 @@ Celé prostředí serverové aplikace je umístěno v serverové edici \glsname{
 
 \subsection{Technologie mobilní aplikace}
 
-% \subsection{Ideální implementace}
 
+\subsection{Finální implementace}
 
-% \subsection{Finální implementace}
+\subsection{Ideální implementace}
+Finální implementace se od té ideální, co se týče omezení vzniklých neideálním světem, moc neliší. Vzhledem k cílení aplikace na současná nová zařízení bylo možné realizovat téměř vše, co bylo naplánováno -- v uplynulých letech bylo odvedeno mnoho práce na jednotných standardech napříč zařízeními, a co víc, tyto standardy byly implementovány a z velké části se i dodržují. Problémy se proto vyskytly spíše na poli stále ještě v některých ohledech omezených možnostech mobilních zařízení.
 
+\subsubsection{Malá velikost displeje}
+Ačkoliv je toto omezení u mobilních zařízení zřejmé, nic to nemění na faktu, že se s ním musí neustále počítat a je třeba vybírat vhodné komponenty a ty vhodně rozvrhovat. Mým cílem proto bylo vizualizovat jen to nejnutnější.
 
+\subsubsection{Různé typy polohovacích zařízení}
+Různá zařízení poskytují různé ovládací prvky využívající různé principy, aplikaci je ale nutné přizpůsobit pro všechny najednou. Jiné je ovládání pro myš (touchpad, trackpad), jiné pro klávesy a jiné pro dotyková zařízení. I přes malý displej je třeba u mobilních dotykových zařízení vytvářet ovládací prvky natolik veliké, aby bylo možné je používat prsty.
+
+\subsubsection{Optimalizace rozvržení prvků}
+Mobilní zařízení nabízejí pro lepší využití malých displejů mnoho různých otimalizací rozvržení zobrazovaných prvků. Zpravidla jsou tyto vlastnosti velmi užitečné -- komprimují nevyužité místo, ve specifických případech, jako je třeba přesné pozicování ukazatele, ale může docházet k obtížně řešitelným situacím. Jediné místo aplikace, které se bez přesného rozmístění neobejde, jsou mapy. Problém jsem se nakonec rozhodl řešit využitím  \glsname{SVG} mapových podkladů, ve kterých prohlížeče, zdá se, zatím rozvržení neoptimalizují.
+
+\subsubsection{Implementace SVG}
+Implementace \glsname{SVG} je v desktopových prohlížečích na velmi dobré úrovni již nějakou dobu,\footnote{Posledním významným desktopovým prohlížečem podporujícím \glsname{SVG} se stal s dlouhým odstupem verzí 9.0 Internet Explorer \cite{CanIUse}, předtím pro něj ale byly dostupné vhodné pluginy.} v nedávné minulosti se ale podpora značně zlepšila i na poli mobilních zařízení \cite{CanIUse}.
+
+U mobilních zařízení nepřekvapuje chybějící implementace některých neklíčových možností \glsname{SVG}, jako je třeba průhlednost. V této oblasti v současné době rozsáhlému nasazení nepřeje \glsname{SVG} nepodporující hojně využívaný nativní webový prohlížeč Androidu verze 2, od verze 3 je podpora zavedena. Problém lze obejít využitím jiného dostupného prohlížeče.
+
+Překvapením byla pomalá, ačkoliv jinak velmi rozsáhlá, implementace \glsname{SVG} v prohlížeči Mozilla Firefox -- po některých operacích, v mém případě to byla třeba změna hodnot atributu \texttt{viewBox} \glsname{SVG} elementu (posunutí mapy), prohlížeč vyžaduje překreslení celého obrázku, což je velmi zdlouhavé a zabraňuje to plynulému posunu mapy z aktuální na novou pozici, byť by to bylo vhodné pro lepší uživatelovo zorientování se.
+
+\subsubsection{Absence popisků}
+Velmi užitečnou vlastností dostupnou u desktopových aplikací jsou popisky zobrazující se po najetí myši nad podporovaný prvek. Dá se tímto způsobem velmi dobře implementovat kontextová nápověda, která patří mezi nejpodstatnější zdroje pomoci uživateli. U dotykových mobilních zařízení ale bohužel popisky zpravidla zobrazovat nejdou -- najetím, tedy dotykem prstu, se rovnou vyvolá akce prvku, aniž by se popisek mohl zobrazit.
+
+\subsubsection{Dynamické načítání lokálních souborů}
+Z bezpečnostních důvodů došlo v minulosti v prohlížečích k zamezení načítání JavaScriptových souborů z jiných zdrojů, než ze kterých stránka pochází. To v některých případech\footnote{Příkladem je Google Chrome.} přerostlo v zamezení dynamického načítání jakýchkoliv lokálních souborů -- jejich zdroj nemá žádnou hodnotu (\texttt{null}), takže je nelze načíst. Aby byla zachována možnost offline využití aplikace na větší skupině zařízení, byla aplikace přepsána na jediné možné řešení -- explicitní uvedení všech potenciálně vkládaných souborů, což značně omezilo modularitu aplikace.
 
 
 % Vlivem různých omezení mobilních zařízení (viz sekce \ref{sec:omezeniZarizeni}) a prohlížečů (viz sekce \ref{sec:omezeniProhlizecu}) nevypadá finální implementace úplně tak, jak bylo zamýšleno, přesto zadání splňuje. Téměř už dokončená aplikace byla před nasazením otestována (viz sekce \ref{sec:testVTerenu}).
