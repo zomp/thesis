@@ -33,7 +33,7 @@ tab.navigation.getContent = function () {
 		mapsize.width = svgmap.width.baseVal.valueAsString;
 		mapsize.height = svgmap.height.baseVal.valueAsString;
 		
-		svgmap.width.baseVal.valueAsString = map.width();
+		svgmap.width.baseVal.valueAsString = $(window).width();
 		svgmap.height.baseVal.valueAsString = $(window).height();
 		
 		$(window).resize(function() {
@@ -153,9 +153,9 @@ tab.navigation.getContent = function () {
 			$(this).addSvgClass('point');
 			
 			var pointer = $('#search-pointer');
-			pointer[0].transform.baseVal[0].setTranslate(
-				this.getBBox().x+this.getBBox().width/2,
-				this.getBBox().y+this.getBBox().height/2);
+			pointer[0].setAttribute('transform', 'translate(' +
+				(this.getBBox().x + this.getBBox().width/2) + ' ' +
+				(this.getBBox().y + this.getBBox().height/2) + ')');
 			pointer.css('visibility', 'visible');
 			
 			$(this).css('visibility') === 'hidden' && $(this).closest('.floor').addSvgClass('visible').closest('.building').addSvgClass('hidden');
@@ -241,12 +241,12 @@ tab.navigation.getContent = function () {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function (pos) {
 				var geo = {lat: pos.coords.latitude, lon: pos.coords.longitude};
-				var geo = {lat: 50.104575, lon: 14.387451};///
+// 				var geo = {lat: 50.104575, lon: 14.387451};///
 				if (inMapRange(geo)) {
 					var pointer = $('#position-pointer');
-					pointer[0].transform.baseVal[0].setTranslate(
-						geoToSvgPosition({lon: geo.lon}).x - pointer[0].getBBox().width/2,
-						geoToSvgPosition({lat: geo.lat}).y - pointer[0].getBBox().height/2);
+					pointer[0].setAttribute('transform', 'translate(' +
+						(geoToSvgPosition({lon: geo.lon}).x - pointer[0].getBBox().width/2) + ', ' +
+						(geoToSvgPosition({lat: geo.lat}).y - pointer[0].getBBox().height/2) + ')');
 					pointer.css('visibility', 'visible');
 					move(geoToViewPosition(geo));
 				} else {

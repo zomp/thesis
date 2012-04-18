@@ -1,3 +1,5 @@
+% (f) Popis implementace/realizace produktu se zaměřením na nestandardní části řešení.
+
 \chapter{Realizace}
 % Popis implementace/realizace se zaměřením na nestandardní části řešení.
 % Architektonické obrázky. (class diagram asi ne)
@@ -6,7 +8,7 @@ Během implementace se objevila celá řada zádrhelů, z nichž většina souvi
 \section{Serverová aplikace}
 
 
-\subsection{Volba použitých technologií}
+\subsection{Použité technologie}
 Mnoho použitých technologií bylo dáno zadáním práce, byl mi tak do značné míry usnadněn jejich výběr. Na druhou stranu nejsou dané technologie dokonalé, takže by často bývala práce s jinými snazší.
 
 Celá serverová aplikace je napsána v \emph{JavaScriptu}, zprovozněna na \emph{Node.js}, datovým úložištěm se stalo \emph{MongoDB}.
@@ -30,11 +32,13 @@ Mimo standardního JavaScriptu lze v Node.js využívat i specifická rozšíře
 
 Použití Node.js bylo vynuceno nefunkčním požadavkem, jednalo se ale o velmi cennou zkušenost -- je novou technologií a ačkoliv je jeho dokumentace na slušné úrovni, není zatím vytvořena dostatečně velká báze příkladů a nejlepších praktik, takže jsem se k nim musel postupně dostat a při té příležitosti se toho hodně naučil. Navíc, zdá se, se budou nabité vědomosti v budoucnu hodit.
 
-\subsection{MongoDB}
+\subsubsection{MongoDB}
 \emph{MongoDB} (\url{http://www.mongodb.org/}) je škálovatelnou, vysoce výkonnou, otevřenou NoSQL databází napsanou v C++ \cite{Mongo}.
 
 \subsection*{ }
 Celé prostředí serverové aplikace je umístěno v serverové edici \glsname{GNU}/linuxové distribuce \emph{Ubuntu} (\url{http://www.ubuntu.com/}) a ta je pro snadnou přenositelnost nainstalována do kontejneru virtuálního stroje virtualizačního řešení \emph{VirtualBox} (\url{http://www.virtualbox.org/}).
+
+\subsection{Použité nástroje}
 
 % \subsection{Ideální implementace}
 
@@ -43,8 +47,18 @@ Celé prostředí serverové aplikace je umístěno v serverové edici \glsname{
 
 
 \section{Mobilní aplikace}
+Pod pojmem \textit{mobilní aplikace} se skrývá aplikace pevně nezávislá na výše uvedené \textit{serverové}. Jejím hlavním cílem je sloužit studentovi \glsname{FIT} \glsname{ČVUT} jako průvodce, zároveň má ale plnit i účel ukázky využití \glsname{SPARQL} endpointu vytvořeného v \textit{serverové} části.
 
-\subsection{Technologie mobilní aplikace}
+\subsection{Použité technologie}
+\subsubsection{HTML5}
+JavaScript
+\subsubsection{jQuery}
+
+\subsubsection{SVG}
+
+\subsubsection*{}
+
+\subsection{Použité nástroje}
 
 
 \subsection{Finální implementace}

@@ -4,13 +4,19 @@ Předvedení serverové části.
 Domluva na zdrojích (možné: agata, teplota; zpracovávané: usermap, akce, "timetable").
 Předvedení mobilního sparqlu.
 Předvedení mobilní navigace.
-Domluva na předpřipravených dotazech.
+Domluva na předpřipravených dotazech (přehození do SPARQL konzole? doplňovací formulář? úplně konkrétní?).
 Domluva na nápovědě (co do jakého pole zadat, klávesové zkratky, obecný princip aplikace, SPARQL).
-Co s ontologií míst? (Co do ní? Názvy, přezdívky, lokace, typ?)
+Co s ontologií míst? (Co do ní? Názvy, přezdívky, lokace, typ?) - ne ontologií, odeslat k otestování
+Příští konzultace.
+
+Otvírací doba vydavatelství průkazů, NTK, STO.
+(Vykašlat se na ontologie pro přidanou hodnotu.)
+Seznam deseti používaných místností.
+Zobrazit kávovary.
+Testování.
 
 
-
-
+2012/02/12
 Ukázka prostředí a funkčnosti
 Mobilní aplikaci založit na technologiích Google (Maps)? (Podle obtížnosti implementace Geo v prohlížeči...)
 Databáze jen aktuálních informací? (Jak jinak třeba pracovat s otvíracími dobami? Každý den stáhnout a prodloužit platnost?)
