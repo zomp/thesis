@@ -1,4 +1,6 @@
-//průvodce
+/**
+ * Panel průvodce
+ */
 
 tab.guide = {}; //globální rozhraní tohoto souboru
 

@@ -1,9 +1,4 @@
 /**
- * Moduly menu.
- */
-var tab = {};
-
-/**
  * Akce prováděné po načtení stránky.
  */
 $(document).ready(function () {
@@ -14,6 +9,7 @@ $(document).ready(function () {
 	 */
 	var setTab = function (name) {
 		$('#content').html(tab[name].getContent());
+		$(window).triggerHandler('resize'); //nastavení velikostí v okně (mapa)
 	};
 	
 	/**
@@ -24,19 +20,18 @@ $(document).ready(function () {
 	// Přidání jednotlivých modulů do menu.
 	for (var tabname in tabnames) {
 		(function () {
-			var t = tabname;
-			$.getScript("js/tab/" + tabnames[t] + ".js", function () {
-				var menulink = $('<a href="#">' + tab[tabnames[t]].getName() + '</a>');
-				menulink.click(function () {
-					setTab(tabnames[t]);
-					return false;
-				});
-				var menuli = $('<li id="m-' + tabnames[t] + '"></li>');
-				menuli.append(menulink);
-				$('#menu ul').append(menuli);
-				
-				if (config.tab.default == tabnames[t]) setTab(tabnames[t]);
+			var t = tabname; //neodstraňovat - uzávěr!
+			
+			var menulink = $('<a href="#">' + tab[tabnames[t]].getName() + '</a>');
+			menulink.click(function () {
+				setTab(tabnames[t]);
+				return false;
 			});
+			var menuli = $('<li id="m-' + tabnames[t] + '"></li>');
+			menuli.append(menulink);
+			$('#menu ul').append(menuli);
+			
+			if (config.tab.default == tabnames[t]) setTab(tabnames[t]);
 		})();
 	}
 	

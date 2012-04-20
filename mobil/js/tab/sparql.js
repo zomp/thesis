@@ -1,4 +1,6 @@
-//SPARQL
+/**
+ * Panel SPARQL
+ */
 
 tab.sparql = {}; //globální rozhraní tohoto souboru
 
@@ -7,12 +9,12 @@ tab.sparql.getName = function () {
 };
 
 tab.sparql.getContent = function () {
+	//vyhledávací formulář
 	var query = $('<textarea>select * { ?s ?p ?o }</textarea>');
-	
 	var submit = $('<a href="#">Hledej!</a>');
-	
 	var form = $('<form id="search" action="#"></form>');
 	
+	//nalezené výsledky
 	var ressults = $('<div class="group" id="ressults"><p>Nalezené výsledky.</p></div>');
 	
 	var search = function () {

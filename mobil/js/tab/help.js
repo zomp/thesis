@@ -1,4 +1,6 @@
-//nápověda
+/**
+ * Panel nápověda
+ */
 
 tab.help = {}; //globální rozhraní tohoto souboru
 

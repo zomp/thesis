@@ -3,6 +3,7 @@
  */
 
 var config = {}; //přístup ke konfiguraci
+var tab = {}; //moduly menu
 
 config.tab = { //moduly menu
 	used: ['guide', 'navigation', 'sparql', 'help'], //použité moduly menu
@@ -16,7 +17,7 @@ config.sparql = { //SPARQL endpoint
 };
 
 config.map = { //parametry použité mapy
-	path: 'data/map.svg',//soubor s mapou
+	svg: svgmapjs,//soubor s mapou
 	animation: {
 		steps: 4, //počet kroků animací
 		delay: 100 //rozestup kroků v ms
