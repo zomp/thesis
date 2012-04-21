@@ -84,11 +84,37 @@ tab.navigation.getContent = function () {
 	 * Vyhledání dotazu a vizualizace výsledků.
 	 */
 	var search = function () {
+		var queryval = query.val();
 		unpointAllAreas();
 		
+		/**
+		 * Normalizace řetězce pro hledání.
+		 * @param term Řetězec k normalizování.
+		 * @return Řetězec po normalizování.
+		 */
+		var normalize = function (term) {
+			var norm = '';
+			
+			for (var i = 0, max = term.length; i < max; ++i) {
+				norm += diacriticsjs[term.charAt(i)] || term.charAt(i);
+			}
+			
+			return norm;
+		};
 		
-		pointArea(query.val());
+		var places = config.map.places, i = config.map.places.length, j;
+		var querymatch = new RegExp('^' + queryval + '$', 'i');
+		while (i--) {
+			j = places[i].phrase.length;
+			while (j--) {
+				if (querymatch.test(places[i].phrase[j]) || querymatch.test(normalize(places[i].phrase[j]))) {
+					pointArea(places[i].selector);
+					return false; //ukončení vyhledávání
+				}
+			}
+		}
 		
+		alert('Nic nenalezeno. Vyhledávejte budovy (př. TK), názvy vístností (př. T9:349), alternativní názvy (př. Gočár), body zájmu (př. občerstvení)...');
 		return false;
 	};
 	
@@ -169,37 +195,45 @@ tab.navigation.getContent = function () {
 	
 	/**
 	 * Vyznačení místa na mapě.
-	 * @param id Identifikátor místa.
+	 * @param selector Selektor místa.
 	 */
-	var pointArea = function (id) {
-		$('#' + id.replace(/:/g, '-'), $(svgmap)).each(function () {
+	var pointArea = function (selector) {
+		var found = $(selector, $(svgmap));
+		found.each(function () {
 			$(this).addSvgClass('point');
 			
+			if ($(this).css('visibility') === 'hidden')
+				$(this).closest('.floor').addSvgClass('visible').closest('.building').addSvgClass('hidden');
+			$(this).closest('.floor, .building').parentsUntil($(svgmap)).andSelf().siblings().addSvgClass('unimportant');
+		});
+		if (found.length === 1) {
 			var pointer = $('#search-pointer');
+			var found1 = found[0];
 			pointer[0].setAttribute('transform', 'translate(' +
-				(this.getBBox().x + this.getBBox().width/2) + ' ' +
-				(this.getBBox().y + this.getBBox().height/2) + ')');
+				(found1.getBBox().x + found1.getBBox().width/2) + ' ' +
+				(found1.getBBox().y + found1.getBBox().height/2) + ')');
 			pointer.css('visibility', 'visible');
 			
-			$(this).css('visibility') === 'hidden' && $(this).closest('.floor').addSvgClass('visible').closest('.building').addSvgClass('hidden');
-			$(this).closest('.floor, .building').parentsUntil($(svgmap)).andSelf().siblings().addSvgClass('unimportant');
-			move(svgToViewPosition({x: this.getBBox().x+this.getBBox().width/2, y: this.getBBox().y+this.getBBox().height/2}));
-// 			$(this).closest('.floor, .building').length && scale(2);
-		});
+			move(svgToViewPosition({
+				x: found1.getBBox().x + found1.getBBox().width/2,
+				y: found1.getBBox().y + found1.getBBox().height/2
+			}));
+		}
 	};
 	/**
 	 * Odznačení místa na mapě.
 	 * Není úplným protikladem pointArea()!
-	 * @param id Identifikátor místa.
+	 * @param selector Selektor místa.
 	 */
-	var unpointArea = function (id) {
-		$('#' + id.replace(/:/g, '-'), map).removeSvgClass('point');
+	var unpointArea = function (selector) {
+		$(selector, map).removeSvgClass('point');
 	};
 	/**
 	 * Odznačení všech míst na mapě.
 	 */
 	var unpointAllAreas = function () {
 		map.find('*').removeSvgClass('point').removeSvgClass('visible').removeSvgClass('hidden').removeSvgClass('unimportant');
+		$('#search-pointer').css('visibility', 'hidden');
 	};
 	
 	/**

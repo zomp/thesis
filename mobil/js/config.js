@@ -17,7 +17,8 @@ config.sparql = { //SPARQL endpoint
 };
 
 config.map = { //parametry použité mapy
-	svg: svgmapjs,//soubor s mapou
+	svg: svgmapjs, //soubor s mapou
+	places: placesjs, //soubor s místy na mapě
 	animation: {
 		steps: 4, //počet kroků animací
 		delay: 100 //rozestup kroků v ms

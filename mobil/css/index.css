@@ -160,6 +160,9 @@ p {
 .point, .point path {
 	fill: #00D400;
 }
+.point path.light {
+	fill: #ffffff;
+}
 #position-pointer, #search-pointer {
 	visibility: hidden;
 	opacity: 0.6;
