@@ -58,10 +58,49 @@ JavaScript
 
 \subsubsection*{}
 
+
 \subsection{Použité nástroje}
+Pro tvorbu aplikace byly použity převážně následující nástroje. Majorita jich je uvolněných pod svobodmými licencemi, zpravidla \glsname{GNU} \glsname{GPL} nebo kompatibilními. Jedinou výjimkou jsou některé mobilní prohlížeče, které byly použity k testování aplikace.
+
+\subsubsection{Kate}
+Většina práce, včetně mobilní aplikace, byla vytvořena v textovém editoru \glsname{Kate} (\url{http://kate-editor.org/}). Jedná se o velmi pokročilý nástroj pro práci s textem z prostředí \glsname{GNU}/Linuxového desktopového prostředí \glsname{KDE}. \glsname{Kate} nabízí zvýrazňování syntaxe všech v diplomové práci použitých formátů, poskytuje velmi užitečnou práci s regulárními výrazy, umožňuje pracovat s mnoha soubory najednou a, co je asi nejpodstatnější, plně se integruje do \glsname{KDE}, takže ním například lze prostřednictvím \gls{KIO} transparentně pracovat se vzdálenými soubory. \glsname{Kate} neumožňuje automatické doplňování kódu, nabízí ale již použitá slova kdekoliv v dokumentu, což je vlastnost v některých případech i lepší. Kate byl zvolen na základě velice kladných zkušeností pro napsání kódu v JavaScriptu, \gls{HTML}, \gls{CSS} i úpravy mapy v \gls{SVG}.
+
+\subsubsection{Inkscape}
+Grafické podklady práce byly vytvořeny v editoru vektorové grafiky Inkscape (\url{http://www.inkscape.org/}). Nástroj implementuje téměř kompletní specifikaci formátu \glsname{SVG} verze 1.1, je multiplatformní a svobodný. Inkscape byl vybrán kvůli předchozím výborným zkušenostem s prací v něm a vhodnosti pro tvorbu mapových podkladů.
+
+\subsubsection{Kompare}
+V případě potřeby důkladného porovnání souborů byl použit Kompare (\url{http://www.caffeinated.me.uk/kompare/}). Nástroj umožňuje velmi přehledně porovnat mimo jednotlivých souborů i celé jejich adresáře. Kompare neporovnává soubory sám, ale je nadstavbou nad konzolovou aplikací diff či obdobnou.
+
+\subsubsection{Webové prohlížeče}
+Aplikace byla průběžně testována v různých mobilních prohlížečích:
+\begin{itemize}
+ \item Mozilla Firefox (\url{http://www.mozilla.org/firefox}).
+ \item Chromium (\url{http://chromium.org/}).
+ \item rekonq (\url{http://rekonq.kde.org/}).
+ \item Prohlížeč platformy Android (\url{http://www.android.com/}).
+ \item Google Chrome for Android (\url{https://www.google.com/intl/en/chrome/android/}).
+ \item Opera Mobile (\url{http://www.opera.com/mobile}).
+ \item Internet Explorer Mobile (\url{http://www.microsoft.com/windowsphone/en-us/features/default.aspx#internet-explorer}).
+Před dokončením byla navíc otestována panem inženýrem Havrylukem, vedoucím práce, v následujících prohlížečích:
+ \item Nokia Browser for Symbian  (\url{http://browser.nokia.com/}).
+ \item Prohlížeč platformy BlackBerry (\url{http://us.blackberry.com/smartphones/features/internet.jsp}).
+ \item Safari (\url{http://www.apple.com/safari/}).
+\end{itemize}
+
+\subsubsection{Git}
 
 
 \subsection{Finální implementace}
+\subsubsection{Struktura aplikace}
+
+\subsubsection{Změna velikosti displeje}
+chrome css v px
+
+\subsubsection{Chyby prohlížečů v implementaci specifikací}
+Při práci jsem několikrát narazil na situaci, kdy vše v jednom prohlížeči fungovalo, ve druhém nikoliv, a přesto bylo vše implementované správně podle specifikace. V takovém případě pak bývala chyba na straně prohlížeče, který špatně implementoval určitou specifikaci. Situace nastávala převážně u hodně specifických případů. Příkladem může být chybějící podpora pro nastavení transformace \glsname{SVG} elementu JavaScriptem v prohlížeči Google Chrome \cite{BugChromeTran}, tento problém ale lze obejít vlastním sestavením hodnoty celého atributu. 
+
+\subsubsection{Rozdílné DOM u HTML a SVG}
+\glsname{SVG} je, co se týče návrhu \glsname{DOM}, komplikovanější, než HTML -- zatímco u HTML stačí pro přístup k hodnotě atributu 
 
 \subsection{Ideální implementace}
 Finální implementace se od té ideální, co se týče omezení vzniklých neideálním světem, moc neliší. Vzhledem k cílení aplikace na současná nová zařízení bylo možné realizovat téměř vše, co bylo naplánováno -- v uplynulých letech bylo odvedeno mnoho práce na jednotných standardech napříč zařízeními, a co víc, tyto standardy byly implementovány a z velké části se i dodržují. Problémy se proto vyskytly spíše na poli stále ještě v některých ohledech omezených možnostech mobilních zařízení.
@@ -78,9 +117,9 @@ Mobilní zařízení nabízejí pro lepší využití malých displejů mnoho r�
 \subsubsection{Implementace SVG}
 Implementace \glsname{SVG} je v desktopových prohlížečích na velmi dobré úrovni již nějakou dobu,\footnote{Posledním významným desktopovým prohlížečem podporujícím \glsname{SVG} se stal s dlouhým odstupem verzí 9.0 Internet Explorer \cite{CanIUse}, předtím pro něj ale byly dostupné vhodné pluginy.} v nedávné minulosti se ale podpora značně zlepšila i na poli mobilních zařízení \cite{CanIUse}.
 
-U mobilních zařízení nepřekvapuje chybějící implementace některých neklíčových možností \glsname{SVG}, jako je třeba průhlednost. V této oblasti v současné době rozsáhlému nasazení nepřeje \glsname{SVG} nepodporující hojně využívaný nativní webový prohlížeč Androidu verze 2, od verze 3 je podpora zavedena. Problém lze obejít využitím jiného dostupného prohlížeče.
+U mobilních zařízení nepřekvapuje chybějící implementace některých neklíčových možností \glsname{SVG}, jako je třeba průhlednost v případě Opery Mobile. V této oblasti v současné době rozsáhlému nasazení nepřeje \glsname{SVG} nepodporující hojně využívaný nativní webový prohlížeč Androidu verze 2, od verze 3 je podpora zavedena. Problém lze obejít využitím jiného dostupného prohlížeče.
 
-Překvapením byla pomalá, ačkoliv jinak velmi rozsáhlá, implementace \glsname{SVG} v prohlížeči Mozilla Firefox -- po některých operacích, v mém případě to byla třeba změna hodnot atributu \texttt{viewBox} \glsname{SVG} elementu (posunutí mapy), prohlížeč vyžaduje překreslení celého obrázku, což je velmi zdlouhavé a zabraňuje to plynulému posunu mapy z aktuální na novou pozici, byť by to bylo vhodné pro lepší uživatelovo zorientování se.
+Překvapením byla pomalá, ačkoliv jinak velmi rozsáhlá, implementace \glsname{SVG} v prohlížeči Mozilla Firefox -- po některých operacích, v mém případě to byla třeba změna hodnot atributu \texttt{viewBox} \glsname{SVG} elementu (posunutí mapy), prohlížeč vyžaduje překreslení celého obrázku, což je velmi zdlouhavé a zabraňuje to plynulému posunu mapy z aktuální na novou pozici, byť by to bylo vhodné pro lepší uživatelovo zorientování se. Tento nedostatek je známý již delší dobu \cite{Bugzilla}.
 
 \subsubsection{Absence popisků}
 Velmi užitečnou vlastností dostupnou u desktopových aplikací jsou popisky zobrazující se po najetí myši nad podporovaný prvek. Dá se tímto způsobem velmi dobře implementovat kontextová nápověda, která patří mezi nejpodstatnější zdroje pomoci uživateli. U dotykových mobilních zařízení ale bohužel popisky zpravidla zobrazovat nejdou -- najetím, tedy dotykem prstu, se rovnou vyvolá akce prvku, aniž by se popisek mohl zobrazit.
@@ -88,6 +127,8 @@ Velmi užitečnou vlastností dostupnou u desktopových aplikací jsou popisky z
 \subsubsection{Dynamické načítání lokálních souborů}
 Z bezpečnostních důvodů došlo v minulosti v prohlížečích k zamezení načítání JavaScriptových souborů z jiných zdrojů, než ze kterých stránka pochází. To v některých případech\footnote{Příkladem je Google Chrome.} přerostlo v zamezení dynamického načítání jakýchkoliv lokálních souborů -- jejich zdroj nemá žádnou hodnotu (\texttt{null}), takže je nelze načíst. Aby byla zachována možnost offline využití aplikace na větší skupině zařízení, byla aplikace přepsána na jediné možné řešení -- explicitní uvedení všech potenciálně vkládaných souborů, což značně omezilo modularitu aplikace.
 
+\subsubsection{Otevírání lokálních souborů}
+Omezení zmíněná v předchozím odstavci stupňuje až do extrémů mobilní prohlížeč Chrome Beta, který nepovolí ani přímé otevření lokálního souboru. \todo{Ověřit, možná nefunguje celé Chrome\dots}
 
 % Vlivem různých omezení mobilních zařízení (viz sekce \ref{sec:omezeniZarizeni}) a prohlížečů (viz sekce \ref{sec:omezeniProhlizecu}) nevypadá finální implementace úplně tak, jak bylo zamýšleno, přesto zadání splňuje. Téměř už dokončená aplikace byla před nasazením otestována (viz sekce \ref{sec:testVTerenu}).
 % 
