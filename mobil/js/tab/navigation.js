@@ -14,9 +14,6 @@ tab.navigation.getContent = function () {
 	var submit = $('<a href="#">Hledej!</a>');
 	var form = $('<form id="search" action="#"></form>');
 	
-	//nalezené výsledky
-	var ressults = $('<div class="group" id="ressults"><p>Do vyhledávacího formuláře zadejte místo, které si přejete vyhledat.</p></div>');
-	
 	//ovládací prvky mapy - pozice, škálování, posun
 	var position = $('<a href="#" class="button">Aktuální poloha</a>');
 	var scaleup = $('<a href="#" class="button">Zvětšit</a>');
@@ -87,16 +84,10 @@ tab.navigation.getContent = function () {
 	 * Vyhledání dotazu a vizualizace výsledků.
 	 */
 	var search = function () {
-		ressults.html('<p>Vyhledávám...</p>');
-		
 		unpointAllAreas();
-		pointArea(query.val());
 		
-		querySparql(query.val(), function (data) {
-			ressults.html('<pre>' + JSON.stringify(data, null, 4) + '</pre>');
-		}, function (error) {
-			ressults.html('<p class="error">' + error + '</p>');
-		});
+		
+		pointArea(query.val());
 		
 		return false;
 	};
@@ -296,11 +287,11 @@ tab.navigation.getContent = function () {
 					pointer.css('visibility', 'visible');
 					move(geoToViewPosition(geo));
 				} else {
-					ressults.append('<p class="error">Nacházíte se mimo mapu (pozice: ' + pos.coords.latitude + ', ' + pos.coords.longitude + ').</p>');
+					alert('Nacházíte se mimo mapu (pozice: ' + pos.coords.latitude + ', ' + pos.coords.longitude + ').');
 				}
 			});
 		} else {
-			ressults.append('<p class="error">Prohlížeč nepodporuje Geolocation API.</p>');
+			alert('Prohlížeč nepodporuje Geolocation API.');
 		}
 		return false;
 	});
@@ -344,5 +335,5 @@ tab.navigation.getContent = function () {
 	mapcontrol.append(moveleft);
 	mapcontrol.append(moveright);
 	
-	return $('<div></div>').append($('<div class="group"></div>').append(form)).append(ressults).append(mapcontrol).append(map);
+	return $('<div></div>').append($('<div class="group"></div>').append(form)).append(mapcontrol).append(map);
 };

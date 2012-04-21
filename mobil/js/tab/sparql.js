@@ -15,18 +15,18 @@ tab.sparql.getContent = function () {
 	var form = $('<form id="search" action="#"></form>');
 	
 	//nalezené výsledky
-	var ressults = $('<div class="group" id="ressults"><p>Nalezené výsledky.</p></div>');
+	var results = $('<div class="group" id="results"><p>Nalezené výsledky.</p></div>');
 	
 	var search = function () {
-		ressults.html('<p>Vyhledávám...</p>');
+		results.html('<p>Vyhledávám...</p>');
 		
 		querySparql(query.val(), function (data) {
 			if (data.head.variables.length == 0)
-				ressults.html('<p>Nebylo nic nalezeno.</p>');
+				results.html('<p>Nebylo nic nalezeno.</p>');
 			else
-				ressults.html('<pre>' + JSON.stringify(data, null, 4) + '</pre>');
+				results.html('<pre>' + JSON.stringify(data, null, 4) + '</pre>');
 		}, function (error) {
-			ressults.html('<p class="error">' + error + '</p>');
+			results.html('<p class="error">' + error + '</p>');
 		});
 		
 		return false;
@@ -38,5 +38,5 @@ tab.sparql.getContent = function () {
 	form.append(query);
 	form.append(submit);
 	
-	return $('<div></div>').append($('<div class="group"></div>').append(form)).append(ressults);
+	return $('<div></div>').append($('<div class="group"></div>').append(form)).append(results);
 };
