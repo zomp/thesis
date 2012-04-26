@@ -17,10 +17,12 @@ $allowedUris = array( //povolená URI
 	'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=4',
 	'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=5',
 	'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=6',
-	'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=7',
 	'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=8',
 	'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=9',
 	'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=10',
+	'http://agata.suz.cvut.cz/jidelnicky/nove/oteviraci-doby.php',
+	'http://agata.suz.cvut.cz/jidelnicky/nove/kontakty.php',
+	'http://fit.cvut.cz/student/studijni/kontakt',
 	'http://akce.cvut.cz/'
 );
 

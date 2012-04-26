@@ -12,7 +12,7 @@ tab.sparql.getContent = function () {
 	//vyhledávací formulář
 	var query = $('<textarea>select * { ?s ?p ?o }</textarea>');
 	var submit = $('<a href="#">Hledej!</a>');
-	var form = $('<form id="search" action="#"></form>');
+	var form = $('<form id="search" action="#"/>');
 	
 	//nalezené výsledky
 	var results = $('<div class="group" id="results"><p>Nalezené výsledky.</p></div>');
@@ -38,5 +38,5 @@ tab.sparql.getContent = function () {
 	form.append(query);
 	form.append(submit);
 	
-	return $('<div></div>').append($('<div class="group"></div>').append(form)).append(results);
+	return $('<div/>').append($('<div class="group"/>').append(form)).append(results);
 };

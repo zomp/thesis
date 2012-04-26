@@ -12,7 +12,7 @@ tab.navigation.getContent = function () {
 	//vyhledávací formulář
 	var query = $('<input type="text" value="T9:349">');
 	var submit = $('<a href="#">Hledej!</a>');
-	var form = $('<form id="search" action="#"></form>');
+	var form = $('<form id="search" action="#"/>');
 	
 	//ovládací prvky mapy - pozice, škálování, posun
 	var position = $('<a href="#" class="button">Aktuální poloha</a>');
@@ -23,7 +23,7 @@ tab.navigation.getContent = function () {
 	var moveright = $('<a href="#" class="button">Doprava</a>');
 	var movedown = $('<a href="#" class="button">Dolů</a>');
 	var moveleft = $('<a href="#" class="button">Doleva</a>');
-	var mapcontrol = $('<div class="group" id="mapcontrol"></div>');
+	var mapcontrol = $('<div class="group" id="mapcontrol"/>');
 	
 	//mapa
 	var svgmap = null; //kořen SVG mapy
@@ -363,5 +363,5 @@ tab.navigation.getContent = function () {
 	mapcontrol.append(position, scaleup, scaledown);
 	mapcontrol.append(center, moveup, movedown, moveleft, moveright);
 	
-	return $('<div></div>').append($('<div class="group"></div>').append(form), mapcontrol, map);
+	return $('<div/>').append($('<div class="group"/>').append(form), mapcontrol, map);
 };
