@@ -18,7 +18,7 @@ tab.sparql.getContent = function () {
 	var results = $('<div class="group" id="results"><p>Nalezené výsledky.</p></div>');
 	
 	var search = function () {
-		results.html('<p>Vyhledávám...</p>');
+		results.html('<p><img src="img/load.gif" alt="Načítám..."/> Vyhledávám...</p>');
 		
 		querySparql(query.val(), function (data) {
 			if (data.head.variables.length == 0)

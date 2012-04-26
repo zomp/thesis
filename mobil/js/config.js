@@ -16,6 +16,11 @@ config.sparql = { //SPARQL endpoint
 	timeout: 5000 //timeout pro získání odpovědi
 };
 
+config.ajax = { //AJAXové spojení
+// 	proxy: 'http://webdev.fit.cvut.cz/~molnaja2/thesis/ajaxproxy.php?callback=?' //proxy pro cross-origin spojení
+	proxy: 'http://test.farnostnm.cz/thesis/ajaxproxy.php?callback=?' //náhrada za webdev (viz práce)
+};
+
 config.map = { //parametry použité mapy
 	svg: svgmapjs, //soubor s mapou
 	places: placesjs, //soubor s místy na mapě

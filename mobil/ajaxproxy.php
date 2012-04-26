@@ -33,11 +33,11 @@ header('Content-type: application/x-javascript; charset='.$charset);
  * Ošetření vstupů
  */
 
-$site = (isset($_GET['url']) ? $_GET['url'] : false);
-$callback = (isset($_GET['callback']) ? $_GET['callback'] : false);
+$site = (isset($_GET['url']) ? $_GET['url'] : false); //parametr 'url' - adresa požadovaného zdroje
+$callback = (isset($_GET['callback']) ? $_GET['callback'] : false); //parametr 'callback' - JSONP parametr
 
 if (!$site) {
-	exit(($callback ? $callback.'(' : '').'{"error": "Uvedte v parametru \'url\' URL pozadovane stranky."}'.($callback ? ')' : ''));
+	exit(($callback ? $callback.'(' : '').'{"error": "Uvedte v parametru \'url\' URL pozadovane stranky (pripadne v parametru \'callback\' JSONP parametr)."}'.($callback ? ')' : ''));
 }
 if (!in_array($site, $allowedUris)) {
 	exit(($callback ? $callback.'(' : '').'{"error": "Pristup k pozadovane URL neni z bezpecnostnich duvodu povolen."}'.($callback ? ')' : ''));
@@ -66,6 +66,8 @@ if ($encoding != $charset && $encoding != strtolower($charset)) {
 require_once 'php/htmlpurifier/HTMLPurifier.auto.php';
 $config = HTMLPurifier_Config::createDefault();
 $config->set('Attr.EnableID', true);
+$config->set('Attr.IDPrefix', 'ap-'); //prefix ID dokumentu - aby se nemotala s existujícími
+// $config->set('AutoFormat.RemoveEmpty', true); //"komprese" dokumentu - nebezpečné
 // $config->set('Core.Encoding', $encoding);
 // $config->set('HTML.Doctype', 'HTML 4.01 Transitional');
 $config->set('URI.Base', $site);

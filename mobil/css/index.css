@@ -1,4 +1,7 @@
-/* Všeobecné styly */
+/**
+ * Všeobecné styly
+ */
+
 body {
 	font-size: 120%;
 }
@@ -7,12 +10,21 @@ a {
 	text-decoration: none;
 	font-weight: bold;
 }
-h2 {
-	color: #00A2C0;
+h1, h2, h3, h4, h5 {
+	margin: 0.3em;
 	font-family: Arial, sans-serif;
 }
-p {
+p, dl, ul, ol {
 	margin: 0.3em;
+}
+dt {
+	font-weight: bold;
+}
+td, th {
+	padding: 2px;
+}
+th {
+	text-align: left;
 }
 .error {
 	color: #FF0000;
@@ -21,6 +33,13 @@ p {
 	margin: 0.6em 0.3em;
 	padding: 0.3em;
 	background-color: #DDDDDD;
+	border: 2px solid #888888;
+	border-radius: 3px;
+	overflow: auto;
+}
+.innergroup {
+	padding: 0.3em;
+	background-color: #EEEEEE;
 	border: 2px solid #888888;
 	border-radius: 3px;
 	overflow: auto;
@@ -77,105 +96,4 @@ p {
 }
 #map {
 	padding: 0;
-}
-
-
-/* Styly SVG mapy */
-.light {
-	fill: #FFFFFF;
-}
-.dark {
-	fill: #000000;
-}
-.label {
-	font-size: 14px;
-	font-family: Arial;
-	text-anchor: middle;
-	font-weight: bold;
-	text-align: center;
-}
-.buildingpartlabel {
-	fill: #FFFFFF;
-}
-.buildinglabel {
-	fill: #000000;
-}
-.big1 {
-	stroke-width: 1px;
-}
-.big2 {
-	stroke-width: 2px;
-}
-.small1 {
-	stroke-width: 0.15px;
-}
-.small2 {
-	stroke-width: 0.3px;
-}
-.area {
-	stroke: #000000;
-}
-.fitarea {
-	fill: #0066FF;
-}
-.neutralarea {
-	fill: #FFFFFF;
-}
-.ctuarea {
-	fill: #8DA6CC;
-}
-.otherarea {
-	fill: #BBBBBB;
-}
-.floor {
-	visibility: hidden;
-}
-.floorframe {
-	stroke: #000000;
-	fill: #FFFFFF;
-}
-.wall {
-	stroke: #000000;
-	fill: none;
-}
-.door {
-	stroke-dasharray: none;
-	stroke: #D40000;
-	fill: none;
-}
-.smallicon {
-	/*stroke: #FFFFFF;
-	stroke-width: 0.02;*/
-	stroke: none;
-	fill: #000000;
-}
-.iconlabel {
-	font-size: 5px;
-	font-family: Arial;
-	fill: #000000;
-	text-anchor: middle;
-	font-weight: bold;
-	text-align: center;
-}
-.point, .point path {
-	fill: #00D400;
-}
-.point path.light {
-	fill: #ffffff;
-}
-#position-pointer, #search-pointer {
-	visibility: hidden;
-	opacity: 0.6;
-}
-#position-pointer .dark, #search-pointer .dark {
-	fill: #D40000;
-}
-.visible {
-	visibility: visible;
-}
-.hidden {
-	visibility: hidden;
-}
-.unimportant {
-	opacity: 0.3;
 }

@@ -62,7 +62,7 @@ var querySparql = function (query, success, error) {
 				return;
 			}
 			if (textStatus === 'timeout') {
-				error('V daném čase se nepodařilo navázat spojení se serverem.');
+				error('Čas vypršel, nepodařilo se navázat spojení se serverem.');
 				return;
 			}
 			error('Došlo k chybě označené \'' + textStatus + '\', pravděpodobně se nepodařilo navázat spojení se serverem.');

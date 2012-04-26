@@ -33,7 +33,7 @@ var placesjs = [
 	{phrase: ['TH:C'], selector: '#TH-C'},
 	{phrase: ['TH:A'], selector: '#TH-A'},
 	{phrase: ['TH:B'], selector: '#TH-B'},
-	{phrase: ['T9', 'Nová budova'], selector: '#T9'},
+	{phrase: ['T9', 'Nová budova', 'NB'], selector: '#T9'},
 	{phrase: ['T9 1NP', 'T9 1. patro', 'T9-floor1'], selector: '#T9-floor1'},
 	{phrase: ['T9:105', 'Kotěra'], selector: '#T9-105'},
 	{phrase: ['T9:107', 'Janák'], selector: '#T9-107'},

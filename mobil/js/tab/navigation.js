@@ -360,14 +360,8 @@ tab.navigation.getContent = function () {
 		return false;
 	});
 	
-	mapcontrol.append(position);
-	mapcontrol.append(scaleup);
-	mapcontrol.append(scaledown);
-	mapcontrol.append(center);
-	mapcontrol.append(moveup);
-	mapcontrol.append(movedown);
-	mapcontrol.append(moveleft);
-	mapcontrol.append(moveright);
+	mapcontrol.append(position, scaleup, scaledown);
+	mapcontrol.append(center, moveup, movedown, moveleft, moveright);
 	
-	return $('<div></div>').append($('<div class="group"></div>').append(form)).append(mapcontrol).append(map);
+	return $('<div></div>').append($('<div class="group"></div>').append(form), mapcontrol, map);
 };
