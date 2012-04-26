@@ -47,16 +47,74 @@ Celé prostředí serverové aplikace je umístěno v serverové edici \glsname{
 
 
 \section{Mobilní aplikace}
-Pod pojmem \textit{mobilní aplikace} se skrývá aplikace pevně nezávislá na výše uvedené \textit{serverové}. Jejím hlavním cílem je sloužit studentovi \glsname{FIT} \glsname{ČVUT} jako průvodce, zároveň má ale plnit i účel ukázky využití \glsname{SPARQL} endpointu vytvořeného v \textit{serverové} části.
+Pod pojmem \textit{mobilní aplikace} se skrývá aplikace pevně nezávislá na výše uvedené \textit{serverové}. Jejím hlavním cílem je sloužit studentovi \glsname{FIT} \glsname{CVUT} jako průvodce, zároveň má ale plnit i účel ukázky využití \glsname{SPARQL} endpointu vytvořeného v \textit{serverové} části.
+
+
+\subsection{Struktura aplikace}
+
+
+\subsection{Řešené problémy}
+
+\subsubsection{Změna velikosti displeje}
+chrome css v px
+
+\subsubsection{Chyby prohlížečů v implementaci specifikací}
+Při práci jsem několikrát narazil na situaci, kdy vše v jednom prohlížeči fungovalo, ve druhém nikoliv, a přesto bylo vše implementované správně podle specifikace. V takovém případě pak bývala chyba na straně prohlížeče, který špatně implementoval určitou specifikaci. Situace nastávala převážně u hodně specifických případů. Příkladem může být chybějící podpora pro nastavení transformace \glsname{SVG} elementu JavaScriptem v prohlížeči Google Chrome \cite{BugChromeTran}, tento problém ale lze obejít vlastním sestavením hodnoty celého atributu. 
+
+\subsubsection{Rozdílné DOM u HTML a SVG}
+\glsname{SVG} je, co se týče návrhu \glsname{DOM}, komplikovanější, než HTML -- zatímco u HTML stačí pro přístup k hodnotě atributu 
+
+\subsubsection{Zpracování Cross-Origin zdrojů}
+\label{sec:cross-origin}
+
 
 \subsection{Použité technologie}
+Níže uvádím soupis použitých technologií s odůvodněním, proč byly vybrány a v jakém kontextu použity.
+
 \subsubsection{HTML5}
-JavaScript
-\subsubsection{jQuery}
+Většina technologií tvořících mobilní aplikaci by se dala zahrnout do pojmu HTML5 (myšlen význam v širším smyslu). Pomocí JavaScriptu se manipuluje s \glsname{HTML} strukturou, které je prezentována za pomocí \glsname{CSS}, klíčová část aplikace -- mapa -- je tvořena \glsname{SVG} (o tom ještě dále). T
 
 \subsubsection{SVG}
+Mapa použitá v aplikaci je implementována prostřednictvím \glsname{SVG}. Rozhodnutí bylo učiněno na základě identifikace a porovnání možných technologií:
+\begin{itemize}
+ \item Statické obrázky s předgenerovanými proměnnými částmi.
+ \item Statické obrázky s dynamicky pozicovanými proměnnými částmi.
+ \item Dynamicky kreslené obrázky na \textit{canvas}.
+ \item Statické \glsname{SVG} s dynamickými úpravami.
+\end{itemize}
 
-\subsubsection*{}
+První zmíněné řešení bylo zavrženo kvůli nízké flexibilitě -- není možné dopředu vygenerovat všechny varianty obrázků, které by pokrývaly možné situace -- i kdyby to možné bylo, množství obrázků by bylo velmi vysoké\footnote{Pro pokrytí všech situací by byly třeba zvlášť obrázky s vyznačením kterékoliv místnosti, kteréhokoliv bodu zájmu, kterékoliv výchozí pozice\dots Vzhledem k rozsáhlosti mapy by tak počet obrázků byl enormní.} a pro omezenou paměťovou kapacitu cílových zařízení nevhodné.
+
+Druhý přístup, dynamické pozicování, byl zavržen z důvodů optimalizací rozvržení prvků mobilními prohlížeči -- není zaručené, že se prvek (například ukazatel nalezené místnosti) skutečně umístí, kam má.
+
+Nová vlastnost HTML5, kreslení prostřednictvím JavaScriptu na \textit{canvas} element, byla, narozdíl od předchozích možností, zvažována až do finálního rozhodnutí -- ačkoliv se jedná o řešení čistě v režii již používaných technologií (JavaScript, HTML), jeho využití jsem z několika důvodů zavrhl:
+\begin{itemize}
+ \item Neumožňuje nakreslený obrázek nijak upravit (například posunout ukazatel na mapě), ale musí se vždy překreslit, což je náročnější na zdroje.
+ \item Kvůli principu dynamického generovaní obrázků JavaScriptem nelze kostru připravit pomocí běžných grafických editorů.
+ \item Subjektivně mi přijde práce s mapou jako \glsname{SVG} obrázkem reprezentovaným \glsname{XML} dokumentem majícím \glsname{DOM} přehlednější, než s méně strukturovatelným JavaScriptem.
+\end{itemize}
+
+Reprezentaci mapy jsem tedy svěřil \glsname{SVG} z následujících důvodů:
+\begin{itemize}
+ \item Snadné vytvoření mapy prostřednictvím běžného grafického editoru.
+ \item Možnost znovupoužití mapy standardního grafického formátu i v jiných projektech.
+ \item Práce s mapou (něpř. vyznačování pozic) se provádí pouhodou úpravou jejího \glsname{DOM}.
+ \item I po úpravách se stále jedná o týž objekt -- není nutné ho překreslovat.
+\end{itemize}
+
+Nutno podotknout, že jsou implementace kreslení na \textit{canvas} a \glsname{SVG} na různých mobilních zařízeních na různých úrovních, ani jedna ovšem nemá výrazně navrch \cite{CanIUse} \cite{MobileHtml}.
+
+\subsubsection{PHP}
+Z důvodů popsaných v podsekci \ref{sec:cross-origin} (str. \pageref{sec:cross-origin}) bylo nutné vytvořit podpůrnou serverovou aplikaci -- proxy. Po úvaze jsem se rozhodl pro využití jazyka \glsname{PHP}, který je podporovaný jako jediný nástroj pro tvorbu dynmického obsahu na fakultním webovém serveru \url{http://webdev.fit.cvut.cz/}. Tuto kombinaci, vzhledem k její podpoře ze strany fakulty a určení práce pro fakulní nasazení, považuji i přes jinde využitý JavaScript za vhodnou.
+
+
+\subsection{Použité knihovny}
+
+\subsubsection{jQuery}
+A
+
+\subsubsection{HTML Purifier}
+Po několika vlastních implementacích nástroje na pročištění a ošetření \glsname{HTML} vstupů pocházejících od třetích stran jsem sáhl k implementaci již prověřené -- oblast ošetření aplikace před škodlivými vstupy má z hlediska bezpečnosti vysokou prioritu a neustále se objevující nové hrozby nakonec vedly k tomu, že jsem se rozhodl nespoléhat na své vlastní implementace a využít \textit{know-how} tvůrců svobodné \glsname{PHP} knihovny  HTML Purifier (\url{http://htmlpurifier.org/}) -- ta odstraní případná nebezpečí za využití pokročilého auditovaného \textit{whitelistu} a v případě potřeby navíc zajistí validitu kódu. Knihovna je využita v rámci proxy zmíněné v předchozím odstavci.
 
 
 \subsection{Použité nástroje}
@@ -88,19 +146,8 @@ Před dokončením byla navíc otestována panem inženýrem Havrylukem, vedouc�
 \end{itemize}
 
 \subsubsection{Git}
+Práce byla průběžně verzována systémem pro správu verzí Git (\url{http://git\-scm.com/}), čímž bylo zajištěné pohodlné zálohování jak ve smyslu možnosti návratu k některé z minulých verzí, tak i ve smyslu vzdáleného duplikování na serveru GitHub (\url{http://github.com/}). Pozitivním vedlejším efektem tohoto přístupu je možnost sledování vývoje prostřednictvím veřejného repozitáře.
 
-
-\subsection{Finální implementace}
-\subsubsection{Struktura aplikace}
-
-\subsubsection{Změna velikosti displeje}
-chrome css v px
-
-\subsubsection{Chyby prohlížečů v implementaci specifikací}
-Při práci jsem několikrát narazil na situaci, kdy vše v jednom prohlížeči fungovalo, ve druhém nikoliv, a přesto bylo vše implementované správně podle specifikace. V takovém případě pak bývala chyba na straně prohlížeče, který špatně implementoval určitou specifikaci. Situace nastávala převážně u hodně specifických případů. Příkladem může být chybějící podpora pro nastavení transformace \glsname{SVG} elementu JavaScriptem v prohlížeči Google Chrome \cite{BugChromeTran}, tento problém ale lze obejít vlastním sestavením hodnoty celého atributu. 
-
-\subsubsection{Rozdílné DOM u HTML a SVG}
-\glsname{SVG} je, co se týče návrhu \glsname{DOM}, komplikovanější, než HTML -- zatímco u HTML stačí pro přístup k hodnotě atributu 
 
 \subsection{Ideální implementace}
 Finální implementace se od té ideální, co se týče omezení vzniklých neideálním světem, moc neliší. Vzhledem k cílení aplikace na současná nová zařízení bylo možné realizovat téměř vše, co bylo naplánováno -- v uplynulých letech bylo odvedeno mnoho práce na jednotných standardech napříč zařízeními, a co víc, tyto standardy byly implementovány a z velké části se i dodržují. Problémy se proto vyskytly spíše na poli stále ještě v některých ohledech omezených možnostech mobilních zařízení.
