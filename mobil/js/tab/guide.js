@@ -22,30 +22,31 @@ tab.guide.getContent = function () {
 		element.append(' ', a, div);
 		
 		a.click(function () {
-			if ($(this).html() === 'Zobrazit') {
+			if ($(this).html() === 'Zobrazit') { //zobrazení
 				a.html('Skrýt');
 				if (typeof navigator.onLine === 'undefined' || navigator.onLine) { //připojení k Internetu
 					div.html('<p><img src="img/load.gif" alt="Načítám..."/> Načítám...</p>').show();
 				} else {
 					div.html('<p class="error">Pravděpodobně nejste připojeni k Internetu, ten je k vykonání požadované akce nezbytný.</p>').show();
-				}
+				} //i přes případné nepřipojení se pokračuje (některé prohlížeče nahlašují špatně)
+				//získání zdroje ve formátu JSON před JSONP proxy ({"sitecontent": "<stránka>"})
 				$.getJSON(config.ajax.proxy, {url: resource}, function (data) {
-					if (data && data.error) {
+					if (data && data.error) { //navrácena chyba
 						div.html('<p class="error">' + data.error + '</p>');
-					} else if (data && data.sitecontent) {
+					} else if (data && data.sitecontent) { //navrácena stránka
 						var ret = presenter(data.sitecontent);
 						if (ret.length !== 0) {
 							div.html(ret);
 						} else {
 							div.html('<p class="error">Nastala chyba při zpracování zdroje. Požadovaná informace se možná nachází na <a href="' + resource + '" target="_blank">' + resource + '</a>.</p>');
 						}
-					} else {
+					} else { //navráceno něco neočekávaného
 						div.html('<p class="error">Nastala chyba serveru.</p>');
 					}
 				}).error(function () {
 					div.html('<p class="error">Nepodařilo se navázat spojení se serverem.</p>');
 				});
-			} else {
+			} else { //skrytí
 				div.hide().html('');
 				a.html('Zobrazit');
 			}
@@ -55,7 +56,7 @@ tab.guide.getContent = function () {
 	
 	
 	var canteens = $('<div class="group"><h3>Menzy</h3><ul/></div>');
-	var canteensData = {
+	var canteensData = { //názvy menz a jejich indexy
 		'menza Studentský dům': 2,
 		'Technická menza': 3,
 		'Masarykova kolej': 5,
@@ -88,7 +89,14 @@ tab.guide.getContent = function () {
 	studies.find('ul').append(studiesnews, studiesschedule, studiesforms, studieslinks);
 	
 	createLoaderButton(studiesnews, 'http://fit.cvut.cz/', function (data) {
-		var ret = $(data).find('.view-id-novinky .view-content');
+		var ret = $(data).find('.view-id-novinky .views-row');
+		//pročištění
+		ret.find('.views-field-title').each(function () {this.parentNode.removeChild(this.nextSibling);});
+		ret.find('.views-field-created .field-content').contents().unwrap().unwrap().wrap('<p/>');
+		ret.find('.views-field-title a').contents().unwrap().unwrap().unwrap().wrap('<h3/>');
+		ret.find('p').each(function () {
+			$.trim($(this).text()) === '' && $(this).remove();
+		});
 		ret.find('a').attr('target', '_blank');
 		return ret;
 	});
@@ -115,7 +123,7 @@ tab.guide.getContent = function () {
 	
 	
 	var openings = $('<div class="group"><h3>Otevírací doby</h3><ul/></div>');
-	var openingsfitsto = $('<li>Studijní odddělení FIT</li>');
+	var openingsfitsto = $('<li>Studijní odddělení</li>');
 	var openingscanteens = $('<li>Menzy, bufety...</li>');
 	var openingsidissuer = $('<li>Vydavatelství průkazů</li>');
 	var openingsntk = $('<li>Národní technická knihovna</li>');
@@ -137,7 +145,7 @@ tab.guide.getContent = function () {
 		return ret;
 	});
 	createLoaderButton(openingsidissuer, 'http://www.cvut.cz/informace-pro-studenty/prukazy', function (data) {
-		var ret = $(data).find('#ap-region-content ul li p').first().text().wrap('<p/>');
+		var ret = $(data).find('#ap-region-content ul li p').first().contents().first().wrap('<p/>').parent();
 		return ret;
 	});
 	createLoaderButton(openingsntk, 'http://www.techlib.cz/cs/61-oteviraci-doby/', function (data) {
@@ -154,17 +162,61 @@ tab.guide.getContent = function () {
 	
 	
 	var contacts = $('<div class="group"><h3>Kontakty</h3><ul/></div>');
-	var contactsfitsto = $('<li>Studijní odddělení FIT</li>');
-	var contactscanteens = $('<li>Menzy, bufety...</li>');
+	var contactsfitsto = $('<li>Studijní odddělení</li>');
+	var contactsfitdeansoff = $('<li>Děkanát</li>');
+	var contactskti = $('<li>Katedra teoretické informatiky</li>');
+	var contactsksi = $('<li>Katedra softwarového inženýrství</li>');
+	var contactskcn = $('<li>Katedra číslicového návrhu</li>');
+	var contactskps = $('<li>Katedra počítačových systémů</li>');
+	var contactskam = $('<li>Katedra aplikované matematiky</li>');
 	var contactsidissuer = $('<li>Vydavatelství průkazů</li>');
+	var contactscanteens = $('<li>Menzy, bufety...</li>');
 	var contactssuz = $('<li>Správa účelových zařízení</li>');
-	contacts.find('ul').append(contactsfitsto, contactscanteens, contactsidissuer, contactssuz);
+	contacts.find('ul').append(contactsfitsto, contactsfitdeansoff, contactskti, contactsksi, contactskcn, contactskps, contactskam, contactsidissuer, contactscanteens, contactssuz);
 	
 	createLoaderButton(contactsfitsto, 'http://fit.cvut.cz/student/studijni/kontakt', function (data) {
 		var ret = $(data).find('table').first();
 		//přeformátování
 		ret.find('*').andSelf().removeAttr('style');
 		ret.find('tr td:first-child, tr:first-child td').css({'text-transform': 'capitalize', 'font-weight': 'bold'});
+		ret.find('p').css('margin', '0');
+		ret.find('a').attr('target', '_blank');
+		return ret;
+	});
+	createLoaderButton(contactsfitdeansoff, 'http://fit.cvut.cz/fakulta/struktura/dekanat', function (data) {
+		var ret = $(data).find('.content-text .node');
+		//přeformátování
+		ret.find('*').andSelf().removeAttr('style');
+		ret.find('strong, b').each(function () {this.parentNode.removeChild(this.nextSibling);});
+		ret.find('strong, b').contents().unwrap().unwrap().wrap('<h3/>');
+		ret.find('a').attr('target', '_blank');
+		return ret;
+	});
+	var departments = { //identifikátory kateder
+		'kti': contactskti,
+		'ksi': contactsksi,
+		'kcn': contactskcn,
+		'kps': contactskps,
+		'kam': contactskam
+	};
+	for (var department in departments) {
+		createLoaderButton(departments[department], 'http://fit.cvut.cz/fakulta/struktura/katedry/' + department, function (data) {
+			var ret = $(data).find('table.telefony');
+			//přeformátování
+			ret.find('*').andSelf().removeAttr('style');
+			ret.find('tr td:nth-child(3)').each(function () {
+				$(this).html('<a href="mailto:' + ($(this).text()) + '">' + ($(this).text()) + '</a>');
+			});
+			ret.find('a').attr('target', '_blank');
+			return ret;
+		});
+	}
+	createLoaderButton(contactsidissuer, 'http://www.cvut.cz/informace-pro-studenty/prukazy', function (data) {
+		var ret = $(data).find('#ap-region-content ul li p').eq(1);
+		//přeformátování a pročištění
+		ret.find('b, br').remove();
+		ret.contents().wrap('<li/>').parent().wrap('<ul/>');
+		ret.find('li').eq(-2).remove();
 		ret.find('a').attr('target', '_blank');
 		return ret;
 	});
@@ -175,14 +227,9 @@ tab.guide.getContent = function () {
 		ret.find('a').attr('target', '_blank');
 		return ret;
 	});
-	createLoaderButton(contactsidissuer, 'http://www.cvut.cz/informace-pro-studenty/prukazy', function (data) {
-		var ret = $(data).find('#ap-region-content ul li p').eq(1);
-		ret.find('a').attr('target', '_blank');
-		return ret;
-	});
 	createLoaderButton(contactssuz, 'http://www.suz.cvut.cz/kontakt/telefonni-a-e-mailovy-seznam', function (data) {
 		var ret = $(data).find('#ap-rpart table');
-// 		ret.find('a').attr('target', '_blank');
+		ret.find('a').attr('target', '_blank');
 // 		ret.find('.superth').contents().wrap('<h3/>');
 		return ret;
 	});
@@ -194,7 +241,7 @@ tab.guide.getContent = function () {
 	events.find('ul').append(eventsctu, eventsfit);
 	
 	createLoaderButton(eventsctu, 'http://akce.cvut.cz/', function (data) {
-		var ret = $(data.replace(/%E2%8C%A9/g, '&lang')).find('#ap-calendar_events');
+		var ret = $(data.replace(/%E2%8C%A9/g, '&lang')).find('#ap-calendar_events'); //nahrazení špatně zakódovaných entit
 		ret.find('a').attr('target', '_blank');
 		return ret;
 	});
@@ -252,6 +299,7 @@ tab.guide.getContent = function () {
 	createLoaderButton(utilstemp, 'http://teplomer.ok.cvut.cz/', function (data) {
 		return $(data).find('table tr:lt(4)').wrap('<tbody/>').wrap('<table/>');
 	});
+	
 	
 	return $('<div/>').append(canteens, studies, openings, contacts, events, timetable, utilities);
 };
