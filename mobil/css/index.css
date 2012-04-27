@@ -27,6 +27,7 @@ th {
 	text-align: left;
 }
 .error {
+	font-weight: bold;
 	color: #FF0000;
 }
 .group {
