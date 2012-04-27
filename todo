@@ -18,7 +18,6 @@ zdroje: http://xmlns.com/foaf/spec/ (vyčerpané), aiiso...
 - 
 
 ===== Mobilní aplikace =====
-- modularizace mapového zobrazovače pro vizualizaci map i jinde
 - vytvoření přepřipravených dotazů
   - info o člověku
   - telefon člověka
@@ -27,4 +26,5 @@ zdroje: http://xmlns.com/foaf/spec/ (vyčerpané), aiiso...
   - akce na místě
   - (můj) rozvrh
   - místa?
-- synchronizovat animaci při škálování a posunu
+- detekce nedostupnosti Internetu (proxy)
+- projít zdroje na proxy a ověřit jejich implementovanost
