@@ -72,7 +72,7 @@ Při práci jsem několikrát narazil na situaci, kdy vše v jednom prohlížeč
 Níže uvádím soupis použitých technologií s odůvodněním, proč byly vybrány a v jakém kontextu použity.
 
 \subsubsection{HTML5}
-Většina technologií tvořících mobilní aplikaci by se dala zahrnout do pojmu HTML5 (myšlen význam v širším smyslu). Pomocí JavaScriptu se manipuluje s \glsname{HTML} strukturou, které je prezentována za pomocí \glsname{CSS}, klíčová část aplikace -- mapa -- je tvořena \glsname{SVG} (o tom ještě dále). T
+Většina technologií tvořících mobilní aplikaci by se dala zahrnout do pojmu HTML5 (v širším smyslu významu). Pomocí JavaScriptu se manipuluje s \glsname{HTML} strukturou, která je prezentována za pomocí \glsname{CSS}, klíčová část aplikace -- mapa -- je tvořena \glsname{SVG} (o tom ještě dále). Technologie byly vybrány pro jejich výbornou portovatelnost -- téměř všechna dnešní zařízení je implementují podobně (nebo alespoň mají takové výkonnostní parametry, že na nich lze provozovat přidanou vrstvu abstrahující od skutečné implementace).
 
 \subsubsection{SVG}
 Mapa použitá v aplikaci je implementována prostřednictvím \glsname{SVG}. Rozhodnutí bylo učiněno na základě identifikace a porovnání možných technologií:
@@ -109,6 +109,7 @@ Z důvodů popsaných v podsekci \ref{sec:cross-origin} (str. \pageref{sec:cross
 
 
 \subsection{Použité knihovny}
+V práci byla, po úvaze, nakonec využita i práce třetích stran -- svobodné knihovny \emph{jQuery} a \emph{HTML Purifier}. Jejich krátký popis a odůvodnění následují:
 
 \subsubsection{jQuery}
 A
