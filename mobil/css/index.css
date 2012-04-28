@@ -14,7 +14,7 @@ h1, h2, h3, h4, h5 {
 	margin: 0.3em;
 	font-family: Arial, sans-serif;
 }
-p, dl, ul, ol {
+p, dl, ul, ol, pre {
 	margin: 0.3em;
 }
 dt {

@@ -10,7 +10,8 @@ tab.sparql.getName = function () {
 
 tab.sparql.getContent = function () {
 	//vyhledávací formulář
-	var query = $('<textarea>select * { ?s ?p ?o }</textarea>');
+	var query = $('<textarea rows="8">SELECT ?name ?email\nWHERE {\n	?person a foaf:Person.\n' +
+		'	?person foaf:name ?name.\n	?person foaf:mbox ?email.\n}\n</textarea>');
 	var submit = $('<a href="#">Hledej!</a>');
 	var form = $('<form id="search" action="#"/>');
 	
