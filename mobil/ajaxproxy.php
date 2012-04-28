@@ -117,8 +117,10 @@ $config->set('Attr.IDPrefix', 'ap-'); //prefix ID dokumentu - aby se nemotala s 
 // $config->set('Core.Encoding', $encoding);
 // $config->set('HTML.Doctype', 'HTML 4.01 Transitional');
 // $config->set('HTML.TargetBlank', true); //záležitostí pouze 'externích' odkazů (viz doc.)
-$config->set('URI.Base', $site);
+$config->set('URI.Base', $site); //URL stránky, ze kterého se přepisují relativní odkazy
 $config->set('URI.MakeAbsolute', true);
+$config->set('URI.DisableResources', true); //zákaz obrázků a spol. (přímo ze zdroje)
+$config->set('URI.DisableExternalResources', true); //zákaz obrázků a spol. (i z jiných)
 $purifier = new HTMLPurifier($config);
 $output = $purifier->purify($output);
 
