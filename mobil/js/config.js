@@ -17,8 +17,8 @@ config.sparql = { //SPARQL endpoint
 };
 
 config.ajax = { //AJAXové spojení
-// 	proxy: 'http://webdev.fit.cvut.cz/~molnaja2/thesis/ajaxproxy.php?callback=?' //proxy pro cross-origin spojení
-	proxy: 'http://test.farnostnm.cz/thesis/ajaxproxy.php?callback=?' //náhrada za nefunkční webdev (viz práce)
+	proxy: 'http://webdev.fit.cvut.cz/~molnaja2/thesis/ajaxproxy.php?callback=?' //proxy pro cross-origin spojení
+// 	proxy: 'http://test.farnostnm.cz/thesis/ajaxproxy.php?callback=?' //náhrada za nefunkční webdev (viz práce)
 };
 
 config.map = { //parametry použité mapy
