@@ -288,12 +288,12 @@ tab.guide.getContent = function () {
 	createLoaderButton(timetableclassrooms, 'https://timetable.fit.cvut.cz/public/cz/mistnosti/index.html', function (data) {
 		var ret = $(data).find('#ap-content table.classrooms a');
 		ret.attr('target', '_blank');
-		return ret.wrap('<li/>').parent().wrap('<ul/>').parent();
+		return ret.wrap('<li/>').parent().wrapAll('<ul/>').parent();
 	});
 	createLoaderButton(timetablesubjects, 'https://timetable.fit.cvut.cz/public/cz/predmety/indexa.html', function (data) {
 		var ret = $(data).find('#ap-content .subject a');
 		ret.attr('target', '_blank');
-		return ret.wrap('<li/>').parent().wrap('<ul/>').parent();
+		return ret.wrap('<li/>').parent().wrapAll('<ul/>').parent();
 	});
 	createLoaderButton(timetableoneshot, 'https://timetable.fit.cvut.cz/public/cz/akce/index.html', function (data) {
 		var ret = $(data).find('#ap-content div.block');
