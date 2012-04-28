@@ -114,7 +114,7 @@ tab.navigation.getContent = function () {
 			}
 		}
 		
-		alert('Nic nenalezeno. Vyhledávejte budovy (př. TK), názvy vístností (př. T9:349), alternativní názvy (př. Gočár), body zájmu (př. občerstvení)...');
+		alert('Nic nenalezeno. Vyhledávejte budovy (př. TK), názvy místností (př. T9:349), alternativní názvy (př. Gočár), body zájmu (př. občerstvení)...');
 		return false;
 	};
 	
