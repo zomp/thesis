@@ -144,8 +144,12 @@ tab.guide.getContent = function () {
 		ret.find('.offset6').remove();
 		return ret;
 	});
-	createLoaderButton(openingsidissuer, 'http://www.cvut.cz/informace-pro-studenty/prukazy', function (data) {
-		var ret = $(data).find('#ap-region-content ul li p').first().contents().first().wrap('<p/>').parent();
+// 	createLoaderButton(openingsidissuer, 'http://www.cvut.cz/informace-pro-studenty/prukazy', function (data) {
+// 		var ret = $(data).find('#ap-region-content ul li p').first().contents().first().wrap('<p/>').parent();
+// 		return ret;
+// 	});
+	createLoaderButton(openingsidissuer, 'http://ke.customer.decent.cz/a021/mon/wc-mon.php?co=2', function (data) {
+		var ret = $(data).find('table table').eq(-2).find('td').last().contents();
 		return ret;
 	});
 	createLoaderButton(openingsntk, 'http://www.techlib.cz/cs/61-oteviraci-doby/', function (data) {
@@ -211,12 +215,20 @@ tab.guide.getContent = function () {
 			return ret;
 		});
 	}
-	createLoaderButton(contactsidissuer, 'http://www.cvut.cz/informace-pro-studenty/prukazy', function (data) {
-		var ret = $(data).find('#ap-region-content ul li p').eq(1);
+// 	createLoaderButton(contactsidissuer, 'http://www.cvut.cz/informace-pro-studenty/prukazy', function (data) {
+// 		var ret = $(data).find('#ap-region-content ul li p').eq(1);
+// 		//přeformátování a pročištění
+// 		ret.find('b, br').remove();
+// 		ret.contents().wrap('<li/>').parent().wrap('<ul/>');
+// 		ret.find('li').eq(-2).remove();
+// 		ret.find('a').attr('target', '_blank');
+// 		return ret;
+// 	});
+	createLoaderButton(contactsidissuer, 'http://ke.customer.decent.cz/a021/mon/wc-mon.php?co=2', function (data) {
+		var ret = $(data).find('table table').eq(-2);
 		//přeformátování a pročištění
-		ret.find('b, br').remove();
-		ret.contents().wrap('<li/>').parent().wrap('<ul/>');
-		ret.find('li').eq(-2).remove();
+		ret.find('tr').eq(-1).remove();
+		ret.find('*').removeAttr('bgcolor').removeAttr('width');
 		ret.find('a').attr('target', '_blank');
 		return ret;
 	});
