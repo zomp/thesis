@@ -4,8 +4,8 @@ var $ = require('jquery');
 var icalendar = require('icalendar');
 
 var process = function () {
-	var icsuri = 'https://akce.cvut.cz/ical.php?group=0';
-	var xmluri = 'http://akce.cvut.cz/?node=rss&group=0';
+	var icsuri = 'https://akce.cvut.cz/ical.php?group=0'; //adresa kalendáře v iCal formátu
+	var xmluri = 'http://akce.cvut.cz/?node=rss&group=0'; //adresa kalendáře v RSS formátu
 	
 	var ical = null;
 	var xml = null;
@@ -78,6 +78,24 @@ var process = function () {
 							store.rdf.createNamedNode(store.rdf.resolve("lode:Event"))
 						)
 					);
+					if (ical.events()[e].properties.SUMMARY) {
+						graph.add(
+							store.rdf.createTriple(
+								event,
+								store.rdf.createNamedNode(store.rdf.resolve("rdfs:label")),
+								store.rdf.createLiteral(ical.events()[e].properties.SUMMARY.value)
+							)
+						);
+					}
+					if (ical.events()[e].properties.DESCRIPTION) {
+						graph.add(
+							store.rdf.createTriple(
+								event,
+								store.rdf.createNamedNode(store.rdf.resolve("rdfs:comment")),
+								store.rdf.createLiteral(ical.events()[e].properties.DESCRIPTION.value)
+							)
+						);
+					}
 					
 					if (ical.events()[e].properties.LOCATION) {
 						graph.add(
@@ -122,15 +140,6 @@ var process = function () {
 								)
 							);
 						}
-					}
-					if (ical.events()[e].properties.DESCRIPTION) {
-						graph.add(
-							store.rdf.createTriple(
-								event,
-								store.rdf.createNamedNode(store.rdf.resolve("lode:Event")),///
-								store.rdf.createLiteral(ical.events()[e].properties.DESCRIPTION.value)
-							)
-						);
 					}
 				}
 				

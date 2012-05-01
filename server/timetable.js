@@ -45,6 +45,24 @@ var process = function () {
 								store.rdf.createNamedNode(store.rdf.resolve("lode:Event"))
 							)
 						);
+						if (ical.events()[e].properties.SUMMARY) {
+							graph.add(
+								store.rdf.createTriple(
+									event,
+									store.rdf.createNamedNode(store.rdf.resolve("rdfs:label")),
+									store.rdf.createLiteral(ical.events()[e].properties.SUMMARY.value)
+								)
+							);
+						}
+						if (ical.events()[e].properties.DESCRIPTION) {
+							graph.add(
+								store.rdf.createTriple(
+									event,
+									store.rdf.createNamedNode(store.rdf.resolve("rdfs:comment")),
+									store.rdf.createLiteral(ical.events()[e].properties.DESCRIPTION.value)
+								)
+							);
+						}
 						
 						if (ical.events()[e].properties.LOCATION) {
 							graph.add(
@@ -89,15 +107,6 @@ var process = function () {
 									)
 								);
 							}
-						}
-						if (ical.events()[e].properties.SUMMARY) {
-							graph.add(
-								store.rdf.createTriple(
-									event,
-									store.rdf.createNamedNode(store.rdf.resolve("prf:event/")),///
-									store.rdf.createLiteral(ical.events()[e].properties.SUMMARY.value)///
-								)
-							);
 						}
 						if (ical.events()[e].properties.DESCRIPTION) {
 							var login = ical.events()[e].properties.DESCRIPTION.value.replace(/.+\(([^\)]+)\)$/, "$1");

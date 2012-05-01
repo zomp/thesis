@@ -4,47 +4,145 @@ var $ = require('jquery');
 var url = require('url');
 
 var process = function () {
-	var uri = 'http://agata.suz.cvut.cz/jidelnicky/?clPodsystem=2&ID_jidelnicku=1';
+	var uris = [ //adresy jídelníčků
+		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=1',
+		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=2',
+		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=3',
+		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=4',
+		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=5',
+		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=6',
+		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=8',
+		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=9',
+		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=10'
+	];
 	
-	var options = {
-		host: url.parse(uri).host,
-		port: url.parse(uri).port || 80,
-		path: url.parse(uri).pathname + url.parse(uri).search
-	};
+	for (var i = uris.length - 1, uri; uri = uris[i]; --i) {
+		(function () { //uzávěr
+			var options = {
+				host: url.parse(uri).host,
+				port: url.parse(uri).port || 80,
+				path: url.parse(uri).pathname + url.parse(uri).search
+			};
 
-	var request = http.get(options);
-	
-	request.on('error', function(e) {
-		console.error("Error: " + e.message);
-	});
-	
-	request.on('response', function (r) {
-		var iconv = new Iconv('windows-1250', 'utf-8');
-		var html = '';
-		
-		r.on('data', function (chunk) {
-			html += iconv.convert(chunk).toString();;
-		});
-		
-		r.on('end', function () {
-			var jqo = $(html);
+			var request = http.get(options);
 			
-			//otevírací doby
-			var jqoopen = $(".toteviracka", jqo);
-			console.log(jqoopen.text());
-// 			console.log($(".toteviracka", jqoopen).text());
-			
-			//jídla
-			var jqomeals = $(".typ_stravy", jqo).parent();
-			
-			//zodpovědné osoby
-			var jqorespon = $("table:last", jqo);
-			$.each($("tr:last td", jqorespon), function(i, val) {
-				console.log($("tr:first td:nth-child(" + i + ")", jqorespon).text());
-				console.log($("tr:last td:nth-child(" + i + ")", jqorespon).text());
+			request.on('error', function(e) {
+				console.error("Error: " + e.message);
 			});
-		});
-	});
+			
+			request.on('response', function (r) {
+				var html = '';
+				
+				r.on('data', function (chunk) {
+					html += chunk;
+				});
+				
+				r.on('end', function () {
+					var jqo = $(html);
+					
+					var jqomeals = $("#jidelnicek .table tbody tr td", jqo).parent(); //jídla
+					var canteenname = $("#myModal h3", jqo).text(); //název menzy
+					
+					var rdfstore = require('rdfstore');
+					require('date-utils');
+					var diacritics = require('./data/diacritics.js').diacritics; //tabulka s diaktritikou
+					
+					var store = rdfstore.create(
+						require('./rdfstore.js').config,
+						function (store) {
+							var graph = store.rdf.createGraph();
+							
+							store.rdf.setPrefix("lode", "http://linkedevents.org/ontology/");
+							store.rdf.setPrefix("time", "http://www.w3.org/2006/time#");
+							store.rdf.setPrefix("food", "http://www.w3.org/TR/2003/PR-owl-guide-20031209/food#");
+							store.rdf.setPrefix("prf", "http://pruvodce.fit.cvut.cz/ontology/");
+							
+							/**
+							* Normalizace řetězce.
+							* @param term Řetězec k normalizování.
+							* @return Řetězec po normalizování.
+							*/
+							var normalize = function (term) {
+								var norm = '';
+								term = term.toLowerCase();
+								
+								for (var i = 0, max = term.length; i < max; ++i) {
+									norm += diacritics[term.charAt(i)] || term.charAt(i);
+								}
+								
+								return norm;
+							};
+							
+							var date = new Date(); //datum
+							
+							jqomeals.each(function () {
+								var mealid = $(this).find('.tstarradektd input:eq(1)').attr('id').split('_')[1];
+								
+								var meal = store.rdf.createNamedNode(store.rdf.resolve("prf:event/meal/" + mealid + "_" + date.toYMD()));
+								
+								graph.add(
+									store.rdf.createTriple(
+										meal,
+										store.rdf.createNamedNode(store.rdf.resolve("rdf:type")),
+										store.rdf.createNamedNode(store.rdf.resolve("lode:Event"))
+									)
+								);
+								graph.add(
+									store.rdf.createTriple(
+										meal,
+										store.rdf.createNamedNode(store.rdf.resolve("rdfs:label")),
+										store.rdf.createLiteral($.trim($(this).find('td:eq(1)').text()))
+									)
+								);
+								
+								graph.add(
+									store.rdf.createTriple(
+										meal,
+										store.rdf.createNamedNode(store.rdf.resolve("lode:atPlace")),
+										store.rdf.createNamedNode(store.rdf.resolve("prf:place/" + normalize(canteenname)))
+									)
+								);
+								graph.add(
+									store.rdf.createTriple(
+										meal,
+										store.rdf.createNamedNode(store.rdf.resolve("lode:involved")),
+										store.rdf.createNamedNode(store.rdf.resolve("prf:meal/" + mealid))
+									)
+								);
+								var time = store.rdf.createBlankNode();
+								graph.add(
+									store.rdf.createTriple(
+										meal,
+										store.rdf.createNamedNode(store.rdf.resolve("lode:atTime")),
+										time
+									)
+								);
+								graph.add(
+									store.rdf.createTriple(
+										time,
+										store.rdf.createNamedNode(store.rdf.resolve("rdf:type")),
+										store.rdf.createNamedNode(store.rdf.resolve("time:Instant"))
+									)
+								);
+								graph.add(
+									store.rdf.createTriple(
+										time,
+										store.rdf.createNamedNode(store.rdf.resolve("time:inXSDDateTime")),
+										store.rdf.createLiteral(date.toYMD() + "T00:00:00+" + date.getUTCOffset().substring(0, 2) + ":" + date.getUTCOffset().substring(2))
+									)
+								);
+							});
+							
+							store.insert(
+								graph,
+								function () {console.log("Graph has been inserted.")}
+							);
+						}
+					);
+				});
+			});
+		})();
+	}
 };
 
 module.exports.process = process;
