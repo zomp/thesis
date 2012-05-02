@@ -8,16 +8,30 @@ Tato kapitola se zabývá problematikou zpracovávanou diplomovou prací, kontex
 \section{Popis řešeného problému}
 Ačkoliv máme možnost čerpat z mnoha zdrojů, ne vždy nalezneme to, co hledáme. Důvodů je samozřejmě mnoho: Známe velmi omezenou množinu zdrojů, neumíme se v nich zorientovat, nedokážeme je pro jejich komplexitu zpracovat, nevíme, které zdroje jsou ověřené, aktuální\dots Nic není samozřejmě ztraceno -- může se tu objevit někdo, kdo je zmapuje, zagreguje, přetřídí, ohodnotí a pod jednotným rozhraním poskytne. Přesně tento úkol -- umožnit studentům snadný přístup k informacím -- je cílem diplomové práce.
 
-Fakulta informačních technologií Českého vysokého učení technického v Praze, stejně tak, jako většina ostatních obdobných institucí, nabízí studentům nepřeberné množství informací. Nějteré se nacházejí na webové stránce fakulty (\url{http://fit.cvut.cz/}), univerzity (\url{http://www.cvut.cz/}), jiné na serverech edux (\url{https://edux.fit.cvut.cz/}) a komponenta studia (\url{https://kos.cvut.cz/}), další pak pod Správou účelových zařízení (\url{http://agata.suz.cvut.cz/jidelnicky/}) nebo třeba na webu Centra informačních a poradenských služeb ČVUT (\url{http://www.cips.cvut.cz/}).
+Fakulta informačních technologií Českého vysokého učení technického v Praze, stejně tak, jako většina ostatních obdobných institucí, nabízí studentům nepřeberné množství informací. Některé se nacházejí na webové stránce fakulty (\url{http://fit.cvut.cz/}), univerzity (\url{http://www.cvut.cz/}), jiné na serverech edux (\url{https://edux.fit.cvut.cz/}) a komponenta studia (\url{https://kos.cvut.cz/}), další pak pod Správou účelových zařízení (\url{http://agata.suz.cvut.cz/jidelnicky/}) nebo třeba na webu Centra informačních a poradenských služeb ČVUT (\url{http://www.cips.cvut.cz/}).
 
-Zorientovat se ve zdrojích nějakou dobu trvá, v těch nejdůležitějších zpravidla ani 
-\todo{Dohromady celá doména -- serverová i mobilní aplikace.}
+Zorientovat se ve zdrojích nějakou dobu trvá, v těch nejdůležitějších zpravidla ne markantní, přesto existuje mnoho zdrojů, používaných méně často, na které nemusí potencionální uživatel vůbec narazit -- jedním z nich je třeba seznam akcí ČVUT (\url{http://akce.cvut.cz/}). Velmi by proto pomohl nějaký průvodce, který by dostupné informace seskupil a koherentně poskytl.
 
 \section{Popis uživatele a jeho potřeb}
-\todo{Stručně, konrétně pak pod kapitolou věnující se analýze. Opět dohromady.}
+Práce se zaměřuje především na studenty Fakulty informačních technologií Českého vysokého učení technického v Praze, přesto z ní mohou mít užitek i ostatní zainteresované strany -- vyučující, neakademičtí pracovníci, zájemci o studium, návštěvníci\dots Kdokoliv pohybující se po dejvickém kampusu nebo hledající nějakou informaci vztaženou k fakultě.
+
+Cílová skupina uživatelů chce zpravidla všechno a hned, nezabývá se proto rozsáhlými předpisy / návody a k informacím se buď dostane během krátké doby z nějakého vhodného zdroje, nebo vůbec. Vhodným zdrojem může být i to, co by pro většinovou populaci vhodné nebylo -- studenti Fakulty informačních technologií mají nadprůměrně rozsáhlé znalosti v oblasti informačních technologií, proto může být vhodným zdrojem i komputerizované řešení.
+
+K předchozí potřebě se váží i nároky na použitelnost výsledného řešení -- ačkoliv jsou studenti informačních technologií na ledacos zvyklí a zvládnou tak využívat i nestandardní nástroje, mají na druhou stranu profesionální odpor k vyloženě špatným řešením. Na přístupnost není třeba brát u této cílové skupiny zřetel. 
+
+Studenti zjišťují informace často až na poslední chvíli -- například umístění učebny, ve které mají výuku, zjišťují až několik minut před jejím zahájením. V té době nemají možnost využít plnohodnotný počítač, ale musejí se spolehnout na omezené mobilní zařízení, které zpravidla mívají u sebe.
 
 \section{Vymezení cílů diplomové práce}
-\todo{...}
+Cílem diplomové práce je vytvořit průvodce sloužícího studentům jako jednotné rozhraní pro přístup k nejčastěji používaným / nejdůležitějším informacím a usnadnit jim tak určitou -- nestudijní -- oblast studentského života. Práci je vhodné rozdělit do dvou částí -- mobilní aplikaci, kterou budou studenti využívat, a serverovou aplikaci, která bude sloužit jako univerzální zdroj dat, i pro mobilní aplikaci.\footnote{Pojmy \textit{mobilní} a \textit{serverová aplikace} se vyskytují napříč celou prací, až na výjimky všude reprezentují aplikaci sloužící studentům jako průvodce (\textit{mobilní aplikace}) a aplikaci shromažďující data z nestrukturovaných zdrojů a poskytujících je unifikovaným způsobem (\textit{serverová aplikace}).}
+
+Před započetím implementace je třeba přibližně určit oblasti a rozsahy informací obsažených v průvodci. Následně je potřeba k požadovaným informacím nalézt vhodné zdroje. Neexistující zdroje je třeba nahradit simulovanými zdroji. Přichází na řadu analýza, návrh a realizace nejprve serverové, poté mobilní aplikace. Testování je vhodné provádět po celou dobu.
+
+Mobilní aplikace by měla být dostupná velkému počtu studentů, měla by tedy být multiplatformní a fungovat (jak plyne z označení) i na mobilních zařízeních. Využití aplikace se předpokládá až v následujících letech, není tedy třeba podchytávat stará a méně schopná zařízení -- s jejich podporou se již nepočítá. Specifickým zdrojem poskytovaných informací by měla být navigace.
+
+Serverová aplikace by měla být přístupná pouze administrátorům a uživatelům by sloužilo čistě jen vhodné rozhraní pro získávání požadovaných informací. Informace mají být v systému uložené dle, na systému nezávislého, vhodného modelu.
+
+Práce nemá za cíl plně obsáhnout všechny zpracovávané domény, tím je kvalitní zpracování základu každé domény, které pak lze dle již hotových částí doplnit do celého, pro praktické nasazení potřebného, rozsahu. Postačuje tedy vytvoření částí odpovídajících reprezentativnímu vzorku.
+
 
 \section{Popis struktury DP ve vztahu k vytyčeným cílům}
 \todo{Popis rozdělení na serverovou a mobilní aplikaci}
@@ -50,10 +64,10 @@ Práce zpracovávanou doménou navazuje na bakalářskou práci \textit{Mobilní
 
 Jako důsledek relativně nedávného prudkého vzestupu počtu chytrých telefonů se za uplynulé roky objevilo mnoho aplikací zabývajících se podobnými tématy, jako tato práce.\footnote{Zpracování těchto aplikací bývá ovšem jiné, jsou zaměřené na užitek a sofistikovanost zpracování zpravidla nehraje roli.} Ne vždy se jedná o studentovy průvodce po univerzitě, problém ale řeší obdobný. Nabídka jejich funkcí bývá vzájemně podobná, proto zde uvedu pouze výběr.
 
-V první části této sekce se budu věnovat pracem obdobným této, později se budou oběvovat práce stále více odlišné, přesto ale v některých ohledech inspirativní.
+V první části této sekce se budu věnovat pracím obdobným této, později se budou objevovat práce stále více odlišné, přesto ale v některých ohledech inspirativní.
 
 \subsubsection{Mobilní navigační systém pro FEL ČVUT}
-Bakalářská práce \emph{Mobilní navigační systém pro FEL ČVUT} \cite{Bakalarka} je zaměřená především na multiplatformnost a použitelnost. Bylo tedy nutné v některých oblastech (včetně funkcionality) podstoupit určité kompromisy. Aplikace vyhledá místnost na základě zadaného označení a přehledným plánem k ní uživatele navede. Označením může být oficiální název, přezdívka, jméno sídlícího pracovníka, či jiný identifikátor. Dále aplikace vizualizuje body zájmu, jako jsou občerstvení, výtahy, toalety\dots Práce poskytuje užitečného pomocníka, po čistě progamové stránce ale moc zajímavá není.\footnote{Cílem této, diplomové, práce je naopak vytvoření robustní ontologie a samotná mobilní aplikace slouží pouze jako ukázka implementace za využití moderních mobilních technologií, takže ke kompromisům dojde v rozdílných oblastech. Návaznost na bakalářskou práci se bude projevovat převážně v poučení se z předchozích chyb ve shodné zpracovávané doméně.}
+Bakalářská práce \emph{Mobilní navigační systém pro FEL ČVUT} \cite{Bakalarka} je zaměřená především na multiplatformnost a použitelnost. Bylo tedy nutné v některých oblastech (včetně funkcionality) podstoupit určité kompromisy. Aplikace vyhledá místnost na základě zadaného označení a přehledným plánem k ní uživatele navede. Označením může být oficiální název, přezdívka, jméno sídlícího pracovníka, či jiný identifikátor. Dále aplikace vizualizuje body zájmu, jako jsou občerstvení, výtahy, toalety\dots Práce poskytuje užitečného pomocníka, po čistě programové stránce ale moc zajímavá není.\footnote{Cílem této, diplomové, práce je naopak vytvoření robustní ontologie a samotná mobilní aplikace slouží pouze jako ukázka implementace za využití moderních mobilních technologií, takže ke kompromisům dojde v rozdílných oblastech. Návaznost na bakalářskou práci se bude projevovat převážně v poučení se z předchozích chyb ve shodné zpracovávané doméně.}
 
 \subsubsection{Průvodce ČVUT}
 Nyní již zastaralá mobilní aplikace \emph{Průvodce ČVUT FEL} (\url{http://lr.czechian.net/j2me/}\footnote{Aplikace \emph{Průvodce ČVUT FEL} byla, pravděpodobně kvůli neaktualizovanému obsahu a celkovému nedokončení, stažena a nyní již není veřejně dostupná. Nachází se na přiloženém \gls{CD} v adresáři \textit{data/Průvodce ČVUT FEL}. \todo{Přiložit aplikaci.}}) vytvořená v \glsname{J2ME} poskytovala vyhledávání místností s následným textovým popisem cesty, případným minimalistickým plánkem a dopravním spojením z frekventovaných lokalit.
@@ -65,7 +79,7 @@ Nyní již zastaralá mobilní aplikace \emph{Průvodce ČVUT FEL} (\url{http://
 Mezi další, v souvislosti s touto prací méně významné, průvodce patří tištěný \emph{Průvodce prváka po ČVUT} \cite{PruvodcePrvaka} nebo například specializovaný \emph{Průvodce prváka po koleji Podolí} (\url{http://pruvodce.pod.cvut.cz/}).
 
 \subsubsection{Vlastní průvodci}
-Mobilní průvodci univerzitami, tak jako se děje i v jiných oblastech mobilních aplikací, se v poslední době začínají velmi rozmáhat. Velké mnoství univerzit nabízí svým studentům na vlastní půdě vytvořené aplikace, ať již studenty, nebo výpočetními centry. Tyto aplikace bývají šité na míru potřebám univerzit, na druhou stranu ale nemusí být tolik odladěné, jako to bývá u větších projektů. Nabídka funkcionalit sahá od minimalistických až po velmi rozsáhlé. S podporovanými platformami je to podobné -- od jedné až po univerzální aplikace.
+Mobilní průvodci univerzitami, tak jako se děje i v jiných oblastech mobilních aplikací, se v poslední době začínají velmi rozmáhat. Velké množství univerzit nabízí svým studentům na vlastní půdě vytvořené aplikace, ať již studenty, nebo výpočetními centry. Tyto aplikace bývají šité na míru potřebám univerzit, na druhou stranu ale nemusí být tolik odladěné, jako to bývá u větších projektů. Nabídka funkcionalit sahá od minimalistických až po velmi rozsáhlé. S podporovanými platformami je to podobné -- od jedné až po univerzální aplikace.
 
 \subsubsection{campusM}
 Univerzity jako Imperial College London, London School of Economics, University College London, Trinity College Dublin a pár desítek dalších využívají komerční aplikace z dílen společnosti \emph{campusM} (\url{http://www.campusm.com/}).
@@ -103,7 +117,7 @@ V této široce zaměřené podpodsekci zmíním hlavně průvodce z jednotlivý
 \end{itemize}
 
 \paragraph{Příklady aplikací:}
-Po úvaze jsem se rozhodl odkázat pouze na několik reprezentatntů -- aplikací je velmi mnoho a vzhledem k podobnosti by nemělo přínos uvádět všechny. Jako ukázku předkládám jednu svobodnou a několik komerčních aplikací:
+Po úvaze jsem se rozhodl odkázat pouze na několik reprezentantů -- aplikací je velmi mnoho a vzhledem k podobnosti by nemělo přínos uvádět všechny. Jako ukázku předkládám jednu svobodnou a několik komerčních aplikací:
 
 \emph{iosched} (\url{http://code.google.com/p/iosched/}) je svobodnou aplikací vyvíjenou pro konferenci Google I/O. Nabízí všechny výše uvedené funkcionality vyjma: registrace, sestavování vlastního programu a prostoru pro reklamu, což má svá opodstatnění. Aplikace je napsána v Javě a je určena pro běh v mobilních telefonech se systémem Android. \emph{iosched} je pro diplomovou práci inspirativní záběrem zpracování a možností poučení se z otevřeného zdrojového kódu.
 

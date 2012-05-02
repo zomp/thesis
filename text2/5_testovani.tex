@@ -9,9 +9,25 @@
 % % \todo{Dopsat zjišťování problémů, obcházení a pod.}
 
 \section{Serverová aplikace}
-\todo{Netestoval jsem podle žádné metodiky a testy neměly formální průběh. Mám to ještě nějak metodicky otestovat nebo stačí rozepsat následující body?}
-% \subsection{Statické a dynamické testování}
-% \subsection{Testování vstupů}
+\todo{Testování sys,. integrace netřeba - běží na jednom místě. Komparativní testování nemá vůči čemu probíhat. Použitelnost netřeba řešit.}
+
+\subsection{Testování programátorem}
+\todo{Kód jsem opětovně revidoval a opravoval chyby. Testování vstupů. Review...}
+
+% \subsection{Testování funkcionalit}
+% \todo{Splnění požadavků bylo testováno mnou i vedoucím práce.}
+
+\subsection{Integrační testování}
+\todo{Po zařazení nové funkcionality byly dotčené části programu otestovány.}
+
+\subsection{Zátěžové testování}
+
+\subsection{Akceptační testování}
+\todo{Bylo prováděno vedoucím práce.}
+
+
+\section{Mobilní aplikace}
+
 
 \subsection{Testování programátorem}
 \todo{Kód jsem opětovně revidoval a opravoval chyby.}
@@ -22,12 +38,17 @@
 \subsection{Integrační testování}
 \todo{Po zařazení nové funkcionality byly dotčené části programu otestovány.}
 
+\subsection{Testování systémové integrace}
+\todo{Kompatibilita.}
+% \todo{Otestování v Opeře (Mini, Mobile), NetFrontu, IE, FF, Nokia Mini Map, BB...}
+
+\subsection{Zátěžové testování}
+\todo{Má tu smysl? Proxy? SPARQL?}
+
 \subsection{Akceptační testování}
 \todo{Bylo prováděno vedoucím práce.}
 
-
-\section{Mobilní aplikace}
-\subsection{Test návrhu UI}
+\subsection{Testování použitelnosti}
 \label{sec:testhfp}
 % Testování návrhu bylo prováděno po konzultaci s vedoucím práce testováním tří osob online high fidelity prototypy -- vzhledem k použitým technologiím se naskytla možnost jednoduše vytvořit prototypy velmi podobné finální aplikaci. Bylo zjištěno několik závažných nedostatků, které byly později v aplikaci realizovány.
 
@@ -221,25 +242,8 @@
 % % \subsubsection*{Zpět v historii}
 % % Přepínání obrazovek evokuje přechod na novou stránku, takže si uživatel oprávněně myslí, že se na původní místo vrátí tlačítkem prohlížeče \emph{Zpět}. Ve skutečnosti se ale celou dobu pohyboval na jedné, dynamicky se měnící, stránce, takže se v historii přesune úplně nečekaně jinam. Tento problém potřebuje vyřešit.
 
-
-\subsection{Testování programátorem}
-\todo{Kód jsem opětovně revidoval a opravoval chyby.}
-
-\subsection{Testování funkcionalit}
-\todo{Splnění požadavků bylo testováno mnou i vedoucím práce.}
-
-\subsection{Integrační testování}
-\todo{Po zařazení nové funkcionality byly dotčené části programu otestovány.}
-
-\subsection{Testování kompatibility s prohlížeči}
-% \todo{Otestování v Opeře (Mini, Mobile), NetFrontu, IE, FF, Nokia Mini Map, BB...}
-
-\subsection{Akceptační testování}
-\todo{Bylo prováděno vedoucím práce.}
-
-
-
-\subsection{Srovnání s existujícími řešeními}
+\subsection{Komparativní testování}
+\todo{Porovnání mobilní aplikace s konkurencí.}
 % Podařilo se mi objevit pouze jedinou aplikaci, která se zabývá podobnou tematikou -- Průvodce ČVUT FEL \cite{PruvodceCvut}, je vysoce pravděpodobné, že víc podobných aplikací ani není. Srovnání probíhá pouze v rozdílných vlastnostech a není určená žádná metrika, která by vybírala lepší aplikaci -- nemělo by to smysl, pomineme-li moji zaujatost, Průvodce ČVUT FEL je starší, nemá aktualizovanou databázi místností, aby reflektovala současný stav, takže je v současné době nepoužitelný. Porovnání se nachází v tabulce \ref{tab:srovnaniReseni}.
 % \begin{table}
 % \begin{center}
