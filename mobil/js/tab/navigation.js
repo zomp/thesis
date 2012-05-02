@@ -94,6 +94,7 @@ tab.navigation.getContent = function () {
 		 */
 		var normalize = function (term) {
 			var norm = '';
+			term = term.toLowerCase();
 			
 			for (var i = 0, max = term.length; i < max; ++i) {
 				norm += diacriticsjs[term.charAt(i)] || term.charAt(i);

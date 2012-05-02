@@ -42,8 +42,9 @@ tab.help.getContent = function () {
 		'<p>Vezměme si pro ukázku jednoduchý dotaz <code>SELECT * { ?s ?p ?o }</code>, ten reprezentuje' +
 		' požadavek na výběr trojice ve vztahu <em>subjekt</em>, <em>predikát</em> a <em>objekt</em>.' +
 		' Tyto entity jsou zastoupeny proměnnou, proto dojde k vyhledání všech těchto trojic v databázi.</p>' +
-		'<p>Pokročilejším případem je vyhledání specifické osoby, zde využijeme dotaz:</p>' +
+		'<p>Pokročilejším případem je vyhledání všech osob, zde využijeme dotaz:</p>' +
 		'<pre>\n' +
+		'PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;\n' +
 		'SELECT ?name ?email\n' +
 		'WHERE {\n' +
 		'	?person a foaf:Person.\n' +
