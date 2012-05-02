@@ -40,13 +40,13 @@ $allowedUris = array( //povolená URI
 	'https://timetable.fit.cvut.cz/public/cz/mistnosti/index.html',
 	'https://timetable.fit.cvut.cz/public/cz/predmety/indexa.html',
 	'https://timetable.fit.cvut.cz/public/cz/akce/index.html',
-	'https://edux.fit.cvut.cz/contacts/start',
-	'http://www.cips.cvut.cz/',
+// 	'https://edux.fit.cvut.cz/contacts/start',
+// 	'http://www.cips.cvut.cz/',
 // 	'http://www.cvut.cz/informace-pro-studenty/prukazy',
 	'http://www.techlib.cz/cs/61-oteviraci-doby/',
 	'http://www.suz.cvut.cz/kontakt/telefonni-a-e-mailovy-seznam',
 	'http://teplomer.ok.cvut.cz/',
-	'http://ke.customer.decent.cz/a021/mon/wc-mon.php?co=0',
+// 	'http://ke.customer.decent.cz/a021/mon/wc-mon.php?co=0',
 	'http://ke.customer.decent.cz/a021/mon/wc-mon.php?co=2'
 );
 
