@@ -1,3 +1,7 @@
+/**
+ * Spouštěcí soubor aplikace. Přes tento soubor se routuje dále.
+ */
+
 var express = require('express');
 
 var port = 1337; //port serveru

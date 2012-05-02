@@ -1,5 +1,5 @@
 /**
- * Diakritika
+ * Diakritika a další náhrady pro normalizaci
  */
 
 var diacriticsjs = {

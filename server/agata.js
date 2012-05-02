@@ -1,3 +1,7 @@
+/**
+ * Zpracování jídelníčků.
+ */
+
 var http = require('http');
 var Iconv = require('iconv').Iconv;
 var $ = require('jquery');
@@ -18,7 +22,7 @@ var process = function () {
 	
 	for (var i = uris.length - 1, uri; uri = uris[i]; --i) {
 		(function () { //uzávěr
-			var options = {
+			var options = { //rozparsování URL
 				host: url.parse(uri).host,
 				port: url.parse(uri).port || 80,
 				path: url.parse(uri).pathname + url.parse(uri).search
@@ -34,14 +38,14 @@ var process = function () {
 				var html = '';
 				
 				r.on('data', function (chunk) {
-					html += chunk;
+					html += chunk; //sestavení postupně doručovaných částí
 				});
 				
 				r.on('end', function () {
 					var jqo = $(html);
 					
 					var jqomeals = $("#jidelnicek .table tbody tr td", jqo).parent(); //jídla
-					var canteenname = $("#myModal h3", jqo).text(); //název menzy
+					var canteenname = $.trim($("#myModal h3", jqo).text()); //název menzy
 					
 					var rdfstore = require('rdfstore');
 					require('date-utils');
@@ -50,7 +54,7 @@ var process = function () {
 					var store = rdfstore.create(
 						require('./rdfstore.js').config,
 						function (store) {
-							var graph = store.rdf.createGraph();
+							var graph = store.rdf.createGraph(); //graf
 							
 							store.rdf.setPrefix("lode", "http://linkedevents.org/ontology/");
 							store.rdf.setPrefix("time", "http://www.w3.org/2006/time#");
@@ -76,7 +80,7 @@ var process = function () {
 							var date = new Date(); //datum
 							
 							jqomeals.each(function () {
-								var mealid = $(this).find('.tstarradektd input:eq(1)').attr('id').split('_')[1];
+								var mealid = $(this).find('.tstarradektd input:eq(1)').attr('id').split('_')[1]; //id jídla
 								
 								var meal = store.rdf.createNamedNode(store.rdf.resolve("prf:event/meal/" + mealid + "_" + date.toYMD()));
 								
@@ -109,7 +113,7 @@ var process = function () {
 										store.rdf.createNamedNode(store.rdf.resolve("prf:meal/" + mealid))
 									)
 								);
-								var time = store.rdf.createBlankNode();
+								var time = store.rdf.createBlankNode(); //čas jídla
 								graph.add(
 									store.rdf.createTriple(
 										meal,

@@ -1,3 +1,7 @@
+/**
+ * Zpracování usermapu.
+ */
+
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
@@ -5,16 +9,19 @@ var url = require('url');
 var $ = require('jquery');
 
 var process = function (login) {
-	if (!login)
+	if (!login) //nebyl učiněn požadavek na konkrétní osobu
 		processAll();
 	else
 		processPerson(login);
 };
 
+/**
+ * Zpracování všech osob.
+ */
 var processAll = function () {
 	var empuri = __dirname + '/data/employees.txt';
 	var stuuri = __dirname + '/data/students.txt';
-	var uris = [empuri, stuuri];
+	var uris = [empuri, stuuri]; //URI se zdroji obsahujícími loginy
 	
 	for (var uri in uris)
 		fs.readFile(uris[uri], function (err, data) {
@@ -22,10 +29,14 @@ var processAll = function () {
 				throw err;
 			var lines = data.toString().split("\n");
 			for (var line in lines)
-				processPerson(lines[line].replace(/.+\(([^\)]+)\)$/, "$1"));
+				processPerson(lines[line].replace(/.+\(([^\)]+)\)$/, "$1")); //získání loginu
 		});
 };
 
+/**
+ * Zpracování konkrétní osoby.
+ * @param login Uživatelské jméno osoby.
+ */
 var processPerson = function (login) {
 	if (!login) return;
 	

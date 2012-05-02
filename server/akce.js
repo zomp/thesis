@@ -1,3 +1,7 @@
+/**
+ * Zpracování akcí ČVUT.
+ */
+
 var http = require('http');
 var url = require('url');
 var $ = require('jquery');
@@ -7,8 +11,8 @@ var process = function () {
 	var icsuri = 'https://akce.cvut.cz/ical.php?group=0'; //adresa kalendáře v iCal formátu
 	var xmluri = 'http://akce.cvut.cz/?node=rss&group=0'; //adresa kalendáře v RSS formátu
 	
-	var ical = null;
-	var xml = null;
+	var ical = null; //zpracovaný ical zdroj
+	var xml = null; //zpracovaný rss zdroj
 	
 	var icsrequest = http.get({
 		host: url.parse(icsuri).host,
@@ -50,7 +54,7 @@ var process = function () {
 		});
 	});
 	
-	var onAllLoad = function () {
+	var onAllLoad = function () { //byl načten iCal i RSS
 // 		console.log(ical.events());///příklad
 // 		console.log(xml.find("title").text());///příklad
 		

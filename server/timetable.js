@@ -1,3 +1,7 @@
+/**
+ * Zpracování pseudorozvrhů - prozatimní řešení do zprovoznění KOSapi.
+ */
+
 var http = require('http');
 var url = require('url');
 var icalendar = require('icalendar');

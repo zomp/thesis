@@ -1,3 +1,7 @@
+/**
+ * Konfigurace připojení k sémantickému úložišti.
+ */
+
 var config = {
 	persistent: true, 
 	engine: 'mongodb', 
