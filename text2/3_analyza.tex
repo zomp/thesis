@@ -1,15 +1,11 @@
 % (e) Analýza a návrh implementace produktu (včetně diskuse různých alternativ a volby implementačního prostředí).
 
-\chapter{Analýza a návrh řešení}
+\chapter{Analýza a návrh implementace}
 % Analýza a návrh implementace (včetně diskuse různých alternativ a volby implementačního prostředí).
 % Detailní popis uživatele a jeho potřeb.
 % Analýzu odkázat na komparativní test.
 % Návrh odkázat na low fidelity test.
 % V analýze neprezentovat finální řešení ale dopodrobna celý proces.
-
-% Vytvořte mobilní navigační systém po elektrotechnické fakultě ČVUT.
-% Systém musí co nejlépe sloužit svému účelu a vyhovovat potřebám typického uživatele -- studenta. Je nutné, aby vhodným způsobem naváděl uživatele k cílovému bodu a byl spustitelný na co největším počtu současných mobilních zařízení. Systém umožní lokalizaci zadaného cílového místa (konkrétní učebnu, nejbližší toalety...) a dokáže do něj najít optimální cestu ze zadaného výchozího bodu. Vytvořenou aplikaci testujte s uživateli a zohledněte zjištěné problémy.
-
 
 
 
@@ -19,7 +15,132 @@
 % 
 % Následující sekce chronologicky odpovídají postupu vývoje, nikdy ale nedošlo přestupem do další fáze k úplnému ukončení té předchozí, vždy se k ní vývoj při další iteraci zase stočil.
 % 
-% \section{Potřeby uživatelů}
+
+\section{Serverová aplikace}
+\subsection{Potřeby uživatelů}
+\todo{Seznam a popis jednotlivých potřeb uživatelů.}
+
+\subsection{Případy užití}
+\todo{Různé případy užití v textové formě.}
+
+\subsection{Funkční požadavky}
+Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na jednotlivé funkcionality. Pro serverovou aplikaci mezi ně patří především:
+\begin{enumerate}
+ \item Aplikace bude čerpat informace o názvech budov z předstíraného adaptéru.
+ \item Aplikace bude čerpat informace o umístění budov z předstíraného adaptéru.
+ \item Aplikace bude čerpat informace o názvech místností z předstíraného adaptéru.
+ \item Aplikace bude čerpat informace o umístění místností z předstíraného adaptéru.
+ \item Aplikace bude čerpat informace o rozvrzích místností z KOSapi (\url{http://kosapi.fit.cvut.cz/}). \todo{Vynechám -- chybí API.}
+ \item Aplikace bude čerpat informace o rozvrzích studentů z formátu iCalendar.
+ \item Aplikace bude čerpat informace o kontakech studentů z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o rozvrzích vyučujících z KOSapi (\url{http://kosapi.fit.cvut.cz/}). \todo{Vynechám -- chybí API.}
+ \item Aplikace bude čerpat informace o kancelářích vyučujících z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o kontakech vyučujících z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o kancelářích neakademických pracovníků z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o kontaktech neakademických pracovníků z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o akcích \glsname{CVUT} z Kalendáře akcí ČVUT (\url{http://akce.cvut.cz/}).
+ \item Aplikace bude čerpat informace o harmonogramu akademického roku z předstíraného adaptéru (na základě \url{http://fit.cvut.cz/}).
+ \item Aplikace bude čerpat informace o datech \glsname{MAR} dostupných zdrojů (prozatím Orlík a Masarykova kolej, snaha o T9).
+ \item Aplikace bude čerpat informace o jídelníčcích menz z Jídelníčků menz (\url{http://agata.suz.cvut.cz/jidelnicky/}).
+ \item Aplikace bude čerpat informace o otvírací době menz z Jídelníčků menz (\url{http://agata.suz.cvut.cz/jidelnicky/}).
+ \item Aplikace bude čerpat informace o otvírací době \glsname{NTK} z Národní technické knihovny (\url{http://www.techlib.cz/}).
+ \item Aplikace bude čerpat informace o otvírací době Vydavatelství průkazů (\url{http://www.cvut.cz/informace-pro-studenty/prukazy}). \todo{Vynechám -- chybí API.}
+ \item Aplikace bude čerpat informace o počtu lidí ve frontě ve Vydavatelství průkazů (\url{http://ke.customer.decent.cz/a021/mon/}).
+ \item Vytvořte / nalezněte / sestavte z dílčích částí ontologii reprezentující výše uvedené informace.
+ \item Informace získané z jednotlivých zdrojů převádějte dle výše požadované ontologie pro další zpracování do \glsname{RDF}.
+ \item Aplikace uloží získané sémantické informace do databáze.
+ \item Aplikace umožní vykonávat \glsname{SPARQL} dotazy nad uloženými daty.
+\end{enumerate}
+
+% \subsection{FR-S-1: Informace týkající se akcí ČVUT}
+% Aplikace bude čerpat informace z webových stránek Kalendář akcí ČVUT (\url{http://akce.cvut.cz/}).
+% \subsection{FR-S-2: Informace týkající se budov}
+% Aplikace bude čerpat informace z předstíraného adaptéru obsahujícího informace týkající se budov.
+% \subsection{FR-S-3: Informace týkající se místností}
+% Aplikace bude čerpat informace z předstíraného adaptéru obsahujícího informace týkající se místností.
+% \subsection{FR-S-4: Informace týkající se menz}
+% Aplikace bude čerpat informace z webových stránek menz SUZ ČVUT (\url{http://agata.suz.cvut.cz/jidelnicky/}).
+% \subsection{FR-S-5: Informace týkající se osob spjatých s ČVUT}
+% Aplikace bude čerpat informace z webových stránek Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+% \subsection{FR-S-6: Převod informací do \emph{RDF}}
+% Informace získané z jednotlivých zdrojů převádějte pro další zpracování do \emph{RDF}.
+% \subsection{FR-S-7: Perzistentní uložení do databáze}
+% Aplikace uloží získané informace do databáze.
+% \subsection{FR-S-8: \emph{SPARQL} endpoint}
+% Aplikace umožní vykonávat \emph{SPARQL} dotazy nad uloženými daty.
+
+
+\subsection{Nefunkční požadavky}
+Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na dílo jako celek, nikoliv na jednotlivé funkcionality. Pro serverovou aplikaci mezi ně patří především:
+
+\begin{enumerate}
+ \item Aplikaci naprogramujte v \emph{JavaScript}u.
+ \item Pro běh serveru využijte \emph{Node.js}.
+ \item Sémantická data ukládejte do takového úložiště, aby nad ním bylo možné vykonávat dotazy přímo (případně přes nezávislého prostředníka) a nebylo nutné přistupovat přes vlastní aplikaci.
+ \item Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
+ \item Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{\glsname{GNU}}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
+\end{enumerate}
+
+% \subsection{NFR-S-1: Aplikaci naprogramujte v \emph{JavaScript}u}
+% V poslední době dochází k prudkému rozvoji \emph{JavaScript}u a dá se mu do budoucna předpovídat vyšší nasazení, aplikaci tedy naprogramujte v \emph{JavaScript}u.
+% \subsection{NFR-S-2: Pro běh serveru využijte \emph{Node.js}}
+% Pro běh aplikace využijte systém \emph{Node.js} a naučte se práci s touto novou a progresivní technologií.
+% \subsection{NFR-S-3: Využijte úložiště sémantických dat}
+% Sémantická data ukládejte do takového úložiště, aby nad ním bylo možné vykonávat dotazy přímo (případně přes nezávislého prostředníka) a nebylo nutné přistupovat přes vlastní aplikaci.
+% \subsection{NFR-S-4: Dejte přednost kvalitě zpracování}
+% Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
+% \subsection{NFR-S-5: Svobodné licence}
+% Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
+
+\subsection{Návrh nasazení}
+\todo{Deployment diagram.}
+
+\subsection{Návrh řešení}
+\todo{Diskuse alternativ. Struktura.}
+
+\todo{Volba implementačního prostředí.}
+
+\subsection{Návrh bezpečnosti}
+\todo{Injekce kódu. Pouze povolené URL. Ošeření vstupů.}
+
+\subsection{Použité technologie}
+Mnoho použitých technologií bylo dáno zadáním práce, byl mi tak do značné míry usnadněn jejich výběr. Na druhou stranu nejsou dané technologie dokonalé, takže by často bývala práce s jinými snazší.
+
+Celá serverová aplikace je napsána v \emph{JavaScriptu}, zprovozněna na \emph{Node.js}, datovým úložištěm se stalo \emph{MongoDB}.
+
+\subsubsection{JavaScript}
+Využití \emph{JavaScriptu} bylo pro svoje pravděpodobné vzrůstající nasazení v budoucnosti a své specifické vlastnosti dáno jako nefunkční požadavek.
+
+\subsubsection{Node.js}
+\emph{Node.js} (\url{http://nodejs.org/}) je platforma postavená nad běhovým prostředím JavaScriptu z Chrome. Slouží ke tvorbě rychlých, škálovatelných síťových aplikací. Node.js využívá událostmi řízený neblokovací I/O model, který ho činí nenáročným a efektivním, vhodným pro datově náročné \textit{real-timové} aplikace běžící v distribuovaném prostředí \cite{Node}.
+
+Použití Node.js bylo vynuceno nefunkčním požadavkem, jednalo se ale o velmi cennou zkušenost -- je novou technologií a ačkoliv je jeho dokumentace na slušné úrovni, není zatím vytvořena dostatečně velká báze příkladů a nejlepších praktik, takže jsem se k nim musel postupně dostat a při té příležitosti se toho hodně naučil. Navíc, zdá se, se budou nabité vědomosti v budoucnu hodit.
+
+\subsubsection{MongoDB}
+\emph{MongoDB} (\url{http://www.mongodb.org/}) je škálovatelnou, vysoce výkonnou, otevřenou NoSQL databází napsanou v C++ \cite{Mongo}.
+
+\subsubsection*{ }
+Celé prostředí serverové aplikace je umístěno v serverové edici \glsname{GNU}/linuxové distribuce \emph{Ubuntu} (\url{http://www.ubuntu.com/}) a ta je pro snadnou přenositelnost nainstalována do kontejneru virtuálního stroje virtualizačního řešení \emph{VirtualBox} (\url{http://www.virtualbox.org/}).
+
+\subsection{Použité knihovny}
+Mimo standardního JavaScriptu lze v Node.js využívat i specifická rozšíření a množství modulů třetích stran. Z těch jsem využil:
+\begin{itemize}
+ \item \emph{date-utils} (\url{https://github.com/JerrySievert/node-date-utils}) -- mikro framework doplňující funkcionalitu JavaScriptového objektu Date. Zvažováno bylo i použití \emph{dateformat} (\url{https://github.com/felixge/node-dateformat}), ten je ale pro projekt méně vhodný. Oba moduly jsou stále ve vývoji.
+ \item \emph{express} (\url{http://expressjs.com/}) -- renomovaný framework pro tvorbu webových aplikací založený na middleware frameworku \emph{connect} (\url{http://www.senchalabs.org/connect/}).
+ \item \emph{iCalendar} (\url{https://github.com/tritech/node-icalendar}) -- knihovna pro práci s formátem iCalendar. Modul je stále ve vývoji. Zvažovány byly i další knihovny, například \emph{ical} (\url{https://github.com/peterbraden/node-ical}), ty ale implementovaly ještě méně možností, než použitá.
+ \item \emph{iconv} (\url{https://github.com/bnoordhuis/node-iconv}) -- knihovna pro obsluhu systémového příkazu iconv sloužícímu k převádění kódování.
+ \item \emph{jquery} (\url{https://github.com/coolaj86/node-jquery}) -- wrapper umožňující využít renomovanou JavaScriptovou knihovnu \emph{jQuery} (\url{http://jquery.com/}) v prostředí Node.js. Je zde využit \emph{jsdom} (\url{https://github.com/tmpvar/jsdom}) -- JavaScriptová implementace DOM.
+ \item \emph{rdfstore} (\url{https://github.com/antoniogarrote/rdfstore-js}) -- JavaScriptová implementace \emph{\glsname{RDF}} grafového úložiště s podporou pro \emph{\glsname{SPARQL}}. Data mohou být (a v implementaci \glsname{DP} jsou) persistentně ukládána prostřednictvím Node.js modulu-ovladače \emph{mongodb} (\url{https://github.com/christkv/node-mongodb-native}) do NoSQL databáze \emph{MongoDB} (\url{http://www.mongodb.org/}). Modul je stále ve vývoji.
+ \item \emph{soap} (\url{https://github.com/milewise/node-soap}) -- \todo{Pouze pokud se objeví podpora poskytnutého WSDL.}
+\end{itemize}
+
+\subsection{Použité nástroje}
+
+
+
+\section{Mobilní aplikace}
+\subsection{Potřeby uživatelů}
+\todo{Seznam a popis jednotlivých potřeb uživatelů.}
 % Tato sekce slouží jako seznam potřeb uživatelů, se kterými jsem se v průběhu práce setkal. Ne všechny potřeby byly později zapracovány do výsledné aplikace, některé totiž nebyly natolik důležité, aby se je vyplatilo v aplikaci mít a zastiňovat jimi potřeby důležitější. Další potřeby bývaly protichůdné a také je nešlo implementovat zároveň. Popisu uživatele se věnuje už sekce \ref{sec:popisUzivatele}.
 % 
 % \subsection{Potřeba se někam dostat}
@@ -103,7 +224,8 @@
 % 
 % 
 % 
-% \section{Prototypy}
+\subsection{Prototypy}
+\todo{Pojednání o vytvořených prototypech, možná nakonec pod něco zařadím, nebude mít velký rozsah.}
 % Po ujasnění několika základních potřeb a požadavků jsem začal vytvářet prototypy. Nejprve pouze jednoduché low fidelity prototypy pro vyjasnění základních požadavků, později sofistikovanější high fidelity prototypy reprezentující chování i vzhled výsledné aplikace.
 % 
 % \subsection{Low fidelity prototypy}
@@ -156,7 +278,8 @@
 % 
 % 
 % 
-% \section{Případy užití}
+\subsection{Případy užití}
+\todo{Různé případy užití v textové formě.}
 % Případy užití (use cases) jsou scénáře popisující chování systému z pohledu vnějšího aktéra. Případy užití vymezují, kdo a co bude jak dělat a z tohoto základu se později sestaví funkční požadavky. Už ze zadání aplikace vyplývá potřeba jediného aktéra -- studenta. Základní případy užití jsou následující:
 % \subsection{UC1: Hledání místnosti podle označení}
 % \label{ssec:UChledaniMistnosti}
@@ -277,79 +400,7 @@
 % \end{description}
 
 
-
-\section{Funkční požadavky na serverovou aplikaci}
-Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na jednotlivé funkcionality. Pro serverovou aplikaci mezi ně patří především:
-\begin{enumerate}
- \item Aplikace bude čerpat informace o názvech budov z předstíraného adaptéru.
- \item Aplikace bude čerpat informace o umístění budov z předstíraného adaptéru.
- \item Aplikace bude čerpat informace o názvech místností z předstíraného adaptéru.
- \item Aplikace bude čerpat informace o umístění místností z předstíraného adaptéru.
- \item Aplikace bude čerpat informace o rozvrzích místností z KOSapi (\url{http://kosapi.fit.cvut.cz/}). \todo{Vynechám -- chybí API.}
- \item Aplikace bude čerpat informace o rozvrzích studentů z formátu iCalendar.
- \item Aplikace bude čerpat informace o kontakech studentů z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
- \item Aplikace bude čerpat informace o rozvrzích vyučujících z KOSapi (\url{http://kosapi.fit.cvut.cz/}). \todo{Vynechám -- chybí API.}
- \item Aplikace bude čerpat informace o kancelářích vyučujících z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
- \item Aplikace bude čerpat informace o kontakech vyučujících z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
- \item Aplikace bude čerpat informace o kancelářích neakademických pracovníků z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
- \item Aplikace bude čerpat informace o kontaktech neakademických pracovníků z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
- \item Aplikace bude čerpat informace o akcích \glsname{CVUT} z Kalendáře akcí ČVUT (\url{http://akce.cvut.cz/}).
- \item Aplikace bude čerpat informace o harmonogramu akademického roku z předstíraného adaptéru (na základě \url{http://fit.cvut.cz/}).
- \item Aplikace bude čerpat informace o datech \glsname{MAR} dostupných zdrojů (prozatím Orlík a Masarykova kolej, snaha o T9).
- \item Aplikace bude čerpat informace o jídelníčcích menz z Jídelníčků menz (\url{http://agata.suz.cvut.cz/jidelnicky/}).
- \item Aplikace bude čerpat informace o otvírací době menz z Jídelníčků menz (\url{http://agata.suz.cvut.cz/jidelnicky/}).
- \item Aplikace bude čerpat informace o otvírací době \glsname{NTK} z Národní technické knihovny (\url{http://www.techlib.cz/}).
- \item Aplikace bude čerpat informace o otvírací době Vydavatelství průkazů (\url{http://www.cvut.cz/informace-pro-studenty/prukazy}). \todo{Vynechám -- chybí API.}
- \item Aplikace bude čerpat informace o počtu lidí ve frontě ve Vydavatelství průkazů (\url{http://ke.customer.decent.cz/a021/mon/}).
- \item Vytvořte / nalezněte / sestavte z dílčích částí ontologii reprezentující výše uvedené informace.
- \item Informace získané z jednotlivých zdrojů převádějte dle výše požadované ontologie pro další zpracování do \glsname{RDF}.
- \item Aplikace uloží získané sémantické informace do databáze.
- \item Aplikace umožní vykonávat \glsname{SPARQL} dotazy nad uloženými daty.
-\end{enumerate}
-
-% \subsection{FR-S-1: Informace týkající se akcí ČVUT}
-% Aplikace bude čerpat informace z webových stránek Kalendář akcí ČVUT (\url{http://akce.cvut.cz/}).
-% \subsection{FR-S-2: Informace týkající se budov}
-% Aplikace bude čerpat informace z předstíraného adaptéru obsahujícího informace týkající se budov.
-% \subsection{FR-S-3: Informace týkající se místností}
-% Aplikace bude čerpat informace z předstíraného adaptéru obsahujícího informace týkající se místností.
-% \subsection{FR-S-4: Informace týkající se menz}
-% Aplikace bude čerpat informace z webových stránek menz SUZ ČVUT (\url{http://agata.suz.cvut.cz/jidelnicky/}).
-% \subsection{FR-S-5: Informace týkající se osob spjatých s ČVUT}
-% Aplikace bude čerpat informace z webových stránek Usermap ČVUT (\url{http://usermap.cvut.cz/}).
-% \subsection{FR-S-6: Převod informací do \emph{RDF}}
-% Informace získané z jednotlivých zdrojů převádějte pro další zpracování do \emph{RDF}.
-% \subsection{FR-S-7: Perzistentní uložení do databáze}
-% Aplikace uloží získané informace do databáze.
-% \subsection{FR-S-8: \emph{SPARQL} endpoint}
-% Aplikace umožní vykonávat \emph{SPARQL} dotazy nad uloženými daty.
-
-
-\section{Nefunkční požadavky na serverovou aplikaci}
-Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na dílo jako celek, nikoliv na jednotlivé funkcionality. Pro serverovou aplikaci mezi ně patří především:
-
-\begin{enumerate}
- \item Aplikaci naprogramujte v \emph{JavaScript}u.
- \item Pro běh serveru využijte \emph{Node.js}.
- \item Sémantická data ukládejte do takového úložiště, aby nad ním bylo možné vykonávat dotazy přímo (případně přes nezávislého prostředníka) a nebylo nutné přistupovat přes vlastní aplikaci.
- \item Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
- \item Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{\glsname{GNU}}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
-\end{enumerate}
-
-% \subsection{NFR-S-1: Aplikaci naprogramujte v \emph{JavaScript}u}
-% V poslední době dochází k prudkému rozvoji \emph{JavaScript}u a dá se mu do budoucna předpovídat vyšší nasazení, aplikaci tedy naprogramujte v \emph{JavaScript}u.
-% \subsection{NFR-S-2: Pro běh serveru využijte \emph{Node.js}}
-% Pro běh aplikace využijte systém \emph{Node.js} a naučte se práci s touto novou a progresivní technologií.
-% \subsection{NFR-S-3: Využijte úložiště sémantických dat}
-% Sémantická data ukládejte do takového úložiště, aby nad ním bylo možné vykonávat dotazy přímo (případně přes nezávislého prostředníka) a nebylo nutné přistupovat přes vlastní aplikaci.
-% \subsection{NFR-S-4: Dejte přednost kvalitě zpracování}
-% Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
-% \subsection{NFR-S-5: Svobodné licence}
-% Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
-
-
-
-\section{Funkční požadavky na mobilní aplikaci}
+\subsection{Funkční požadavky}
 Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na jednotlivé funkcionality. Pro mobilní aplikaci mezi ně patří především:
 
 \begin{enumerate}
@@ -383,7 +434,7 @@ Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové 
 % Aplikace bude poskytovat nápovědu pro snazší použití.
 
 
-\section{Nefunkční požadavky na mobilní aplikaci}
+\subsection{Nefunkční požadavky}
 Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na dílo jako celek, nikoliv na jednotlivé funkcionality. Pro mobilní aplikaci mezi ně patří především:
 
 \begin{enumerate}
@@ -411,9 +462,16 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 % Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
 
 
+\subsection{Návrh nasazení}
+\todo{Deployment diagram.}
 
+\subsection{Návrh řešení}
+\todo{Diskuse alternativ.}
 
-% \section{Návrh řešení}
+\todo{Volba implementačního prostředí.}
+
+\todo{Struktura.}
+
 % Návrh (design) této aplikace neprobíhal příliš dlouho, aplikace nemá být nijak složitá a~rozsáhlá, ani není po stránce návrhu nějak výjimečná, takže se zde návrhu příliš věnovat nebudeme.
 % 
 % \subsection{Vyhledávání}
@@ -433,3 +491,88 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 % Zpočátku jsme v analýze uvažovali o vyznačení cesty z výchozího bodu do cílového, to by ale, mimo náročného algoritmu, dost uživateli v některých věcech přitížilo. V první řadě by přišel o mnoho místa malého displeje formulářem pro zadání výchozího bodu, v druhé řadě by bylo vytvoření optimálního algoritmu hledajícího cestu pravděpodobně nemožné (viz \ref{subs:UNcestaAplikaci}) a špatná cesta by se uživateli nemusela líbit. Problém v tom naštěstí pravděpodobně nebude, budovy nejsou stavěné jako bludiště a navigace po nich s plánkem není problém.
 % 
 % Vyhledáním místnosti získá aplikace cíl, ke kterému je potřeba uživatele navést. Dobrým řešením je ukázat uživateli plán cílového patra s vyznačeným cílem, orientačními body, schodišti (a výtahy) a vstupy do budovy (s~rozdíly pater). Uživatel se tak dokáže v plánu zorientovat, i kdyby se mu to doposud nepodařilo, schodiště (většinou vedou budovou každým patrem) a vchody do budovy (většinou jsou maximálně dva) k tomu velmi pomohou. Plán pouze cílového patra proto, že cestu po schodech nemá cenu vizualizovat (dokonce je to spíše nevhodné) a v rámci výchozího patra je většinou zcela zřejmé, jak se ke schodům dostat. Uživatel se tedy zvládne dostat do uvedeného patra a tam už podle plánu k hledané místnosti sám bez větších komplikací.
+
+\subsection{Návrh bezpečnosti}
+\todo{Injekce JS, ošetření vstupů, white-listing URL, elementů, atributů, zakázání cizích zdrojů...}
+
+
+\subsection{Použité technologie}
+Níže uvádím soupis použitých technologií s odůvodněním, proč byly vybrány a v jakém kontextu použity.
+
+\subsubsection{HTML5}
+Většina technologií tvořících mobilní aplikaci by se dala zahrnout do pojmu HTML5 (v širším smyslu významu). Pomocí JavaScriptu se manipuluje s \glsname{HTML} strukturou, která je prezentována za pomocí \glsname{CSS}, klíčová část aplikace -- mapa -- je tvořena \glsname{SVG} (o tom ještě dále). Technologie byly vybrány pro jejich výbornou portovatelnost -- téměř všechna dnešní zařízení je implementují podobně (nebo alespoň mají takové výkonnostní parametry, že na nich lze provozovat přidanou vrstvu abstrahující od skutečné implementace).
+
+\subsubsection{SVG}
+Mapa použitá v aplikaci je implementována prostřednictvím \glsname{SVG}. Rozhodnutí bylo učiněno na základě identifikace a porovnání možných technologií:
+\begin{itemize}
+ \item Statické obrázky s předgenerovanými proměnnými částmi.
+ \item Statické obrázky s dynamicky pozicovanými proměnnými částmi.
+ \item Dynamicky kreslené obrázky na \textit{canvas}.
+ \item Statické \glsname{SVG} s dynamickými úpravami.
+\end{itemize}
+
+První zmíněné řešení bylo zavrženo kvůli nízké flexibilitě -- není možné dopředu vygenerovat všechny varianty obrázků, které by pokrývaly možné situace -- i kdyby to možné bylo, množství obrázků by bylo velmi vysoké\footnote{Pro pokrytí všech situací by byly třeba zvlášť obrázky s vyznačením kterékoliv místnosti, kteréhokoliv bodu zájmu, kterékoliv výchozí pozice\dots Vzhledem k rozsáhlosti mapy by tak počet obrázků byl enormní.} a pro omezenou paměťovou kapacitu cílových zařízení nevhodné.
+
+Druhý přístup, dynamické pozicování, byl zavržen z důvodů optimalizací rozvržení prvků mobilními prohlížeči -- není zaručené, že se prvek (například ukazatel nalezené místnosti) skutečně umístí, kam má.
+
+Nová vlastnost HTML5, kreslení prostřednictvím JavaScriptu na \textit{canvas} element, byla, narozdíl od předchozích možností, zvažována až do finálního rozhodnutí -- ačkoliv se jedná o řešení čistě v režii již používaných technologií (JavaScript, HTML), jeho využití jsem z několika důvodů zavrhl:
+\begin{itemize}
+ \item Neumožňuje nakreslený obrázek nijak upravit (například posunout ukazatel na mapě), ale musí se vždy překreslit, což je náročnější na zdroje.
+ \item Kvůli principu dynamického generovaní obrázků JavaScriptem nelze kostru připravit pomocí běžných grafických editorů.
+ \item Subjektivně mi přijde práce s mapou jako \glsname{SVG} obrázkem reprezentovaným \glsname{XML} dokumentem majícím \glsname{DOM} přehlednější, než s méně strukturovatelným JavaScriptem.
+\end{itemize}
+
+Reprezentaci mapy jsem tedy svěřil \glsname{SVG} z následujících důvodů:
+\begin{itemize}
+ \item Snadné vytvoření mapy prostřednictvím běžného grafického editoru.
+ \item Možnost znovupoužití mapy standardního grafického formátu i v jiných projektech.
+ \item Práce s mapou (něpř. vyznačování pozic) se provádí pouhodou úpravou jejího \glsname{DOM}.
+ \item I po úpravách se stále jedná o týž objekt -- není nutné ho překreslovat.
+\end{itemize}
+
+Nutno podotknout, že jsou implementace kreslení na \textit{canvas} a \glsname{SVG} na různých mobilních zařízeních na různých úrovních, ani jedna ovšem nemá výrazně navrch \cite{CanIUse} \cite{MobileHtml}.
+
+\subsubsection{PHP}
+Z důvodů popsaných v podsekci \ref{sec:cross-origin} (str. \pageref{sec:cross-origin}) bylo nutné vytvořit podpůrnou serverovou aplikaci -- proxy. Po úvaze jsem se rozhodl pro využití jazyka \glsname{PHP}, který je podporovaný jako jediný nástroj pro tvorbu dynmického obsahu na fakultním webovém serveru \url{http://webdev.fit.cvut.cz/}. Tuto kombinaci, vzhledem k její podpoře ze strany fakulty a určení práce pro fakulní nasazení, považuji i přes jinde využitý JavaScript za vhodnou.
+
+
+\subsection{Použité knihovny}
+V práci byla, po úvaze, nakonec využita i práce třetích stran -- svobodné knihovny \emph{jQuery} a \emph{HTML Purifier}. Jejich krátký popis a odůvodnění následují:
+
+\subsubsection{jQuery}
+A
+
+\subsubsection{HTML Purifier}
+Po několika vlastních implementacích nástroje na pročištění a ošetření \glsname{HTML} vstupů pocházejících od třetích stran jsem sáhl k implementaci již prověřené -- oblast ošetření aplikace před škodlivými vstupy má z hlediska bezpečnosti vysokou prioritu a neustále se objevující nové hrozby nakonec vedly k tomu, že jsem se rozhodl nespoléhat na své vlastní implementace a využít \textit{know-how} tvůrců svobodné \glsname{PHP} knihovny  HTML Purifier (\url{http://htmlpurifier.org/}) -- ta odstraní případná nebezpečí za využití pokročilého auditovaného \textit{whitelistu} a v případě potřeby navíc zajistí validitu kódu. Knihovna je využita v rámci proxy zmíněné v předchozím odstavci.
+
+
+\subsection{Použité nástroje}
+Pro tvorbu aplikace byly použity převážně následující nástroje. Majorita jich je uvolněných pod svobodmými licencemi, zpravidla \glsname{GNU} \glsname{GPL} nebo kompatibilními. Jedinou výjimkou jsou některé mobilní prohlížeče, které byly použity k testování aplikace.
+
+\subsubsection{Kate}
+Většina práce, včetně mobilní aplikace, byla vytvořena v textovém editoru \glsname{Kate} (\url{http://kate-editor.org/}). Jedná se o velmi pokročilý nástroj pro práci s textem z prostředí \glsname{GNU}/Linuxového desktopového prostředí \glsname{KDE}. \glsname{Kate} nabízí zvýrazňování syntaxe všech v diplomové práci použitých formátů, poskytuje velmi užitečnou práci s regulárními výrazy, umožňuje pracovat s mnoha soubory najednou a, co je asi nejpodstatnější, plně se integruje do \glsname{KDE}, takže ním například lze prostřednictvím \gls{KIO} transparentně pracovat se vzdálenými soubory. \glsname{Kate} neumožňuje automatické doplňování kódu, nabízí ale již použitá slova kdekoliv v dokumentu, což je vlastnost v některých případech i lepší. Kate byl zvolen na základě velice kladných zkušeností pro napsání kódu v JavaScriptu, \gls{HTML}, \gls{CSS} i úpravy mapy v \gls{SVG}.
+
+\subsubsection{Inkscape}
+Grafické podklady práce byly vytvořeny v editoru vektorové grafiky Inkscape (\url{http://www.inkscape.org/}). Nástroj implementuje téměř kompletní specifikaci formátu \glsname{SVG} verze 1.1, je multiplatformní a svobodný. Inkscape byl vybrán kvůli předchozím výborným zkušenostem s prací v něm a vhodnosti pro tvorbu mapových podkladů.
+
+\subsubsection{Kompare}
+V případě potřeby důkladného porovnání souborů byl použit Kompare (\url{http://www.caffeinated.me.uk/kompare/}). Nástroj umožňuje velmi přehledně porovnat mimo jednotlivých souborů i celé jejich adresáře. Kompare neporovnává soubory sám, ale je nadstavbou nad konzolovou aplikací diff či obdobnou.
+
+\subsubsection{Webové prohlížeče}
+Aplikace byla průběžně testována v různých mobilních prohlížečích:
+\begin{itemize}
+ \item Mozilla Firefox (\url{http://www.mozilla.org/firefox}).
+ \item Chromium (\url{http://chromium.org/}).
+ \item rekonq (\url{http://rekonq.kde.org/}).
+ \item Prohlížeč platformy Android (\url{http://www.android.com/}).
+ \item Google Chrome for Android (\url{https://www.google.com/intl/en/chrome/android/}).
+ \item Opera Mobile (\url{http://www.opera.com/mobile}).
+ \item Internet Explorer Mobile (\url{http://www.microsoft.com/windowsphone/en-us/features/default.aspx#internet-explorer}).
+Před dokončením byla navíc otestována panem inženýrem Havrylukem, vedoucím práce, v následujících prohlížečích:
+ \item Nokia Browser for Symbian  (\url{http://browser.nokia.com/}).
+ \item Prohlížeč platformy BlackBerry (\url{http://us.blackberry.com/smartphones/features/internet.jsp}).
+ \item Safari (\url{http://www.apple.com/safari/}).
+\end{itemize}
+
+\subsubsection{Git}
+Práce byla průběžně verzována systémem pro správu verzí Git (\url{http://git\-scm.com/}), čímž bylo zajištěné pohodlné zálohování jak ve smyslu možnosti návratu k některé z minulých verzí, tak i ve smyslu vzdáleného duplikování na serveru GitHub (\url{http://github.com/}). Pozitivním vedlejším efektem tohoto přístupu je možnost sledování vývoje prostřednictvím veřejného repozitáře.

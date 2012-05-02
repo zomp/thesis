@@ -3,58 +3,69 @@
 % (d) Rešeršní zpracování existujících/dostupných implementací (jsou-li známy).
 
 \chapter{Popis problému, specifikace cíle}
-% \section{Popis řešeného problému}
-% \todo{...}.
-% 
-% \section{Popis uživatele a jeho potřeb}
-% \todo{...}
-% 
-% \section{Vymezení cílů diplomové práce}
-% \todo{...}
+Tato kapitola se zabývá problematikou zpracovávanou diplomovou prací, kontextem, do kterého je zasazena, rozvržením práce a končí rešerší již zpracovaných obdobných témat.
 
-\section{Rešeršní zpracování existujících ontologií}
+\section{Popis řešeného problému}
+Ačkoliv máme možnost čerpat z mnoha zdrojů, ne vždy nalezneme to, co hledáme. Důvodů je samozřejmě mnoho: Známe velmi omezenou množinu zdrojů, neumíme se v nich zorientovat, nedokážeme je pro jejich komplexitu zpracovat, nevíme, které zdroje jsou ověřené, aktuální\dots Nic není samozřejmě ztraceno -- může se tu objevit někdo, kdo je zmapuje, zagreguje, přetřídí, ohodnotí a pod jednotným rozhraním poskytne. Přesně tento úkol -- umožnit studentům snadný přístup k informacím -- je cílem diplomové práce.
+
+Fakulta informačních technologií Českého vysokého učení technického v Praze, stejně tak, jako většina ostatních obdobných institucí, nabízí studentům nepřeberné množství informací. Nějteré se nacházejí na webové stránce fakulty (\url{http://fit.cvut.cz/}), univerzity (\url{http://www.cvut.cz/}), jiné na serverech edux (\url{https://edux.fit.cvut.cz/}) a komponenta studia (\url{https://kos.cvut.cz/}), další pak pod Správou účelových zařízení (\url{http://agata.suz.cvut.cz/jidelnicky/}) nebo třeba na webu Centra informačních a poradenských služeb ČVUT (\url{http://www.cips.cvut.cz/}).
+
+Zorientovat se ve zdrojích nějakou dobu trvá, v těch nejdůležitějších zpravidla ani 
+\todo{Dohromady celá doména -- serverová i mobilní aplikace.}
+
+\section{Popis uživatele a jeho potřeb}
+\todo{Stručně, konrétně pak pod kapitolou věnující se analýze. Opět dohromady.}
+
+\section{Vymezení cílů diplomové práce}
+\todo{...}
+
+\section{Popis struktury DP ve vztahu k vytyčeným cílům}
+\todo{Popis rozdělení na serverovou a mobilní aplikaci}
+% Osobně bych za tím viděl správné rozdělení osnovy práce podle jejího zadání. Bráno obecně přes všechny kategorie/kapitoly. ----MH
+
+
+\section{Serverová aplikace}
+\subsection{Rešeršní zpracování existujících ontologií}
 Doposud bylo vytvořeno veliké množství univerzitních ontologií -- jedná se totiž o oblíbené téma domácích úkolů předmětů zabývajících se sémantickým webem, z toho ale plyne i druhá častá vlastnost těchto ontologií -- nebývají příliš propracované a odzkoušené. Kvalitních ontologií je tedy podstatně méně.
 
-\subsection{Univ-Bench}
+\subsubsection{Univ-Bench}
 \emph{Univ-Bench} (\url{http://swat.cse.lehigh.edu/projects/lubm/}) je, pravděpodobně, nejznámější ontologií modelující univerzitu -- jedná se totiž o ontologii využitou v \gls{LUBM} -- nástroji pro srovnávací testování úložišť sémantických dat \cite{Lubm}. Ontologie se snaží být co nejrealističtější, vzhledem ke svému účelu se ale nemůže dále rozvíjet. Autorem je Zhengxiang Pan z Lehigh University. Aktuální verze pochází z roku 2004.
 
-\subsection{Academic Institution Internal Structure Ontology}
+\subsubsection{Academic Institution Internal Structure Ontology}
 \Gls{AIISO} (\url{http://purl.org/vocab/aiiso/schema}) je, pravděpodobně, nejpropracovanější ontologií modelující univerzitu. Ve spojení s \emph{Participation} (\url{http://purl.org/vocab/participation/schema}), \gls{FOAF} (\url{http://xmlns.com/foaf/0.1/}) a \gls{AIISO} Roles (\url{http://purl.org/vocab/aiiso-roles/schema}) popisuje téměř celou doménu univerzity \cite{Aiiso}. Ontologie je uvolněna pod licencí Creative Commons (attribute). Autory jsou Rob Styles a Nadeem Shabir z Talis Information Ltd. Aktuální verze pochází z roku 2008.
 
-\subsection{Higher Education Reference Ontology}
+\subsubsection{Higher Education Reference Ontology}
 \Gls{HERO} (\url{http://sourceforge.net/projects/heronto/}) je další ontologií mající za cíl pokrýt celou doménu jakékoliv univerzity. Ontologie je uvolněna pod Adaptive Public License. Autorkou je Leila Zemmouchi-Ghomari. Aktuální betaverze, aktivně vyvíjená, pochází z roku 2012 \cite{Hero}.
 
-\subsection{University Ontology}
+\subsubsection{University Ontology}
 \emph{University Ontology} (\url{http://purl.org/weso/uni}) je univerzitní ontologií vycházející z \gls{AIISO}, \gls{FOAF} a \gls{org}. Je uvolněna pod licencí Creative Commons (attribute). Autorem je Jose Emilio Labra Gayo z výzkumné skupiny WESO na Universidad de Oviedo. Aktuální verze pochází z roku 2011 \cite{Weso}.
 
-\subsection{University Ontology}
+\subsubsection{University Ontology}
 \emph{University Ontology} (\url{http://www.cs.umd.edu/projects/plus/SHOE/onts/univ1.0.html}) náleží do projektu \gls{SHOE}, který má poněkud širší záběr. Autorem je Jeff Heflin z Lehigh University (\gls{SHOE}, jako celek, ale patří pod katedru informatiky na University of Maryland). Aktuální verze pochází z roku 2000 a v současné době už není udržovaná \cite{Shoe}.
 
 
-\section{Rešeršní zpracování existujících mobilních aplikací}
+\section{Mobilní aplikace}
+\subsection{Rešeršní zpracování existujících mobilních aplikací}
 Práce zpracovávanou doménou navazuje na bakalářskou práci \textit{Mobilní navigační systém pro FEL ČVUT} \cite{Bakalarka}, ta ale není jediným zdrojem, který byl prozkoumán. Ostatní uvedené aplikace zpravidla směřují jinými směry, proto jim nebude věnováno tolik prostoru.
 
 Jako důsledek relativně nedávného prudkého vzestupu počtu chytrých telefonů se za uplynulé roky objevilo mnoho aplikací zabývajících se podobnými tématy, jako tato práce.\footnote{Zpracování těchto aplikací bývá ovšem jiné, jsou zaměřené na užitek a sofistikovanost zpracování zpravidla nehraje roli.} Ne vždy se jedná o studentovy průvodce po univerzitě, problém ale řeší obdobný. Nabídka jejich funkcí bývá vzájemně podobná, proto zde uvedu pouze výběr.
 
 V první části této sekce se budu věnovat pracem obdobným této, později se budou oběvovat práce stále více odlišné, přesto ale v některých ohledech inspirativní.
 
-\subsection{Mobilní navigační systém pro FEL ČVUT}
+\subsubsection{Mobilní navigační systém pro FEL ČVUT}
 Bakalářská práce \emph{Mobilní navigační systém pro FEL ČVUT} \cite{Bakalarka} je zaměřená především na multiplatformnost a použitelnost. Bylo tedy nutné v některých oblastech (včetně funkcionality) podstoupit určité kompromisy. Aplikace vyhledá místnost na základě zadaného označení a přehledným plánem k ní uživatele navede. Označením může být oficiální název, přezdívka, jméno sídlícího pracovníka, či jiný identifikátor. Dále aplikace vizualizuje body zájmu, jako jsou občerstvení, výtahy, toalety\dots Práce poskytuje užitečného pomocníka, po čistě progamové stránce ale moc zajímavá není.\footnote{Cílem této, diplomové, práce je naopak vytvoření robustní ontologie a samotná mobilní aplikace slouží pouze jako ukázka implementace za využití moderních mobilních technologií, takže ke kompromisům dojde v rozdílných oblastech. Návaznost na bakalářskou práci se bude projevovat převážně v poučení se z předchozích chyb ve shodné zpracovávané doméně.}
 
-\subsection{Průvodce ČVUT}
+\subsubsection{Průvodce ČVUT}
 Nyní již zastaralá mobilní aplikace \emph{Průvodce ČVUT FEL} (\url{http://lr.czechian.net/j2me/}\footnote{Aplikace \emph{Průvodce ČVUT FEL} byla, pravděpodobně kvůli neaktualizovanému obsahu a celkovému nedokončení, stažena a nyní již není veřejně dostupná. Nachází se na přiloženém \gls{CD} v adresáři \textit{data/Průvodce ČVUT FEL}. \todo{Přiložit aplikaci.}}) vytvořená v \glsname{J2ME} poskytovala vyhledávání místností s následným textovým popisem cesty, případným minimalistickým plánkem a dopravním spojením z frekventovaných lokalit.
 
-\subsection{ČVUT navigátor}
+\subsubsection{ČVUT navigátor}
 \todo{Až bude co, umístit sem podrobnější informace.} (\url{http://navigator.fit.cvut.cz/})
 
-\subsection{Ostatní průvodci ČVUT}
-Mezi další průvodce patří tištěný \emph{Průvodce prváka po ČVUT} \cite{PruvodcePrvaka} nebo například specializovaný \emph{Průvodce prváka po koleji Podolí} (\url{http://pruvodce.pod.cvut.cz/}).
-
-\subsection{Ostatní průvodci univerzitami}
-Mobilní průvodci univerzitami, tak jako se děje i v jiných oblastech mobilních aplikací, se v poslední době začínají velmi rozmáhat. Uvedu zde tedy pouze ty, kteří mě nějakým způsobem zaujali.
+\subsubsection{Ostatní průvodci ČVUT}
+Mezi další, v souvislosti s touto prací méně významné, průvodce patří tištěný \emph{Průvodce prváka po ČVUT} \cite{PruvodcePrvaka} nebo například specializovaný \emph{Průvodce prváka po koleji Podolí} (\url{http://pruvodce.pod.cvut.cz/}).
 
 \subsubsection{Vlastní průvodci}
-Velké mnoství univerzit nabízí svým studentům na vlastní půdě vytvořené aplikace, ať již studenty, nebo výpočetními centry. Tyto aplikace bývají šité na míru potřebám univerzit, na druhou stranu ale nemusí být tolik odladěné, jako to bývá u větších projektů. Nabídka funkcionalit sahá od minimalistických až po velmi rozsáhlé. S podporovanými platformami je to podobné -- od jedné až po univerzální aplikace.
+Mobilní průvodci univerzitami, tak jako se děje i v jiných oblastech mobilních aplikací, se v poslední době začínají velmi rozmáhat. Velké mnoství univerzit nabízí svým studentům na vlastní půdě vytvořené aplikace, ať již studenty, nebo výpočetními centry. Tyto aplikace bývají šité na míru potřebám univerzit, na druhou stranu ale nemusí být tolik odladěné, jako to bývá u větších projektů. Nabídka funkcionalit sahá od minimalistických až po velmi rozsáhlé. S podporovanými platformami je to podobné -- od jedné až po univerzální aplikace.
 
 \subsubsection{campusM}
 Univerzity jako Imperial College London, London School of Economics, University College London, Trinity College Dublin a pár desítek dalších využívají komerční aplikace z dílen společnosti \emph{campusM} (\url{http://www.campusm.com/}).
@@ -74,10 +85,10 @@ Univerzity jako Imperial College London, London School of Economics, University 
 \subsubsection{guidebook}
 \emph{guidebook} (\url{http://guidebook.com/}) je typickým představitelem aplikace pro podporu určité události v širším slova smyslu -- může sem spadat i průvodce školou. Ve webovém rozhraní pořadatel událost vytvoří a upraví podle specifických potřeb, na základě toho jsou vytvořeny aplikace pro různé mobilní platformy a ty pak jsou nabízeny návštěvníkům dané události. \textit{guidebook} nabízí obdobné funkcionality výše uvedeným a je kompletně zdarma pro omezený počet uživatelů. Aplikace je pro diplomovou práci inspirativní záběrem a profesionalitou zpracování.
 
-\subsection{Ostatní průvodci}
-V této široce zaměřené podsekci zmíním hlavně průvodce z jednotlivých akcí -- ti totiž představují nejmohutnější podmnožinu. V poslední době se stává, hlavně na technicky zaměřených odborných konferencích,\footnote{Na těchto konferencích má většina účastníků u sebe zařízení schopné s touto aplikací pracovat.} zvykem poskytnout účastníkům mobilní aplikaci disponující informacemi o konferenci -- navozuje to profesionální dojem, přináší více možností (ankety, upomínky...) a jsou tu mimo jiné i taková pozitiva, jako možnost aktualizace v případě nenadálé události. Další mobilní průvodci se vyskytují například na hudebních festivalech nebo po městech.
+\subsubsection{Ostatní, neuniverzitní, průvodci}
+V této široce zaměřené podpodsekci zmíním hlavně průvodce z jednotlivých akcí -- ti totiž představují nejmohutnější podmnožinu. V poslední době se stává, hlavně na technicky zaměřených odborných konferencích,\footnote{Na těchto konferencích má většina účastníků u sebe zařízení schopné s touto aplikací pracovat.} zvykem poskytnout účastníkům mobilní aplikaci disponující informacemi o konferenci -- navozuje to profesionální dojem, přináší více možností (ankety, upomínky...) a jsou tu mimo jiné i taková pozitiva, jako možnost aktualizace v případě nenadálé události. Další mobilní průvodci se vyskytují například na hudebních festivalech nebo po městech.
 
-\subsubsection{Příklady funkcionalit}
+\paragraph{Příklady funkcionalit:}
 Žádná z nalezených aplikací nenabízí všechny níže uvedené funkcionality, poměrně velká část se k tomu ale blíží.
 \begin{itemize}
 \item Registrace účastníků.
@@ -91,7 +102,7 @@ V této široce zaměřené podsekci zmíním hlavně průvodce z jednotlivých 
 \item Vytvoření prostoru pro reklamu sponzorů. 
 \end{itemize}
 
-\subsubsection{Příklady aplikací}
+\paragraph{Příklady aplikací:}
 Po úvaze jsem se rozhodl odkázat pouze na několik reprezentatntů -- aplikací je velmi mnoho a vzhledem k podobnosti by nemělo přínos uvádět všechny. Jako ukázku předkládám jednu svobodnou a několik komerčních aplikací:
 
 \emph{iosched} (\url{http://code.google.com/p/iosched/}) je svobodnou aplikací vyvíjenou pro konferenci Google I/O. Nabízí všechny výše uvedené funkcionality vyjma: registrace, sestavování vlastního programu a prostoru pro reklamu, což má svá opodstatnění. Aplikace je napsána v Javě a je určena pro běh v mobilních telefonech se systémem Android. \emph{iosched} je pro diplomovou práci inspirativní záběrem zpracování a možností poučení se z otevřeného zdrojového kódu.

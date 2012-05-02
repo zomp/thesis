@@ -2,6 +2,7 @@
 
 \usepackage[utf8]{inputenc} % LaTeX source encoded as UTF-8
 \usepackage{textcomp}
+\setcounter{tocdepth}{2}
 
 \usepackage{graphicx} %graphics files inclusion
 % \usepackage{amsmath} %advanced maths
@@ -20,10 +21,14 @@
 % ODTUD DAL VSE ZMENTE
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
+% http://www.ctan.org/tex-archive/macros/latex/contrib/fixme/
+% \usepackage{xkvltxp}
+% \usepackage[footnote,draft,silent,nomargin]{fixme}
+
 \definecolor{poznamka}{rgb}{1.0,0.7,0.0}
 \newglossary[tlg]{todo}{tdo}{tdu}{Seznam úkolů}
 \newcounter{todo}
-\newcommand{\todo}[1]{{{\newglossaryentry{\arabic{todo}}{type=todo,name={\arabic{todo}},description={#1},sort={#1}}} {\colorbox{poznamka}{TODO \glsdesc{\arabic{todo}}}} {\stepcounter{todo}}}}
+\newcommand{\todo}[1]{{{\newglossaryentry{\arabic{todo}}{type=todo,name={\arabic{todo}},description={#1},sort={#1}}} {\color{poznamka} \textbf{TODO} \glsdesc{\arabic{todo}}} {\stepcounter{todo}}}}
 % \newcommand{\todo}[1]{{\color{poznamka}{TODO #1}}}
 \newcommand{\mytitle}{Průvodce studenta FIT ČVUT}
 \newcommand{\myauthor}{Jan Molnár}
@@ -33,7 +38,7 @@
 \author{\myauthor} %jméno autora bez akademických titulů
 \authorWithDegrees{Bc. Jan Molnár} %jméno autora včetně akademických titulů
 \supervisor{Ing. Michal Havryluk}
-\acknowledgements{Doplňte, máte-li komu a za co děkovat. V~opačném případě úplně odstraňte tento příkaz.}
+\acknowledgements{Doplňte, máte-li komu a za co děkovat. V~opačném případě úplně odstraňte tento příkaz.}% Ing. Havryluk, doc. Vitvar, Týna, rodiče, autoři knihoven, autoři použitých FS aplikací, autoři myšlenek svobodného SW...
 \abstractCS{V~několika větách shrňte obsah a přínos této práce v~češtině. Po přečtení abstraktu by se čtenář měl mít čtenář dost informací pro rozhodnutí, zda chce Vaši práci číst.}
 \abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
 \placeForDeclarationOfAuthenticity{V~Praze}
@@ -60,8 +65,8 @@
 % (f) Popis implementace/realizace produktu se zaměřením na nestandardní části řešení.
 
 % (g) Popis metodiky testování a jeho výsledky.
-
 % (h) Srovnání s podobnými implementacemi (pokud existují).
+
 % (i) Zhodnocení splnění cílů DP, doporučení dalšího pokračování práce.
 % (j) Závěr - shrnutí výsledků a vlastního přínosu DP.
 
@@ -71,7 +76,7 @@
 
 
 \begin{introduction}
-%  \include{1_uvod}
+ \include{1_uvod}
 \end{introduction}
 
 \include{2_problematika}
@@ -80,15 +85,17 @@
 
 \include{4_realizace}
 
-% \include{5_testovani}
+\include{5_testovani}
 
 \begin{conclusion}
-%  \include{6_zaver}
+ \include{6_zaver}
 \end{conclusion}
 
 \bibliographystyle{csn690}{\bibliography{reference}}
 
 \appendix
 \include{apendix}
+
+% \listoffixmes
 
 \end{document}
