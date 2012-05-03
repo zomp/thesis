@@ -7,21 +7,133 @@
 % Návrh odkázat na low fidelity test.
 % V analýze neprezentovat finální řešení ale dopodrobna celý proces.
 
+% TODO kolik času bylo věnováno
 
+Analýza s návrhem probíhaly nezávisle na dvou místech -- po krátké analýze celku a určení vzájemných komunikačních rozhraní byly provedeny analýza s návrhem serverové aplikace a až po jejím dokončení začaly analýza s návrhem mobilní aplikace. V průběhu času jsem se k analýze a návrhu ještě několikrát vrátil a vylepšil / rozšířil to, co se ne vždy na poprvé povedlo.
 
-% Analýze problematiky byla věnována přibližně polovina času vyměřeného na tuto práci. Do tohoto času je započítáno všechno, co se zkoumání dané problematiky týká, tedy zjišťování potřeb uživatelů, tvorba a evaluace prototypů, sestavení případů užití a komplementace požadavků. Do této kapitoly byl zařazen i návrh.
-% 
-% Vývoj probíhal částečně vodopádovým (z organizačních důvodů bylo potřeba dopředu stanovit některé termíny) a spirálovým modelem (tím se řídil zbytek) a v postupných iteracích se měnily a přidávaly nové požadavky -- to je hlavním důvodem umožnění tak podrobné analýzy.
-% 
-% Následující sekce chronologicky odpovídají postupu vývoje, nikdy ale nedošlo přestupem do další fáze k úplnému ukončení té předchozí, vždy se k ní vývoj při další iteraci zase stočil.
-% 
+Analýza se skládala z identifikace potřeb uživatelů, vytvoření případů užití, ze kterých byly odvozeny funkční požadavky, ke kterým byly doplněny nefunkční požadavky. Poté byl vytvořen návrh řešení, zapracován návrh bezpečnosti a celý koncept byl podložen návrhem nasazení. Nakonec byly voleny technologie.
 
 \section{Serverová aplikace}
+Začal jsem pracovat nejprve na serverové aplikaci -- jednak na ní měla být ta mobilní závislá (sama na žádné jiné části práce závislá není) a také má užší vazbu ke zpracovávané doméně.
+
+
 \subsection{Potřeby uživatelů}
-\todo{Seznam a popis jednotlivých potřeb uživatelů.}
+Tato část se věnuje potřebám uživatelů serverové aplikace, zejména uživatelů rozhraní, přes které poskytuje informace. Potřeb je mnoho -- proto zde uvedu pouze reprezentativní vzorek.
+
+\subsubsection{Potřeba zjistit informaci}
+Potřeba zjistit informaci je základní potřebou, kvůli které se mají uživatelé obracet na systém. Tato potřeba může vzniknout z velikého množství příčin -- od hledání informací spjatých s průchodem studiem, až například po zjišťování jídelního lístku v menze.
+
+\subsubsection{Potřeba ověřit informaci}
+Často je cílová skupina uživatelů v situaci, kdy má požadovanou informaci, není si jí ale jistá a potřebuje ji ověřit / vyvrátit. Bez jistoty pravdivosti informace je její hodnota podstatně nižší.
+
+\subsubsection{Potřeba ověřených informací}
+Velmi podstatnou potřebou je potřeba ověřených informací. Ačkoliv je název velmi podobný té předchozí, jedná se o dvě diametrálně odlišné potřeby, předchozí se bez naplnění této neobejde. Jakmile jsou informace poskytovány, je nutné, aby byly ověřené -- pravdivé.
+
+\subsubsection{Potřeba aktuálních informací}
+Potřeba aktuálních informací opět souvisí s již zmíněnými potřebami -- sebepravdivější jídelní lístek z předchozího dne mi při výběru dnešního oběda bohužel moc nepomůže.
+
+\subsubsection{Potřeba kompletních informací}
+Někdy nestačí jen pravdivé a aktuální informace, naopak vědomí záruky pravdivosti a aktuálnosti může i uškodit -- pokud totiž informace nejsou kompletní, může dojít k jejich misinterpretaci a pod vlivem záruk nedojde ke kritickému posouzení. Proto je zde i potřeba kompletních informací.
+
+\subsubsection{Potřeba nalézt, co nehledám}
+Na první pohled tato potřeba nedává smysl, v praxi se ale často vyskytují informace, které bychom měli znát a o jejich existenci nemáme ani ponětí. Je proto důležité ve vhodné chvíli sdělit i nepožadované informace, které jsou s velkou pravděpodobností pro adresáta důležité.
+
 
 \subsection{Případy užití}
-\todo{Různé případy užití v textové formě.}
+Případy užití (\textit{use cases}) jsou takové sekvence kroků, které reprezentují danou činnost prováděnou aktérem na systému a vedou od jejího zahájení až po naplnění.
+
+V serverové aplikaci byli identifikováni celkem tři aktéři:
+\begin{itemize}
+ \item Uživatel -- student / softwarová komponenta (\textit{mobilní aplikace}).
+ \item Správce -- administrativní pracovník fakulty.
+ \item Plánovač -- softwarová komponenta.
+\end{itemize}
+Roli správce by šlo dále dělit na další role, vzhledem k velmi nízkému rozsahu činností každé z nich (zpravidla jedna činnost), je vše zahrnuto pod tímto souhrnným názvem.
+
+Uživatel se pouze dotazuje nad systémem a zjišťuje informace. Správce manuálně upravuje informace v systému, může vynutit aktualizaci a jinak spravuje systém. Plánovač automaticky obsluhuje aktualizace obsažených informací.
+
+\subsubsection{UC1: Vyžádání informací}
+\subsubsection*{Aktéři:}
+\begin{itemize}
+ \item Uživatel.
+\end{itemize}
+\subsubsection*{Systém:}
+\begin{itemize}
+ \item Serverová aplikace.
+\end{itemize}
+\subsubsection*{Vstupní podmínky:}
+\begin{itemize}
+ \item Uživatel zná jazyk dotazovacího rozhraní systému.
+ \item Uživatel má přístup k dotazovacímu rozhraní systému.
+\end{itemize}
+\subsubsection*{Hlavní scénář:}
+\begin{itemize}
+ \item Uživatel vytvoří dotaz.
+ \item Uživatel odešle dotaz na rozhraní systému.
+ \item Systém dotaz přijme.
+ \item Systém dotaz zpracuje.
+ \item Systém odešle odpověď.
+ \item Uživatel přijme odpověď.
+ \item Uživatel zpracuje odpověď.
+\end{itemize}
+\subsubsection*{Alternativní scénáře:}
+\begin{itemize}
+ \item V případě neplatného dotazu je navráceno chybové hlášení.
+ \item V případě chyby serveru je navráceno chybové hlášení.
+\end{itemize}
+\subsubsection*{Poznámky:}
+\begin{itemize}
+ \item V případě nenalezení informace je navrácena prázdná množina.
+ \item Pokud je uživatelem softwarová komponenta, student ji obsluhující nemusí znát jazyk dotazovacího rozhraní -- může s komponentou komunikovat jiným způsobem a ta si požadavky do požadovaného jazyka převádět.
+\end{itemize}
+
+\subsubsection{UC2: Aktualizace informací}
+\subsubsection*{Aktéři:}
+\begin{itemize}
+ \item Plánovač.
+\end{itemize}
+\subsubsection*{Systém:}
+\begin{itemize}
+ \item Serverová aplikace.
+\end{itemize}
+\subsubsection*{Vstupní podmínky:}
+\begin{itemize}
+ \item Plánovač je řádně nastaven a spuštěn.
+\end{itemize}
+\subsubsection*{Hlavní scénář:}
+\begin{itemize}
+ \item 
+\end{itemize}
+\subsubsection*{Poznámky:}
+\begin{itemize}
+ \item Případné chyby jsou zaznamenány do logu.
+ \item Aktualizaci může obdobným způsobem vynutit i správce.
+\end{itemize}
+
+\subsubsection{UC3: Správa informací}
+\subsubsection*{Aktéři:}
+\begin{itemize}
+ \item Správce.
+\end{itemize}
+\subsubsection*{Systém:}
+\begin{itemize}
+ \item Serverová aplikace.
+\end{itemize}
+\subsubsection*{Vstupní podmínky:}
+\begin{itemize}
+ \item Správce má přístup do systému.
+ \item Správce zná jazyk rozhraní správy systému.
+\end{itemize}
+\subsubsection*{Hlavní scénář:}
+\begin{itemize}
+ \item 
+\end{itemize}
+\subsubsection*{Poznámky:}
+\begin{itemize}
+ \item Případné chyby jsou zaznamenány do logu.
+\end{itemize}
+
+
 
 \subsection{Funkční požadavky}
 Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na jednotlivé funkcionality. Pro serverovou aplikaci mezi ně patří především:
@@ -92,9 +204,6 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 % \subsection{NFR-S-5: Svobodné licence}
 % Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
 
-\subsection{Návrh nasazení}
-\todo{Deployment diagram.}
-
 \subsection{Návrh řešení}
 \todo{Diskuse alternativ. Struktura.}
 
@@ -102,6 +211,9 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 
 \subsection{Návrh bezpečnosti}
 \todo{Injekce kódu. Pouze povolené URL. Ošeření vstupů.}
+
+\subsection{Návrh nasazení}
+\todo{Deployment diagram.}
 
 \subsection{Použité technologie}
 Mnoho použitých technologií bylo dáno zadáním práce, byl mi tak do značné míry usnadněn jejich výběr. Na druhou stranu nejsou dané technologie dokonalé, takže by často bývala práce s jinými snazší.
@@ -140,6 +252,8 @@ Mimo standardního JavaScriptu lze v Node.js využívat i specifická rozšíře
 
 \section{Mobilní aplikace}
 \subsection{Potřeby uživatelů}
+\subsubsection{Potřeba určit cílovou pozici}
+\subsubsection{Potřeba určit aktuální pozici}
 \todo{Seznam a popis jednotlivých potřeb uživatelů.}
 % Tato sekce slouží jako seznam potřeb uživatelů, se kterými jsem se v průběhu práce setkal. Ne všechny potřeby byly později zapracovány do výsledné aplikace, některé totiž nebyly natolik důležité, aby se je vyplatilo v aplikaci mít a zastiňovat jimi potřeby důležitější. Další potřeby bývaly protichůdné a také je nešlo implementovat zároveň. Popisu uživatele se věnuje už sekce \ref{sec:popisUzivatele}.
 % 
@@ -462,9 +576,6 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 % Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
 
 
-\subsection{Návrh nasazení}
-\todo{Deployment diagram.}
-
 \subsection{Návrh řešení}
 \todo{Diskuse alternativ.}
 
@@ -494,6 +605,9 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 
 \subsection{Návrh bezpečnosti}
 \todo{Injekce JS, ošetření vstupů, white-listing URL, elementů, atributů, zakázání cizích zdrojů...}
+
+\subsection{Návrh nasazení}
+\todo{Deployment diagram.}
 
 
 \subsection{Použité technologie}
