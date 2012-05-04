@@ -1,0 +1,1084 @@
+{
+    "head": {
+        "variables": [
+            {
+                "name": "name"
+            },
+            {
+                "name": "email"
+            }
+        ]
+    },
+    "results": [
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Adéla Chrastinová"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:adela.chrastinova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ivana Dolejšová"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:ivana.dolejsova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Lukáš Bařinka"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:lukas.barinka@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Martin Bílý"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:bily@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Miroslav Balík, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:miroslav.balik@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Lukáš Bařinka"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:barinkl@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Martin Bílý"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:bily@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Miroslav Balík, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:balikm@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Ivan Halaška"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:halaska@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. Petr Hodač"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:petr.hodac@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Jana Chodilová"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:jana.chodilova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "doc. Ing. Jan Holub, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:jan.holub@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Michal Havryluk"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:michal.havryluk@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Ivan Halaška"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:halaska@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "doc. Ing. Jan Holub, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:holub@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Pavel Kordík, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:pavel.kordik@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ivana Kubásková"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:ivana.kubaskova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Tomáš Kadlec"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:tomas.kadlec@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Karel Klouda, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:karel.klouda@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "doc. RNDr. Josef Kolář, CSc."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:kolar@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Pavel Kordík, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:kordikp@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Tomáš Kadlec"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:kadleto2@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Karel Klouda, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:kloudkar@fjfi.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "doc. RNDr. Josef Kolář, CSc."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:kolar@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Markéta Loučková"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:marketa.louckova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Zdeňka Kutinová"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:kutinzde@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "doc. Ing. Hana Kubátová, CSc."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:hana.kubatova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Jaroslav Kuchař"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:kuchajar@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "doc. Ing. Róbert Lórencz, CSc."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:robert.lorencz@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "doc. Ing. Hana Kubátová, CSc."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:kubatova@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "doc. Ing. Róbert Lórencz, CSc."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:lorencz@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Daniel Matocha"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:matondan@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Jana Počtová"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:jana.poctova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Vladimír Mezera"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:mezervla@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Libuše Pochová"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:libuse.pochova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Dagmar Malá "
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:dagmar.mala@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Bc. Ivan Ryant"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:ivan.ryant@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Petra Stolejdová"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:stolejdo@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Romana Skořepová"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:romana.skorepova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Martin Půlpitel"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:martin.pulpitel@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Jiří Škvor"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:skvorj@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Jiří Škvor"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:skvorj@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "prof. Ing. Pavel Tvrdík, CSc."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:tvrdik@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Bronislava Vávrová"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:bronislava.vavrova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Ladislav Vagner, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:xvagner@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Ivan Tvrdík"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:ivan.tvrdik@fs.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "prof. Ing. Pavel Tvrdík, CSc."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:tvrdik@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Michal Valenta, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:valenta@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Ladislav Vagner, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:xvagner@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Bronislava Vávrová"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:bronislava.vavrova@fbmi.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Michal Valenta, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:valenta@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Olga Vrtišková"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:olga.vrtiskova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "doc. Ing. Tomáš Vitvar, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:tomas.vitvar@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Jindra Vojíková"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:jindra.vojikova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Jan Žďárek, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:zdarekj@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Olga Vrtišková"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:vrtiskov@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Milada Zelinková"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:milada.zelinkova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Jan Žďárek, Ph.D."
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:zdarekj@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Mário Abrahám"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:abrahmar@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Jiří Adamec"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:adameji4@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Milan Adámek"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:adamemil@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Zuzana Žilková"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:zuzana.zilkova@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. Petr Adam"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:adampet4@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ondřej Altman"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:altmaond@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. Michal Adrián"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:adriamic@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "David Alexa"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:alexadav@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Carlos Agudo Menéndez"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:agudocar@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "BSc. Sarmad Neamah Mohsen Al-Fatla"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:alfatsar@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. Tomáš Altman"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:altmatom@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Iklas Alzhanov"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:alzhaikl@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. Jiří Anděl"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:andelji1@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Farid Amiri"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:amirifar@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. Jana Angelovičová"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:angeljan@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ing. Peter Antolík"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:antolpet@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Petr Antoš"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:antospe1@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Anton Antonov"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:antonant@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Martin Antony"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:antonma1@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. Aliaksandr Aniska"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:aniskali@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Jan Aubrecht"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:aubreja3@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Mykhaylo Avdonin"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:avdonmyk@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. David Apltauer"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:apltadav@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Jakub Babiak"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:babiajak@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. Jan Aubrecht"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:aubreja2@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Jan Aubrecht"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:aubreja3@fel.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Martin Babický"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:babicma1@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Tomáš Babják"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:babjatom@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Jakub Baierl"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:baierjak@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Svyatoslav Babyak"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:babyasvy@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Pavel Bacík"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:bacikpav@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Tomáš Babják"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:tomas.babjak@fs.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. Ondřej Baláž"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:balazond@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Michal Balda"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:baldamic@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. Martin Bak"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:bakmarti@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Tomáš Balogh"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:balogtom@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Ondrej Bálint"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:balinond@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Petr Bárta"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:bartape2@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Vít Bareš"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:baresvit@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Petr Balšánek"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:balsapet@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. Jozef Barčák"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:barcajoz@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Martin Bárta"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:bartam11@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Marek Bartík"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:bartimar@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Václav Bartoň"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:vaclav.barton@fs.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Jakub Bartlík"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:bartljak@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Jakub Bartel"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:bartejak@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Tomáš Bařtipán"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:bartito1@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. Lukáš Bartoněk"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:bartolu5@fit.cvut.cz"
+            }
+        },
+        {
+            "name": {
+                "token": "literal",
+                "value": "Bc. Jan Molnár"
+            },
+            "email": {
+                "token": "uri",
+                "value": "mailto:molnaja2@fit.cvut.cz"
+            }
+        }
+    ]
+}

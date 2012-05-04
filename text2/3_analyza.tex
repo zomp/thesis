@@ -42,17 +42,17 @@ Na první pohled tato potřeba nedává smysl, v praxi se ale často vyskytují 
 \subsection{Případy užití}
 Případy užití (\textit{use cases}) jsou takové sekvence kroků, které reprezentují danou činnost prováděnou aktérem na systému a vedou od jejího zahájení až po naplnění.
 
-V serverové aplikaci byli identifikováni celkem tři aktéři:
+V serverové aplikaci byli identifikováni celkem tři hlavní aktéři:
 \begin{itemize}
  \item Uživatel -- student / softwarová komponenta (\textit{mobilní aplikace}).
  \item Správce -- administrativní pracovník fakulty.
  \item Plánovač -- softwarová komponenta.
 \end{itemize}
-Roli správce by šlo dále dělit na další role, vzhledem k velmi nízkému rozsahu činností každé z nich (zpravidla jedna činnost), je vše zahrnuto pod tímto souhrnným názvem.
+Roli správce by šlo dále dělit na další role, vzhledem k velmi nízkému rozsahu činností každé z nich (zpravidla jedna činnost), je vše zahrnuto pod tímto souhrnným názvem. Pod plánovačem je zase zahrnut aktér čas.
 
 Uživatel se pouze dotazuje nad systémem a zjišťuje informace. Správce manuálně upravuje informace v systému, může vynutit aktualizaci a jinak spravuje systém. Plánovač automaticky obsluhuje aktualizace obsažených informací.
 
-\subsubsection{UC1: Vyžádání informací}
+\subsubsection{UC-S-1: Vyžádání informací}
 \subsubsection*{Aktéři:}
 \begin{itemize}
  \item Uživatel.
@@ -71,7 +71,7 @@ Uživatel se pouze dotazuje nad systémem a zjišťuje informace. Správce manu�
  \item Uživatel vytvoří dotaz.
  \item Uživatel odešle dotaz na rozhraní systému.
  \item Systém dotaz přijme.
- \item Systém dotaz zpracuje.
+ \item Systém dotaz zpracuje -- nalezne požadované informace.
  \item Systém odešle odpověď.
  \item Uživatel přijme odpověď.
  \item Uživatel zpracuje odpověď.
@@ -87,7 +87,7 @@ Uživatel se pouze dotazuje nad systémem a zjišťuje informace. Správce manu�
  \item Pokud je uživatelem softwarová komponenta, student ji obsluhující nemusí znát jazyk dotazovacího rozhraní -- může s komponentou komunikovat jiným způsobem a ta si požadavky do požadovaného jazyka převádět.
 \end{itemize}
 
-\subsubsection{UC2: Aktualizace informací}
+\subsubsection{UC-S-2: Aktualizace informací}
 \subsubsection*{Aktéři:}
 \begin{itemize}
  \item Plánovač.
@@ -99,18 +99,23 @@ Uživatel se pouze dotazuje nad systémem a zjišťuje informace. Správce manu�
 \subsubsection*{Vstupní podmínky:}
 \begin{itemize}
  \item Plánovač je řádně nastaven a spuštěn.
+ \item Nastal čas aktualizace určitých informací.
 \end{itemize}
 \subsubsection*{Hlavní scénář:}
 \begin{itemize}
- \item 
+ \item Plánovač zadá systému požadavek na aktualizaci určitých informací.
+ \item Systém přijme požadavek.
+ \item Systém se připojí ke zdroji určitých informací a ty načerpá.
+ \item Systém odešle plánovači potvrzení.
 \end{itemize}
 \subsubsection*{Poznámky:}
 \begin{itemize}
  \item Případné chyby jsou zaznamenány do logu.
  \item Aktualizaci může obdobným způsobem vynutit i správce.
+ \item Zdrojů určitých informací může být i více a vzájemně se mohou doplňovat / ověřovat.
 \end{itemize}
 
-\subsubsection{UC3: Správa informací}
+\subsubsection{UC-S-3: Správa informací}
 \subsubsection*{Aktéři:}
 \begin{itemize}
  \item Správce.
@@ -126,7 +131,15 @@ Uživatel se pouze dotazuje nad systémem a zjišťuje informace. Správce manu�
 \end{itemize}
 \subsubsection*{Hlavní scénář:}
 \begin{itemize}
- \item 
+ \item Správce vytvoří dotaz.
+ \item Správce se připojí do systému.
+ \item Správce odešle dotaz.
+ \item Systém přijme dotaz.
+ \item Systém zpracuje dotaz.
+ \item Systém odešle odpověď.
+ \item Správce přijme odpověď.
+ \item Správce se odpojí ze systému.
+ \item Správce zpracuje odpověď.
 \end{itemize}
 \subsubsection*{Poznámky:}
 \begin{itemize}
@@ -134,75 +147,55 @@ Uživatel se pouze dotazuje nad systémem a zjišťuje informace. Správce manu�
 \end{itemize}
 
 
-
 \subsection{Funkční požadavky}
-Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na jednotlivé funkcionality. Pro serverovou aplikaci mezi ně patří především:
+Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na jednotlivé funkcionality systému. Ne všechny požadavky budou nakonec implementovány, pouze jejich reprezentativní vzorek, dle kterého bude možné systém o ty ostatní rozšířit. Pro serverovou aplikaci mezi ně patří především:
 \begin{enumerate}
- \item Aplikace bude čerpat informace o názvech budov z předstíraného adaptéru.
- \item Aplikace bude čerpat informace o umístění budov z předstíraného adaptéru.
- \item Aplikace bude čerpat informace o názvech místností z předstíraného adaptéru.
- \item Aplikace bude čerpat informace o umístění místností z předstíraného adaptéru.
- \item Aplikace bude čerpat informace o rozvrzích místností z KOSapi (\url{http://kosapi.fit.cvut.cz/}). \todo{Vynechám -- chybí API.}
- \item Aplikace bude čerpat informace o rozvrzích studentů z formátu iCalendar.
- \item Aplikace bude čerpat informace o kontakech studentů z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
- \item Aplikace bude čerpat informace o rozvrzích vyučujících z KOSapi (\url{http://kosapi.fit.cvut.cz/}). \todo{Vynechám -- chybí API.}
+ \item Aplikace bude čerpat informace o názvech budov z předstíraného adaptéru.\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
+ \item Aplikace bude čerpat informace o umístění budov z předstíraného adaptéru.\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
+ \item Aplikace bude čerpat informace o názvech místností z předstíraného adaptéru.\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
+ \item Aplikace bude čerpat informace o umístění místností z předstíraného adaptéru.\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
+ \item Aplikace bude čerpat seznam vyučujících z KOSapi (\url{http://kosapi.fit.cvut.cz/}).\footnote{Nahrazen zdroj za předstíraný adaptér -- žádný seznam vyučujících obsahující identifikátory (uživatelská jména) nebyl nalezen.}
+ \item Aplikace bude čerpat seznam studentů z KOSapi (\url{http://kosapi.fit.cvut.cz/}).\footnote{Nahrazen zdroj za předstíraný adaptér -- z důvodů konzistence se zdrojem vyučujících.}
+ \item Aplikace bude čerpat seznam neakademických pracovníků z předstíraného adaptéru.
+ \item Aplikace bude čerpat informace o rozvrzích místností z KOSapi.\footnote{Vynecháno -- projektu KOSapi nebyl dosud umožněn přístup do komponenty studia. Implementováno na straně \textit{mobilní aplikace}.}
+ \item Aplikace bude čerpat informace o rozvrzích vyučujících z KOSapi (\url{http://kosapi.fit.cvut.cz/}).\footnote{Vynecháno -- projektu KOSapi nebyl dosud umožněn přístup do komponenty studia. Implementováno na straně \textit{mobilní aplikace}.}
  \item Aplikace bude čerpat informace o kancelářích vyučujících z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
- \item Aplikace bude čerpat informace o kontakech vyučujících z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o kontaktech vyučujících z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o rozvrzích studentů z KOSapi.\footnote{Nahrazen zdroj za libovolný zdroj ve formátu iCalendar -- projektu KOSapi nebyl dosud umožněn přístup do komponenty studia.}
+ \item Aplikace bude čerpat informace o kontaktech studentů z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
  \item Aplikace bude čerpat informace o kancelářích neakademických pracovníků z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
  \item Aplikace bude čerpat informace o kontaktech neakademických pracovníků z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
  \item Aplikace bude čerpat informace o akcích \glsname{CVUT} z Kalendáře akcí ČVUT (\url{http://akce.cvut.cz/}).
- \item Aplikace bude čerpat informace o harmonogramu akademického roku z předstíraného adaptéru (na základě \url{http://fit.cvut.cz/}).
- \item Aplikace bude čerpat informace o datech \glsname{MAR} dostupných zdrojů (prozatím Orlík a Masarykova kolej, snaha o T9).
+ \item Aplikace bude čerpat informace o harmonogramu akademického roku z předstíraného adaptéru (na základě \url{http://fit.cvut.cz/}).\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
+ \item Aplikace bude čerpat informace o datech \glsname{MAR} budovy T9.\footnote{Jednání o udělení přístupu nedopadla -- vyskytly se blíže nespecifikované technické komplikace na straně technickoprovozních služeb Fakulty architektury.}
+ \item Aplikace bude čerpat informace o datech \glsname{MAR} kolejí Orlík.\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
+ \item Aplikace bude čerpat informace o datech \glsname{MAR} Masarykovy koleje.\footnote{Vynecháno -- data poskytována pouze pod licencí, kterou nebylo možné naplnit.}
  \item Aplikace bude čerpat informace o jídelníčcích menz z Jídelníčků menz (\url{http://agata.suz.cvut.cz/jidelnicky/}).
- \item Aplikace bude čerpat informace o otvírací době menz z Jídelníčků menz (\url{http://agata.suz.cvut.cz/jidelnicky/}).
- \item Aplikace bude čerpat informace o otvírací době \glsname{NTK} z Národní technické knihovny (\url{http://www.techlib.cz/}).
- \item Aplikace bude čerpat informace o otvírací době Vydavatelství průkazů (\url{http://www.cvut.cz/informace-pro-studenty/prukazy}). \todo{Vynechám -- chybí API.}
- \item Aplikace bude čerpat informace o počtu lidí ve frontě ve Vydavatelství průkazů (\url{http://ke.customer.decent.cz/a021/mon/}).
+ \item Aplikace bude čerpat informace o otvírací době menz z Jídelníčků menz (\url{http://agata.suz.cvut.cz/jidelnicky/}).\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
+ \item Aplikace bude čerpat informace o otvírací době \glsname{NTK} z Národní technické knihovny (\url{http://www.techlib.cz/}).\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
+ \item Aplikace bude čerpat informace o otvírací době Vydavatelství průkazů (\url{http://ke.customer.decent.cz/a021/mon/wc-mon.php?co=2}).\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
+ \item Aplikace bude čerpat informace o počtu lidí ve frontě ve Vydavatelství průkazů (\url{http://ke.customer.decent.cz/a021/mon/}).\footnote{Vynecháno.}
  \item Vytvořte / nalezněte / sestavte z dílčích částí ontologii reprezentující výše uvedené informace.
  \item Informace získané z jednotlivých zdrojů převádějte dle výše požadované ontologie pro další zpracování do \glsname{RDF}.
- \item Aplikace uloží získané sémantické informace do databáze.
- \item Aplikace umožní vykonávat \glsname{SPARQL} dotazy nad uloženými daty.
+ \item Aplikace umožní automatické aktualizace informací.
+ \item Aplikace umožní manuální aktualizace informací.
+ \item Aplikace umožní manuální úpravy informací.
+ \item Aplikace bude logovat chyby.
+ \item Aplikace bude ukládat sémantické informace do databáze.
+ \item Aplikace umožní vykonávat dotazy nad uloženými daty.
 \end{enumerate}
-
-% \subsection{FR-S-1: Informace týkající se akcí ČVUT}
-% Aplikace bude čerpat informace z webových stránek Kalendář akcí ČVUT (\url{http://akce.cvut.cz/}).
-% \subsection{FR-S-2: Informace týkající se budov}
-% Aplikace bude čerpat informace z předstíraného adaptéru obsahujícího informace týkající se budov.
-% \subsection{FR-S-3: Informace týkající se místností}
-% Aplikace bude čerpat informace z předstíraného adaptéru obsahujícího informace týkající se místností.
-% \subsection{FR-S-4: Informace týkající se menz}
-% Aplikace bude čerpat informace z webových stránek menz SUZ ČVUT (\url{http://agata.suz.cvut.cz/jidelnicky/}).
-% \subsection{FR-S-5: Informace týkající se osob spjatých s ČVUT}
-% Aplikace bude čerpat informace z webových stránek Usermap ČVUT (\url{http://usermap.cvut.cz/}).
-% \subsection{FR-S-6: Převod informací do \emph{RDF}}
-% Informace získané z jednotlivých zdrojů převádějte pro další zpracování do \emph{RDF}.
-% \subsection{FR-S-7: Perzistentní uložení do databáze}
-% Aplikace uloží získané informace do databáze.
-% \subsection{FR-S-8: \emph{SPARQL} endpoint}
-% Aplikace umožní vykonávat \emph{SPARQL} dotazy nad uloženými daty.
-
 
 \subsection{Nefunkční požadavky}
 Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na dílo jako celek, nikoliv na jednotlivé funkcionality. Pro serverovou aplikaci mezi ně patří především:
 
 \begin{enumerate}
- \item Aplikaci naprogramujte v \emph{JavaScript}u.
+ \item Aplikaci naprogramujte v jazyce \emph{JavaScript}.
  \item Pro běh serveru využijte \emph{Node.js}.
+ \item Pro dotazování využijte dotazovací jazyk \emph{\glsname{SPARQL}}.
  \item Sémantická data ukládejte do takového úložiště, aby nad ním bylo možné vykonávat dotazy přímo (případně přes nezávislého prostředníka) a nebylo nutné přistupovat přes vlastní aplikaci.
  \item Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
  \item Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{\glsname{GNU}}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
 \end{enumerate}
-
-% \subsection{NFR-S-1: Aplikaci naprogramujte v \emph{JavaScript}u}
-% V poslední době dochází k prudkému rozvoji \emph{JavaScript}u a dá se mu do budoucna předpovídat vyšší nasazení, aplikaci tedy naprogramujte v \emph{JavaScript}u.
-% \subsection{NFR-S-2: Pro běh serveru využijte \emph{Node.js}}
-% Pro běh aplikace využijte systém \emph{Node.js} a naučte se práci s touto novou a progresivní technologií.
-% \subsection{NFR-S-3: Využijte úložiště sémantických dat}
-% Sémantická data ukládejte do takového úložiště, aby nad ním bylo možné vykonávat dotazy přímo (případně přes nezávislého prostředníka) a nebylo nutné přistupovat přes vlastní aplikaci.
-% \subsection{NFR-S-4: Dejte přednost kvalitě zpracování}
-% Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
-% \subsection{NFR-S-5: Svobodné licence}
-% Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
 
 \subsection{Návrh řešení}
 \todo{Diskuse alternativ. Struktura.}
@@ -212,8 +205,17 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 \subsection{Návrh bezpečnosti}
 \todo{Injekce kódu. Pouze povolené URL. Ošeření vstupů.}
 
+
 \subsection{Návrh nasazení}
-\todo{Deployment diagram.}
+Nasazení bylo nakonec navrženo, jak je vidět na obrázku \ref{fig:server:deployment}, umístěním všech prvků serverové aplikace na jediný server, který získává informace z prostředí Internetu a zároveň poskytuje informace uživatelům.
+\begin{figure}[h]
+ \centering
+ \includegraphics{./figures/deployment-s.png}
+ % deployment-s.png: 573x506 pixel, 112dpi, 13.00x11.48 cm, bb=0 0 368 325
+ \caption{Diagram nasazení serverové aplikace}
+ \label{fig:server:deployment}
+\end{figure}
+
 
 \subsection{Použité technologie}
 Mnoho použitých technologií bylo dáno zadáním práce, byl mi tak do značné míry usnadněn jejich výběr. Na druhou stranu nejsou dané technologie dokonalé, takže by často bývala práce s jinými snazší.
@@ -607,7 +609,13 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 \todo{Injekce JS, ošetření vstupů, white-listing URL, elementů, atributů, zakázání cizích zdrojů...}
 
 \subsection{Návrh nasazení}
-\todo{Deployment diagram.}
+Nasazení mobilní aplikace bylo navrženo tak, jak je vidět na obrázku \ref{fig:mobile:deployment}. Aplikace komunikuje se \glsname{SPARQL} endpointem serverové aplikace, v případě neposkytování daných informací aplikace komunikuje přímo se zdrojem informací.
+\begin{figure}[h]
+ \centering
+ \includegraphics{./figures/deployment-m.png}
+ \caption{Diagram nasazení mobilní aplikace}
+ \label{fig:mobile:deployment}
+\end{figure}
 
 
 \subsection{Použité technologie}
