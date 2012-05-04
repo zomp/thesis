@@ -9,15 +9,15 @@ var url = require('url');
 
 var process = function () {
 	var uris = [ //adresy jídelníčků
-		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=1',
-		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=2',
-		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=3',
-		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=4',
-		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=5',
-		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=6',
-		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=8',
-		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=9',
-		'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=10'
+		'http://agata.suz.cvut.cz/jidelnicky/index.php?clPodsystem=1',
+		'http://agata.suz.cvut.cz/jidelnicky/index.php?clPodsystem=2',
+		'http://agata.suz.cvut.cz/jidelnicky/index.php?clPodsystem=3',
+		'http://agata.suz.cvut.cz/jidelnicky/index.php?clPodsystem=4',
+		'http://agata.suz.cvut.cz/jidelnicky/index.php?clPodsystem=5',
+		'http://agata.suz.cvut.cz/jidelnicky/index.php?clPodsystem=6',
+		'http://agata.suz.cvut.cz/jidelnicky/index.php?clPodsystem=8',
+		'http://agata.suz.cvut.cz/jidelnicky/index.php?clPodsystem=9',
+		'http://agata.suz.cvut.cz/jidelnicky/index.php?clPodsystem=10'
 	];
 	
 	for (var i = uris.length - 1, uri; uri = uris[i]; --i) {

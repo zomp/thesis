@@ -69,7 +69,7 @@ tab.guide.getContent = function () {
 			var canteenmenu = $('<li>Jídelníček ' + name + '</li>');
 			canteens.find('ul').append(canteenmenu);
 			
-			createLoaderButton(canteenmenu, 'http://agata.suz.cvut.cz/jidelnicky/nove/index.php?clPodsystem=' + canteensData[name], function (data) {
+			createLoaderButton(canteenmenu, 'http://agata.suz.cvut.cz/jidelnicky/index.php?clPodsystem=' + canteensData[name], function (data) {
 				var ret = $(data).find('#ap-jidelnicek table');
 				//odstranění stylů a přebytečných sloupců
 				ret.find('tr td:nth-child(6), tr th:nth-child(6)').remove();
