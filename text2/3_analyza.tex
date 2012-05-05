@@ -43,15 +43,16 @@ Na první pohled tato potřeba nedává smysl, v praxi se ale často vyskytují 
 \subsection{Případy užití}
 Případy užití (\textit{use cases}) jsou takové sekvence kroků, které reprezentují danou činnost prováděnou aktérem na systému a vedou od jejího zahájení až po naplnění.
 
-V serverové aplikaci byli identifikováni celkem tři hlavní aktéři:
+V serverové aplikaci byli identifikováni celkem čtyři hlavní aktéři:
 \begin{itemize}
  \item Uživatel -- student / softwarová komponenta (\textit{mobilní aplikace}).
  \item Správce -- administrativní pracovník fakulty.
  \item Plánovač -- softwarová komponenta.
+ \item Zdroj -- server poskytující informace.
 \end{itemize}
-Roli správce by šlo dále dělit na další role, vzhledem k velmi nízkému rozsahu činností každé z nich (zpravidla jedna činnost), je vše zahrnuto pod tímto souhrnným názvem. Pod plánovačem je zase zahrnut aktér čas.
+Roli správce by šlo dále dělit na specifičtější role, vzhledem k velmi nízkému rozsahu činností každé z nich (zpravidla jedna činnost), je vše zahrnuto pod tímto souhrnným názvem. Pod plánovačem je zase zahrnut aktér čas.
 
-Uživatel se pouze dotazuje nad systémem a zjišťuje informace. Správce manuálně upravuje informace v systému, může vynutit aktualizaci a jinak spravuje systém. Plánovač automaticky obsluhuje aktualizace obsažených informací.
+Uživatel se pouze dotazuje nad systémem a zjišťuje informace. Správce manuálně upravuje informace v systému, může vynutit aktualizaci a jinak spravuje systém. Plánovač automaticky obsluhuje aktualizace obsažených informací. Zdroj na vyžádání poskytne dané informace.
 
 \subsubsection{UC-S-1: Vyžádání informací}
 \subsubsection*{Aktéři:}
@@ -71,8 +72,8 @@ Uživatel se pouze dotazuje nad systémem a zjišťuje informace. Správce manu�
 \begin{itemize}
  \item Uživatel vytvoří dotaz.
  \item Uživatel odešle dotaz na rozhraní systému.
- \item Systém dotaz přijme.
- \item Systém dotaz zpracuje -- nalezne požadované informace.
+ \item Systém přijme dotaz.
+ \item Systém zpracuje dotaz -- nalezne požadované informace.
  \item Systém odešle odpověď.
  \item Uživatel přijme odpověď.
  \item Uživatel zpracuje odpověď.
@@ -92,6 +93,7 @@ Uživatel se pouze dotazuje nad systémem a zjišťuje informace. Správce manu�
 \subsubsection*{Aktéři:}
 \begin{itemize}
  \item Plánovač.
+ \item Zdroj.
 \end{itemize}
 \subsubsection*{Systém:}
 \begin{itemize}
@@ -106,8 +108,16 @@ Uživatel se pouze dotazuje nad systémem a zjišťuje informace. Správce manu�
 \begin{itemize}
  \item Plánovač zadá systému požadavek na aktualizaci určitých informací.
  \item Systém přijme požadavek.
- \item Systém se připojí ke zdroji určitých informací a ty načerpá.
+ \item Systém dá zdroji požadavek na informace.
+ \item Zdroj zpracuje požadavek a informace vrátí.
+ \item Systém přijme informace.
+ \item Systém zpracuje informace.
  \item Systém odešle plánovači potvrzení.
+\end{itemize}
+\subsubsection*{Alternativní scénáře:}
+\begin{itemize}
+ \item V případě chyby zdroje je navráceno chybové hlášení.
+ \item V případě chyby zpracování informací je navráceno chybové hlášení.
 \end{itemize}
 \subsubsection*{Poznámky:}
 \begin{itemize}
@@ -456,6 +466,7 @@ Pro úplnost ještě uvádím seznam informací vedoucích k určení cílové p
 \item Poloha všech míst, které přicházejí v úvahu (toalety, bankomaty\dots) -- hledající si vybere.
 \item Předchozí bod a navíc přibližná aktuální poloha -- lze určit nejbližší.
 \end{itemize}
+Přehledy rozšiřují poznatky získané při tvorbě bakalářské práce \cite{Bakalarka}.
 
 \subsubsection{Potřeba určit aktuální pozici}
 Zvláště, pokud máme mapu nebo jsme v jiné situaci, kdy víme, kam jít, vyvstává potřeba určit aktuální pozici -- bez té totiž nelze určit směr, vzdálenost, a v případě, že hledáme nejbližší místo daného typu, ani cíl cesty.
@@ -470,125 +481,127 @@ Cílová skupina má díky specifickému životnímu stylu silnou potřebu nezá
 
 
 \subsection{Případy užití}
-\todo{Různé případy užití v textové formě.}
-% Případy užití (use cases) jsou scénáře popisující chování systému z pohledu vnějšího aktéra. Případy užití vymezují, kdo a co bude jak dělat a z tohoto základu se později sestaví funkční požadavky. Už ze zadání aplikace vyplývá potřeba jediného aktéra -- studenta. Základní případy užití jsou následující:
-% \subsection{UC1: Hledání místnosti podle označení}
-% \label{ssec:UChledaniMistnosti}
-% \begin{description}
-% \item[Aktéři:] Student.
-% \item[Systém:] Navigační aplikace.
-% \item[Vstupní podmínky:] ~\\*[-1.5em]
-%  \begin{itemize}
-%  \item Student je ve výchozí obrazovce aplikace.
-%  \item Student se chce dostat do místnosti KN:E-9.
-%  \end{itemize}
-% \pagebreak
-% \item[Hlavní scénář:] ~\\*[-1.5em]
-%  \begin{enumerate}
-%  \item Student vstoupí do vyhledávacího formuláře.
-%  \item Student zadá písmeno \emph{K}.
-%  \item Aplikace zobrazí seznam místností obsahujících písmeno \emph{K}.
-%  \item Student zadá písmeno \emph{N}.
-%  \item Aplikace zobrazí seznam místností obsahujících výraz \emph{KN}.
-%  \item Student postupně zadá znaky \emph{:E-} a aplikace zúží seznam.
-%  \item Student zadá číslici \emph{9}.
-%  \item Aplikace zobrazí plán cílového patra s vyznačeným cílem.
-%  \item Student dojde podle plánu k cíli.
-%  \end{enumerate}
-% \item[Poznámky:] ~\\*[-1.5em]
-%  \begin{itemize}
-%  \item Místnost by mělo jít stejným způsobem vyhledat i podle starého číslování a zažitých názvů.
-%  \item Při zadání dvou a méně znaků lze kvůli nízkému výkonu zařízení a zachování přehlednosti zobrazovat upozornění na nutnost zadání více znaků.
-%  \end{itemize}
-% \end{description}
-% 
-% \subsection{UC2: Hledání neexistující místnosti}
-% \begin{description}
-% \item[Aktéři:] Student.
-% \item[Systém:] Navigační aplikace.
-% \item[Vstupní podmínky:] ~\\*[-1.5em]
-%  \begin{itemize}
-%  \item Student je ve výchozí obrazovce aplikace.
-%  \item Student se chce dostat do místnosti KN:X-777.
-%  \end{itemize}
-% \item[Hlavní scénář:] ~\\*[-1.5em]
-%  \begin{enumerate}
-%  \item Student vstoupí do vyhledávacího formuláře.
-%  \item Student postupně zadá znaky \emph{KN:X}.
-%  \item Aplikace sdělí studentovi, že místnost neexistuje.
-%  \end{enumerate}
-% \item[Poznámky:] ~\\*[-1.5em]
-%  \begin{itemize}
-%  \item Podrobný popis postupu zadávání znaků a reakcí aplikace je v UC1 \ref{ssec:UChledaniMistnosti}.
-%  \end{itemize}
-% \end{description}
-% 
-% \pagebreak
-% \subsection{UC3: Hledání kanceláře podle jména sídlícího vyučujícího}
-% \begin{description}
-% \item[Aktéři:] Student.
-% \item[Systém:] Navigační aplikace.
-% \item[Vstupní podmínky:] ~\\*[-1.5em]
-%  \begin{itemize}
-%  \item Student je ve výchozí obrazovce aplikace.
-%  \item Student chce nalézt kancelář Zdeňka Míkovce.
-%  \end{itemize}
-% \item[Hlavní scénář:] ~\\*[-1.5em]
-%  \begin{enumerate}
-%  \item Student vstoupí do vyhledávacího formuláře.
-%  \item Student zadá písmeno \emph{M}.
-%  \item Aplikace zobrazí seznam místností obsahujících písmeno \emph{M}.
-%  \item Student zadá písmeno \emph{í}.
-%  \item Aplikace zobrazí seznam místností obsahujících výraz \emph{Mí}.
-%  \item Student zadá písmeno \emph{k}.
-%  \item Aplikace zobrazí plán cílového patra s vyznačeným cílem.
-%  \item Student dojde podle plánu k cíli.
-%  \end{enumerate}
-% \end{description}
-% 
-% \subsection{UC4: Hledání nejbližšího nápojového automatu}
-% \begin{description}
-% \item[Aktéři:] Student.
-% \item[Systém:] Navigační aplikace.
-% \item[Vstupní podmínky:] ~\\*[-1.5em]
-%  \begin{itemize}
-%  \item Student je ve výchozí obrazovce aplikace.
-%  \item Student se chce dostat k nejbližšímu nápojovému automatu.
-%  \item Student se nachází před místností KN:E-9.
-%  \end{itemize}
-% \item[Hlavní scénář:] ~\\*[-1.5em]
-%  \begin{enumerate}
-%  \item Student vstoupí do vyhledávacího formuláře.
-%  \item Student vyhledá místnost KN:E-9 podle UC1 \ref{ssec:UChledaniMistnosti}.
-%  \item Aplikace zobrazí plán cílového patra s vyznačeným výchozím místem.
-%  \item Student v plánu vyhledá požadovaný nápojový automat.
-%  \item Student dojde podle plánu k cíli.
-%  \end{enumerate}
-% \end{description}
-% 
-% \subsection{UC5: Hledání za pomoci regulárních výrazů}
-% \begin{description}
-% \item[Aktéři:] Student.
-% \item[Systém:] Navigační aplikace.
-% \item[Vstupní podmínky:] ~\\*[-1.5em]
-%  \begin{itemize}
-%  \item Student je ve výchozí obrazovce aplikace.
-%  \item Student se chce dostat do místnosti KN:E-9.
-%  \end{itemize}
-% \item[Hlavní scénář:] ~\\*[-1.5em]
-%  \begin{enumerate}
-%  \item Student vstoupí do vyhledávacího formuláře.
-%  \item Student zadá znak \emph{-}.
-%  \item Aplikace zobrazí seznam místností obsahujících znak \emph{-}.
-%  \item Student zadá číslici \emph{9}.
-%  \item Aplikace zobrazí seznam místností obsahujících výraz \emph{-9}.
-%  \item Student zadá znak \emph{\$}.
-%  \item Aplikace zobrazí seznam místností končících výrazem \emph{-9}.
-%  \item Student si vybere ze seznamu místnost KN:E-9.
-%  \item Aplikace zobrazí plán cílového patra s vyznačeným cílem.
-%  \item Student dojde podle plánu k cíli.
-%  \end{enumerate}
-% \end{description}
+U případů užití (\textit{use cases}) mobilní aplikace byli identifikováni jediní dva aktéři:
+\begin{itemize}
+ \item Uživatel -- student.
+ \item Server -- \glsname{SPARQL} endpoint.
+\end{itemize}
+Dále byly identifikovány tři hlavní případy užití:
+\begin{itemize}
+ \item Získání určité (textové) informace.
+ \item Vyhledání (mapové) pozice.
+ \item Vykonání \glsname{SPARQL} dotazu.
+\end{itemize}
+
+\subsubsection{UC-M-1: Získání jídelníčku}
+\subsubsection*{Aktéři:}
+\begin{itemize}
+ \item Uživatel.
+ \item Server.
+\end{itemize}
+\subsubsection*{Systém:}
+\begin{itemize}
+ \item Mobilní aplikace.
+\end{itemize}
+\subsubsection*{Vstupní podmínky:}
+\begin{itemize}
+ \item Uživatel se nachází na patřičném místě systému.
+ \item Systém má připojení k serveru.
+\end{itemize}
+\subsubsection*{Hlavní scénář:}
+\begin{itemize}
+ \item Uživatel nalezne akci získání jídelníčku.
+ \item Uživatel dá požadavek na získání jídelníčku.
+ \item Systém odešle požadavek na server.
+ \item Server zpracuje požadavek a odešle odpověď.
+ \item Systém přijme odpověď
+ \item Systém zpracuje odpověď.
+ \item Systém vizualizuje jídelníček.
+\end{itemize}
+\subsubsection*{Alternativní scénáře:}
+\begin{itemize}
+ \item V případě chyby připojení je navráceno chybové hlášení.
+ \item V případě neexistence jídelníčku je navráceno oznámení.
+\end{itemize}
+\subsubsection*{Poznámky:}
+\begin{itemize}
+ \item Místo získávání jídelníčku může být prováděna libovolná obdobná činnost.
+ \item Pro některé obdobné informace nemusí být vyžadováno připojení k serveru, záleží na době jejich platnosti.
+\end{itemize}
+
+\subsubsection{UC-M-2: Vyhledání občerstvení}
+\subsubsection*{Aktéři:}
+\begin{itemize}
+ \item Uživatel.
+\end{itemize}
+\subsubsection*{Systém:}
+\begin{itemize}
+ \item Mobilní aplikace.
+\end{itemize}
+\subsubsection*{Vstupní podmínky:}
+\begin{itemize}
+ \item Uživatel se nachází na patřičném místě systému.
+\end{itemize}
+\subsubsection*{Hlavní scénář:}
+\begin{itemize}
+ \item Uživatel zadá do vyhledávacího pole požadavek na občerstvení.
+ \item Uživatel potvrdí vyhledávání.
+ \item Systém vyhledá všechna občerstvení.
+ \item Systém vizualizuje nalezená občerstvení.
+ \item Uživatel zadá požadavek na zobrazení aktuální polohy.
+ \item Systém určí uživatelovu polohu.
+ \item Systém vizualizuje polohu.
+ \item Uživatel si dle poskytnutých informací vybere občerstvení.
+\end{itemize}
+\subsubsection*{Alternativní scénáře:}
+\begin{itemize}
+ \item V případě neplatného dotazu je navráceno chybové hlášení.
+ \item V případě chyby určování polohy je navráceno chybové hlášení.
+ \item V případě výskytu mimo mapu je navráceno chybové hlášení.
+\end{itemize}
+\subsubsection*{Poznámky:}
+\begin{itemize}
+ \item Místo vyhledávání občerstvení mohou být vyhledávány i jiné pozice.
+ \item U některých typů dotazů není nutné znát aktuální polohu.
+ \item U některých typů dotazů je navrácena jediná pozice.
+\end{itemize}
+
+\subsubsection{UC-M-3: Vykonání SPARQL dotazu}
+\subsubsection*{Aktéři:}
+\begin{itemize}
+ \item Uživatel.
+ \item Server.
+\end{itemize}
+\subsubsection*{Systém:}
+\begin{itemize}
+ \item Mobilní aplikace.
+\end{itemize}
+\subsubsection*{Vstupní podmínky:}
+\begin{itemize}
+ \item Uživatel se nachází na patřičném místě systému.
+ \item Uživatel zná dotazovací jazyk \glsname{SPARQL}.
+ \item Systém má připojení k serveru.
+\end{itemize}
+\subsubsection*{Hlavní scénář:}
+\begin{itemize}
+ \item Uživatel vytvoří dotaz.
+ \item Uživatel potvrdí dotaz.
+ \item Systém odešle dotaz na server.
+ \item Server zpracuje požadavek a odešle odpověď.
+ \item Systém přijme odpověď
+ \item Systém zpracuje odpověď.
+ \item Systém vizualizuje odpověď.
+\end{itemize}
+\subsubsection*{Alternativní scénáře:}
+\begin{itemize}
+ \item V případě neplatného dotazu je navráceno chybové hlášení.
+ \item V případě chyby připojení je navráceno chybové hlášení.
+ \item V případě chyby serveru je navráceno chybové hlášení.
+\end{itemize}
+\subsubsection*{Poznámky:}
+\begin{itemize}
+ \item V případě nenalezení informace je navrácena prázdná množina.
+\end{itemize}
 
 
 \subsection{Funkční požadavky}
