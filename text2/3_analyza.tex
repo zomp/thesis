@@ -18,6 +18,7 @@ Začal jsem pracovat nejprve na serverové aplikaci -- jednak na ní měla být 
 
 
 \subsection{Potřeby uživatelů}
+\label{sec:server:needs}
 Tato část se věnuje potřebám uživatelů serverové aplikace, zejména uživatelů rozhraní, přes které poskytuje informace. Potřeb je mnoho -- proto zde uvedu pouze reprezentativní vzorek.
 
 \subsubsection{Potřeba zjistit informaci}
@@ -205,7 +206,7 @@ Zpočátku jsem vytvářel ontologii od základů vlastní, s přibývajícími 
 
 Nejprve jsem se vrátil k výsledkům rešeršního zpracování ontologií a vybral z nich tu, která se mi zdála po v mezičase nabitých zkušenostech nejlepší -- \gls{AIISO}. Tato ontologie je již předurčená k využití s ontologiemi Participation, \gls{FOAF} a AIISO Roles. Ontologie jsou to již zaběhlé, takže problém s interoperabilitou pozbyl platnosti.
 
-Dalším bodem zvratu bylo zjištění, jak složité může být nalezení styčných bodů mezi obecnou ontologií a konkrétní situací. Bylo třeba v některých případech nalézt další vhodné ontologie reprezentující doposud nepokryté oblasti, případně již použité ontologie rozšířit (zpravidla je použita licence Creative Commons, takže je rozšiřování možné). Příkladem může být reprezentace akcí \glsname{ČVUT} -- žádná z použitých ontologií nemodeluje události. Abych se dodržel kurzu ve směru interoperability, bylo třeba nalézt vhodnou ontologii. Nabízelo se jich několik, nakonec byla použita \gls{LODE}, právě kvůli svému zastřešení obdobných ontologií.
+Dalším bodem zvratu bylo zjištění, jak složité může být nalezení styčných bodů mezi obecnou ontologií a konkrétní situací. Bylo třeba v některých případech nalézt další vhodné ontologie reprezentující doposud nepokryté oblasti, případně již použité ontologie rozšířit (zpravidla je použita licence Creative Commons, takže je rozšiřování možné). Příkladem může být reprezentace akcí \glsname{CVUT} -- žádná z použitých ontologií nemodeluje události. Abych se dodržel kurzu ve směru interoperability, bylo třeba nalézt vhodnou ontologii. Nabízelo se jich několik, nakonec byla použita \gls{LODE}, právě kvůli svému zastřešení obdobných ontologií.
 
 Následuje seznam zvolených ontologií, pro specifické případy se ale počítá s jeho dalším rozšiřováním:
 \begin{itemize}
@@ -243,7 +244,7 @@ Nasazení bylo nakonec navrženo, jak je vidět na obrázku \ref{fig:server:depl
 \subsection{Návrh řešení}
 Návrh (\textit{design}) byl prováděn po rozvržení architektury a za přispění volby použitých technologií.
 
-Pro tři ze čtyř dříve identifikovaných struktur systému jsem nalezl vhodné hotové řešení (viz \ref{sec:server:technologie} na straně \pageref{sec:server:technologie}) -- plánovač je tvořen cronem, jako databáze je použita MongoDB a \glsname{SPARQL} endpoint poskytuje rdfstore. Zbývá tedy doimplementovat pouze \textit{serverovou aplikaci}.
+Pro tři ze čtyř dříve identifikovaných struktur systému jsem nalezl vhodné hotové řešení (viz část \ref{sec:server:technologies} na straně \pageref{sec:server:technologies}) -- plánovač je tvořen cronem, jako databáze je použita MongoDB a \glsname{SPARQL} endpoint poskytuje rdfstore. Zbývá tedy doimplementovat pouze \textit{serverovou aplikaci}.
 
 Na obrázku \ref{fig:server:class} je znázorněn třídní diagram (\textit{class diagram}) reprezentující strukturu serverové aplikace. Metoda \textbf{process()} má za úkol stažení dat z patřičných zdrojů, jejich zpracování, převedení do sémantických grafů a uložení do databáze. V návrhu byl použit návrhový vzor strategie (\textit{strategy}).
 
@@ -258,8 +259,8 @@ Na obrázku \ref{fig:server:class} je znázorněn třídní diagram (\textit{cla
 
 
 \subsection{Návrh bezpečnosti}
-% \todo{Injekce kódu. Pouze povolené URL. Ošeření vstupů.}
-Po sběžném návrhu aplikace byly modelovány hrozby. Nejprve jsem aplikaci dekomponoval na důvěryhodné a nedůvěryhodné komponenty systému a určil mezi nimi hranice důvěry. Poté jsem identifikoval hrozby. Nakonec byly identifikovány zranitelnosti. Vymodelované hrozby byly následně snižovány.
+% \todo{Injekce kódu. Pouze povolené URL. Ošetření vstupů.}
+Po zběžném návrhu aplikace byly modelovány hrozby. Nejprve jsem aplikaci dekomponoval na důvěryhodné a nedůvěryhodné komponenty systému a určil mezi nimi hranice důvěry. Poté jsem identifikoval hrozby. Nakonec byly identifikovány zranitelnosti. Vymodelované hrozby byly následně snižovány.
 
 \subsubsection{Dekompozice}
 Byly identifikovány následující komponenty (obdobné s těmi z návrhu architektury):
@@ -290,7 +291,7 @@ U komponenty \emph{\glsname{SPARQL} endpoint} byly identifikovány následujíc�
  \item Podvržení identity uživatele.
  \item Únik informací.
 \end{itemize}
-U komponenty \emph{plánovač} nebyly identifikovány, vzhledem k jednoúčelnému zaměření, žádné hrozby.
+U komponenty \emph{plánovač} nebyly identifikovány, vzhledem k jednoúčelovému zaměření, žádné hrozby.
 
 \subsubsection{Identifikace zranitelností}
 Všechny výše uvedené hrozby mohou vyústit ve zranitelnosti, nejvyšší prioritu mají ty nejpravděpodobnější -- na hranicích důvěry směrem k uživatelům a zdrojům dat. S hrozbou můžeme naložit následovně:
@@ -310,7 +311,7 @@ Preferovaná je zpravidla poslední možnost.
 
 
 \subsection{Použité technologie}
-\label{sec:server:technologie}
+\label{sec:server:technologies}
 Mnoho použitých technologií bylo dáno zadáním práce, byl mi tak do značné míry usnadněn jejich výběr. Na druhou stranu nejsou některé z technologií příliš ověřené, zdokumentované a neexistují k nim příklady, takže by často bývala práce s jinými snazší.
 
 Celá serverová aplikace je napsána v JavaScriptu, zprovozněna na Node.js, datovým úložištěm se stalo MongoDB.
@@ -364,7 +365,7 @@ Node-jquery (\url{https://github.com/coolaj86/node-jquery}) je \textit{wrapperem
 
 jQuery bylo vybráno pro usnadnění zpracování externích zdrojů dat -- nabízí prověřené způsoby selekce, traverzování a manipulace s \glsname{DOM}.
 
-Node-jquery interně využívá modul jsdom (\url{https://github.com/tmpvar/jsdom}), který mu poskyte JavaScriptovou implementaci \glsname{DOM}.
+Node-jquery interně využívá modul jsdom (\url{https://github.com/tmpvar/jsdom}), který mu poskytuje JavaScriptovou implementaci \glsname{DOM}.
 
 \subsubsection{rdfstore}
 \label{sec:rdfstore}
@@ -377,11 +378,14 @@ Právě pro implementaci manipulace s \glsname{RDF}, grafové úložiště a pod
 
 
 \subsection{Použité nástroje}
+\label{sec:server:tools}
 Pro tvorbu serverové aplikace byly vybrány následující nástroje:
 \subsubsection{Kate}
+\label{sec:server:tools:kate}
 Pro implementaci serverové aplikace, stejně jako pro mnoho dalších činností, byl vybrán textový editor \glsname{Kate} (\url{http://kate-editor.org/}) z prostředí \glsname{GNU}/Linuxového desktopového prostředí \glsname{KDE}. \glsname{Kate} nabízí zvýrazňování syntaxe všech v diplomové práci použitých formátů, poskytuje velmi užitečnou práci s regulárními výrazy, umožňuje pracovat s mnoha soubory najednou a, co je asi nejpodstatnější, plně se integruje do (mnou používaného) \glsname{KDE}, takže ním například lze prostřednictvím \gls{KIO} transparentně pracovat se vzdálenými soubory. \glsname{Kate} neumožňuje automatické doplňování kódu, nabízí ale již použitá slova kdekoliv v dokumentu, což je vlastnost v mnoha ohledech srovnatelná. \Glsname{Kate} byl zvolen i na základě velice kladných zkušeností pro vytvoření zdrojového kódu a konfiguračních souborů.
 
 \subsubsection{Kompare}
+\label{sec:server:tools:kompare}
 Pro případ potřeby důkladného porovnání souborů byl vybrán Kompare (\url{http://www.caffeinated.me.uk/kompare/}). Nástroj umožňuje velmi přehledně porovnat mimo jednotlivých souborů i celé jejich adresáře. Kompare neporovnává soubory sám, ale je nadstavbou nad konzolovou aplikací diff či obdobnou. Mimo již popsaných vlastností byl Kompare vybrán i pro svou integraci s \glsname{KDE}.
 
 \subsubsection{Webové prohlížeče}
@@ -391,158 +395,80 @@ Pro průzkum zdrojů a jejich struktur byly zvoleny internetové prohlížeče a
  \item Chromium (\url{http://chromium.org/}).
 \end{itemize}
 
-\subsection{Protégé}
+\subsubsection{Protégé}
 Pro průzkum a práci s ontologiemi byl zvolen editor Protégé (\url{http://protege.stanford.edu/}). Rozhodnutí bylo učiněno pro nabídku funkcionalit a předchozí zkušenosti.
 
-\subsection{curl}
+\subsubsection{curl}
 Konzolový nástroj curl z projektu \glsname{cURL} (\url{http://curl.haxx.se/}) byl zvolen pro snadnou kontrolu cizích zdrojů i vlastní vytvářené aplikace.
 
 \subsubsection{Git}
+\label{sec:server:tools:git}
 Pro správu verzí práce byl zvolen nástroj Git (\url{http://git\-scm.com/}), čímž má být zajištěné pohodlné zálohování, jak ve smyslu možnosti návratu k některé z minulých verzí, tak i ve smyslu vzdáleného duplikování na serveru GitHub (\url{http://github.com/}). Pozitivním vedlejším efektem tohoto přístupu je možnost sledování vývoje prostřednictvím veřejného repozitáře.
 
 
 \section{Mobilní aplikace}
+Mobilní aplikace má sloužit studentům jako průvodce a měla by spolupracovat se serverovou aplikací. Vzhledem k této závislosti je třeba ji realizovat až po té serverové, ovšem analýza s návrhem by měly probíhat kvůli vzájemné spolupráci v některých fázích souběžně.
+
 \subsection{Potřeby uživatelů}
+Následující část se věnuje identifikaci základních potřeb potenciálních uživatelů aplikace, které by jim mohla / měla naplnit -- na jejich základě totiž budou hledány uživatelské scénáře a požadavky.
+
+\subsubsection{Potřeba informací}
+Pod tuto potřebu shrnuji všechny potřeby nalezené u serverové aplikace (viz část \ref{sec:server:needs} na straně \pageref{sec:server:needs}). Jsou to:
+\begin{itemize}
+ \item Potřeba zjistit informaci.
+ \item Potřeba ověřit informaci.
+ \item Potřeba ověřených informací.
+ \item Potřeba aktuálních informací.
+ \item Potřeba kompletních informací.
+ \item Potřeba nalézt, co nehledám.
+\end{itemize}
+Zejména naplnění poslední potřeby -- předložit informaci, o kterou člověk sice nepožádal, ale udělal by to, kdyby ho to bylo napadlo -- je od průvodce vítané.
+
+\subsubsection{Potřeba uživatelské přívětivosti}
+Vzhledem k předpokládanému využití mobilní aplikace podstatně méně pokročilými uživateli oproti serverové je vhodné, aby tomu byla uzpůsobena. Cílová skupina navíc zpravidla není ochotná číst dlouhé návody a je tak třeba, aby byla aplikace použitelná sama o sobě.
+
 \subsubsection{Potřeba určit cílovou pozici}
+Jedna z nejdůležitějších potřeb, které by měl průvodce naplnit, je potřeba určit cílovou pozici. Může to být například:
+\begin{itemize}
+ \item Budova, učebna, kancelář, knihovna\dots
+ \item Menza, hospoda, občerstvení, nápojový automat\dots
+ \item Pitná voda, toalety, sprchy\dots
+ \item Výtah, schodiště, nájezd pro kočárek\dots
+ \item Vchod, únikový východ, hasící přístroj\dots
+ \item Bankomat, zastávka MHD, parkoviště\dots
+ \item Informace, vrátnice, šatna, údržba\dots
+\end{itemize}
+Ačkoliv jsou v seznamu uvedené pozice rozděleny do určitých logických celků, je důležité si povšimnout, že existují i jiná jejich, v některých ohledech důležitější, uspořádání:
+\begin{itemize}
+ \item Dle jednoznačnosti místa -- místnost s jasně daným názvem je oproti libovolnému schodišti jediná.
+ \item Dle jednoznačnosti identifikátoru -- stejná místnost může být vyhledána na základě různých kritérií (název, další výuka, popis).
+ \item Dle frekvence hledání -- přednáškové místnosti jsou vyhledávány podstatně častěji, než hasící přístroje.
+ \item Dle kritéria priority -- vzdálenější menza může mít vyšší prioritu na základě lepší kuchyně, zatímco sebelepší nápojový automat může mít kvůli své větší vzdálenosti prioritu nižší.
+\end{itemize}
+Pro úplnost ještě uvádím seznam informací vedoucích k určení cílové pozice:
+\begin{itemize}
+\item Označení místnosti, budovy\dots (T9:349, TK\dots).
+\item Název místnosti, budovy\dots (Gočár, Národní technická knihovna\dots).
+\item Neoficiální název místnosti, budovy\dots (Bouračka, Modrá menza\dots).
+\item Jméno, pokud hledáme kancelář vyučujícího nebo neakademického pracovníka.
+\item Rozvrh, pokud hledáme místo další výuky nebo zkoušky.
+\item Zeměpisné souřadnice.
+\item Poloha všech míst, které přicházejí v úvahu (toalety, bankomaty\dots) -- hledající si vybere.
+\item Předchozí bod a navíc přibližná aktuální poloha -- lze určit nejbližší.
+\end{itemize}
+
 \subsubsection{Potřeba určit aktuální pozici}
-\todo{Seznam a popis jednotlivých potřeb uživatelů.}
-% Tato sekce slouží jako seznam potřeb uživatelů, se kterými jsem se v průběhu práce setkal. Ne všechny potřeby byly později zapracovány do výsledné aplikace, některé totiž nebyly natolik důležité, aby se je vyplatilo v aplikaci mít a zastiňovat jimi potřeby důležitější. Další potřeby bývaly protichůdné a také je nešlo implementovat zároveň. Popisu uživatele se věnuje už sekce \ref{sec:popisUzivatele}.
-% 
-% \subsection{Potřeba se někam dostat}
-% Touto potřebou se zabývá celá práce. Student zná označení místnosti (nebo i méně exaktní identifikátor), ale neví, kde se daná místnost nachází, ani kudy se k ní dostat. 
-% 
-% Hledaná místa mohou být různá, může to být třeba:
-% \begin{itemize}
-% \item učebna (ve které má student výuku nebo zkoušku),
-% \item kancelář vyučujícího (ke kterému si jde pro známku z předmětu nebo na konzultaci),
-% \item toalety (nejbližší nebo třeba nejméně frekventované),
-% \item občerstvení (nejbližší automat nebo bufet s velkým sortimentem),
-% \item hasící přístroj (jeho potřeba není častá, takže se jím dále nebudeme zabývat),
-% \item únikový východ (také se jím, ze stejných důvodů, nebudeme zabývat),
-% \item vrátnice (ta se ale hledá svou výlučnou přítomností u vchodu do budovy snadno),
-% \item další takzvané body zájmu.
-% \end{itemize}
-% 
-% Lokalizace hledaného místa může být provedena při znalosti:
-% \begin{itemize}
-% \item označení místnosti (KN:E-107), pokud hledáme učebnu a známe ho třeba z rozvrhu,
-% \item starého označení (K1), pokud nám někdo řekne označení z doby před přečíslováním,
-% \item oficiálního názvu místnosti (Zengerova posluchárna),
-% \item neoficiálního názvu místnosti (Solárium, Bouračka, Bufet\dots),
-% \item jména vyučujícího, pokud hledáme jeho kancelář,
-% \item umístění vchodu do budovy, pokud třeba hledáme vrátnici,
-% \item polohy všech míst, které přicházejí v úvahu (třeba bufetů), nebo to a navíc ještě
-% \item přibližné aktuální polohy, pokud hledáme něco nejbližšího.
-% \end{itemize}
-% 
-% \subsection{Potřeba určit polohu místa}
-% Nejprve je nutné zjistit polohu místa, kam se potřebujeme dostat\footnote{Teoreticky je možné polohu neznat a tupě se řídit shora podávanými instrukcemi, toto řešení ale není lidské mentalitě příjemné a proto se jím práce nezabývá.} a až poté má smysl se zamýšlet nad samotnou cestou. Poloha se dá s předchozími zkušenostmi odhadnout,\footnote{Například poloha místnosti se dá odhadnout z jejího názvu, který sám o sobě identifikuje budovu a~podlaží.} předchozí zkušenosti ale nejsou zaručeny a správný odhad teprve ne.
-% 
-% K přesnému určení místa se dá dospět několika způsoby:
-% \begin{itemize}
-% \item náhodným zkoušením, to ale nebývá optimální,
-% \item přeptáním se, to ale dělá, často introvertním, studentům problémy,
-% \item vyhledáním v mapě, pokud je k dispozici.
-% \end{itemize}
-% 
-% \subsection{Potřeba určit cestu k místu}
-% Teprve tehdy, až známe polohu hledané místnosti, k ní můžeme začít určovat cestu. Způsoby jsou stejné jako u hledání místa samotného -- zkoušení, přeptávání a vyhledání na~mapě. 
-% 
-% \subsection{Potřeba navigační aplikace}
-% Všechny předchozí potřeby by se daly uspokojit vhodnou aplikací -- ta dokáže určit polohu místa a nalézt k němu cestu pro uživatele velmi komfortně. Aplikaci je nicméně potřeba vytvořit a je potřeba to udělat pořádně -- tím se zabývají následující potřeby, jinak bude pro~uživatele lepší se i nadále spoléhat na svou intuici.
-% 
-% \subsection{Potřeba mobilní aplikace}
-% Místnost je dost často potřeba najít okamžitě, několik minut předtím, než v ní máme být. V této době není čas shánět se po počítači, navíc už můžeme být v pohybu předpokládaným směrem. Z toho plyne potřeba aplikace mobilní.
-% 
-% Studenti Fakulty elektrotechnické, kterými se práce zabývá, zpravidla tíhnou k technickým hračkám, například k mobilním telefonům a tím pádem i jejich aplikacím, více, než většina populace. Dá se tedy předpokládat, že mobilní telefony mají, a dá se předpokládat i~to, že budou tyto telefony schopny provozovat jednoduchou navigační aplikaci.
-% 
-% \subsection{Potřeba použitelné aplikace}
-% Aby aplikaci vůbec někdo používal, je nutné, aby byla použitelná, aby se s ní dalo pracovat i bez návodu a vše bylo přehledné. Je dobré, když aplikace umožňuje vyhledávat i~bez diakritiky, nerozlišuje při vyhledávání velikost písmen, umožní zadat regulární výraz pro~nalezení místa s ne úplně přesně známým názvem a podobně.
-% 
-% \subsection{Potřeba korespondující navigace aplikace se skutečností}
-% Je nutné, aby se dokázal uživatel podle aplikace někam dostat. Musí se nejprve zorientovat, zjistit kam se chce dostat a kudy se tam dostat. V těchto krocích mu musí aplikace pomáhat.
-% 
+Zvláště, pokud máme mapu nebo jsme v jiné situaci, kdy víme, kam jít, vyvstává potřeba určit aktuální pozici -- bez té totiž nelze určit směr, vzdálenost, a v případě, že hledáme nejbližší místo daného typu, ani cíl cesty.
+
+\subsubsection{Potřeba nezávislosti}
+Cílová skupina má díky specifickému životnímu stylu silnou potřebu nezávislosti v mnoha oblastech -- pokud jim má být poskytnu aplikace, ani ta je nesmí příliš omezovat -- je proto vhodné, aby se jednalo o aplikaci mobilní a aby umožňovala offline provoz, jinak hrozí nemožnost jejího využití v situacích jako je cesta do školy nebo přítomnost na některém z mnoha signálem nepokrytých míst budovy T9.
+
 % \subsection{Potřeba multiplatformní aplikace}
-% Mobilní zařízení jsou specifická svými implementacemi standardů, dost často jsou tyto implementace, pokud jsou vůbec přítomny, pro nedostatek prostředků poskytovaných zařízením osekané a někdy i od standardů odlišné. Není to ideální, ale je to pochopitelné. Bohužel je ale nepřeberné množství zařízení a téměř u každého modelu je něco jinak, než jinde. Je pak v některých případech velmi těžké nalézt multiplatformní řešení.
 % 
-% \subsection{Potřeba aktuálního obsahu aplikace}
-% Obsah aplikace by měl být aktuální a reflektovat stávající situaci: uzavírky, přestavby a~jiné mimořádné události. Aplikace může čerpat některá aktuální data z \url{http://udb.feld.cvut.cz}, například označení místnosti, ve které má student podle rozvrhu následující hodinu, nebo kanceláře vyučujícího. Navede-li aplikace někoho špatně, aktuálně opravovanou, slepou cestou, riskuje se ztráta uživatele.
-% 
-% \subsection{Potřeba offline provozu aplikace}
-% Částečně v rozporu s předchozím bodem je potřeba offline provozu aplikace. Mnoho studentů ještě nemá ve svých mobilních zařízeních možnost připojení k Internetu a o ty by aplikace online provozem přišla. Aplikace by tedy měla zvládat práci offline, ale také by mohla umožňovat online provoz a aktualizace pro offline provoz.
-% 
-% \subsection{Potřeba navedení optimální cestou aplikací}
-% \label{subs:UNcestaAplikaci}
-% Hledání optimální cesty je poměrně složitá záležitost, ačkoliv se to na první pohled nezdá. Optimální cesta není ta nejkratší nebo nejrychlejší, je to mnohem složitější. Do hry vstupuje mnoho kritérií, například:
-% \begin{itemize}
-% \item délka cesty -- má být většinou nejkratší,
-% \item doba cesty -- má být většinou nejkratší,
-% \item terén -- tady už začínají komplikace, někdo se rád projde po schodech, jiný může mít zlámanou nohu, tak chce jet páternosterem a další je na vozíčku, předchozí způsoby nemůže využít a musí jet obyčejným výtahem,
-% \item zapamatovatelnost cesty -- má být většinou nejsnazší,
-% \item frekventovanost -- někteří se rušným cestám vyhýbají, jiní je vyhledávají,
-% \item místa kolem cesty -- někteří raději nevolí cestu kolem kanceláří neoblíbených vyučujících...
-% \end{itemize}
-% Na první pohled je jasné, že téměř nikdy nemůže existovat cesta, která by byla ve všech zmiňovaných kritériích nejlepší. Je nevděčné vytvářet univerzálně nejlepší cestu a nad lidské síly sestavovat optimální algoritmus pro zjištění individuálně nejlepší cesty; vytvořit použitelnou implementaci v omezeném mobilním prostředí tedy bohužel asi nepůjde.
-% 
-% \subsection{Potřeby návštěvníků na aplikaci}
-% Návštěvníci mají specifické potřeby na aplikaci. Zajímavé by mohlo třeba být prozkoumat potřeby potencionálních studentů, kteří se jdou podívat na den otevřených dveří, a~poskytnout jim aplikaci jako průvodce mezi jednotlivými stanovišti dne otevřených dveří. Zadání práce ale vymezuje cílovou skupinu jako studenty FELu, takže se těmito potřebami nebudeme dále zabývat.
-% 
-% 
-% 
-\subsection{Prototypy}
-\todo{Pojednání o vytvořených prototypech, možná nakonec pod něco zařadím, nebude mít velký rozsah.}
-% Po ujasnění několika základních potřeb a požadavků jsem začal vytvářet prototypy. Nejprve pouze jednoduché low fidelity prototypy pro vyjasnění základních požadavků, později sofistikovanější high fidelity prototypy reprezentující chování i vzhled výsledné aplikace.
-% 
-% \subsection{Low fidelity prototypy}
-% Low fidelity prototypy jsou, většinou papírové, snadno vytvořitelné prototypy, na kterých se navrhují a testují některé základní aspekty aplikace -- rozvržení komponent, jednoduchá interakce, návaznost akcí a podobně. Mají tu výhodu, že zadavateli přiblíží finální aplikaci, udělá si konkrétnější představu a lépe se mu pak formulují požadavky.
-% 
-% Za pomoci low fidelity prototypů se vymezily jednotlivé obrazovky aplikace. Výchozí obrazovka je v podstatě jedinou nutnou obrazovkou aplikace, obsahuje menu pro přechod do dalších obrazovek, vyhledávací formulář a krátkou nápovědu. Dalšími obrazovkami jsou nápověda, nápověda regulárních výrazů a obrazovka se základními informacemi o programu.
-% 
-% Nejvýznamnějším ovládacím prvkem bude velké vyhledávací pole uprostřed úvodní obrazovky -- uživatel zde bude moci zadat všechno, co potřebuje nalézt, a aplikace by mu to měla vyhledat. V případě, že bude nalezeno více výsledků, zobrazí se jejich seznam (viz obrázek~\ref{fig:LFviceVysledku}\footnote{Low fidelity prototypy byly vytvořeny v nástroji Balsamiq Mockups \cite{BalsamiqMockups}.}), ze kterého si bude moci uživatel vybrat nebo upřesnit hledaný výraz, jinak se navede rovnou k cíli (viz obrázek~\ref{fig:LFjedinyVysledek}).
-% 
-% \begin{figure}[ht]
-% \begin{center}
-% \includegraphics[width=30mm]{figures/LFviceVysledku}
-% \caption{Nalezení několika výsledků}
-% \label{fig:LFviceVysledku}
-% \end{center}
-% \end{figure}
-% 
-% \begin{figure}[ht]
-% \begin{center}
-% \includegraphics[width=30mm]{figures/LFjedinyVysledek}
-% \caption{Nalezení jediného výsledku}
-% \label{fig:LFjedinyVysledek}
-% \end{center}
-% \end{figure}
-% 
-% Aplikace by ještě měla poskytovat rozšířené vyhledávání s upřesněním hledaných míst a~zadáním výchozího bodu.
-% 
-% \noindent\textbf{Ostatní low fidelity prototypy jsou na přiloženém CD.}
-% 
-% 
-% 
-% \subsection{High fidelit prototyp}
-% High fidelity prototypy jsou už sofistikovanějšími prototypy, jejich vytvoření tudíž trvá déle, ale přesto se je vyplatí udělat před finální aplikací -- nemají totiž plnou funkčnost konečné aplikace, nemusí ošetřovat vstupy a řešit nestandardní situace, takže se pořád vytvoří relativně rychle, přičemž už zadavateli dokáží realisticky demonstrovat finální práci s aplikací.
-% 
-% High fidelity prototyp jsem vytvořil pomocí XHTML, ECMAScriptu a CSS. Jedná se o~velmi vhodné technologie pro tvorbu prototypů -- rychle se vytvoří a snadno se pak upravují. Testování takto vytvořených prototypů je také příjemné -- v případě v prototypu nevyřešené situace lze snadno připravit výslednou situaci a testerovi ji na dálku bez nějakých komplikací podstrčit.
-% 
-% Na obrázku \ref{fig:HFviceVysledku} je vidět high fidelity prototyp ve stavu zobrazení více výsledků vyhledání.
-% 
-% \begin{figure}[ht]
-% \begin{center}
-% \includegraphics[width=30mm]{figures/HFviceVysledku}
-% \caption{Nalezení několika výsledku}
-% \label{fig:HFviceVysledku}
-% \end{center}
-% \end{figure}
-% 
-% Testování high fidelity prototypů je hlouběji popisované v kapitole o testování (viz \ref{sec:testhfp}).
-% 
-% \noindent\textbf{High fidelity prototyp je na přiloženém CD.}
-% 
-% 
-% 
+% \subsubsection{Potřeby návštěvníků na aplikaci}
+% \todo{externí přednášející, dny otevřených dveří, partnerky studentů...}
+
+
 \subsection{Případy užití}
 \todo{Různé případy užití v textové formě.}
 % Případy užití (use cases) jsou scénáře popisující chování systému z pohledu vnějšího aktéra. Případy užití vymezují, kdo a co bude jak dělat a z tohoto základu se později sestaví funkční požadavky. Už ze zadání aplikace vyplývá potřeba jediného aktéra -- studenta. Základní případy užití jsou následující:
@@ -727,6 +653,17 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 % Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
 
 
+
+\subsection{Návrh architektury}
+Nasazení mobilní aplikace bylo navrženo tak, jak je vidět na obrázku \ref{fig:mobile:deployment}. Aplikace komunikuje se \glsname{SPARQL} endpointem serverové aplikace, v případě neposkytování daných informací aplikace komunikuje přímo se zdrojem informací.
+\begin{figure}[h]
+ \centering
+ \includegraphics{./figures/deployment-m.png}
+ \caption{Diagram nasazení mobilní aplikace}
+ \label{fig:mobile:deployment}
+\end{figure}
+
+
 \subsection{Návrh řešení}
 \todo{Diskuse alternativ.}
 \begin{figure}[h]
@@ -764,20 +701,62 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 % Vyhledáním místnosti získá aplikace cíl, ke kterému je potřeba uživatele navést. Dobrým řešením je ukázat uživateli plán cílového patra s vyznačeným cílem, orientačními body, schodišti (a výtahy) a vstupy do budovy (s~rozdíly pater). Uživatel se tak dokáže v plánu zorientovat, i kdyby se mu to doposud nepodařilo, schodiště (většinou vedou budovou každým patrem) a vchody do budovy (většinou jsou maximálně dva) k tomu velmi pomohou. Plán pouze cílového patra proto, že cestu po schodech nemá cenu vizualizovat (dokonce je to spíše nevhodné) a v rámci výchozího patra je většinou zcela zřejmé, jak se ke schodům dostat. Uživatel se tedy zvládne dostat do uvedeného patra a tam už podle plánu k hledané místnosti sám bez větších komplikací.
 
 \subsection{Návrh bezpečnosti}
-
-
-
-
 \todo{Injekce JS, ošetření vstupů, white-listing URL, elementů, atributů, zakázání cizích zdrojů...}
 
-\subsection{Návrh nasazení}
-Nasazení mobilní aplikace bylo navrženo tak, jak je vidět na obrázku \ref{fig:mobile:deployment}. Aplikace komunikuje se \glsname{SPARQL} endpointem serverové aplikace, v případě neposkytování daných informací aplikace komunikuje přímo se zdrojem informací.
-\begin{figure}[h]
- \centering
- \includegraphics{./figures/deployment-m.png}
- \caption{Diagram nasazení mobilní aplikace}
- \label{fig:mobile:deployment}
-\end{figure}
+
+
+\subsection{Návrh uživatelského rozhraní}
+\todo{Pojednání o vytvořených prototypech, možná nakonec pod něco zařadím, nebude mít velký rozsah.}
+% Po ujasnění několika základních potřeb a požadavků jsem začal vytvářet prototypy. Nejprve pouze jednoduché low fidelity prototypy pro vyjasnění základních požadavků, později sofistikovanější high fidelity prototypy reprezentující chování i vzhled výsledné aplikace.
+% 
+% \subsection{Low fidelity prototypy}
+% Low fidelity prototypy jsou, většinou papírové, snadno vytvořitelné prototypy, na kterých se navrhují a testují některé základní aspekty aplikace -- rozvržení komponent, jednoduchá interakce, návaznost akcí a podobně. Mají tu výhodu, že zadavateli přiblíží finální aplikaci, udělá si konkrétnější představu a lépe se mu pak formulují požadavky.
+% 
+% Za pomoci low fidelity prototypů se vymezily jednotlivé obrazovky aplikace. Výchozí obrazovka je v podstatě jedinou nutnou obrazovkou aplikace, obsahuje menu pro přechod do dalších obrazovek, vyhledávací formulář a krátkou nápovědu. Dalšími obrazovkami jsou nápověda, nápověda regulárních výrazů a obrazovka se základními informacemi o programu.
+% 
+% Nejvýznamnějším ovládacím prvkem bude velké vyhledávací pole uprostřed úvodní obrazovky -- uživatel zde bude moci zadat všechno, co potřebuje nalézt, a aplikace by mu to měla vyhledat. V případě, že bude nalezeno více výsledků, zobrazí se jejich seznam (viz obrázek~\ref{fig:LFviceVysledku}\footnote{Low fidelity prototypy byly vytvořeny v nástroji Balsamiq Mockups \cite{BalsamiqMockups}.}), ze kterého si bude moci uživatel vybrat nebo upřesnit hledaný výraz, jinak se navede rovnou k cíli (viz obrázek~\ref{fig:LFjedinyVysledek}).
+% 
+% \begin{figure}[ht]
+% \begin{center}
+% \includegraphics[width=30mm]{figures/LFviceVysledku}
+% \caption{Nalezení několika výsledků}
+% \label{fig:LFviceVysledku}
+% \end{center}
+% \end{figure}
+% 
+% \begin{figure}[ht]
+% \begin{center}
+% \includegraphics[width=30mm]{figures/LFjedinyVysledek}
+% \caption{Nalezení jediného výsledku}
+% \label{fig:LFjedinyVysledek}
+% \end{center}
+% \end{figure}
+% 
+% Aplikace by ještě měla poskytovat rozšířené vyhledávání s upřesněním hledaných míst a~zadáním výchozího bodu.
+% 
+% \noindent\textbf{Ostatní low fidelity prototypy jsou na přiloženém CD.}
+% 
+% 
+% 
+% \subsection{High fidelit prototyp}
+% High fidelity prototypy jsou už sofistikovanějšími prototypy, jejich vytvoření tudíž trvá déle, ale přesto se je vyplatí udělat před finální aplikací -- nemají totiž plnou funkčnost konečné aplikace, nemusí ošetřovat vstupy a řešit nestandardní situace, takže se pořád vytvoří relativně rychle, přičemž už zadavateli dokáží realisticky demonstrovat finální práci s aplikací.
+% 
+% High fidelity prototyp jsem vytvořil pomocí XHTML, ECMAScriptu a CSS. Jedná se o~velmi vhodné technologie pro tvorbu prototypů -- rychle se vytvoří a snadno se pak upravují. Testování takto vytvořených prototypů je také příjemné -- v případě v prototypu nevyřešené situace lze snadno připravit výslednou situaci a testerovi ji na dálku bez nějakých komplikací podstrčit.
+% 
+% Na obrázku \ref{fig:HFviceVysledku} je vidět high fidelity prototyp ve stavu zobrazení více výsledků vyhledání.
+% 
+% \begin{figure}[ht]
+% \begin{center}
+% \includegraphics[width=30mm]{figures/HFviceVysledku}
+% \caption{Nalezení několika výsledku}
+% \label{fig:HFviceVysledku}
+% \end{center}
+% \end{figure}
+% 
+% Testování high fidelity prototypů je hlouběji popisované v kapitole o testování (viz \ref{sec:testhfp}).
+% 
+% \noindent\textbf{High fidelity prototyp je na přiloženém CD.}
+
 
 
 \subsection{Použité technologie}
@@ -834,29 +813,31 @@ Po několika vlastních implementacích nástroje na pročištění a ošetřen�
 Pro tvorbu aplikace byly použity převážně následující nástroje. Majorita jich je uvolněných pod svobodmými licencemi, zpravidla \glsname{GNU} \glsname{GPL} nebo kompatibilními. Jedinou výjimkou jsou některé mobilní prohlížeče, které byly použity k testování aplikace.
 
 \subsubsection{Kate}
-Většina práce, včetně mobilní aplikace, byla vytvořena v textovém editoru \glsname{Kate} (\url{http://kate-editor.org/}). Jedná se o velmi pokročilý nástroj pro práci s textem z prostředí \glsname{GNU}/Linuxového desktopového prostředí \glsname{KDE}. \glsname{Kate} nabízí zvýrazňování syntaxe všech v diplomové práci použitých formátů, poskytuje velmi užitečnou práci s regulárními výrazy, umožňuje pracovat s mnoha soubory najednou a, co je asi nejpodstatnější, plně se integruje do \glsname{KDE}, takže ním například lze prostřednictvím \gls{KIO} transparentně pracovat se vzdálenými soubory. \glsname{Kate} neumožňuje automatické doplňování kódu, nabízí ale již použitá slova kdekoliv v dokumentu, což je vlastnost v některých případech i lepší. Kate byl zvolen na základě velice kladných zkušeností pro napsání kódu v JavaScriptu, \gls{HTML}, \gls{CSS} i úpravy mapy v \gls{SVG}.
+Textový editor \glsname{Kate} (\url{http://kate-editor.org/}) byl, mimo serverové (viz část \ref{sec:server:tools:kate} na straně \pageref{sec:server:tools:kate}), vybrán i pro tvorbu mobilní aplikace. Nástroj byl zvolen na základě již dříve zmíněných důvodů pro napsání kódu v JavaScriptu, \gls{HTML}, \gls{CSS} i úpravy mapy v \gls{SVG}.
 
 \subsubsection{Inkscape}
-Grafické podklady práce byly vytvořeny v editoru vektorové grafiky Inkscape (\url{http://www.inkscape.org/}). Nástroj implementuje téměř kompletní specifikaci formátu \glsname{SVG} verze 1.1, je multiplatformní a svobodný. Inkscape byl vybrán kvůli předchozím výborným zkušenostem s prací v něm a vhodnosti pro tvorbu mapových podkladů.
+Grafické podklady práce byly vytvořeny v editoru vektorové grafiky Inkscape (\url{http://www.inkscape.org/}). Nástroj implementuje téměř kompletní specifikaci formátu \glsname{SVG} verze 1.1, je multiplatformní a svobodný. Inkscape byl vybrán kvůli předchozím výborným zkušenostem s prací v něm a celkové vhodnosti pro tvorbu mapových podkladů.
 
 \subsubsection{Kompare}
-V případě potřeby důkladného porovnání souborů byl použit Kompare (\url{http://www.caffeinated.me.uk/kompare/}). Nástroj umožňuje velmi přehledně porovnat mimo jednotlivých souborů i celé jejich adresáře. Kompare neporovnává soubory sám, ale je nadstavbou nad konzolovou aplikací diff či obdobnou.
+Nástroj byl zvolen ze stejných důvodů, jak tomu bylo u serverové aplikace (viz část \ref{sec:server:tools:kompare} na straně \ref{sec:server:tools:kompare}).
 
 \subsubsection{Webové prohlížeče}
-Aplikace byla průběžně testována v různých mobilních prohlížečích:
+Pro správné odlazení aplikací, průzkum možností a testování byly vybrány následující prohlížeče. Některé kvůli jejich významnému zastoupení mezi uživateli, jiné pro odlazení aplikace i v jiných implementacích použitých technologií.
 \begin{itemize}
  \item Mozilla Firefox (\url{http://www.mozilla.org/firefox}).
  \item Chromium (\url{http://chromium.org/}).
  \item rekonq (\url{http://rekonq.kde.org/}).
- \item Prohlížeč platformy Android (\url{http://www.android.com/}).
- \item Google Chrome for Android (\url{https://www.google.com/intl/en/chrome/android/}).
+ \item Prohlížeč platformy Android (\url{http://www.android.com/}) -- verze 2 a 4.
  \item Opera Mobile (\url{http://www.opera.com/mobile}).
  \item Internet Explorer Mobile (\url{http://www.microsoft.com/windowsphone/en-us/features/default.aspx#internet-explorer}).
-Před dokončením byla navíc otestována panem inženýrem Havrylukem, vedoucím práce, v následujících prohlížečích:
+Mimo výše uvedených navíc nabídl pan inženýr Havryluk, vedoucí práce, otestování v následujících prohlížečích:
+ \item Google Chrome for Android (\url{https://www.google.com/intl/en/chrome/android/}).
+ \item Prohlížeč platformy Android (\url{http://www.android.com/}) -- verze 3.
+ \item Dolphin Browser (\url{http://dolphin-browser.com/}).
  \item Nokia Browser for Symbian  (\url{http://browser.nokia.com/}).
  \item Prohlížeč platformy BlackBerry (\url{http://us.blackberry.com/smartphones/features/internet.jsp}).
  \item Safari (\url{http://www.apple.com/safari/}).
 \end{itemize}
 
 \subsubsection{Git}
-Práce byla průběžně verzována systémem pro správu verzí Git (\url{http://git\-scm.com/}), čímž bylo zajištěné pohodlné zálohování jak ve smyslu možnosti návratu k některé z minulých verzí, tak i ve smyslu vzdáleného duplikování na serveru GitHub (\url{http://github.com/}). Pozitivním vedlejším efektem tohoto přístupu je možnost sledování vývoje prostřednictvím veřejného repozitáře.
+Nástroj byl zvolen ze stejných důvodů, jak tomu bylo u serverové aplikace (viz část \ref{sec:server:tools:git} na straně \ref{sec:server:tools:git}).
