@@ -199,14 +199,13 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 
 
 \subsection{Návrh ontologie}
-\todo{Tvorba vlastní, zahození, použití existujících, výběr z rešeršovaných, AI?SO, AI?SO roles, FOAF, Food?, LODE}
 Tvorbě ontologie bylo věnováno velmi dlouhé období -- neměl jsem s tímto oborem předchozí zkušenosti a vytvoření kvalitní ontologie považuji jako nutný předpoklad pro následné pokračování -- na špatných základech nelze vybudovat kvalitní systém.
 
 Zpočátku jsem vytvářel ontologii od základů vlastní, s přibývajícími zkušenostmi jsem si ale uvědomil, že to nebyl dobrý nápad -- ve světě sémantického webu je jednou z nejdůležitějších priorit vzájemná interoperabilita -- s každou novou ontologií je tak vzájemné mapování informací čím dál tím těžší. V té době jsem veškerou svou dosavadní práci zahodil a začal znovu.
 
 Nejprve jsem se vrátil k výsledkům rešeršního zpracování ontologií a vybral z nich tu, která se mi zdála po v mezičase nabitých zkušenostech nejlepší -- \gls{AIISO}. Tato ontologie je již předurčená k využití s ontologiemi Participation, \gls{FOAF} a AIISO Roles. Ontologie jsou to již zaběhlé, takže problém s interoperabilitou pozbyl platnosti.
 
-Dalším bodem zvratu bylo zjištění, jak složité může být nalezení styčných bodů mezi obecnou ontologií a konkrétní situací. Bylo třeba v některých případech nalézt další vhodné ontologie reprezentující doposud nepokryté oblasti, případně již použité ontologie rozšířit (zpravidla je použita licence Creative Commons, takže je rozšiřování možné). Příkladem může být reprezentace akcí \glsname{ČVUT} -- žádná z použitých ontologií nemodeluje události. Abych se dodržel kurzu ve směru interoperability, bylo třeba nalézt vhodnou ontologii. Nabízelo se jich několik, nakonec byla použita \glstext{LODE}, právě kvůli svému zastřešení obdobných ontologií.
+Dalším bodem zvratu bylo zjištění, jak složité může být nalezení styčných bodů mezi obecnou ontologií a konkrétní situací. Bylo třeba v některých případech nalézt další vhodné ontologie reprezentující doposud nepokryté oblasti, případně již použité ontologie rozšířit (zpravidla je použita licence Creative Commons, takže je rozšiřování možné). Příkladem může být reprezentace akcí \glsname{ČVUT} -- žádná z použitých ontologií nemodeluje události. Abych se dodržel kurzu ve směru interoperability, bylo třeba nalézt vhodnou ontologii. Nabízelo se jich několik, nakonec byla použita \gls{LODE}, právě kvůli svému zastřešení obdobných ontologií.
 
 Následuje seznam zvolených ontologií, pro specifické případy se ale počítá s jeho dalším rozšiřováním:
 \begin{itemize}
@@ -250,10 +249,12 @@ Na obrázku \ref{fig:server:class} je znázorněn třídní diagram (\textit{cla
 
 \begin{figure}[h]
  \centering
- \includegraphics{./figures/class-s.png}
+ \includegraphics[width=11.47cm]{./figures/class-s.pdf}
  \caption{Třídní diagram serverové aplikace}
+ % class-s.png: 429x190 (218) pixel, 95dpi, 11.47x5.08 cm, bb=0 0 325 144
  \label{fig:server:class}
 \end{figure}
+
 
 
 \subsection{Návrh bezpečnosti}
@@ -330,7 +331,7 @@ Databázi jsem volil z dalších sémantických / NoSQL databází (zaměření 
 Poslední jmenovaná databáze byla na základě předchozích zkušeností vybrána nejdříve, později se ale ukázalo, že jsou její správa i obsluha pro konkrétní použití těžkopádné, takže jsem nakonec přešel k podstatně vhodnější databázi, MongoDB, kterou lze navíc snadno využít v kombinaci s JavaScriptovým \glsname{RDF} úložištěm rdfstore (viz část \ref{sec:rdfstore}).
 
 \subsubsection{cron}
-Cron je démonem vykonávajícím naplánované úlohy. Název neoznačuje konkrétní implementaci, ale používá se pro označení programu splňujícího určité specifikace (jak je u Unixových nástrojů zvykem). Byla vybrána implementace, jejímž autorem je Paul Vixie -- jedná se o verzi využitou například v Linuxu a \glsname{BSD} (odtud pochází).
+Cron je démonem vykonávajícím naplánované úlohy. Název neoznačuje konkrétní implementaci, ale používá se pro označení programu splňujícího určité specifikace (jak je u Unixových nástrojů zvykem). Byla vybrána implementace, jejímž autorem je Paul Vixie -- jedná se o verzi využitou například v \glsname{GNU}/Linuxu a \glsname{BSD} (odkud pochází).
 
 Cron byl vybrán pro svou vhodnost pro daný účel, plánovat, a pro svoji prověřenost.
 
@@ -374,33 +375,30 @@ Právě pro implementaci manipulace s \glsname{RDF}, grafové úložiště a pod
 % \subsubsection{node-soap}
 %  (\url{https://github.com/milewise/node-soap}) -- \todo{Pouze pokud se objeví podpora poskytnutého WSDL.}
 
-\subsection{Použité nástroje}
 
-\todo{kate, prohlížeče, curl, git, protege -- uzpůsobit nástroje z mobilní aplikace na serverovou}
+\subsection{Použité nástroje}
+Pro tvorbu serverové aplikace byly vybrány následující nástroje:
 \subsubsection{Kate}
-Většina práce, včetně mobilní aplikace, byla vytvořena v textovém editoru \glsname{Kate} (\url{http://kate-editor.org/}). Jedná se o velmi pokročilý nástroj pro práci s textem z prostředí \glsname{GNU}/Linuxového desktopového prostředí \glsname{KDE}. \glsname{Kate} nabízí zvýrazňování syntaxe všech v diplomové práci použitých formátů, poskytuje velmi užitečnou práci s regulárními výrazy, umožňuje pracovat s mnoha soubory najednou a, co je asi nejpodstatnější, plně se integruje do \glsname{KDE}, takže ním například lze prostřednictvím \gls{KIO} transparentně pracovat se vzdálenými soubory. \glsname{Kate} neumožňuje automatické doplňování kódu, nabízí ale již použitá slova kdekoliv v dokumentu, což je vlastnost v některých případech i lepší. Kate byl zvolen na základě velice kladných zkušeností pro napsání kódu v JavaScriptu, \gls{HTML}, \gls{CSS} i úpravy mapy v \gls{SVG}.
+Pro implementaci serverové aplikace, stejně jako pro mnoho dalších činností, byl vybrán textový editor \glsname{Kate} (\url{http://kate-editor.org/}) z prostředí \glsname{GNU}/Linuxového desktopového prostředí \glsname{KDE}. \glsname{Kate} nabízí zvýrazňování syntaxe všech v diplomové práci použitých formátů, poskytuje velmi užitečnou práci s regulárními výrazy, umožňuje pracovat s mnoha soubory najednou a, co je asi nejpodstatnější, plně se integruje do (mnou používaného) \glsname{KDE}, takže ním například lze prostřednictvím \gls{KIO} transparentně pracovat se vzdálenými soubory. \glsname{Kate} neumožňuje automatické doplňování kódu, nabízí ale již použitá slova kdekoliv v dokumentu, což je vlastnost v mnoha ohledech srovnatelná. \Glsname{Kate} byl zvolen i na základě velice kladných zkušeností pro vytvoření zdrojového kódu a konfiguračních souborů.
 
 \subsubsection{Kompare}
-V případě potřeby důkladného porovnání souborů byl použit Kompare (\url{http://www.caffeinated.me.uk/kompare/}). Nástroj umožňuje velmi přehledně porovnat mimo jednotlivých souborů i celé jejich adresáře. Kompare neporovnává soubory sám, ale je nadstavbou nad konzolovou aplikací diff či obdobnou.
+Pro případ potřeby důkladného porovnání souborů byl vybrán Kompare (\url{http://www.caffeinated.me.uk/kompare/}). Nástroj umožňuje velmi přehledně porovnat mimo jednotlivých souborů i celé jejich adresáře. Kompare neporovnává soubory sám, ale je nadstavbou nad konzolovou aplikací diff či obdobnou. Mimo již popsaných vlastností byl Kompare vybrán i pro svou integraci s \glsname{KDE}.
 
 \subsubsection{Webové prohlížeče}
-Aplikace byla průběžně testována v různých mobilních prohlížečích:
+Pro průzkum zdrojů a jejich struktur byly zvoleny internetové prohlížeče a jejich rozšíření:
 \begin{itemize}
- \item Mozilla Firefox (\url{http://www.mozilla.org/firefox}).
+ \item Mozilla Firefox (\url{http://www.mozilla.org/firefox}) + Firebug (\url{http://getfirebug.com/}).
  \item Chromium (\url{http://chromium.org/}).
- \item rekonq (\url{http://rekonq.kde.org/}).
- \item Prohlížeč platformy Android (\url{http://www.android.com/}).
- \item Google Chrome for Android (\url{https://www.google.com/intl/en/chrome/android/}).
- \item Opera Mobile (\url{http://www.opera.com/mobile}).
- \item Internet Explorer Mobile (\url{http://www.microsoft.com/windowsphone/en-us/features/default.aspx#internet-explorer}).
-Před dokončením byla navíc otestována panem inženýrem Havrylukem, vedoucím práce, v následujících prohlížečích:
- \item Nokia Browser for Symbian  (\url{http://browser.nokia.com/}).
- \item Prohlížeč platformy BlackBerry (\url{http://us.blackberry.com/smartphones/features/internet.jsp}).
- \item Safari (\url{http://www.apple.com/safari/}).
 \end{itemize}
 
+\subsection{Protégé}
+Pro průzkum a práci s ontologiemi byl zvolen editor Protégé (\url{http://protege.stanford.edu/}). Rozhodnutí bylo učiněno pro nabídku funkcionalit a předchozí zkušenosti.
+
+\subsection{curl}
+Konzolový nástroj curl z projektu \glsname{cURL} (\url{http://curl.haxx.se/}) byl zvolen pro snadnou kontrolu cizích zdrojů i vlastní vytvářené aplikace.
+
 \subsubsection{Git}
-Práce byla průběžně verzována systémem pro správu verzí Git (\url{http://git\-scm.com/}), čímž bylo zajištěné pohodlné zálohování jak ve smyslu možnosti návratu k některé z minulých verzí, tak i ve smyslu vzdáleného duplikování na serveru GitHub (\url{http://github.com/}). Pozitivním vedlejším efektem tohoto přístupu je možnost sledování vývoje prostřednictvím veřejného repozitáře.
+Pro správu verzí práce byl zvolen nástroj Git (\url{http://git\-scm.com/}), čímž má být zajištěné pohodlné zálohování, jak ve smyslu možnosti návratu k některé z minulých verzí, tak i ve smyslu vzdáleného duplikování na serveru GitHub (\url{http://github.com/}). Pozitivním vedlejším efektem tohoto přístupu je možnost sledování vývoje prostřednictvím veřejného repozitáře.
 
 
 \section{Mobilní aplikace}
@@ -733,11 +731,12 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 \todo{Diskuse alternativ.}
 \begin{figure}[h]
  \centering
- \includegraphics{./figures/class-m.png}
+ \includegraphics[width=14.30cm]{./figures/class-m.pdf}
  % class-m.png: 535x376 pixel, 95dpi, 14.30x10.05 cm, bb=0 0 405 285
  \caption{Třídní diagram mobilní aplikace}
  \label{fig:mobile:class}
 \end{figure}
+
 
 
 \todo{Volba implementačního prostředí.}
