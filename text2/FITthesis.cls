@@ -37,6 +37,7 @@
 
 
 \LoadClass[a4paper,twoside]{memoir}[2008/08/07]
+% \LoadClass[a4paper,oneside]{memoir}[2008/08/07]
 \setsecnumdepth{all}
 \chapterstyle{veelo}
 
@@ -146,6 +147,7 @@
 
 \DeclareRobustCommand{\titlepage}{
 	\begin{titlingpage}
+		\setcounter{page}{3} % oprava spatneho cislovani uvodnich stran
 		\begin{tabular}{m{.8\textwidth}m{.2\textwidth}}
 			{\large\scshape \iflanguage{czech}{
 					{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v~Praze

@@ -197,16 +197,40 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
  \item Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{\glsname{GNU}}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
 \end{enumerate}
 
-\subsection{Návrh řešení}
-\todo{Diskuse alternativ. Struktura.}
 
-\todo{Volba implementačního prostředí.}
+\subsection{Návrh ontologie}
+\todo{Tvorba vlastní, zahození, použití existujících, výběr z rešeršovaných, AI?SO, AI?SO roles, FOAF, Food?, LODE}
+Tvorbě ontologie bylo věnováno velmi dlouhé období -- neměl jsem s tímto oborem předchozí zkušenosti a vytvoření kvalitní ontologie považuji jako nutný předpoklad pro následné pokračování -- na špatných základech nelze vybudovat kvalitní systém.
 
-\subsection{Návrh bezpečnosti}
-\todo{Injekce kódu. Pouze povolené URL. Ošeření vstupů.}
+Zpočátku jsem vytvářel ontologii od základů vlastní, s přibývajícími zkušenostmi jsem si ale uvědomil, že to nebyl dobrý nápad -- ve světě sémantického webu je jednou z nejdůležitějších priorit vzájemná interoperabilita -- s každou novou ontologií je tak vzájemné mapování informací čím dál tím těžší. V té době jsem veškerou svou dosavadní práci zahodil a začal znovu.
+
+Nejprve jsem se vrátil k výsledkům rešeršního zpracování ontologií a vybral z nich tu, která se mi zdála po v mezičase nabitých zkušenostech nejlepší -- \gls{AIISO}. Tato ontologie je již předurčená k využití s ontologiemi Participation, \gls{FOAF} a AIISO Roles. Ontologie jsou to již zaběhlé, takže problém s interoperabilitou pozbyl platnosti.
+
+Dalším bodem zvratu bylo zjištění, jak složité může být nalezení styčných bodů mezi obecnou ontologií a konkrétní situací. Bylo třeba v některých případech nalézt další vhodné ontologie reprezentující doposud nepokryté oblasti, případně již použité ontologie rozšířit (zpravidla je použita licence Creative Commons, takže je rozšiřování možné). Příkladem může být reprezentace akcí \glsname{ČVUT} -- žádná z použitých ontologií nemodeluje události. Abych se dodržel kurzu ve směru interoperability, bylo třeba nalézt vhodnou ontologii. Nabízelo se jich několik, nakonec byla použita \glstext{LODE}, právě kvůli svému zastřešení obdobných ontologií.
+
+Následuje seznam zvolených ontologií, pro specifické případy se ale počítá s jeho dalším rozšiřováním:
+\begin{itemize}
+ \item \Glsname{AIISO} (\url{http://purl.org/vocab/aiiso/schema}).
+ \item Participation (\url{http://purl.org/vocab/participation/schema}).
+ \item \Glsname{FOAF} (\url{http://xmlns.com/foaf/0.1/}).
+ \item AIISO Roles (\url{http://purl.org/vocab/aiiso-roles/schema}).
+ \item \Glsname{LODE} (\url{http://linkedevents.org/ontology/}).
+ \item \Glsname{OWLTime} (\url{http://www.w3.org/TR/owl-time/}).
+\end{itemize}
 
 
-\subsection{Návrh nasazení}
+\subsection{Návrh architektury}
+Nejprve byl vytvořen návrh architektury (\textit{architecture design}) aplikace, který byl později rozpracován do návrhu nasazení \textit{deployment design}.
+
+Identifikovány byly následující základní struktury systému:
+\begin{itemize}
+ \item \textit{Serverová aplikace.}
+ \item Plánovač.
+ \item Databáze.
+ \item \glsname{SPARQL} endpoint.
+\end{itemize}
+Pod pojmem \textit{serverová aplikace} se skrývá aplikace, která získává data přímo ze zdrojů, z nich vybírá informace, ty strukturuje a ukládá do databáze. Plánovač je reprezentován aplikací, která ve vhodné časy vyžádá na serveru aktualizaci informací. \glsname{SPARQL} endpoint je aplikace, která na požadavek v dotazovacím jazyku vrátí odpovídající data z databáze. Databáze je úložištěm informací.
+
 Nasazení bylo nakonec navrženo, jak je vidět na obrázku \ref{fig:server:deployment}, umístěním všech prvků serverové aplikace na jediný server, který získává informace z prostředí Internetu a zároveň poskytuje informace uživatelům.
 \begin{figure}[h]
  \centering
@@ -217,39 +241,166 @@ Nasazení bylo nakonec navrženo, jak je vidět na obrázku \ref{fig:server:depl
 \end{figure}
 
 
-\subsection{Použité technologie}
-Mnoho použitých technologií bylo dáno zadáním práce, byl mi tak do značné míry usnadněn jejich výběr. Na druhou stranu nejsou dané technologie dokonalé, takže by často bývala práce s jinými snazší.
+\subsection{Návrh řešení}
+Návrh (\textit{design}) byl prováděn po rozvržení architektury a za přispění volby použitých technologií.
 
-Celá serverová aplikace je napsána v \emph{JavaScriptu}, zprovozněna na \emph{Node.js}, datovým úložištěm se stalo \emph{MongoDB}.
+Pro tři ze čtyř dříve identifikovaných struktur systému jsem nalezl vhodné hotové řešení (viz \ref{sec:server:technologie} na straně \pageref{sec:server:technologie}) -- plánovač je tvořen cronem, jako databáze je použita MongoDB a \glsname{SPARQL} endpoint poskytuje rdfstore. Zbývá tedy doimplementovat pouze \textit{serverovou aplikaci}.
+
+Na obrázku \ref{fig:server:class} je znázorněn třídní diagram (\textit{class diagram}) reprezentující strukturu serverové aplikace. Metoda \textbf{process()} má za úkol stažení dat z patřičných zdrojů, jejich zpracování, převedení do sémantických grafů a uložení do databáze. V návrhu byl použit návrhový vzor strategie (\textit{strategy}).
+
+\begin{figure}[h]
+ \centering
+ \includegraphics{./figures/class-s.png}
+ \caption{Třídní diagram serverové aplikace}
+ \label{fig:server:class}
+\end{figure}
+
+
+\subsection{Návrh bezpečnosti}
+% \todo{Injekce kódu. Pouze povolené URL. Ošeření vstupů.}
+Po sběžném návrhu aplikace byly modelovány hrozby. Nejprve jsem aplikaci dekomponoval na důvěryhodné a nedůvěryhodné komponenty systému a určil mezi nimi hranice důvěry. Poté jsem identifikoval hrozby. Nakonec byly identifikovány zranitelnosti. Vymodelované hrozby byly následně snižovány.
+
+\subsubsection{Dekompozice}
+Byly identifikovány následující komponenty (obdobné s těmi z návrhu architektury):
+\begin{itemize}
+ \item \textit{Serverová aplikace.}
+ \item Plánovač.
+ \item Databáze.
+ \item \glsname{SPARQL} endpoint.
+ \item Uživatel.
+ \item Zdroj informací.
+\end{itemize}
+Plně důvěřovat můžu pouze serverové aplikaci a plánovači -- mají to být vlastní jednoduché aplikace. Dále lze do určité míry důvěřovat databázi a \glsname{SPARQL} endpointu -- aplikace budou provozovány pod vlastní správou. Zdroje informací a uživatelské aplikace jsou naopak nedůvěryhodné -- jsou plně v režii třetích stran. Hranice důvěry jsou nicméně mezi všemi komponentami.
+
+\subsubsection{Identifikace hrozeb}
+U komponenty \emph{serverová aplikace} byly identifikovány následující hrozby:
+\begin{itemize}
+ \item Podvržení nepravdivých dat.
+ \item Přetížení komponenty velkým počtem požadavků.
+\end{itemize}
+U komponenty \emph{databáze} byly identifikovány následující hrozby:
+\begin{itemize}
+ \item Přetížení komponenty velkým počtem požadavků.
+ \item Podvržení nepravdivých dat.
+\end{itemize}
+U komponenty \emph{\glsname{SPARQL} endpoint} byly identifikovány následující hrozby:
+\begin{itemize}
+ \item Přetížení komponenty velkým počtem požadavků.
+ \item Podvržení identity uživatele.
+ \item Únik informací.
+\end{itemize}
+U komponenty \emph{plánovač} nebyly identifikovány, vzhledem k jednoúčelnému zaměření, žádné hrozby.
+
+\subsubsection{Identifikace zranitelností}
+Všechny výše uvedené hrozby mohou vyústit ve zranitelnosti, nejvyšší prioritu mají ty nejpravděpodobnější -- na hranicích důvěry směrem k uživatelům a zdrojům dat. S hrozbou můžeme naložit následovně:
+\begin{itemize}
+ \item Ponechat v programu.
+ \item Odstranit problém.
+ \item Odstranit hrozbu.
+\end{itemize}
+Preferovaná je zpravidla poslední možnost.
+
+\subsubsection{Důsledky}
+\begin{itemize}
+ \item Je třeba důsledně ošetřovat vstupy (aby nedošlo k uložení škodlivých dat do databáze, aby na \glsname{SPARQL} endpointu nebyly prováděny jiné operace, než dotazovací\dots).
+ \item Je třeba vše ve výchozím nastavení vše zakázat a k potřebným úkonům udělit výjimky (pouze dotazy nad \glsname{SPARQL} endpointem, přístup jen k některým zdrojům ze serverové aplikace\dots).
+ \item Je třeba zamezit odepření služeb (přetížením \glsname{SPARQL} endpointu, zahlcením databáze\dots).
+\end{itemize}
+
+
+\subsection{Použité technologie}
+\label{sec:server:technologie}
+Mnoho použitých technologií bylo dáno zadáním práce, byl mi tak do značné míry usnadněn jejich výběr. Na druhou stranu nejsou některé z technologií příliš ověřené, zdokumentované a neexistují k nim příklady, takže by často bývala práce s jinými snazší.
+
+Celá serverová aplikace je napsána v JavaScriptu, zprovozněna na Node.js, datovým úložištěm se stalo MongoDB.
 
 \subsubsection{JavaScript}
-Využití \emph{JavaScriptu} bylo pro svoje pravděpodobné vzrůstající nasazení v budoucnosti a své specifické vlastnosti dáno jako nefunkční požadavek.
+Využití JavaScriptu bylo, pro svoje pravděpodobné vzrůstající nasazení v budoucnosti a své specifické vlastnosti, dáno jako nefunkční požadavek.
 
 \subsubsection{Node.js}
-\emph{Node.js} (\url{http://nodejs.org/}) je platforma postavená nad běhovým prostředím JavaScriptu z Chrome. Slouží ke tvorbě rychlých, škálovatelných síťových aplikací. Node.js využívá událostmi řízený neblokovací I/O model, který ho činí nenáročným a efektivním, vhodným pro datově náročné \textit{real-timové} aplikace běžící v distribuovaném prostředí \cite{Node}.
+Node.js (\url{http://nodejs.org/}) je platforma postavená nad běhovým prostředím JavaScriptu z webového prohlížeče Google Chrome. Slouží ke tvorbě rychlých, škálovatelných síťových aplikací. Node.js využívá událostmi řízený neblokovací I/O model, který ho činí nenáročným a efektivním, vhodným pro datově náročné \textit{real-timové} aplikace běžící v distribuovaném prostředí \cite{Node}.
 
-Použití Node.js bylo vynuceno nefunkčním požadavkem, jednalo se ale o velmi cennou zkušenost -- je novou technologií a ačkoliv je jeho dokumentace na slušné úrovni, není zatím vytvořena dostatečně velká báze příkladů a nejlepších praktik, takže jsem se k nim musel postupně dostat a při té příležitosti se toho hodně naučil. Navíc, zdá se, se budou nabité vědomosti v budoucnu hodit.
+Použití Node.js bylo vynuceno nefunkčním požadavkem, jedná se ale o velmi cennou zkušenost -- je novou technologií a ačkoliv je jeho dokumentace na slušné úrovni, není zatím vytvořena dostatečně velká báze příkladů a nejlepších praktik.\footnote{Takže jsem se k dobrým praktikám musel postupně propracovat a při té příležitosti se toho hodně naučil. Navíc, zdá se, se budou nabité vědomosti v budoucnu hodit.}
 
 \subsubsection{MongoDB}
-\emph{MongoDB} (\url{http://www.mongodb.org/}) je škálovatelnou, vysoce výkonnou, otevřenou NoSQL databází napsanou v C++ \cite{Mongo}.
+MongoDB (\url{http://www.mongodb.org/}) je škálovatelnou, vysoce výkonnou, otevřenou NoSQL databází napsanou v C++ \cite{Mongo}.
+
+Databázi jsem volil z dalších sémantických / NoSQL databází (zaměření dáno požadavkem na použití nových inovativních technologií), zvažovány byly mimo jiné i CouchDB (\url{http://couchdb.apache.org/}), Neo4j (\url{http://neo4j.org/}) a Openlink Virtuoso (\url{http://virtuoso.openlinksw.com/}).
+
+Poslední jmenovaná databáze byla na základě předchozích zkušeností vybrána nejdříve, později se ale ukázalo, že jsou její správa i obsluha pro konkrétní použití těžkopádné, takže jsem nakonec přešel k podstatně vhodnější databázi, MongoDB, kterou lze navíc snadno využít v kombinaci s JavaScriptovým \glsname{RDF} úložištěm rdfstore (viz část \ref{sec:rdfstore}).
+
+\subsubsection{cron}
+Cron je démonem vykonávajícím naplánované úlohy. Název neoznačuje konkrétní implementaci, ale používá se pro označení programu splňujícího určité specifikace (jak je u Unixových nástrojů zvykem). Byla vybrána implementace, jejímž autorem je Paul Vixie -- jedná se o verzi využitou například v Linuxu a \glsname{BSD} (odtud pochází).
+
+Cron byl vybrán pro svou vhodnost pro daný účel, plánovat, a pro svoji prověřenost.
 
 \subsubsection*{ }
-Celé prostředí serverové aplikace je umístěno v serverové edici \glsname{GNU}/linuxové distribuce \emph{Ubuntu} (\url{http://www.ubuntu.com/}) a ta je pro snadnou přenositelnost nainstalována do kontejneru virtuálního stroje virtualizačního řešení \emph{VirtualBox} (\url{http://www.virtualbox.org/}).
+Celé prostředí serverové aplikace je umístěno v serverové edici \glsname{GNU}/linuxové distribuce Ubuntu (\url{http://www.ubuntu.com/}) a ta je pro snadnou přenositelnost nainstalována do kontejneru virtuálního stroje virtualizačního řešení VirtualBox (\url{http://www.virtualbox.org/}). Technologie byly vybrány na základě výborných předchozích zkušeností.
 
 \subsection{Použité knihovny}
-Mimo standardního JavaScriptu lze v Node.js využívat i specifická rozšíření a množství modulů třetích stran. Z těch jsem využil:
-\begin{itemize}
- \item \emph{date-utils} (\url{https://github.com/JerrySievert/node-date-utils}) -- mikro framework doplňující funkcionalitu JavaScriptového objektu Date. Zvažováno bylo i použití \emph{dateformat} (\url{https://github.com/felixge/node-dateformat}), ten je ale pro projekt méně vhodný. Oba moduly jsou stále ve vývoji.
- \item \emph{express} (\url{http://expressjs.com/}) -- renomovaný framework pro tvorbu webových aplikací založený na middleware frameworku \emph{connect} (\url{http://www.senchalabs.org/connect/}).
- \item \emph{iCalendar} (\url{https://github.com/tritech/node-icalendar}) -- knihovna pro práci s formátem iCalendar. Modul je stále ve vývoji. Zvažovány byly i další knihovny, například \emph{ical} (\url{https://github.com/peterbraden/node-ical}), ty ale implementovaly ještě méně možností, než použitá.
- \item \emph{iconv} (\url{https://github.com/bnoordhuis/node-iconv}) -- knihovna pro obsluhu systémového příkazu iconv sloužícímu k převádění kódování.
- \item \emph{jquery} (\url{https://github.com/coolaj86/node-jquery}) -- wrapper umožňující využít renomovanou JavaScriptovou knihovnu \emph{jQuery} (\url{http://jquery.com/}) v prostředí Node.js. Je zde využit \emph{jsdom} (\url{https://github.com/tmpvar/jsdom}) -- JavaScriptová implementace DOM.
- \item \emph{rdfstore} (\url{https://github.com/antoniogarrote/rdfstore-js}) -- JavaScriptová implementace \emph{\glsname{RDF}} grafového úložiště s podporou pro \emph{\glsname{SPARQL}}. Data mohou být (a v implementaci \glsname{DP} jsou) persistentně ukládána prostřednictvím Node.js modulu-ovladače \emph{mongodb} (\url{https://github.com/christkv/node-mongodb-native}) do NoSQL databáze \emph{MongoDB} (\url{http://www.mongodb.org/}). Modul je stále ve vývoji.
- \item \emph{soap} (\url{https://github.com/milewise/node-soap}) -- \todo{Pouze pokud se objeví podpora poskytnutého WSDL.}
-\end{itemize}
+Mimo standardního JavaScriptu lze v Node.js využívat i specifická rozšíření a množství modulů třetích stran. Z těch jsem po zvážení z různých příčin využil:
+
+\subsubsection{node-date-utils}
+Node-date-utils (\url{https://github.com/JerrySievert/node-date-utils}) je mikro frameworkem doplňujícím funkcionalitu JavaScriptového objektu Date. Nástroj byl vybrán z potřeby snadno formátovat čas.
+
+Zvažováno bylo i použití obdobného nástroje node-dateformat (\url{https://github.com/felixge/node-dateformat}), ten je ale svou nabídkou funkcionalit pro projekt méně vhodný. Oba moduly jsou stále ve vývoji.
+
+\subsubsection{express}
+Express (\url{http://expressjs.com/}) je renomovaným frameworkem pro tvorbu webových aplikací. Je založený na middleware frameworku connect (\url{http://www.senchalabs.org/connect/}).
+
+Express byl vybrán jako ověřené řešení pro vytvoření struktury webové aplikace -- nejenže v sobě zahrnuje mnoho dobrých praktik, ke kterým bych jen stěží došel vlastním zkoumáním, ale přináší zároveň i markantní zjednodušení struktury kódu aplikace.
+
+\subsubsection{node-icalendar}
+Node-icalendar (\url{https://github.com/tritech/node-icalendar}) je knihovnou pro práci s formátem iCalendar. Je stále ve vývoji, nicméně množina poskytovaných funkcionalit je pro tuto práci dostatečná.
+
+Zvažovány byly i další knihovny, například node-ical (\url{https://github.com/peterbraden/node-ical}), ty ale neimplementují dostatek funkcionality potřebné pro tvorbu aplikace.
+
+\subsubsection{node-iconv}
+Node-iconv (\url{https://github.com/bnoordhuis/node-iconv}) je knihovnou pro obsluhu systémového příkazu iconv sloužícího k převádění kódování. Knihovna byla vybrána pro bezpečnou implementaci převodu kódování.
+
+\subsubsection{node-jquery}
+Node-jquery (\url{https://github.com/coolaj86/node-jquery}) je \textit{wrapperem} umožňujícím využít renomovanou JavaScriptovou knihovnu jQuery (\url{http://jquery.com/}) v prostředí Node.js.
+
+jQuery bylo vybráno pro usnadnění zpracování externích zdrojů dat -- nabízí prověřené způsoby selekce, traverzování a manipulace s \glsname{DOM}.
+
+Node-jquery interně využívá modul jsdom (\url{https://github.com/tmpvar/jsdom}), který mu poskyte JavaScriptovou implementaci \glsname{DOM}.
+
+\subsubsection{rdfstore}
+\label{sec:rdfstore}
+Rdfstore (\url{https://github.com/antoniogarrote/rdfstore-js}) je JavaScriptovou implementací \glsname{RDF} grafového úložiště s podporou pro \glsname{SPARQL}. Data mohou být (a v implementaci \glsname{DP} jsou) persistentně ukládána prostřednictvím Node.js modulu-ovladače node-mongodb (\url{https://github.com/christkv/node-mongodb-native}) do NoSQL databáze MongoDB (\url{http://www.mongodb.org/}). Modul je stále ve vývoji.
+
+Právě pro implementaci manipulace s \glsname{RDF}, grafové úložiště a podporu pro \glsname{SPARQL} byl rdfstore vybrán jako základ pro \glsname{SPARQL} endpoint a důležitá součást \textit{serverové aplikace}.
+
+% \subsubsection{node-soap}
+%  (\url{https://github.com/milewise/node-soap}) -- \todo{Pouze pokud se objeví podpora poskytnutého WSDL.}
 
 \subsection{Použité nástroje}
 
+\todo{kate, prohlížeče, curl, git, protege -- uzpůsobit nástroje z mobilní aplikace na serverovou}
+\subsubsection{Kate}
+Většina práce, včetně mobilní aplikace, byla vytvořena v textovém editoru \glsname{Kate} (\url{http://kate-editor.org/}). Jedná se o velmi pokročilý nástroj pro práci s textem z prostředí \glsname{GNU}/Linuxového desktopového prostředí \glsname{KDE}. \glsname{Kate} nabízí zvýrazňování syntaxe všech v diplomové práci použitých formátů, poskytuje velmi užitečnou práci s regulárními výrazy, umožňuje pracovat s mnoha soubory najednou a, co je asi nejpodstatnější, plně se integruje do \glsname{KDE}, takže ním například lze prostřednictvím \gls{KIO} transparentně pracovat se vzdálenými soubory. \glsname{Kate} neumožňuje automatické doplňování kódu, nabízí ale již použitá slova kdekoliv v dokumentu, což je vlastnost v některých případech i lepší. Kate byl zvolen na základě velice kladných zkušeností pro napsání kódu v JavaScriptu, \gls{HTML}, \gls{CSS} i úpravy mapy v \gls{SVG}.
+
+\subsubsection{Kompare}
+V případě potřeby důkladného porovnání souborů byl použit Kompare (\url{http://www.caffeinated.me.uk/kompare/}). Nástroj umožňuje velmi přehledně porovnat mimo jednotlivých souborů i celé jejich adresáře. Kompare neporovnává soubory sám, ale je nadstavbou nad konzolovou aplikací diff či obdobnou.
+
+\subsubsection{Webové prohlížeče}
+Aplikace byla průběžně testována v různých mobilních prohlížečích:
+\begin{itemize}
+ \item Mozilla Firefox (\url{http://www.mozilla.org/firefox}).
+ \item Chromium (\url{http://chromium.org/}).
+ \item rekonq (\url{http://rekonq.kde.org/}).
+ \item Prohlížeč platformy Android (\url{http://www.android.com/}).
+ \item Google Chrome for Android (\url{https://www.google.com/intl/en/chrome/android/}).
+ \item Opera Mobile (\url{http://www.opera.com/mobile}).
+ \item Internet Explorer Mobile (\url{http://www.microsoft.com/windowsphone/en-us/features/default.aspx#internet-explorer}).
+Před dokončením byla navíc otestována panem inženýrem Havrylukem, vedoucím práce, v následujících prohlížečích:
+ \item Nokia Browser for Symbian  (\url{http://browser.nokia.com/}).
+ \item Prohlížeč platformy BlackBerry (\url{http://us.blackberry.com/smartphones/features/internet.jsp}).
+ \item Safari (\url{http://www.apple.com/safari/}).
+\end{itemize}
+
+\subsubsection{Git}
+Práce byla průběžně verzována systémem pro správu verzí Git (\url{http://git\-scm.com/}), čímž bylo zajištěné pohodlné zálohování jak ve smyslu možnosti návratu k některé z minulých verzí, tak i ve smyslu vzdáleného duplikování na serveru GitHub (\url{http://github.com/}). Pozitivním vedlejším efektem tohoto přístupu je možnost sledování vývoje prostřednictvím veřejného repozitáře.
 
 
 \section{Mobilní aplikace}
@@ -580,6 +731,14 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 
 \subsection{Návrh řešení}
 \todo{Diskuse alternativ.}
+\begin{figure}[h]
+ \centering
+ \includegraphics{./figures/class-m.png}
+ % class-m.png: 535x376 pixel, 95dpi, 14.30x10.05 cm, bb=0 0 405 285
+ \caption{Třídní diagram mobilní aplikace}
+ \label{fig:mobile:class}
+\end{figure}
+
 
 \todo{Volba implementačního prostředí.}
 
@@ -606,6 +765,10 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
 % Vyhledáním místnosti získá aplikace cíl, ke kterému je potřeba uživatele navést. Dobrým řešením je ukázat uživateli plán cílového patra s vyznačeným cílem, orientačními body, schodišti (a výtahy) a vstupy do budovy (s~rozdíly pater). Uživatel se tak dokáže v plánu zorientovat, i kdyby se mu to doposud nepodařilo, schodiště (většinou vedou budovou každým patrem) a vchody do budovy (většinou jsou maximálně dva) k tomu velmi pomohou. Plán pouze cílového patra proto, že cestu po schodech nemá cenu vizualizovat (dokonce je to spíše nevhodné) a v rámci výchozího patra je většinou zcela zřejmé, jak se ke schodům dostat. Uživatel se tedy zvládne dostat do uvedeného patra a tam už podle plánu k hledané místnosti sám bez větších komplikací.
 
 \subsection{Návrh bezpečnosti}
+
+
+
+
 \todo{Injekce JS, ošetření vstupů, white-listing URL, elementů, atributů, zakázání cizích zdrojů...}
 
 \subsection{Návrh nasazení}
