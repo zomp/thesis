@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI verified="false" xmi.version="1.2" timestamp="2012-05-05T10:48:25" xmlns:UML="http://schema.omg.org/spec/UML/1.3">
+<XMI verified="false" xmi.version="1.2" timestamp="2012-05-05T18:53:54" xmlns:UML="http://schema.omg.org/spec/UML/1.3">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://uml.sf.net</XMI.exporter>
@@ -70,6 +70,19 @@
       <UML:Abstraction visibility="public" isSpecification="false" namespace="Logical View" supplier="ec2ens0AuoaI" xmi.id="CJeqttUszbJE" client="Lzhru3RqSTAJ" name=""/>
       <UML:Abstraction visibility="public" isSpecification="false" namespace="Logical View" supplier="ec2ens0AuoaI" xmi.id="WmJOuRHVYrFr" client="MOrMBrSCjiOx" name=""/>
       <UML:Abstraction visibility="public" isSpecification="false" namespace="Logical View" supplier="ec2ens0AuoaI" xmi.id="KIor71gpzF9X" client="Lzhru3RqSTAJ" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="lAowxNEmqZR1" name="DatabaseDriver">
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="WRGXEp7Prh8G" name="store()"/>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Association visibility="public" isSpecification="false" namespace="Logical View" xmi.id="lEWtqWgwKOFc" name="">
+       <UML:Association.connection>
+        <UML:AssociationEnd changeability="changeable" visibility="public" isNavigable="false" isSpecification="false" xmi.id="F3DwVeREpD8m" type="O4qQNbK72Y3b" name="" aggregation="none"/>
+        <UML:AssociationEnd changeability="changeable" visibility="public" isNavigable="true" isSpecification="false" xmi.id="aLYPuxOfBuX2" type="lAowxNEmqZR1" name="" aggregation="none"/>
+       </UML:Association.connection>
+      </UML:Association>
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="lAowxNEmqZR1" xmi.id="RBylZBLmCYih" client="Lzhru3RqSTAJ" name=""/>
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="lAowxNEmqZR1" xmi.id="Z5uldcRokLq6" client="MOrMBrSCjiOx" name=""/>
      </UML:Namespace.ownedElement>
      <XMI.extension xmi.extender="umbrello">
       <diagrams>
@@ -79,6 +92,7 @@
          <interfacewidget linecolor="#000000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="1" showpackage="1" x="350" showstereotype="1" y="170" font="Ubuntu,9,-1,5,75,1,0,0,0,0" drawascircle="0" width="87" isinstance="0" usefillcolor="1" fillcolor="#dcdcdc" xmi.id="ec2ens0AuoaI" showscope="1" height="49" showopsigs="601"/>
          <classwidget linecolor="#000000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="190" showattsigs="601" showstereotype="1" y="260" showattributes="1" font="Ubuntu,9,-1,5,75,0,0,0,0,0" width="188" isinstance="0" usefillcolor="1" fillcolor="#dcdcdc" xmi.id="Lzhru3RqSTAJ" showscope="1" height="84" showopsigs="601"/>
          <classwidget linecolor="#000000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="410" showattsigs="601" showstereotype="1" y="260" showattributes="1" font="Ubuntu,9,-1,5,75,0,0,0,0,0" width="188" isinstance="0" usefillcolor="1" fillcolor="#dcdcdc" xmi.id="MOrMBrSCjiOx" showscope="1" height="112" showopsigs="601"/>
+         <classwidget linecolor="#000000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="490" showattsigs="601" showstereotype="1" y="170" showattributes="1" font="Ubuntu,9,-1,5,75,0,0,0,0,0" width="103" isinstance="0" usefillcolor="1" fillcolor="#dcdcdc" xmi.id="lAowxNEmqZR1" showscope="1" height="35" showopsigs="601"/>
         </widgets>
         <messages/>
         <associations>
@@ -87,10 +101,10 @@
            <startpoint startx="280" starty="170"/>
            <endpoint endx="350" endy="170"/>
           </linepath>
-          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="280" showstereotype="1" y="150" text="1" font="Ubuntu,9,-1,5,50,0,0,0,0,0" pretext="" role="701" width="15" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="O9bmiF9gUUbq" height="18"/>
-          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="330" showstereotype="1" y="150" text="1..*" font="Ubuntu,9,-1,5,50,0,0,0,0,0" pretext="" role="702" width="27" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="Otjb2fx9kts6" height="18"/>
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="280" showstereotype="1" y="150" text="1" font="Ubuntu,9,-1,5,50,0,0,0,0,0" pretext="" role="701" width="15" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="pVNhBDmW8e0p" height="18"/>
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="330" showstereotype="1" y="150" text="1..*" font="Ubuntu,9,-1,5,50,0,0,0,0,0" pretext="" role="702" width="27" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="6njIKrqbjSTX" height="18"/>
          </assocwidget>
-         <assocwidget indexa="1" indexb="2" usesdiagramusefillcolor="0" widgetaid="MOrMBrSCjiOx" usesdiagramfillcolor="0" fillcolor="#000000" linecolor="none" totalcounta="2" xmi.id="WmJOuRHVYrFr" widgetbid="ec2ens0AuoaI" totalcountb="3" type="511" usefillcolor="1" linewidth="none">
+         <assocwidget indexa="1" indexb="2" usesdiagramusefillcolor="0" widgetaid="MOrMBrSCjiOx" usesdiagramfillcolor="0" fillcolor="#000000" linecolor="none" totalcounta="3" xmi.id="WmJOuRHVYrFr" widgetbid="ec2ens0AuoaI" totalcountb="3" type="511" usefillcolor="1" linewidth="none">
           <linepath>
            <startpoint startx="420" starty="260"/>
            <endpoint endx="420" endy="220"/>
@@ -100,6 +114,28 @@
           <linepath>
            <startpoint startx="370" starty="260"/>
            <endpoint endx="370" endy="220"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" indexb="1" usesdiagramusefillcolor="0" widgetaid="O4qQNbK72Y3b" usesdiagramfillcolor="0" fillcolor="#000000" linecolor="none" totalcounta="2" xmi.id="lEWtqWgwKOFc" widgetbid="lAowxNEmqZR1" totalcountb="4" type="512" usefillcolor="125" linewidth="none">
+          <linepath>
+           <startpoint startx="220" starty="210"/>
+           <endpoint endx="510" endy="210"/>
+           <point x="220" y="240"/>
+           <point x="430" y="240"/>
+           <point x="510" y="230"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" indexb="2" usesdiagramusefillcolor="0" widgetaid="Lzhru3RqSTAJ" usesdiagramfillcolor="0" fillcolor="#000000" linecolor="none" totalcounta="2" xmi.id="RBylZBLmCYih" widgetbid="lAowxNEmqZR1" totalcountb="4" type="502" usefillcolor="194" linewidth="none">
+          <linepath>
+           <startpoint startx="380" starty="260"/>
+           <endpoint endx="540" endy="210"/>
+           <point x="540" y="240"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="2" indexb="3" usesdiagramusefillcolor="0" widgetaid="MOrMBrSCjiOx" usesdiagramfillcolor="0" fillcolor="#000000" linecolor="none" totalcounta="3" xmi.id="Z5uldcRokLq6" widgetbid="lAowxNEmqZR1" totalcountb="4" type="502" usefillcolor="125" linewidth="none">
+          <linepath>
+           <startpoint startx="570" starty="260"/>
+           <endpoint endx="570" endy="210"/>
           </linepath>
          </assocwidget>
         </associations>
@@ -123,7 +159,7 @@
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello">
-  <docsettings viewid="uNVt5EFNtyqH" uniqueid="T1EEu4IYr2KD" documentation=""/>
+  <docsettings viewid="uNVt5EFNtyqH" uniqueid="WRGXEp7Prh8G" documentation=""/>
   <listview>
    <listitem open="1" type="800" id="Views">
     <listitem open="1" type="821" id="Component View"/>
@@ -132,6 +168,9 @@
     <listitem open="1" type="801" id="Logical View">
      <listitem open="1" type="813" id="O4qQNbK72Y3b">
       <listitem open="0" type="815" id="tcDKcp5DoLgi"/>
+     </listitem>
+     <listitem open="1" type="813" id="lAowxNEmqZR1">
+      <listitem open="0" type="815" id="WRGXEp7Prh8G"/>
      </listitem>
      <listitem open="0" type="830" id="Datatypes">
       <listitem open="1" type="829" id="DEE4A5LUKPEy"/>
