@@ -12,7 +12,7 @@ tab.sparql.getContent = function () {
 	//vyhledávací formulář
 	var query = $('<textarea rows="8">PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;\nSELECT ?name ?email\nWHERE {\n	?person a foaf:Person.\n' +
 		'	?person foaf:name ?name.\n	?person foaf:mbox ?email.\n}\n</textarea>');
-	var submit = $('<a href="#">Hledej!</a>');
+	var submit = $('<a href="#" class="submit">Hledej!</a>');
 	var form = $('<form id="search" action="#"/>');
 	
 	//nalezené výsledky

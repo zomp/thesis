@@ -22,13 +22,19 @@ tab.help.getContent = function () {
 		'<p>Pod záložkou <em>Navigace</em> naleznete vyhledávací sekci a mapu dejvického campusu. Mapu lze' +
 		' používat samostatně, sekce pro vyhledávání ale možnosti podstatně rozšíří. Vyhledávat lze:</p>' +
 		'<ul>' +
-		'<li>Budovy, například <em>T9</em>.</li>' +
-		'<li>Neoficiální názvy budov, například <em>Modrá menza</em>.</li>' +
-		'<li>Místnosti, například <em>T9:349</em>.</li>' +
-		'<li>Alternativní názvy místností, například <em>Gočár</em>.</li>' +
-		'<li>Body zájmu, například <em>občerstvení</em>.</li>' +
-		'<li>&hellip;</li>' +
+		' <li>Budovy, například <em>T9</em>.</li>' +
+		' <li>Neoficiální názvy budov, například <em>Modrá menza</em>.</li>' +
+		' <li>Místnosti, například <em>T9:349</em>.</li>' +
+		' <li>Alternativní názvy místností, například <em>Gočár</em>.</li>' +
+		' <li>Body zájmu, například <em>občerstvení</em>.</li>' +
+		' <li>&hellip;</li>' +
 		'</ul>' +
+		'<p>Při vyhledávání nezáleží na velikosti písmen a lze používat JavaScriptové regulární výrazy,' +
+		' například <code>^T9.*8$</code> pro vyhledání objektu začínajícího (<code>^</code>) řetězcem' +
+		' T9, po kterém následuje libovolný znak (<code>.</code>) opakující se nula až neomezeněkrát' +
+		' (<code>*</code>), pak následuje znak 8, kterým název objektu končí (<code>$</code>).' +
+		' Podrobný návod naleznete na webu <a href="http://www.regularnivyrazy.info/serial-javascript-regexp.html"' +
+		' target="_blank">Regulární výrazy</a>.</p>' +
 		'<p>Mapu lze ovládat (přibližovat, posouvat) ovládacími prvky z menu umístěného nad ní nebo gesty,' +
 		' například klikem na mapu dojde k vycentrování mapy na místo kliku.</p>' +
 		'</div>' +

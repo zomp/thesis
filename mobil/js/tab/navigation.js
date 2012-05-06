@@ -11,7 +11,8 @@ tab.navigation.getName = function () {
 tab.navigation.getContent = function () {
 	//vyhledávací formulář
 	var query = $('<input type="text" value="T9:349">');
-	var submit = $('<a href="#">Hledej!</a>');
+	var submit = $('<a href="#" class="submit">Hledej!</a>');
+	var results = $('<div id="results"><p>Vyhledat můžete budovy, místnosti, body zájmu... Lze použít regulární výrazy.</p></div>');
 	var form = $('<form id="search" action="#"/>');
 	
 	//ovládací prvky mapy - pozice, škálování, posun
@@ -82,9 +83,18 @@ tab.navigation.getContent = function () {
 	
 	/**
 	 * Vyhledání dotazu a vizualizace výsledků.
+	 * @param data Konfigurační parametry (submit - potvrzení vyhledávání).
 	 */
 	var search = function () {
 		var queryval = query.val();
+		
+		try {
+			var querymatch = new RegExp(queryval, 'i');
+		} catch (e) {
+			results.html('<p><span class="error">Zadaná fráze je neplatným regulárním výrazem.</span> Nejčastější příčinou jsou chybějící výraz pro libovolný znak (<code>.</code>) nebo chybějící escape znak (<code>\\</code>) před následujícími znaky <code>*</code>, <code>?</code>, <code>+</code>, <code>[</code>, <code>]</code>, <code>(</code>, <code>)</code>, <code>{</code>, <code>}</code>, <code>\\</code>. Podrobnosti naleznete v nápovědě.</p>');
+			return false;
+		}
+		
 		unpointAllAreas();
 		
 		/**
@@ -103,27 +113,65 @@ tab.navigation.getContent = function () {
 			return norm;
 		};
 		
-		var places = config.map.places, i = config.map.places.length, j;
-		var querymatch = new RegExp('^' + queryval + '$', 'i');
+		var places = config.map.places; //databáze míst, ve kterých se vyhledává
+		var found = []; //nalezená místa
+		
+		var i = config.map.places.length, j;
 		while (i--) {
 			j = places[i].phrase.length;
 			while (j--) {
 				if (querymatch.test(places[i].phrase[j]) || querymatch.test(normalize(places[i].phrase[j]))) {
-					pointArea(places[i].selector);
-					return false; //ukončení vyhledávání
+					found.push(places[i]);
+					break;
 				}
 			}
 		}
 		
-		alert('Nic nenalezeno. Vyhledávejte budovy (př. TK), názvy místností (př. T9:349), alternativní názvy (př. Gočár), body zájmu (př. občerstvení)...');
+		if (found.length === 0) {
+			results.html('<p><span class="error">Nic nenalezeno.</span> Vyhledávejte budovy (<code>TK</code>), místnosti (<code>T9:349</code>), alternativní názvy (<code>Gočár</code>), body zájmu (<code>občerstvení</code>)...</p>');
+		} else if (found.length === 1) {
+			var othernames = '';
+			for (j = 1; j < found[0].phrase.length; ++j) {
+				if (querymatch.test(found[0].phrase[j]) || querymatch.test(normalize(found[0].phrase[j]))) {
+					othernames += ', <small>' + found[0].phrase[j] + '</small>';
+				}
+			}
+			results.html('<p>Nalezené místo, <em>' + found[0].phrase[0] + othernames + '</em>, bylo vyznačeno na mapě.</p>');
+			pointArea(found[0].selector);
+		} else {
+			var foundlist = $('<p>Nalezena tato místa: </p>');
+			
+			i = found.length;
+			while (i--) {
+				(function () { //uzávěr
+					var foundselector = found[i].selector;
+					var item = $('<a href="#" class="button">' + found[i].phrase[0] + '</a>');
+					for (j = 1; j < found[i].phrase.length; ++j) {
+						if (querymatch.test(found[i].phrase[j]) || querymatch.test(normalize(found[i].phrase[j]))) {
+							item.append(', <small>' + found[i].phrase[j] + '</small>');
+						}
+					}
+					item.click(function () {
+						unpointAllAreas();
+						pointArea(foundselector);
+						return false;
+					});
+					foundlist.append(item);
+				})();
+			}
+			
+			results.empty();
+			results.append(foundlist);
+		}
 		return false;
 	};
 	
 	form.submit(search);
 	submit.click(search);
+	query.blur(search);
+	query.keyup(search);
 	
-	form.append(query);
-	form.append(submit);
+	form.append(query, results, submit);
 	
 	/**
 	 * Škálování mapy v daném poměru.
@@ -199,42 +247,39 @@ tab.navigation.getContent = function () {
 	 * @param selector Selektor místa.
 	 */
 	var pointArea = function (selector) {
-		var found = $(selector, $(svgmap));
+		var found = $(svgmap).find(selector);
+		var originalpointer = $('#search-pointer')
+		var bBox = {top: Infinity, right: -Infinity, bottom: -Infinity, left: Infinity}; //oblast, na kterou bude přesunuto
 		found.each(function () {
 			$(this).addSvgClass('point');
 			
 			if ($(this).css('visibility') === 'hidden')
 				$(this).closest('.floor').addSvgClass('visible').closest('.building').addSvgClass('hidden');
 			$(this).closest('.floor, .building').parentsUntil($(svgmap)).andSelf().siblings().addSvgClass('unimportant');
-		});
-		if (found.length === 1) {
-			var pointer = $('#search-pointer');
-			var found1 = found[0];
-			pointer[0].setAttribute('transform', 'translate(' +
-				(found1.getBBox().x + found1.getBBox().width/2) + ' ' +
-				(found1.getBBox().y + found1.getBBox().height/2) + ')');
-			pointer.css('visibility', 'visible');
 			
-			move(svgToViewPosition({
-				x: found1.getBBox().x + found1.getBBox().width/2,
-				y: found1.getBBox().y + found1.getBBox().height/2
-			}));
+			var pointer = originalpointer.clone();
+			pointer.removeAttr('id');
+			pointer.attr('transform', 'translate(' +
+				(this.getBBox().x + this.getBBox().width/2) + ' ' +
+				(this.getBBox().y + this.getBBox().height/2) + ')');
+			pointer.addSvgClass('search-pointer');
+			$(svgmap).append(pointer);
+			
+			(this.getBBox().y < bBox.top) && (bBox.top = this.getBBox().y);
+			(this.getBBox().x + this.getBBox().width > bBox.right) && (bBox.right = this.getBBox().x + this.getBBox().width);
+			(this.getBBox().y + this.getBBox().height > bBox.bottom) && (bBox.bottom = this.getBBox().y + this.getBBox().height);
+			(this.getBBox().x < bBox.left) && (bBox.left = this.getBBox().x);
+		});
+		if (found.length >= 1) {
+			move(svgToViewPosition({x: (bBox.left + bBox.right)/2, y: (bBox.top + bBox.bottom)/2}));
 		}
-	};
-	/**
-	 * Odznačení místa na mapě.
-	 * Není úplným protikladem pointArea()!
-	 * @param selector Selektor místa.
-	 */
-	var unpointArea = function (selector) {
-		$(selector, map).removeSvgClass('point');
 	};
 	/**
 	 * Odznačení všech míst na mapě.
 	 */
 	var unpointAllAreas = function () {
 		map.find('*').removeSvgClass('point').removeSvgClass('visible').removeSvgClass('hidden').removeSvgClass('unimportant');
-		$('#search-pointer').css('visibility', 'hidden');
+		$('.search-pointer').remove();
 	};
 	
 	/**
@@ -259,9 +304,12 @@ tab.navigation.getContent = function () {
 	var svgToViewPosition = function (svgp) {
 		var viewp = {}; //souřadnice x, y
 		
-		svgp && ('x' in svgp) && (viewp.x = (svgp.x - svgmap.viewBox.baseVal.x)*(svgmap.viewBox.baseVal.width/svgmap.width.baseVal.value));
-		svgp && ('y' in svgp) && (viewp.y = (svgp.y - svgmap.viewBox.baseVal.y)*(svgmap.viewBox.baseVal.height/svgmap.height.baseVal.value));
+		svgp && ('x' in svgp) && (viewp.x = (svgp.x - svgmap.viewBox.baseVal.x)*(svgmap.width.baseVal.value/svgmap.viewBox.baseVal.width));
+		svgp && ('y' in svgp) && (viewp.y = (svgp.y - svgmap.viewBox.baseVal.y)*(svgmap.height.baseVal.value/svgmap.viewBox.baseVal.height));
 		
+// 		svgp && ('x' in svgp) && (viewp.x = (svgp.x - svgmap.viewBox.baseVal.x)*(svgmap.viewBox.baseVal.width/svgmap.width.baseVal.value));
+// 		svgp && ('y' in svgp) && (viewp.y = (svgp.y - svgmap.viewBox.baseVal.y)*(svgmap.viewBox.baseVal.height/svgmap.height.baseVal.value));
+			
 		return viewp;
 	};
 	

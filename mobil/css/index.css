@@ -84,7 +84,7 @@ th {
 	border: 2px solid #888888;
 	border-radius: 3px;
 }
-#search a {
+#search .submit {
 	width: 99%;
 	display: inline-block;
 	margin: 2px;
@@ -94,7 +94,7 @@ th {
 	border: 2px solid #888888;
 	border-radius: 3px;
 }
-#search a:hover {
+#search .submit:hover {
 	background-color: #00A2C0;
 	cursor: pointer;
 }

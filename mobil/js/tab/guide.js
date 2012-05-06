@@ -136,7 +136,7 @@ tab.guide.getContent = function () {
 		ret.find('tr td:first-child, tr:first-child td').css({'text-transform': 'capitalize', 'font-weight': 'bold'})
 		return ret;
 	});
-	createLoaderButton(openingscanteens, 'http://agata.suz.cvut.cz/jidelnicky/nove/oteviraci-doby.php', function (data) {
+	createLoaderButton(openingscanteens, 'http://agata.suz.cvut.cz/jidelnicky/oteviraci-doby.php', function (data) {
 		var ret = $(data).find('#ap-otdoby');
 		//odstranění stylů a výplní
 		ret.find('*').andSelf().removeAttr('style');
@@ -232,7 +232,7 @@ tab.guide.getContent = function () {
 		ret.find('a').attr('target', '_blank');
 		return ret;
 	});
-	createLoaderButton(contactscanteens, 'http://agata.suz.cvut.cz/jidelnicky/nove/kontakty.php', function (data) {
+	createLoaderButton(contactscanteens, 'http://agata.suz.cvut.cz/jidelnicky/kontakty.php', function (data) {
 		var ret = $(data).find('#ap-otdoby');
 		//odstranění stylů
 		ret.find('*').andSelf().removeAttr('style');

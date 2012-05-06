@@ -84,13 +84,6 @@
 .point path.light {
 	fill: #ffffff;
 }
-#position-pointer, #search-pointer {
-	visibility: hidden;
-	opacity: 0.6;
-}
-#position-pointer .dark, #search-pointer .dark {
-	fill: #D40000;
-}
 .visible {
 	visibility: visible;
 }
@@ -99,4 +92,13 @@
 }
 .unimportant {
 	opacity: 0.3;
+}
+#position-pointer, #search-pointer {
+	visibility: hidden;
+}
+#position-pointer, .search-pointer {
+	opacity: 0.6;
+}
+#position-pointer .dark, .search-pointer .dark {
+	fill: #D40000;
 }
