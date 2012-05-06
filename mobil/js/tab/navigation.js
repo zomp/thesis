@@ -74,6 +74,7 @@ tab.navigation.getContent = function () {
 				break;
 			case 3:
 				scale(2/3);
+				break;
 		}
 	});
 	$(svgmap).bind('contextmenu', function (e) {
@@ -272,6 +273,7 @@ tab.navigation.getContent = function () {
 		});
 		if (found.length >= 1) {
 			move(svgToViewPosition({x: (bBox.left + bBox.right)/2, y: (bBox.top + bBox.bottom)/2}));
+			scale(Math.min(svgmap.viewBox.baseVal.width/(bBox.right - bBox.left), svgmap.viewBox.baseVal.height/(bBox.bottom - bBox.top)) * 1/7);
 		}
 	};
 	/**
