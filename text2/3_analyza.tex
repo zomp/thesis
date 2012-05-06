@@ -158,7 +158,8 @@ Uživatel se pouze dotazuje nad systémem a zjišťuje informace. Správce manu�
 \end{itemize}
 
 
-\subsection{Funkční požadavky}
+\subsection{Požadavky}
+\subsubsection{Funkční požadavky}
 Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na jednotlivé funkcionality systému. Ne všechny požadavky budou nakonec implementovány, pouze jejich reprezentativní vzorek, dle kterého bude možné systém o ty ostatní rozšířit. Pro serverovou aplikaci mezi ně patří především:
 \begin{enumerate}
  \item Aplikace bude čerpat informace o názvech budov z předstíraného adaptéru.\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
@@ -166,23 +167,23 @@ Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové 
  \item Aplikace bude čerpat informace o názvech místností z předstíraného adaptéru.\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
  \item Aplikace bude čerpat informace o umístění místností z předstíraného adaptéru.\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
  \item Aplikace bude čerpat seznam vyučujících z KOSapi (\url{http://kosapi.fit.cvut.cz/}).\footnote{Nahrazen zdroj za předstíraný adaptér -- žádný seznam vyučujících obsahující identifikátory (uživatelská jména) nebyl nalezen.}
- \item Aplikace bude čerpat seznam studentů z KOSapi (\url{http://kosapi.fit.cvut.cz/}).\footnote{Nahrazen zdroj za předstíraný adaptér -- z důvodů konzistence se zdrojem vyučujících.}
+ \item Aplikace bude čerpat seznam studentů z KOSapi.\footnote{Nahrazen zdroj za předstíraný adaptér -- z důvodů konzistence se zdrojem vyučujících.}
  \item Aplikace bude čerpat seznam neakademických pracovníků z předstíraného adaptéru.
  \item Aplikace bude čerpat informace o rozvrzích místností z KOSapi.\footnote{Vynecháno -- projektu KOSapi nebyl dosud umožněn přístup do komponenty studia. Implementováno na straně \textit{mobilní aplikace}.}
- \item Aplikace bude čerpat informace o rozvrzích vyučujících z KOSapi (\url{http://kosapi.fit.cvut.cz/}).\footnote{Vynecháno -- projektu KOSapi nebyl dosud umožněn přístup do komponenty studia. Implementováno na straně \textit{mobilní aplikace}.}
+ \item Aplikace bude čerpat informace o rozvrzích vyučujících z KOSapi.\footnote{Vynecháno -- projektu KOSapi nebyl dosud umožněn přístup do komponenty studia. Implementováno na straně \textit{mobilní aplikace}.}
  \item Aplikace bude čerpat informace o kancelářích vyučujících z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
- \item Aplikace bude čerpat informace o kontaktech vyučujících z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o kontaktech vyučujících z Usermap ČVUT.
  \item Aplikace bude čerpat informace o rozvrzích studentů z KOSapi.\footnote{Nahrazen zdroj za libovolný zdroj ve formátu iCalendar -- projektu KOSapi nebyl dosud umožněn přístup do komponenty studia.}
- \item Aplikace bude čerpat informace o kontaktech studentů z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
- \item Aplikace bude čerpat informace o kancelářích neakademických pracovníků z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
- \item Aplikace bude čerpat informace o kontaktech neakademických pracovníků z Usermap ČVUT (\url{http://usermap.cvut.cz/}).
+ \item Aplikace bude čerpat informace o kontaktech studentů z Usermap ČVUT.
+ \item Aplikace bude čerpat informace o kancelářích neakademických pracovníků z Usermap ČVUT.
+ \item Aplikace bude čerpat informace o kontaktech neakademických pracovníků z Usermap ČVUT.
  \item Aplikace bude čerpat informace o akcích \glsname{CVUT} z Kalendáře akcí ČVUT (\url{http://akce.cvut.cz/}).
  \item Aplikace bude čerpat informace o harmonogramu akademického roku z předstíraného adaptéru (na základě \url{http://fit.cvut.cz/}).\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
  \item Aplikace bude čerpat informace o datech \glsname{MAR} budovy T9.\footnote{Jednání o udělení přístupu nedopadla -- vyskytly se blíže nespecifikované technické komplikace na straně technickoprovozních služeb Fakulty architektury.}
  \item Aplikace bude čerpat informace o datech \glsname{MAR} kolejí Orlík.\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
  \item Aplikace bude čerpat informace o datech \glsname{MAR} Masarykovy koleje.\footnote{Vynecháno -- data poskytována pouze pod licencí, kterou nebylo možné naplnit.}
  \item Aplikace bude čerpat informace o jídelníčcích menz z Jídelníčků menz (\url{http://agata.suz.cvut.cz/jidelnicky/}).
- \item Aplikace bude čerpat informace o otvírací době menz z Jídelníčků menz (\url{http://agata.suz.cvut.cz/jidelnicky/}).\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
+ \item Aplikace bude čerpat informace o otvírací době menz z Jídelníčků menz.\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
  \item Aplikace bude čerpat informace o otvírací době \glsname{NTK} z Národní technické knihovny (\url{http://www.techlib.cz/}).\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
  \item Aplikace bude čerpat informace o otvírací době Vydavatelství průkazů (\url{http://ke.customer.decent.cz/a021/mon/wc-mon.php?co=2}).\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
  \item Aplikace bude čerpat informace o počtu lidí ve frontě ve Vydavatelství průkazů (\url{http://ke.customer.decent.cz/a021/mon/}).\footnote{Vynecháno.}
@@ -191,21 +192,21 @@ Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové 
  \item Aplikace umožní automatické aktualizace informací.
  \item Aplikace umožní manuální aktualizace informací.
  \item Aplikace umožní manuální úpravy informací.
- \item Aplikace bude logovat chyby.
+%  \item Aplikace bude logovat chyby.
  \item Aplikace bude ukládat sémantické informace do databáze.
  \item Aplikace umožní vykonávat dotazy nad uloženými daty.
 \end{enumerate}
 
-\subsection{Nefunkční požadavky}
+\subsubsection{Nefunkční požadavky}
 Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na dílo jako celek, nikoliv na jednotlivé funkcionality. Pro serverovou aplikaci mezi ně patří především:
 
 \begin{enumerate}
- \item Aplikaci naprogramujte v jazyce \emph{JavaScript}.
- \item Pro běh serveru využijte \emph{Node.js}.
- \item Pro dotazování využijte dotazovací jazyk \emph{\glsname{SPARQL}}.
+ \item Aplikaci naprogramujte v jazyce JavaScript.
+ \item Pro běh serveru využijte Node.js.
+ \item Pro dotazování využijte dotazovací jazyk \glsname{SPARQL}.
  \item Sémantická data ukládejte do takového úložiště, aby nad ním bylo možné vykonávat dotazy přímo (případně přes nezávislého prostředníka) a nebylo nutné přistupovat přes vlastní aplikaci.
  \item Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
- \item Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{\glsname{GNU}}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
+ \item Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \glsname{GNU}, Creative Commons a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
 \end{enumerate}
 
 
@@ -230,7 +231,7 @@ Následuje seznam zvolených ontologií, pro specifické případy se ale počí
 
 
 \subsection{Návrh architektury}
-Nejprve byl vytvořen návrh architektury (\textit{architecture design}) aplikace, který byl později rozpracován do návrhu nasazení \textit{deployment design}.
+Nejprve byl vytvořen návrh architektury (\textit{architecture design}) aplikace, který byl později rozpracován do návrhu nasazení (\textit{deployment design}).
 
 Identifikovány byly následující základní struktury systému:
 \begin{itemize}
@@ -435,7 +436,7 @@ Pod tuto potřebu shrnuji všechny potřeby nalezené u serverové aplikace (viz
 Zejména naplnění poslední potřeby -- předložit informaci, o kterou člověk sice nepožádal, ale udělal by to, kdyby ho to bylo napadlo -- je od průvodce vítané.
 
 \subsubsection{Potřeba uživatelské přívětivosti}
-Vzhledem k předpokládanému využití mobilní aplikace podstatně méně pokročilými uživateli oproti serverové je vhodné, aby tomu byla uzpůsobena. Cílová skupina navíc zpravidla není ochotná číst dlouhé návody a je tak třeba, aby byla aplikace použitelná sama o sobě.
+Vzhledem k předpokládanému využití mobilní aplikace podstatně méně pokročilými uživateli, oproti serverové, je vhodné, aby tomu byla uzpůsobena. Cílová skupina navíc zpravidla není ochotná číst dlouhé návody a je tak třeba, aby byla aplikace použitelná sama o sobě.
 
 \subsubsection{Potřeba určit cílovou pozici}
 Jedna z nejdůležitějších potřeb, které by měl průvodce naplnit, je potřeba určit cílovou pozici. Může to být například:
@@ -445,13 +446,13 @@ Jedna z nejdůležitějších potřeb, které by měl průvodce naplnit, je pot�
  \item Pitná voda, toalety, sprchy\dots
  \item Výtah, schodiště, nájezd pro kočárek\dots
  \item Vchod, únikový východ, hasící přístroj\dots
- \item Bankomat, zastávka MHD, parkoviště\dots
+ \item Bankomat, zastávka \glsname{MHD}, parkoviště\dots
  \item Informace, vrátnice, šatna, údržba\dots
 \end{itemize}
 Ačkoliv jsou v seznamu uvedené pozice rozděleny do určitých logických celků, je důležité si povšimnout, že existují i jiná jejich, v některých ohledech důležitější, uspořádání:
 \begin{itemize}
  \item Dle jednoznačnosti místa -- místnost s jasně daným názvem je oproti libovolnému schodišti jediná.
- \item Dle jednoznačnosti identifikátoru -- stejná místnost může být vyhledána na základě různých kritérií (název, další výuka, popis).
+ \item Dle jednoznačnosti identifikátoru -- stejná místnost může být vyhledána na základě různých kritérií (název, následující výuka, popis).
  \item Dle frekvence hledání -- přednáškové místnosti jsou vyhledávány podstatně častěji, než hasící přístroje.
  \item Dle kritéria priority -- vzdálenější menza může mít vyšší prioritu na základě lepší kuchyně, zatímco sebelepší nápojový automat může mít kvůli své větší vzdálenosti prioritu nižší.
 \end{itemize}
@@ -604,70 +605,42 @@ Dále byly identifikovány tři hlavní případy užití:
 \end{itemize}
 
 
-\subsection{Funkční požadavky}
+\subsection{Požadavky}
+\subsubsection{Funkční požadavky}
 Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na jednotlivé funkcionality. Pro mobilní aplikaci mezi ně patří především:
 
 \begin{enumerate}
- \item Aplikace umožní pokročilému uživateli zadat vlastní \glsname{SPARQL} dotaz. Ten se odešle na server, kde se zpracuje, a výslek se navrátí uživateli.
- \item Pro méně znalé uživatele \glsname{SPARQL} a pro uživatele minimalizující použití klávesnice vytvořte předpřipravené dotazy pro základní scénáře použití aplikace.
- \item Implementujte funkcionalitu umožňující určení aktuální pozice a její předání dalšímu zpracování.
- \item Aplikace dokáže na mapě vizualizovat určitou pozici.
-%  \item Aplikace umožní vizualizovat polohu uživatele na základě GPS souřadnic.
-%  \item Aplikace umožní vizualizovat polohu uživatele na základě známého blízkého objektu (např. čísla místnosti).
-%  \item Aplikace umožní vizualizovat polohu hledaného objektu.
- \item Aplikace dokáže vizualizovat \glsname{HTML} data nebo data jako \glsname{HTML}.
+ \item Aplikace umožní zadat vlastní \glsname{SPARQL} dotaz. Ten se odešle na server, kde se zpracuje, a výsledek se navrátí uživateli.
+ \item Aplikace bude získávat data předpřipravenými \glsname{SPARQL} dotazy.
+ \item Aplikace dokáže na mapě vizualizovat budovy.
+ \item Aplikace dokáže na mapě vizualizovat místnosti.
+ \item Aplikace dokáže na mapě vizualizovat body zájmu.
+ \item Aplikace umožní určení aktuální pozice a její předání dalšímu zpracování.
+ \item Aplikace dokáže na mapě vizualizovat polohu uživatele.
  \item Aplikace bude poskytovat nápovědu pro snazší použití.
  \item Aplikace bude postavená nad daty reprezentovanými výše uvedenou ontologií.
 \end{enumerate}
+Pro očekávaný malý rozsah sémantické databáze bude aplikace získávat data přímo ze zdrojů na úkor předpřipravených \glsname{SPARQL} dotazů -- na datech databáze by jich mnoho vytvořit nešlo a aplikace by tak nepřinášela mnoho užitku. Prostor pro předpřipravené \glsname{SPARQL} dotazy je nicméně třeba vytvořit.
 
-% \subsection{FR-M-1: Možnost vlastních \emph{SPARQL} dotazů}
-% Aplikace umožní pokročilému uživateli zadat vlastní \emph{SPARQL} dotaz. Ten se odešle na server, kde se zpracuje, a výslek se navrátí uživateli.
-% \subsection{FR-M-2: Výběr předpřipravených dotazů}
-% Pro méně znalé uživatele \emph{SPARQL} a pro uživatele minimalizující použití klávesnice vytvořte předpřipravené dotazy pro základní scénáře použití aplikace.
-% % \subsection{FR-M-: Vyhledání místností}
-% % Připravte aplikaci mimo předem nespecifických dotazů i na ty požadující vyhledání místností. 
-% % \subsection{FR-M-: Vyhledání bodů zájmu}
-% % Připravte aplikaci mimo předem nespecifických dotazů i na ty požadující vyhledání bodů zájmu. 
-% \subsection{FR-M-3: Určení aktuální pozice}
-% Implementujte funkcionalitu umožňující určení aktuální pozice a její předání dalšímu zpracování.
-% \subsection{FR-M-4: Vizualizace pozice}
-% Aplikace dokáže na mapě vizualizovat určitou pozici.
-% \subsection{FR-M-5: Vizualizace \emph{HTML} dat}
-% Aplikace dokáže vizualizovat \emph{HTML} data nebo data jako \emph{HTML}.
-% \subsection{FR-M-6: Nápověda}
-% Aplikace bude poskytovat nápovědu pro snazší použití.
-
-
-\subsection{Nefunkční požadavky}
+\subsubsection{Nefunkční požadavky}
 Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny takové požadavky, které jsou zaměřeny na dílo jako celek, nikoliv na jednotlivé funkcionality. Pro mobilní aplikaci mezi ně patří především:
 
 \begin{enumerate}
  \item Aplikaci vytvořte v \glsname{HTML}5, aby byla na současných, obzvláště mobilních, zařízeních multiplatformní.
  \item Aplikace bude funkční v prohlížečích na nejnovějších verzích \glsname{OS} Android, iOS a Symbian.
  \item Aplikace bude funkční v majoritních desktopových prohlížečích.
- \item Při vývoji se zaměřte i na použitelnost, aplikaci by měl být schopný, po krátkém zaškolení, používat jakýkoliv běžný student Fakulty informačních technologií.
+ \item Při vývoji se zaměřte na použitelnost, aplikaci by měl být schopný, po krátkém zaškolení, používat jakýkoliv běžný student Fakulty informačních technologií.
  \item Snažte se nabízet alternativy k zadávání dlouhých textů, aby byla usnadněna obsluha uživatelům mobilních zařízení bez hardwarových klávesnic.
  \item Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
- \item Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \glsname{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
- \item Aplikace umožní využití off-line. \todo{Vynechám -- muselo by se složitě indexovat.}
+ \item Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \glsname{GNU}, Creative Commons a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
+ \item Aplikace umožní využití offline.
 \end{enumerate}
-
-
-% \subsection{NFR-M-1: Multiplatformnost}
-% Aplikaci vytvořte v \emph{HTML5}, aby byla na současných, obzvláště mobilních, zařízeních co nejvíce multiplatformní. Bude funkční minimálně v nejnovějších verzích OS Android, iOS a Symbian.
-% \subsection{NFR-M-2: Použitelnost}
-% Při vývoji se zaměřte i na použitelnost, aplikaci by měl být schopný, po krátkém zaškolení, používat jakýkoliv běžný student Fakulty informačních technologií.
-% \subsection{NFR-M-3: Omezené použití klávesnice}
-% Snažte se nabízet alternativy k zadávání dlouhých textů, aby byla usnadněna obsluha uživatelům mobilních zařízení bez hardwarových klávesnic.
-% % \subsection{NFR-M-: Offline provoz}
-% \subsection{NFR-M-4: Dejte přednost kvalitě zpracování}
-% Práce nemusí nutně obsáhnout celou zpracovávanou doménu, je ale žádané, aby kvalitně zpracovala hlavní scénáře využití a nebránila dalšímu rozšiřování.
-% \subsection{NFR-M-5: Svobodné licence}
-% Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \emph{GNU}, \emph{Creative Commons} a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
-
+\todo{Přidat požadavky -- na základě UC nebo potřeb.}
 
 
 \subsection{Návrh architektury}
+I v případě mobilní aplikace byl nejprve vytvořen návrh architektury (\textit{architecture design}) aplikace a ten byl později rozpracován do návrhu nasazení (\textit{deployment design}). Náročná práce to ale nebyla -- systém je jednolitý.
+
 Nasazení mobilní aplikace bylo navrženo tak, jak je vidět na obrázku \ref{fig:mobile:deployment}. Aplikace komunikuje se \glsname{SPARQL} endpointem serverové aplikace, v případě neposkytování daných informací aplikace komunikuje přímo se zdrojem informací.
 \begin{figure}[h]
  \centering
@@ -688,6 +661,7 @@ Nasazení mobilní aplikace bylo navrženo tak, jak je vidět na obrázku \ref{f
 \end{figure}
 
 
+\todo{Vysvětlit nenapojení průvodce na SPARQL endpoint -- asi netřeba, už v požadavcích.}
 
 \todo{Volba implementačního prostředí.}
 
@@ -809,7 +783,7 @@ Reprezentaci mapy jsem tedy svěřil \glsname{SVG} z následujících důvodů:
 Nutno podotknout, že jsou implementace kreslení na \textit{canvas} a \glsname{SVG} na různých mobilních zařízeních na různých úrovních, ani jedna ovšem nemá výrazně navrch \cite{CanIUse} \cite{MobileHtml}.
 
 \subsubsection{PHP}
-Z důvodů popsaných v podsekci \ref{sec:cross-origin} (str. \pageref{sec:cross-origin}) bylo nutné vytvořit podpůrnou serverovou aplikaci -- proxy. Po úvaze jsem se rozhodl pro využití jazyka \glsname{PHP}, který je podporovaný jako jediný nástroj pro tvorbu dynmického obsahu na fakultním webovém serveru \url{http://webdev.fit.cvut.cz/}. Tuto kombinaci, vzhledem k její podpoře ze strany fakulty a určení práce pro fakulní nasazení, považuji i přes jinde využitý JavaScript za vhodnou.
+Z důvodů popsaných v podsekci \ref{sec:mobil:cross-origin} na straně \pageref{sec:mobil:cross-origin} bylo nutné vytvořit podpůrnou serverovou aplikaci -- proxy. Po úvaze jsem se rozhodl pro využití jazyka \glsname{PHP}, který je podporovaný jako jediný nástroj pro tvorbu dynmického obsahu na fakultním webovém serveru \url{http://webdev.fit.cvut.cz/}. Tuto kombinaci, vzhledem k její podpoře ze strany fakulty a určení práce pro fakulní nasazení, považuji i přes jinde využitý JavaScript za vhodnou.
 
 
 \subsection{Použité knihovny}
