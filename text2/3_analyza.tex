@@ -665,13 +665,50 @@ Na obrázku \ref{fig:mobile:class} je znázorněn třídní diagram (\textit{cla
  \label{fig:mobile:class}
 \end{figure}
 
-% \subsubsection{Vyhledávání}
+% \subsubsection{Získávání dat ze zdrojů}
+% V rámci aplikace je nutné získávat data z jiných zdrojů: \glsname{SPARQL} endpointu serverové aplikace, ale i přímo z oficiálních zdrojů fakulty.
+% \subsubsection{Vyhledávání }
 % \subsubsection{Navigace}
 
 
 \subsection{Návrh bezpečnosti}
-\todo{Injekce JS, ošetření vstupů, white-listing URL, elementů, atributů, zakázání cizích zdrojů...}
+Návrh aplikace je poměrně přímočarý a není ho třeba nějak složitě vysvětlovat, co se ale týče bezpečnosti, je to podstatně horší -- v prováděných činnostech se vyskytuje několik skrytých hrozeb, které je třeba identifikovat a odstranit z nich plynoucí zranitelnosti.
 
+\subsubsection{Dekompozice}
+Byly identifikovány následující komponenty:
+\begin{itemize}
+ \item Mobilní aplikace.
+ \item \glsname{SPARQL} endpoint.
+ \item Zdroje informací.
+ \item Uživatel.
+\end{itemize}
+Plná důvěra může být pouze v rámci mobilní aplikace -- tam, kde nemůže být žádný zásah zvenčí. Dále lze do určité míry důvěřovat \glsname{SPARQL} endpointu -- bude provozován pod vlastní správou. Zdroje informací a vstupy uživatele jsou naopak nedůvěryhodné -- jsou plně v režii třetích stran. Hranice důvěry jsou přesto mezi všemi komponentami.
+
+\subsubsection{Identifikace hrozeb}
+Hrozby je třeba identifikovat pouze na komponentě \emph{mobilní aplikace}, ostatní komponenty jsou v tuto chvíli irelevantní:
+\begin{itemize}
+ \item Podvržení nepravdivých dat.
+ \item Podvržení škodlivých dat.
+\end{itemize}
+
+\subsubsection{Identifikace zranitelností}
+Obě výše uvedené hrozby mohou vyústit ve zranitelnosti. S podvržením nepravdivých dat se bohužel nevypořádáme - data jsou čerpána z oficiálních zdrojů a v případě, že někdo kompromituje je, nám žádné z opatření nepomůže. Zranitelnosti plynoucí z druhé hrozby omezil ale lze. Mohou jimi být:
+\begin{itemize}
+ \item Injektáž škodlivého skriptu ze zdroje -- vzhledem k použitým technologiím, JavaScriptu.
+ \item Injektáž škodlivého značkovacího kódu ze zdroje -- neuzavřené \glsname{HTML} elementy, identifikátory duplicitní k již existujícím, destruktivní formátování\dots
+ \item Neošetřený uživatelský vstup -- neplatný regulární výraz\dots
+%  \item Pozměnění komunikace se serverem mimo uživatelovy privilegia.
+\end{itemize}
+
+\subsubsection{Důsledky}
+\begin{itemize}
+ \item Je třeba ve výchozím nastavení zakázat všechny cizí vstupy a potřebným udělit výjimky.
+ \item Je třeba důsledně ošetřovat vstupy.
+ \item Je třeba zamezit injektování cizích JavaScriptů.
+ \item Je třeba ve výchozím nastavení zakázat všechny HTML elementy cizích zdrojů a potřebným udělit výjimky.
+ \item Je třeba ve výchozím nastavení zakázat všechny HTML atributy cizích zdrojů a potřebným udělit výjimky.
+ \item Je třeba ve výchozím nastavení zakázat všechny hodnoty HTML atributů cizích zdrojů a potřebným udělit výjimky.
+\end{itemize}
 
 
 \subsection{Návrh uživatelského rozhraní}
