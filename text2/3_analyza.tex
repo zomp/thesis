@@ -651,7 +651,12 @@ Nasazení mobilní aplikace bylo navrženo tak, jak je vidět na obrázku \ref{f
 
 
 \subsection{Návrh řešení}
-\todo{Diskuse alternativ.}
+Návrh (\textit{design}) byl prováděn po rozvržení architektury, za přispění volby použitých technologií a reflektovány do něj byly i požadavky na uživatelské rozhraní.
+
+Systém byl rozdělen do čtyř modulů sloužících jako průvodce, navigace, \glsname{SPARQL} konzole a nápověda. Každý z modulů je víceméně nezávislý na těch ostatních, jen nástroje pro dotazování se \glsname{SPARQL} endpointu byly vyčleněny pro možnost využití ve všech modulech.
+
+Na obrázku \ref{fig:mobile:class} je znázorněn třídní diagram (\textit{class diagram}) mobilní aplikace.
+
 \begin{figure}[h]
  \centering
  \includegraphics[width=14.30cm]{./figures/class-m.pdf}
@@ -660,32 +665,9 @@ Nasazení mobilní aplikace bylo navrženo tak, jak je vidět na obrázku \ref{f
  \label{fig:mobile:class}
 \end{figure}
 
+% \subsubsection{Vyhledávání}
+% \subsubsection{Navigace}
 
-\todo{Vysvětlit nenapojení průvodce na SPARQL endpoint -- asi netřeba, už v požadavcích.}
-
-\todo{Volba implementačního prostředí.}
-
-\todo{Struktura.}
-
-% Návrh (design) této aplikace neprobíhal příliš dlouho, aplikace nemá být nijak složitá a~rozsáhlá, ani není po stránce návrhu nějak výjimečná, takže se zde návrhu příliš věnovat nebudeme.
-% 
-% \subsection{Vyhledávání}
-% Stěžejní funkcí má být vyhledávání, to je zároveň i stěžejním bodem návrhu. Je nutné splnit všechny funkční i nefunkční požadavky, kde je vyhledávání silně zastoupeno.
-% 
-% Vyhledávací algoritmus by měl fungovat následovně, začnu popisovat od databáze, ze které se vyhledává. Databáze bude obsahovat mnoho (až tisíce) záznamů a je proto v mobilním prostředí nutné, aby bylo vyhledávání, včetně samotné databáze, optimalizované. Aby došlo v průběhu vyhledávání ke snížení toku dat algoritmem, provedeme dekompozici databáze a vyčleníme hledatelné položky (označení učeben, jména vyučujících...) stranou, můžeme je ještě abecedně seřadit. Tady optimalizace databáze prozatím končí a můžeme se přesunout k samotnému algoritmu.
-% 
-% Původně jsem zamýšlel vyhledávat binárním půlením nebo jiným algoritmem optimalizovaným pro seřazený seznam, přišel ale požadavek na vyhledávání pomocí regulárních výrazů a tím tato možnost odpadla -- je potřeba projít všechny místnosti a zkontrolovat každou položku.
-% 
-% Regulární výrazy se nám většinou postarají i o nerozlišování velikosti písmen, takže si jimi alespoň pomůžeme k dalšímu požadavku.
-% 
-% Při kontrole položky můžeme zároveň vyřešit i požadavek na hledání bez diakritiky, zase ale musíme optimalizovat. Nebylo by složité vytvořit algoritmus, který zkouší nahradit každé písmeno bez diakritiky jeho diakritickými variantami, tím by nám ale výrazně narostla náročnost algoritmu, slovo \emph{mistnost} by tak najednou odpovídalo sto dvaceti osmi výrazům (\emph{mistnost}, \emph{m\textbf{í}stnost}, \emph{mi\textbf{š}tnost}, \emph{m\textbf{íš}tnost}...), tolikrát ale nezvládneme se současným výkonem mobilních zařízení celou databázi prohledat.\footnote{V praxi není toto omezení tolik markantní, označení místností obsahuje spíše znaky bez diakritiky. Vyhledávané osoby ale diakritiku ve jménech mají, takže toto omezení zachováme.} Umožníme vyhledávat buď jen s diakritikou, nebo bez, čímž slovo \emph{mistnost} bude odpovídat pouze dvěma výrazům (\emph{mistnost} a \emph{m\textbf{í}stnost}). Vyřešíme to následovně, všechny diakritiku obsahující položky v již dříve zmíněném duplicitním seznamu uložíme do tohoto seznamu ještě jednou, tentokrát bez diakritiky.
-% 
-% Nalezeným položkám přiřadíme místnosti, které reprezentují (například položce \emph{Josef Vomáčka} místnost \emph{KN:E-108}), vyřadíme duplicitní místnosti a seřadíme je podle abecedy.
-% 
-% \subsection{Navigace}
-% Zpočátku jsme v analýze uvažovali o vyznačení cesty z výchozího bodu do cílového, to by ale, mimo náročného algoritmu, dost uživateli v některých věcech přitížilo. V první řadě by přišel o mnoho místa malého displeje formulářem pro zadání výchozího bodu, v druhé řadě by bylo vytvoření optimálního algoritmu hledajícího cestu pravděpodobně nemožné (viz \ref{subs:UNcestaAplikaci}) a špatná cesta by se uživateli nemusela líbit. Problém v tom naštěstí pravděpodobně nebude, budovy nejsou stavěné jako bludiště a navigace po nich s plánkem není problém.
-% 
-% Vyhledáním místnosti získá aplikace cíl, ke kterému je potřeba uživatele navést. Dobrým řešením je ukázat uživateli plán cílového patra s vyznačeným cílem, orientačními body, schodišti (a výtahy) a vstupy do budovy (s~rozdíly pater). Uživatel se tak dokáže v plánu zorientovat, i kdyby se mu to doposud nepodařilo, schodiště (většinou vedou budovou každým patrem) a vchody do budovy (většinou jsou maximálně dva) k tomu velmi pomohou. Plán pouze cílového patra proto, že cestu po schodech nemá cenu vizualizovat (dokonce je to spíše nevhodné) a v rámci výchozího patra je většinou zcela zřejmé, jak se ke schodům dostat. Uživatel se tedy zvládne dostat do uvedeného patra a tam už podle plánu k hledané místnosti sám bez větších komplikací.
 
 \subsection{Návrh bezpečnosti}
 \todo{Injekce JS, ošetření vstupů, white-listing URL, elementů, atributů, zakázání cizích zdrojů...}
