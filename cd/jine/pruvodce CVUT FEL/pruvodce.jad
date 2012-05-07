@@ -1,0 +1,8 @@
+MIDlet-Jar-URL: pruvodce.jar
+MIDlet-Jar-Size: 30673
+MIDlet-Name: Pruvodce CVUT FEL
+MIDlet-Vendor: Lukas.Rypl@atlas.cz
+MIDlet-Version: 1.0.3
+MIDlet-1: Pruvodce CVUT FEL, , pruvodce1.pruvodce
+MicroEdition-Configuration: CLDC-1.0
+MicroEdition-Profile: MIDP-1.0

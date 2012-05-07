@@ -1,0 +1,248 @@
+<mockup version="1.0" skin="sketch" measuredW="1302" measuredH="570" mockupW="1300" mockupH="559">
+  <controls>
+    <control controlID="228" controlTypeID="__group__" x="980" y="11" w="322" h="559" measuredW="322" measuredH="559" zOrder="0" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="322" h="559" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="228">
+          <controlProperties>
+            <text>Pr%u016Fvodce%20FIT%20%u010CVUT%0Ahttp%3A//guide.fit.cvut.cz/</text>
+            <value>0</value>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::TabBar" x="7" y="75" w="308" h="462" measuredW="335" measuredH="100" zOrder="1" locked="false" isInGroup="228">
+          <controlProperties>
+            <selectedIndex>3</selectedIndex>
+            <text>Pr%u016Fvodce%2C%20Navig%E1tor%2C%20SPARQL%2C%20N%E1pov%u011Bda</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::SubTitle" x="22" y="124" w="-1" h="-1" measuredW="113" measuredH="33" zOrder="2" locked="false" isInGroup="228">
+          <controlProperties>
+            <text>N%E1pov%u011Bda</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::SubTitle" x="22" y="332" w="-1" h="-1" measuredW="106" measuredH="33" zOrder="3" locked="false" isInGroup="228">
+          <controlProperties>
+            <text>O%20aplikaci</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Paragraph" x="22" y="152" w="200" h="142" measuredW="200" measuredH="80" zOrder="4" locked="false" isInGroup="228">
+          <controlProperties>
+            <text>A%20paragraph%20of%20text.%0AA%20_second_%20%5Brow%5D%20of%20*text*.%0A%20%0AA%20paragraph%20of%20text.%0AA%20_second_%20%5Brow%5D%20of%20*text*.%0A%20%0AA%20paragraph%20of%20text.%0AA%20_second_%20%5Brow%5D%20of%20*text*.</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Paragraph" x="22" y="365" w="200" h="142" measuredW="200" measuredH="80" zOrder="5" locked="false" isInGroup="228">
+          <controlProperties>
+            <text>A%20paragraph%20of%20text.%0AA%20_second_%20%5Brow%5D%20of%20*text*.%0A%20%0AA%20paragraph%20of%20text.%0AA%20_second_%20%5Brow%5D%20of%20*text*.%0A%20%0AA%20paragraph%20of%20text.%0AA%20_second_%20%5Brow%5D%20of%20*text*.</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::StickyNote" x="143" y="400" w="161" h="123" measuredW="109" measuredH="123" zOrder="6" locked="false" isInGroup="228">
+          <controlProperties>
+            <text>Pod%20z%E1lo%u017Ekou%20N%E1pov%u011Bda%20je%20um%EDst%u011Bna%20n%E1pov%u011Bda%20a%20dal%u0161%ED%20informace%20o%20aplikaci</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="229" controlTypeID="__group__" x="654" y="11" w="322" h="559" measuredW="322" measuredH="559" zOrder="1" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="322" h="559" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="229">
+          <controlProperties>
+            <text>Pr%u016Fvodce%20FIT%20%u010CVUT%0Ahttp%3A//guide.fit.cvut.cz/</text>
+            <value>0</value>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::TabBar" x="7" y="75" w="308" h="462" measuredW="335" measuredH="100" zOrder="1" locked="false" isInGroup="229">
+          <controlProperties>
+            <selectedIndex>2</selectedIndex>
+            <text>Pr%u016Fvodce%2C%20Navig%E1tor%2C%20SPARQL%2C%20N%E1pov%u011Bda</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::FieldSet" x="16" y="106" w="291" h="149" measuredW="200" measuredH="170" zOrder="2" locked="false" isInGroup="229">
+          <controlProperties>
+            <text>Vyhled%E1v%E1n%ED</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Button" x="32" y="219" w="259" h="27" measuredW="60" measuredH="27" zOrder="3" locked="false" isInGroup="229">
+          <controlProperties>
+            <text>Hledej</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::TextArea" x="32" y="124" w="259" h="89" measuredW="200" measuredH="140" zOrder="4" locked="false" isInGroup="229">
+          <controlProperties>
+            <text>Uk%E1zkov%FD%20SPARQL%20dotaz...</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::FieldSet" x="16" y="255" w="291" h="282" measuredW="200" measuredH="170" zOrder="5" locked="false" isInGroup="229">
+          <controlProperties>
+            <text>V%FDsledky</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::StickyNote" x="147" y="399" w="144" h="124" measuredW="109" measuredH="123" zOrder="6" locked="false" isInGroup="229">
+          <controlProperties>
+            <text>Z%E1lo%u017Eka%20SPARQL%20slou%u017E%ED%20k%20dotazov%E1n%ED%20vlastn%EDmi%20SPARQL%20dotazy</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Paragraph" x="32" y="277" w="200" h="142" measuredW="200" measuredH="80" zOrder="7" locked="false" isInGroup="229">
+          <controlProperties>
+            <text>A%20paragraph%20of%20text.%0AA%20_second_%20%5Brow%5D%20of%20*text*.%0A%20%0AA%20paragraph%20of%20text.%0AA%20_second_%20%5Brow%5D%20of%20*text*.%0A%20%0AA%20paragraph%20of%20text.%0AA%20_second_%20%5Brow%5D%20of%20*text*.</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="230" controlTypeID="__group__" x="328" y="11" w="322" h="559" measuredW="322" measuredH="559" zOrder="2" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="322" h="559" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="230">
+          <controlProperties>
+            <text>Pr%u016Fvodce%20FIT%20%u010CVUT%0Ahttp%3A//guide.fit.cvut.cz/</text>
+            <value>0</value>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::TabBar" x="7" y="75" w="308" h="462" measuredW="335" measuredH="100" zOrder="1" locked="false" isInGroup="230">
+          <controlProperties>
+            <selectedIndex>1</selectedIndex>
+            <text>Pr%u016Fvodce%2C%20Navig%E1tor%2C%20SPARQL%2C%20N%E1pov%u011Bda</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::FieldSet" x="16" y="106" w="291" h="82" measuredW="200" measuredH="170" zOrder="2" locked="false" isInGroup="230">
+          <controlProperties>
+            <text>Vyhled%E1v%E1n%ED</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::ComboBox" x="32" y="124" w="259" h="-1" measuredW="211" measuredH="23" zOrder="3" locked="false" isInGroup="230">
+          <controlProperties>
+            <color>0</color>
+            <icon>SearchIcon%7Cxsmall</icon>
+            <state>up</state>
+            <text>P%u0159%EDklad%20hledan%E9ho%20%u0159et%u011Bzce...</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="32" y="152" w="259" h="27" measuredW="60" measuredH="27" zOrder="4" locked="false" isInGroup="230">
+          <controlProperties>
+            <text>Hledej</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::FieldSet" x="16" y="188" w="291" h="349" measuredW="200" measuredH="170" zOrder="5" locked="false" isInGroup="230">
+          <controlProperties>
+            <text>Mapa</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Map" x="20" y="274" w="283" h="257" measuredW="252" measuredH="222" zOrder="6" locked="false" isInGroup="230"/>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Icon" x="161" y="317" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="7" locked="false" isInGroup="230">
+          <controlProperties>
+            <borderStyle>square</borderStyle>
+            <color>13576743</color>
+            <icon>AIMIcon%7Cmedium</icon>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::Icon" x="107" y="400" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="8" locked="false" isInGroup="230">
+          <controlProperties>
+            <borderStyle>square</borderStyle>
+            <color>13576743</color>
+            <icon>DownLeftArrowIcon%7Cmedium</icon>
+          </controlProperties>
+        </control>
+        <control controlID="9" controlTypeID="com.balsamiq.mockups::Icon" x="107" y="492" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="9" locked="false" isInGroup="230">
+          <controlProperties>
+            <borderStyle>square</borderStyle>
+            <icon>TelephoneIcon%7Csmall</icon>
+          </controlProperties>
+        </control>
+        <control controlID="10" controlTypeID="com.balsamiq.mockups::Icon" x="66" y="294" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="10" locked="false" isInGroup="230">
+          <controlProperties>
+            <borderStyle>square</borderStyle>
+            <icon>TelephoneIcon%7Csmall</icon>
+          </controlProperties>
+        </control>
+        <control controlID="11" controlTypeID="com.balsamiq.mockups::Icon" x="66" y="361" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="11" locked="false" isInGroup="230">
+          <controlProperties>
+            <borderStyle>square</borderStyle>
+            <icon>InfoIcon%7Csmall</icon>
+          </controlProperties>
+        </control>
+        <control controlID="12" controlTypeID="com.balsamiq.mockups::StickyNote" x="161" y="400" w="-1" h="-1" measuredW="109" measuredH="123" zOrder="12" locked="false" isInGroup="230">
+          <controlProperties>
+            <text>Navig%E1tor%20slou%u017E%ED%20k%20vyhled%E1v%E1n%ED%20na%20map%u011B</text>
+          </controlProperties>
+        </control>
+        <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="32" y="204" w="-1" h="-1" measuredW="108" measuredH="27" zOrder="13" locked="false" isInGroup="230">
+          <controlProperties>
+            <text>Aktu%E1ln%ED%20poloha</text>
+          </controlProperties>
+        </control>
+        <control controlID="14" controlTypeID="com.balsamiq.mockups::Button" x="189" y="197" w="-1" h="-1" measuredW="64" measuredH="27" zOrder="14" locked="false" isInGroup="230">
+          <controlProperties>
+            <text>Nahoru</text>
+          </controlProperties>
+        </control>
+        <control controlID="15" controlTypeID="com.balsamiq.mockups::Button" x="218" y="219" w="-1" h="-1" measuredW="73" measuredH="27" zOrder="15" locked="false" isInGroup="230">
+          <controlProperties>
+            <text>Doprava</text>
+          </controlProperties>
+        </control>
+        <control controlID="16" controlTypeID="com.balsamiq.mockups::Button" x="154" y="219" w="-1" h="-1" measuredW="64" measuredH="27" zOrder="16" locked="false" isInGroup="230">
+          <controlProperties>
+            <text>Doleva</text>
+          </controlProperties>
+        </control>
+        <control controlID="17" controlTypeID="com.balsamiq.mockups::Button" x="191" y="246" w="60" h="27" measuredW="50" measuredH="27" zOrder="17" locked="false" isInGroup="230">
+          <controlProperties>
+            <text>Dol%u016F</text>
+          </controlProperties>
+        </control>
+        <control controlID="18" controlTypeID="com.balsamiq.mockups::Button" x="95" y="246" w="-1" h="-1" measuredW="66" measuredH="27" zOrder="18" locked="false" isInGroup="230">
+          <controlProperties>
+            <text>Zv%u011Bt%u0161it</text>
+          </controlProperties>
+        </control>
+        <control controlID="19" controlTypeID="com.balsamiq.mockups::Button" x="32" y="246" w="-1" h="-1" measuredW="71" measuredH="27" zOrder="19" locked="false" isInGroup="230">
+          <controlProperties>
+            <text>Zmen%u0161it</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="231" controlTypeID="__group__" x="2" y="11" w="322" h="559" measuredW="322" measuredH="559" zOrder="3" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="322" h="559" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="231">
+          <controlProperties>
+            <text>Pr%u016Fvodce%20FIT%20%u010CVUT%0Ahttp%3A//guide.fit.cvut.cz/</text>
+            <value>0</value>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::TabBar" x="7" y="75" w="308" h="462" measuredW="335" measuredH="100" zOrder="1" locked="false" isInGroup="231">
+          <controlProperties>
+            <selectedIndex>0</selectedIndex>
+            <text>Pr%u016Fvodce%2C%20Navig%E1tor%2C%20SPARQL%2C%20N%E1pov%u011Bda</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::FieldSet" x="15" y="114" w="292" h="147" measuredW="200" measuredH="170" zOrder="2" locked="false" isInGroup="231">
+          <controlProperties>
+            <text>Kategorie%20informac%ED%201</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::FieldSet" x="15" y="267" w="292" h="255" measuredW="200" measuredH="170" zOrder="3" locked="false" isInGroup="231">
+          <controlProperties>
+            <text>Kategorie%20informac%ED%202</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Menu" x="15" y="129" w="292" h="-1" measuredW="150" measuredH="135" zOrder="4" locked="false" isInGroup="231">
+          <controlProperties>
+            <text>-Z%EDskat%20informaci%201-%2C%20Zobraz%0A%3D%0A-Z%EDskat%20informaci%202-%2C%20Zobraz%0A%3D%0A-Z%EDskat%20informaci%203-%2C%20Zobraz%0A%3D%0A-Z%EDskat%20informaci%204-%2C%20Zobraz%0A%3D%0A-Z%EDskat%20informaci%205-%2C%20Zobraz</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Menu" x="15" y="286" w="292" h="-1" measuredW="150" measuredH="240" zOrder="5" locked="false" isInGroup="231">
+          <controlProperties>
+            <text>-Z%EDskat%20informaci%201-%2C%20Zobraz%0A%3D%0A-Z%EDskat%20informaci%202-%2C%20Skryj%0AA%20paragraph%20of%20text.%0AA%20_second_%20%5Brow%5D%20of%20*text*.%0AA%20paragraph%20of%20text.%0AA%20_second_%20%5Brow%5D%20of%20*text*.%0AA%20paragraph%20of%20text.%0A%3D%0A-Z%EDskat%20informaci%203-%2C%20Zobraz%0A%3D%0A-Z%EDskat%20informaci%204-%2C%20Zobraz%0A%3D%0A-Z%EDskat%20informaci%205-%2C%20Zobraz</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::StickyNote" x="123" y="399" w="134" h="124" measuredW="109" measuredH="123" zOrder="6" locked="false" isInGroup="231">
+          <controlProperties>
+            <text>Pr%u016Fvodce%20slou%u017E%ED%20k%20vyhled%E1v%E1n%ED%20v%20uspo%u0159%E1dan%FDch%20informac%EDch</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>
