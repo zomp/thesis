@@ -47,7 +47,9 @@ $(document).ready(function () {
 var querySparql = function (query, success, error) {
 	$.ajax({
 		url: config.sparql.url,
-		accepts: 'application/json',
+		accepts: {
+			json: 'application/json'
+		},
 		data: {
 			query: query
 		},
