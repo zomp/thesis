@@ -712,64 +712,44 @@ Obě výše uvedené hrozby mohou vyústit ve zranitelnosti. S podvržením nepr
 
 
 \subsection{Návrh uživatelského rozhraní}
-\todo{Pojednání o vytvořených prototypech, možná nakonec pod něco zařadím, nebude mít velký rozsah.}
-% Po ujasnění několika základních potřeb a požadavků jsem začal vytvářet prototypy. Nejprve pouze jednoduché low fidelity prototypy pro vyjasnění základních požadavků, později sofistikovanější high fidelity prototypy reprezentující chování i vzhled výsledné aplikace.
-% 
-% \subsection{Low fidelity prototypy}
-% Low fidelity prototypy jsou, většinou papírové, snadno vytvořitelné prototypy, na kterých se navrhují a testují některé základní aspekty aplikace -- rozvržení komponent, jednoduchá interakce, návaznost akcí a podobně. Mají tu výhodu, že zadavateli přiblíží finální aplikaci, udělá si konkrétnější představu a lépe se mu pak formulují požadavky.
-% 
-% Za pomoci low fidelity prototypů se vymezily jednotlivé obrazovky aplikace. Výchozí obrazovka je v podstatě jedinou nutnou obrazovkou aplikace, obsahuje menu pro přechod do dalších obrazovek, vyhledávací formulář a krátkou nápovědu. Dalšími obrazovkami jsou nápověda, nápověda regulárních výrazů a obrazovka se základními informacemi o programu.
-% 
-% Nejvýznamnějším ovládacím prvkem bude velké vyhledávací pole uprostřed úvodní obrazovky -- uživatel zde bude moci zadat všechno, co potřebuje nalézt, a aplikace by mu to měla vyhledat. V případě, že bude nalezeno více výsledků, zobrazí se jejich seznam (viz obrázek~\ref{fig:LFviceVysledku}\footnote{Low fidelity prototypy byly vytvořeny v nástroji Balsamiq Mockups \cite{BalsamiqMockups}.}), ze kterého si bude moci uživatel vybrat nebo upřesnit hledaný výraz, jinak se navede rovnou k cíli (viz obrázek~\ref{fig:LFjedinyVysledek}).
-% 
-% \begin{figure}[ht]
-% \begin{center}
-% \includegraphics[width=30mm]{figures/LFviceVysledku}
-% \caption{Nalezení několika výsledků}
-% \label{fig:LFviceVysledku}
-% \end{center}
-% \end{figure}
-% 
-% \begin{figure}[ht]
-% \begin{center}
-% \includegraphics[width=30mm]{figures/LFjedinyVysledek}
-% \caption{Nalezení jediného výsledku}
-% \label{fig:LFjedinyVysledek}
-% \end{center}
-% \end{figure}
-% 
-% Aplikace by ještě měla poskytovat rozšířené vyhledávání s upřesněním hledaných míst a~zadáním výchozího bodu.
-% 
-% \noindent\textbf{Ostatní low fidelity prototypy jsou na přiloženém CD.}
-% 
-% 
-% 
-% \subsection{High fidelit prototyp}
-% High fidelity prototypy jsou už sofistikovanějšími prototypy, jejich vytvoření tudíž trvá déle, ale přesto se je vyplatí udělat před finální aplikací -- nemají totiž plnou funkčnost konečné aplikace, nemusí ošetřovat vstupy a řešit nestandardní situace, takže se pořád vytvoří relativně rychle, přičemž už zadavateli dokáží realisticky demonstrovat finální práci s aplikací.
-% 
-% High fidelity prototyp jsem vytvořil pomocí XHTML, ECMAScriptu a CSS. Jedná se o~velmi vhodné technologie pro tvorbu prototypů -- rychle se vytvoří a snadno se pak upravují. Testování takto vytvořených prototypů je také příjemné -- v případě v prototypu nevyřešené situace lze snadno připravit výslednou situaci a testerovi ji na dálku bez nějakých komplikací podstrčit.
-% 
-% Na obrázku \ref{fig:HFviceVysledku} je vidět high fidelity prototyp ve stavu zobrazení více výsledků vyhledání.
-% 
-% \begin{figure}[ht]
-% \begin{center}
-% \includegraphics[width=30mm]{figures/HFviceVysledku}
-% \caption{Nalezení několika výsledku}
-% \label{fig:HFviceVysledku}
-% \end{center}
-% \end{figure}
-% 
-% Testování high fidelity prototypů je hlouběji popisované v kapitole o testování (viz \ref{sec:testhfp}).
-% 
-% \noindent\textbf{High fidelity prototyp je na přiloženém CD.}
+Na základě požadavků byl, ve spojitosti s návrhem aplikace, vytvářen návrh uživatelského rozhraní (\textit{user interface design}). Návrh probíhal hlavně za využití \textit{low fidelity} prototypů, na těch bylo uživatelské rozhraní odzkoušeno a podle nich pak bylo uživatelské rozhraní aplikace realizováno. Tvorba samostatných \textit{high fidelity} prototypů byla svým způsobem vynechána -- použité technologie jsou natolik flexibilní, že byla za podobným účelem využita samotná finální aplikace.
 
+\subsubsection{Low fidelity prototypy}
+Pod pojmem \textit{low fidelity prototypy} se skrývají jednoduché, velmi snadno vytvořitelné a editovatelné prototypy uživatelského rozhraní aplikace, které mimo jiné ověřují vhodnost rozvržení ovládacích komponent a uživatelských procesů zamýšlené aplikace.
+
+Pomocí prototypů byly navrženy jednotlivé kontexty aplikace:
+\begin{itemize}
+ \item Průvodce.
+ \item Navigace.
+ \item \glsname{SPARQL} konzole.
+ \item Nápověda.
+\end{itemize}
+Podrobněji zmíním pouze navigaci -- je ze zpracovávaných kontextů nejsložitější, ostatní obsahují převážně shodné prvky.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=5cm,keepaspectratio=true]{./figures/mockup-navigator.png}
+ % mockup-navigator.png: 322x559 pixel, 72dpi, 11.36x19.72 cm, bb=0 0 322 559
+ \caption{Low fidelity prototyp mobilní navigace}
+ \label{fig:mobil:mockup:navigator}
+\end{figure}
+
+Na obrázku \ref{fig:mobil:mockup:navigator} je znázorněn \textit{low fidelity} prototyp mapové části mobilní aplikace. V horní části je vidět menu pro pohyb v různých kontextech aplikace, to je v každém kontextu shodné. V horní části specifické pro navigaci se nachází vyhledávací formulář navigace. Do jediného vyhledávacího pole by mělo být možné psát libovolné hledané fráze a aplikace by si s nimi měla poradit. Vyhledávací pole nabízí našeptávač, čímž je usnadněno nalezení výsledku těm, kteří nevědí, co přesně hledají, i těm, kteří mají psaní komplikované třeba vlivem dotykového displeje. Ve zbytku prostoru se nachází mapa s ovládacími prvky pro:
+\begin{itemize}
+ \item Posun.
+ \item Škálování.
+ \item Zobrazení aktuální polohy.
+\end{itemize}
+Tyto akce mají být implementovány i pomocí gest přímo na mapě, pro obsluhu s tím neseznámenými uživateli je ale nutné grafické ovládací prvky zachovat. Za povšimnutí také stojí ikony umístěné na mapě -- je třeba vhodně reprezentovat uživatelovu polohu, polohu hledaného místa a body zájmu.
 
 
 \subsection{Použité technologie}
 Níže uvádím soupis použitých technologií s odůvodněním, proč byly vybrány a v jakém kontextu použity.
 
 \subsubsection{HTML5}
-Většina technologií tvořících mobilní aplikaci by se dala zahrnout do pojmu HTML5 (v širším smyslu významu). Pomocí JavaScriptu se manipuluje s \glsname{HTML} strukturou, která je prezentována za pomocí \glsname{CSS}, klíčová část aplikace -- mapa -- je tvořena \glsname{SVG} (o tom ještě dále). Technologie byly vybrány pro jejich výbornou portovatelnost -- téměř všechna dnešní zařízení je implementují podobně (nebo alespoň mají takové výkonnostní parametry, že na nich lze provozovat přidanou vrstvu abstrahující od skutečné implementace).
+Většina technologií tvořících mobilní aplikaci by se dala zahrnout do pojmu HTML5 (v širším smyslu významu). Pomocí JavaScriptu se manipuluje s \glsname{HTML} strukturou, která je prezentována za pomocí \glsname{CSS}, klíčová část aplikace -- mapa -- má být tvořena \glsname{SVG} (o tom ještě dále).
+
+Technologie byly vybrány pro jejich výbornou portovatelnost -- téměř všechna dnešní zařízení je implementují podobně (nebo alespoň mají takové výkonnostní parametry, že na nich lze provozovat přidanou vrstvu abstrahující od skutečné implementace).
 
 \subsubsection{SVG}
 Mapa použitá v aplikaci je implementována prostřednictvím \glsname{SVG}. Rozhodnutí bylo učiněno na základě identifikace a porovnání možných technologií:
@@ -784,9 +764,9 @@ První zmíněné řešení bylo zavrženo kvůli nízké flexibilitě -- není 
 
 Druhý přístup, dynamické pozicování, byl zavržen z důvodů optimalizací rozvržení prvků mobilními prohlížeči -- není zaručené, že se prvek (například ukazatel nalezené místnosti) skutečně umístí, kam má.
 
-Nová vlastnost HTML5, kreslení prostřednictvím JavaScriptu na \textit{canvas} element, byla, narozdíl od předchozích možností, zvažována až do finálního rozhodnutí -- ačkoliv se jedná o řešení čistě v režii již používaných technologií (JavaScript, HTML), jeho využití jsem z několika důvodů zavrhl:
+Nová vlastnost HTML5, kreslení prostřednictvím JavaScriptu na \textit{canvas} element, byla, na rozdíl od předchozích možností, zvažována až do finálního rozhodnutí -- ačkoliv se jedná o řešení čistě v režii již používaných technologií (JavaScript, HTML), jeho využití jsem z několika důvodů zavrhl:
 \begin{itemize}
- \item Neumožňuje nakreslený obrázek nijak upravit (například posunout ukazatel na mapě), ale musí se vždy překreslit, což je náročnější na zdroje.
+ \item Neumožňuje nakreslený obrázek nijak upravit (například posunout ukazatel na mapě), ale musí se vždy překreslit, což je náročné na zdroje.
  \item Kvůli principu dynamického generovaní obrázků JavaScriptem nelze kostru připravit pomocí běžných grafických editorů.
  \item Subjektivně mi přijde práce s mapou jako \glsname{SVG} obrázkem reprezentovaným \glsname{XML} dokumentem majícím \glsname{DOM} přehlednější, než s méně strukturovatelným JavaScriptem.
 \end{itemize}
@@ -795,28 +775,28 @@ Reprezentaci mapy jsem tedy svěřil \glsname{SVG} z následujících důvodů:
 \begin{itemize}
  \item Snadné vytvoření mapy prostřednictvím běžného grafického editoru.
  \item Možnost znovupoužití mapy standardního grafického formátu i v jiných projektech.
- \item Práce s mapou (něpř. vyznačování pozic) se provádí pouhodou úpravou jejího \glsname{DOM}.
+ \item Práce s mapou (například vyznačování pozic) se provádí pouhou úpravou jejího \glsname{DOM}.
  \item I po úpravách se stále jedná o týž objekt -- není nutné ho překreslovat.
 \end{itemize}
 
 Nutno podotknout, že jsou implementace kreslení na \textit{canvas} a \glsname{SVG} na různých mobilních zařízeních na různých úrovních, ani jedna ovšem nemá výrazně navrch \cite{CanIUse} \cite{MobileHtml}.
 
 \subsubsection{PHP}
-Z důvodů popsaných v podsekci \ref{sec:mobil:cross-origin} na straně \pageref{sec:mobil:cross-origin} bylo nutné vytvořit podpůrnou serverovou aplikaci -- proxy. Po úvaze jsem se rozhodl pro využití jazyka \glsname{PHP}, který je podporovaný jako jediný nástroj pro tvorbu dynmického obsahu na fakultním webovém serveru \url{http://webdev.fit.cvut.cz/}. Tuto kombinaci, vzhledem k její podpoře ze strany fakulty a určení práce pro fakulní nasazení, považuji i přes jinde využitý JavaScript za vhodnou.
+Z důvodů popsaných v části \ref{sec:mobil:cross-origin} na straně \pageref{sec:mobil:cross-origin} bylo nutné vytvořit podpůrnou serverovou aplikaci -- proxy. Po úvaze jsem se rozhodl pro využití jazyka \glsname{PHP}, který je podporovaný jako jediný nástroj pro tvorbu dynamického obsahu na fakultním webovém serveru \url{http://webdev.fit.cvut.cz/}. Tuto kombinaci, vzhledem k její podpoře ze strany fakulty a určení práce pro fakultní nasazení, považuji i přes jinde využitý JavaScript za vhodnou.
 
 
 \subsection{Použité knihovny}
 V práci byla, po úvaze, nakonec využita i práce třetích stran -- svobodné knihovny \emph{jQuery} a \emph{HTML Purifier}. Jejich krátký popis a odůvodnění následují:
 
 \subsubsection{jQuery}
-A
+\todo{jQuery}
 
 \subsubsection{HTML Purifier}
-Po několika vlastních implementacích nástroje na pročištění a ošetření \glsname{HTML} vstupů pocházejících od třetích stran jsem sáhl k implementaci již prověřené -- oblast ošetření aplikace před škodlivými vstupy má z hlediska bezpečnosti vysokou prioritu a neustále se objevující nové hrozby nakonec vedly k tomu, že jsem se rozhodl nespoléhat na své vlastní implementace a využít \textit{know-how} tvůrců svobodné \glsname{PHP} knihovny  HTML Purifier (\url{http://htmlpurifier.org/}) -- ta odstraní případná nebezpečí za využití pokročilého auditovaného \textit{whitelistu} a v případě potřeby navíc zajistí validitu kódu. Knihovna je využita v rámci proxy zmíněné v předchozím odstavci.
+Po několika vlastních implementacích nástroje na pročištění a ošetření \glsname{HTML} vstupů pocházejících od třetích stran jsem sáhl k implementaci již prověřené -- oblast ošetření aplikace před škodlivými vstupy má z hlediska bezpečnosti vysokou prioritu a neustále se objevující nové hrozby nakonec vedly k tomu, že jsem se rozhodl nespoléhat na své vlastní implementace a využít \textit{know-how} tvůrců svobodné \glsname{PHP} knihovny HTML Purifier (\url{http://htmlpurifier.org/}) -- ta odstraní případná nebezpečí za využití pokročilého auditovaného \textit{whitelistu} a v případě potřeby navíc zajistí validitu kódu. Knihovna je využita v rámci proxy zmíněné v části \ref{sec:mobil:cross-origin} na straně \pageref{sec:mobil:cross-origin}.
 
 
 \subsection{Použité nástroje}
-Pro tvorbu aplikace byly použity převážně následující nástroje. Majorita jich je uvolněných pod svobodmými licencemi, zpravidla \glsname{GNU} \glsname{GPL} nebo kompatibilními. Jedinou výjimkou jsou některé mobilní prohlížeče, které byly použity k testování aplikace.
+Pro tvorbu aplikace byly použity převážně následující nástroje. Majorita jich je uvolněných pod svobodnými licencemi, zpravidla \glsname{GNU} \glsname{GPL} nebo kompatibilními. Jedinou výjimkou jsou některé mobilní prohlížeče, které byly použity k testování aplikace.
 
 \subsubsection{Kate}
 Textový editor \glsname{Kate} (\url{http://kate-editor.org/}) byl, mimo serverové (viz část \ref{sec:server:tools:kate} na straně \pageref{sec:server:tools:kate}), vybrán i pro tvorbu mobilní aplikace. Nástroj byl zvolen na základě již dříve zmíněných důvodů pro napsání kódu v JavaScriptu, \gls{HTML}, \gls{CSS} i úpravy mapy v \gls{SVG}.
@@ -828,10 +808,10 @@ Grafické podklady práce byly vytvořeny v editoru vektorové grafiky Inkscape 
 Nástroj byl zvolen ze stejných důvodů, jak tomu bylo u serverové aplikace (viz část \ref{sec:server:tools:kompare} na straně \ref{sec:server:tools:kompare}).
 
 \subsubsection{Webové prohlížeče}
-Pro správné odlazení aplikací, průzkum možností a testování byly vybrány následující prohlížeče. Některé kvůli jejich významnému zastoupení mezi uživateli, jiné pro odlazení aplikace i v jiných implementacích použitých technologií.
+Pro správné odladění aplikací, průzkum možností a testování byly vybrány následující prohlížeče. Některé kvůli jejich významnému zastoupení mezi uživateli, jiné pro odladění aplikace i v jiných implementacích použitých technologií.
 \begin{itemize}
  \item Mozilla Firefox (\url{http://www.mozilla.org/firefox}).
- \item Chromium (\url{http://chromium.org/}).
+ \item Chromium (\url{http://chromium.org/}) -- základ Google Chrome.
  \item rekonq (\url{http://rekonq.kde.org/}).
  \item Prohlížeč platformy Android (\url{http://www.android.com/}) -- verze 2 a 4.
  \item Opera Mobile (\url{http://www.opera.com/mobile}).
@@ -844,6 +824,9 @@ Mimo výše uvedených navíc nabídl pan inženýr Havryluk, vedoucí práce, o
  \item Prohlížeč platformy BlackBerry (\url{http://us.blackberry.com/smartphones/features/internet.jsp}).
  \item Safari (\url{http://www.apple.com/safari/}).
 \end{itemize}
+
+\subsubsection{Balsamiq Mockups}
+Pro tvorbu \textit{low fidelity} prototypů byl využit nástroj Balsamiq Mockups (\url{http://www.balsamiq.com/}) ve webové edici -- je sice mírně omezená, ale použití je zdarma. Nástroj byl vybrán pro množství poskytovaných možností a pro výborné předchozí zkušenosti.
 
 \subsubsection{Git}
 Nástroj byl zvolen ze stejných důvodů, jak tomu bylo u serverové aplikace (viz část \ref{sec:server:tools:git} na straně \ref{sec:server:tools:git}).
