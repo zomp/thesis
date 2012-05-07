@@ -378,11 +378,11 @@ jQuery bylo vybráno pro usnadnění zpracování externích zdrojů dat -- nab�
 
 Node-jquery interně využívá modul jsdom (\url{https://github.com/tmpvar/jsdom}), který mu poskytuje JavaScriptovou implementaci \glsname{DOM}.
 
-\subsubsection{rdfstore}
+\subsubsection{rdfstore-js}
 \label{sec:rdfstore}
-Rdfstore (\url{https://github.com/antoniogarrote/rdfstore-js}) je JavaScriptovou implementací \glsname{RDF} grafového úložiště s podporou pro \glsname{SPARQL}. Data mohou být (a v implementaci \glsname{DP} jsou) persistentně ukládána prostřednictvím Node.js modulu-ovladače node-mongodb (\url{https://github.com/christkv/node-mongodb-native}) do NoSQL databáze MongoDB (\url{http://www.mongodb.org/}). Modul je stále ve vývoji.
+Rdfstore-js (\url{https://github.com/antoniogarrote/rdfstore-js}) je JavaScriptovou implementací \glsname{RDF} grafového úložiště s podporou pro \glsname{SPARQL}. Data mohou být (a v implementaci \glsname{DP} jsou) persistentně ukládána prostřednictvím Node.js modulu-ovladače node-mongodb (\url{https://github.com/christkv/node-mongodb-native}) do NoSQL databáze MongoDB (\url{http://www.mongodb.org/}). Modul je stále ve vývoji.
 
-Právě pro implementaci manipulace s \glsname{RDF}, grafové úložiště a podporu pro \glsname{SPARQL} byl rdfstore vybrán jako základ pro \glsname{SPARQL} endpoint a důležitá součást \textit{serverové aplikace}.
+Právě pro implementaci manipulace s \glsname{RDF}, grafové úložiště a podporu pro \glsname{SPARQL} byl rdfstore-js vybrán jako základ pro \glsname{SPARQL} endpoint a důležitá součást \textit{serverové aplikace}.
 
 % \subsubsection{node-soap}
 %  (\url{https://github.com/milewise/node-soap}) -- \todo{Pouze pokud se objeví podpora poskytnutého WSDL.}
@@ -635,7 +635,7 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
  \item Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \glsname{GNU}, Creative Commons a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
  \item Aplikace umožní využití offline.
 \end{enumerate}
-\todo{Přidat požadavky -- na základě UC nebo potřeb.}
+% \todo{Přidat požadavky -- na základě UC nebo potřeb.}
 
 
 \subsection{Návrh architektury}
@@ -789,7 +789,9 @@ Z důvodů popsaných v části \ref{sec:mobil:cross-origin} na straně \pageref
 V práci byla, po úvaze, nakonec využita i práce třetích stran -- svobodné knihovny \emph{jQuery} a \emph{HTML Purifier}. Jejich krátký popis a odůvodnění následují:
 
 \subsubsection{jQuery}
-\todo{jQuery}
+Stále více projektů využívá renomovanou JavaScriptovou knihovnu jQuery (\url{http://jquery.com/}). Osobně z toho moc nadšený zpravidla nejsem, často se nadužívá -- velikost každé stránky se tak zvýší řádově minimálně o sto kilobytů, což není zanedbatelné\footnote{V průzkumu \cite{PagesizeUseit} věnovanému maximální velikosti stránky je přesně tato velikost uvedená jako maximální přijatelná pro celou stránku. Průzkum je sice patnáct let starý, rychlosti připojení k některým webovým serverům ale za tu dobu nevzrostly.} -- na druhou stranu se knihovna ve velkém počtu případů \textit{cachuje}. Po důkladném zvážení jsem se jQuery ale nakonec rozhodl využít i v případě mobilní aplikace -- aplikace má být určena pro offline použití, takže se předpokládá už tak rozsáhlá aplikační logika, velikost jQuery tak bude zanedbatelná a knihovna může být dobrým základem stabilní multiplatformní aplikace.
+
+Mimo abstrakce od různých implementací specifikací webovými prohlížeči nabízí jQuery selekci, traverzování a manipulaci s \glsname{DOM}.
 
 \subsubsection{HTML Purifier}
 Po několika vlastních implementacích nástroje na pročištění a ošetření \glsname{HTML} vstupů pocházejících od třetích stran jsem sáhl k implementaci již prověřené -- oblast ošetření aplikace před škodlivými vstupy má z hlediska bezpečnosti vysokou prioritu a neustále se objevující nové hrozby nakonec vedly k tomu, že jsem se rozhodl nespoléhat na své vlastní implementace a využít \textit{know-how} tvůrců svobodné \glsname{PHP} knihovny HTML Purifier (\url{http://htmlpurifier.org/}) -- ta odstraní případná nebezpečí za využití pokročilého auditovaného \textit{whitelistu} a v případě potřeby navíc zajistí validitu kódu. Knihovna je využita v rámci proxy zmíněné v části \ref{sec:mobil:cross-origin} na straně \pageref{sec:mobil:cross-origin}.
@@ -813,12 +815,14 @@ Pro správné odladění aplikací, průzkum možností a testování byly vybr�
  \item Mozilla Firefox (\url{http://www.mozilla.org/firefox}).
  \item Chromium (\url{http://chromium.org/}) -- základ Google Chrome.
  \item rekonq (\url{http://rekonq.kde.org/}).
- \item Prohlížeč platformy Android (\url{http://www.android.com/}) -- verze 2 a 4.
+ \item Prohlížeč platformy Android (\url{http://android.com/}) -- verze 2 a 4.
  \item Opera Mobile (\url{http://www.opera.com/mobile}).
  \item Internet Explorer Mobile (\url{http://www.microsoft.com/windowsphone/en-us/features/default.aspx#internet-explorer}).
+\end{itemize}
 Mimo výše uvedených navíc nabídl pan inženýr Havryluk, vedoucí práce, otestování v následujících prohlížečích:
+\begin{itemize}
  \item Google Chrome for Android (\url{https://www.google.com/intl/en/chrome/android/}).
- \item Prohlížeč platformy Android (\url{http://www.android.com/}) -- verze 3.
+ \item Prohlížeč platformy Android (\url{http://android.com/}) -- verze 3.
  \item Dolphin Browser (\url{http://dolphin-browser.com/}).
  \item Nokia Browser for Symbian  (\url{http://browser.nokia.com/}).
  \item Prohlížeč platformy BlackBerry (\url{http://us.blackberry.com/smartphones/features/internet.jsp}).
