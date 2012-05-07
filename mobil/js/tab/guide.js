@@ -10,16 +10,41 @@ tab.guide.getName = function () {
 
 tab.guide.getContent = function () {
 	
+	var groups = $('<div/>'); //kategorie informací
+	
+	/**
+	 * Vytvoření kategorie informací.
+	 * @param name Jméno kategorie informací.
+	 * @return Element kategorie informací.
+	 */
+	var createLoaderGroup = function (name) {
+		var group = $('<div class="group"><h3>' + name + '</h3><ul/></div>');
+		groups.append(group);
+		return group;
+	}
+	
+	/**
+	 * Vytvoření položky kategorie informací.
+	 * @param name Jméno položky kategorie informací.
+	 * @param group Element kategorie informací.
+	 * @return Element položky kategorie informací.
+	 */
+	var createLoaderItem = function (name, group) {
+		var item = $('<li>' + name + '</li>');
+		group.find('ul').append(item);
+		return item;
+	}
+	
 	/**
 	 * Obstarání zdroje od akcí tlačítka přes získání zdroje až po jeho vizualizaci.
-	 * @param element Element obstarávaného zdroje.
+	 * @param item Element obstarávaného zdroje.
 	 * @param resource URL zdroje (musí být povolené na proxy!).
 	 * @param presenter Callback prezentace zdroje.
 	 */
-	var createLoaderButton = function (element, resource, presenter) {
+	var createLoaderButton = function (item, resource, presenter) {
 		var a = $('<a href="#" class="button">Zobrazit</a>');
 		var div = $('<div class="innergroup" style="display:none;"/>');
-		element.append(' ', a, div);
+		item.append(' ', a, div);
 		
 		a.click(function () {
 			if ($(this).html() === 'Zobrazit') { //zobrazení
@@ -55,7 +80,7 @@ tab.guide.getContent = function () {
 	};
 	
 	
-	var canteens = $('<div class="group"><h3>Menzy</h3><ul/></div>');
+	var canteens = createLoaderGroup('Menzy');
 	var canteensData = { //názvy menz a jejich indexy
 		'menza Studentský dům': 2,
 		'Technická menza': 3,
@@ -66,8 +91,7 @@ tab.guide.getContent = function () {
 	};
 	for (var name in canteensData) {
 		(function () { //uzávěr kvůli proměnným
-			var canteenmenu = $('<li>Jídelníček ' + name + '</li>');
-			canteens.find('ul').append(canteenmenu);
+			var canteenmenu = createLoaderItem('Jídelníček ' + name, canteens);
 			
 			createLoaderButton(canteenmenu, 'http://agata.suz.cvut.cz/jidelnicky/index.php?clPodsystem=' + canteensData[name], function (data) {
 				var ret = $(data).find('#ap-jidelnicek table');
@@ -81,12 +105,11 @@ tab.guide.getContent = function () {
 	}
 	
 	
-	var studies = $('<div class="group"><h3>Studium</h3><ul/></div>');
-	var studiesnews = $('<li>Novinky</li>');
-	var studiesschedule = $('<li>Harmonogram akademického roku</li>');
-	var studiesforms = $('<li>Formuláře</li>');
-	var studieslinks = $('<li>Odkazy</li>');
-	studies.find('ul').append(studiesnews, studiesschedule, studiesforms, studieslinks);
+	var studies = createLoaderGroup('Studium');
+	var studiesnews = createLoaderItem('Novinky', studies);
+	var studiesschedule = createLoaderItem('Harmonogram akademického roku', studies);
+	var studiesforms = createLoaderItem('Formuláře', studies);
+	var studieslinks = createLoaderItem('Odkazy', studies);
 	
 	createLoaderButton(studiesnews, 'http://fit.cvut.cz/', function (data) {
 		var ret = $(data).find('.view-id-novinky .views-row');
@@ -122,12 +145,11 @@ tab.guide.getContent = function () {
 	});
 	
 	
-	var openings = $('<div class="group"><h3>Otevírací doby</h3><ul/></div>');
-	var openingsfitsto = $('<li>Studijní odddělení</li>');
-	var openingscanteens = $('<li>Menzy, bufety...</li>');
-	var openingsidissuer = $('<li>Vydavatelství průkazů</li>');
-	var openingsntk = $('<li>Národní technická knihovna</li>');
-	openings.find('ul').append(openingsfitsto, openingscanteens, openingsidissuer, openingsntk);
+	var openings = createLoaderGroup('Otevírací doby');
+	var openingsfitsto = createLoaderItem('Studijní odddělení', openings);
+	var openingscanteens = createLoaderItem('Menzy, bufety...', openings);
+	var openingsidissuer = createLoaderItem('Vydavatelství průkazů', openings);
+	var openingsntk = createLoaderItem('Národní technická knihovna', openings);
 	
 	createLoaderButton(openingsfitsto, 'http://fit.cvut.cz/student/studijni/kontakt', function (data) {
 		var ret = $(data).find('table').last();
@@ -165,18 +187,17 @@ tab.guide.getContent = function () {
 	});
 	
 	
-	var contacts = $('<div class="group"><h3>Kontakty</h3><ul/></div>');
-	var contactsfitsto = $('<li>Studijní odddělení</li>');
-	var contactsfitdeansoff = $('<li>Děkanát</li>');
-	var contactskti = $('<li>Katedra teoretické informatiky</li>');
-	var contactsksi = $('<li>Katedra softwarového inženýrství</li>');
-	var contactskcn = $('<li>Katedra číslicového návrhu</li>');
-	var contactskps = $('<li>Katedra počítačových systémů</li>');
-	var contactskam = $('<li>Katedra aplikované matematiky</li>');
-	var contactsidissuer = $('<li>Vydavatelství průkazů</li>');
-	var contactscanteens = $('<li>Menzy, bufety...</li>');
-	var contactssuz = $('<li>Správa účelových zařízení</li>');
-	contacts.find('ul').append(contactsfitsto, contactsfitdeansoff, contactskti, contactsksi, contactskcn, contactskps, contactskam, contactsidissuer, contactscanteens, contactssuz);
+	var contacts = createLoaderGroup('Kontakty');
+	var contactsfitsto = createLoaderItem('Studijní odddělení', contacts);
+	var contactsfitdeansoff = createLoaderItem('Děkanát', contacts);
+	var contactskti = createLoaderItem('Katedra teoretické informatiky', contacts);
+	var contactsksi = createLoaderItem('Katedra softwarového inženýrství', contacts);
+	var contactskcn = createLoaderItem('Katedra číslicového návrhu', contacts);
+	var contactskps = createLoaderItem('Katedra počítačových systémů', contacts);
+	var contactskam = createLoaderItem('Katedra aplikované matematiky', contacts);
+	var contactsidissuer = createLoaderItem('Vydavatelství průkazů', contacts);
+	var contactscanteens = createLoaderItem('Menzy, bufety...', contacts);
+	var contactssuz = createLoaderItem('Správa účelových zařízení', contacts);
 	
 	createLoaderButton(contactsfitsto, 'http://fit.cvut.cz/student/studijni/kontakt', function (data) {
 		var ret = $(data).find('table').first();
@@ -247,10 +268,9 @@ tab.guide.getContent = function () {
 	});
 	
 	
-	var events = $('<div class="group"><h3>Akce</h3><ul/></div>');
-	var eventsctu = $('<li>Kalendář akcí ČVUT</li>');
-	var eventsfit = $('<li>Pravidelné akce FIT</li>');
-	events.find('ul').append(eventsctu, eventsfit);
+	var events = createLoaderGroup('Akce');
+	var eventsctu = createLoaderItem('Kalendář akcí ČVUT', events);
+	var eventsfit = createLoaderItem('Pravidelné akce FIT', events);
 	
 	createLoaderButton(eventsctu, 'http://akce.cvut.cz/', function (data) {
 		var ret = $(data.replace(/%E2%8C%A9/g, '&lang')).find('#ap-calendar_events'); //nahrazení špatně zakódovaných entit
@@ -265,13 +285,12 @@ tab.guide.getContent = function () {
 	});
 	
 	
-	var timetable = $('<div class="group"><h3>Rozvrh</h3><ul/></div>');
-	var timetablestudents = $('<li>Studenti</li>');
-	var timetableteachers = $('<li>Učitelé</li>');
-	var timetableclassrooms = $('<li>Místnosti</li>');
-	var timetablesubjects = $('<li>Předměty</li>');
-	var timetableoneshot = $('<li>Jednorázové akce</li>');
-	timetable.find('ul').append(timetablestudents, timetableteachers, timetableclassrooms, timetablesubjects, timetableoneshot);
+	var timetable = createLoaderGroup('Rozvrh');
+	var timetablestudents = createLoaderItem('Studenti', timetable);
+	var timetableteachers = createLoaderItem('Učitelé', timetable);
+	var timetableclassrooms = createLoaderItem('Místnosti', timetable);
+	var timetablesubjects = createLoaderItem('Předměty', timetable);
+	var timetableoneshot = createLoaderItem('Jednorázové akce', timetable);
 	
 	createLoaderButton(timetablestudents, 'https://timetable.fit.cvut.cz/public/cz/studenti/index.html', function (data) {
 		var ret = $(data).find('#ap-content');
@@ -304,14 +323,13 @@ tab.guide.getContent = function () {
 	});
 	
 	
-	var utilities = $('<div class="group"><h3>Užitečné</h3><ul/></div>');
-	var utilstemp = $('<li>Teploměr (kolej Orlík)</li>');
-	utilities.find('ul').append(utilstemp);
+	var utilities = createLoaderGroup('Užitečné');
+	var utilstemp = createLoaderItem('Teploměr (kolej Orlík)', utilities);
 	
 	createLoaderButton(utilstemp, 'http://teplomer.ok.cvut.cz/', function (data) {
 		return $(data).find('table tr:lt(4)').wrap('<tbody/>').wrap('<table/>');
 	});
 	
 	
-	return $('<div/>').append(canteens, studies, openings, contacts, events, timetable, utilities);
+	return groups;
 };
