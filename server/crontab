@@ -1,13 +1,13 @@
 # aktualizace jidelnicku kazdy den 3 minuty po zverejneni
-3 9,10,16,17 * * * curl localhost:1337/jidelnicky/
+3 9,10,16,17 * * * user curl localhost:1337/jidelnicky/
 
 # aktualizace osob kazdy den 10 minut po druhe hodine
-10 2 * * * curl localhost:1337/osoby/
+10 2 * * * user curl localhost:1337/osoby/
 
 # aktualizace akci 10 minut po kazde sude hodine
-10 */2 * * * curl localhost:1337/akce/
+10 */2 * * * user curl localhost:1337/akce/
 
 # aktualizace rozvrhu kazdy den 10 minut po druhe hodine
-10 2 * * * curl localhost:1337/rozvrh/
+10 2 * * * user curl localhost:1337/rozvrh/
 # aktualizace rozvrhu v dobe tvorby 10 minut po kazde hodine
-10 * * 6,9,10,1,2 * curl localhost:1337/rozvrh/
+10 * * 6,9,10,1,2 * user curl localhost:1337/rozvrh/

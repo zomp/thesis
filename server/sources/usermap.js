@@ -19,8 +19,8 @@ var process = function (login) {
  * Zpracování všech osob.
  */
 var processAll = function () {
-	var empuri = __dirname + '/data/employees.txt';
-	var stuuri = __dirname + '/data/students.txt';
+	var empuri = __dirname + '/../data/employees.txt';
+	var stuuri = __dirname + '/../data/students.txt';
 	var uris = [empuri, stuuri]; //URI se zdroji obsahujícími loginy
 	
 	for (var uri in uris)
@@ -63,7 +63,7 @@ var processPerson = function (login) {
 			
 			var rdfstore = require('rdfstore');
 			rdfstore.create(
-				require('./rdfstore.js').config,
+				require('../rdfstore.js').config,
 				function (store) {
 					var graph = store.rdf.createGraph();
 					

@@ -62,7 +62,7 @@ var process = function () {
 		var rdfstore = require('rdfstore');
 
 		var store = rdfstore.create(
-			require('./rdfstore.js').config,
+			require('../rdfstore.js').config,
 			function (store) {
 				var graph = store.rdf.createGraph();
 				

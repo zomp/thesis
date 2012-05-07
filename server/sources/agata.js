@@ -49,10 +49,10 @@ var process = function () {
 					
 					var rdfstore = require('rdfstore');
 					require('date-utils');
-					var diacritics = require('./data/diacritics.js').diacritics; //tabulka s diaktritikou
+					var diacritics = require('../data/diacritics.js').diacritics; //tabulka s diaktritikou
 					
 					var store = rdfstore.create(
-						require('./rdfstore.js').config,
+						require('../rdfstore.js').config,
 						function (store) {
 							var graph = store.rdf.createGraph(); //graf
 							

@@ -9,22 +9,22 @@ var port = 1337; //port serveru
 var app = express.createServer();
 
 app.get('/jidelnicky', function (req, res) {
-	require('./agata.js').process();
+	require('./sources/agata.js').process();
 	res.send("OK: Source enqueued for processing.\n");
 });
 
 app.get('/akce', function (req, res) {
-	require('./akce.js').process();
+	require('./sources/akce.js').process();
 	res.send("OK: Source enqueued for processing.\n");
 });
 
 app.get('/rozvrh', function (req, res) {
-	require('./timetable.js').process();
+	require('./sources/timetable.js').process();
 	res.send("OK: Source enqueued for processing.\n");
 });
 
 app.get('/osoby/:login?', function (req, res) {
-	require('./usermap.js').process(req.params.login);
+	require('./sources/usermap.js').process(req.params.login);
 	res.send("OK: Source enqueued for processing.\n");
 });
 
