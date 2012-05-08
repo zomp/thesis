@@ -2,10 +2,12 @@
 
 \chapter{Realizace}
 % Popis implementace/realizace se zaměřením na nestandardní části řešení.
-Během implementace se objevila celá řada zádrhelů, z nichž mnoho souviselo s doposud ne zcela zdokumentovanými a odlazenými technologiemi, přesto pro mne byla realizace velmi přínosná -- neustálým hledáním různých řešení a alternativ jsem nutně narazil na mnoho dalších zajímavých postřehů a nápadů. Kapitola se zabývá řešenými problémy, implementací bezpečnosti, komplikacemi a potenciální aplikací v ideálním světě.
+Během implementace se objevila celá řada zádrhelů, z nichž mnoho souviselo s doposud ne zcela zdokumentovanými a odlazenými technologiemi, přesto pro mne byla realizace velmi přínosná -- neustálým hledáním různých řešení a alternativ jsem nutně narazil na mnoho dalších zajímavých postřehů a nápadů. Kapitola se zabývá řešenými problémy, komplikacemi a potenciální aplikací v ideálním světě. % implementací bezpečnosti, 
 
 \section{Serverová aplikace}
 Když se zpětně ohlížím za implementací serverové aplikace, náročné to objektivně vůbec nebylo, osobně jsem ale žádnou z používaných technologií / knihoven\dots v té době neznal, takže mi náročnost přišla enormě vysoká. Rozsah popisu realizace serverové aplikace je tak krátký -- mnoho objektivně zajímavých míst se v ní nevyskytlo.
+
+Realizováno bylo pouze zpracování čtyř rozličných typů zdrojů -- implememtace ostatních by byla dlouhotrvajícím opakováním stejných postupů a práci by moc neobohatila.
 
 \subsection{Řešené problémy}
 V době, kdy byl vytvořený návrh, bylo vytvoření aplikace už poměrně snadné. Popíšu tedy jen ve stručnosti několik základních částí řešení.
@@ -132,10 +134,12 @@ Prvních pět parametrů udává čas vykonání akce (minuta, hodina, den měs�
 Během implementace serverové aplikace vyvstalo několik komplikací, které bylo třeba vyřešit:
 
 \subsubsection{Převod kódování}
-Jiná kódování v node.js
+Node.js vznikl až po prosazení \glsname{UTF}-8, dá se tedy předpokládat, že bude toto kódování podporovat. Předpoklad je to samozřejmě, i dle dokumentace \cite{NodeEncoding}, správný; horší je to ale, dle stejného zdroje, s ostatními kódováními. Samotný Node.js může data v nich převádět do \textit{bufferu}, který pak lze následně, například pomocí systémového programu iconv volaného prostřednictvím knihovny node-iconv, převést do správného kódování.
+
+Problém vyvstává u vysokoúrovňových nástrojů, které například dokáží jednoduše stáhnout cizí internetovou stránku a předpřipravit ji k následnému zpracování -- pokud je u těchto nástrojů vrácen třeba \glsname{DOM}, v případě, že pocházela stránka ze zdroje, který využíval s Node.js nekompatibilní kódování, řekněme Windows-1250, převod kódování už nelze zpětně ovlivnit. Při zpracovávání některých stránek jsem tak musel zůstat u nízkoúrovňových nástrojů.
 
 \subsubsection{Špatně formované XML}
-\verb|<literal>>| - https://github.com/antoniogarrote/rdfstore-js/issues/26
+Při práci se sémantickým úložištěm rdfstore-js jsem narazil na špatně formované XML. Chybu jsem identifikoval -- jednalo se o sekvenci \verb|<literal>>| v některých přápadech generovaného XML, nalezl chybu v kódu, nahlásil a odeslal \textit{patch}. V současné době je chyba již odstraněna \cite{IssueLiteral}.
 
 % \subsection{Ideální implementace}
 
