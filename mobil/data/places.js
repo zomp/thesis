@@ -80,7 +80,7 @@ var placesjs = [
 	{phrase: ['T9:367'], selector: '#T9-367'},
 	{phrase: ['T9:368'], selector: '#T9-368'},
 	{phrase: ['TH'], selector: '#TH'},
-	{phrase: ['TH:A'], selector: '#TH-A'},
+	{phrase: ['TH:A', 'T7'], selector: '#TH-A'},
 	{phrase: ['TH:B'], selector: '#TH-B'},
 	{phrase: ['TH:C'], selector: '#TH-C'},
 	{phrase: ['TH:D'], selector: '#TH-D'},

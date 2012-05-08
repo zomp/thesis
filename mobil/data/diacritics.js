@@ -1,13 +1,13 @@
 /**
- * Diakritika
+ * Normalizační tabulka řetězce
  */
 
 var diacriticsjs = {
 	'á': 'a',
 	'č': 'c',
 	'ď': 'd',
-	'ě': 'e',
 	'é': 'e',
+	'ě': 'e',
 	'í': 'i',
 	'ň': 'i',
 	'ó': 'o',

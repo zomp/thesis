@@ -29,7 +29,7 @@ tab.navigation.getContent = function () {
 	//mapa
 	var svgmap = null; //kořen SVG mapy
 	var mapsize = {width: null, height: null}; //původní velikost SVG mapy
-	var map = $('<div class="group" id="map"><p>Zdá se, že aplikace nefunguje úplně správně &ndash; místo tohoto upozornění by se měla zobrazit mapa. Podporuje Váš prohlížeč SVG? V případě přetrvávajích problémů se, prosím, ozvěte autorovi, pokusí se Vám pomoci.</p></div>');
+	var map = $('<div class="group" id="map" tabindex="0"><p>Zdá se, že aplikace nefunguje úplně správně &ndash; místo tohoto upozornění by se měla zobrazit mapa. Podporuje Váš prohlížeč SVG? V případě přetrvávajích problémů se, prosím, ozvěte autorovi, pokusí se Vám pomoci.</p></div>');
 	
 	//načtení mapy
 	map.html(config.map.svg);
@@ -69,10 +69,10 @@ tab.navigation.getContent = function () {
 			y: e.pageY - Math.round(map.offset().top) - 2
 		});
 		switch (e.which) {
-			case 2:
+			case 2: //prostřední tlačítko
 				scale(3/2);
 				break;
-			case 3:
+			case 3: //pravé tlačítko
 				scale(2/3);
 				break;
 		}
@@ -81,22 +81,42 @@ tab.navigation.getContent = function () {
 		e.preventDefault();
 		return false;
 	});
+	map.keydown(function (e) {
+		switch (e.which) {
+			case 38: //nahoru
+				move({y: 0});
+				e.preventDefault();
+				break;
+			case 39: //doprava
+				move({x: svgmap.width.baseVal.value});
+				e.preventDefault();
+				break;
+			case 40: //dolů
+				move({y: svgmap.height.baseVal.value});
+				e.preventDefault();
+				break;
+			case 37: //doleva
+				move({x: 0});
+				e.preventDefault();
+				break;
+			case 107: //plus
+				scale(3/2);
+				e.preventDefault();
+				break;
+			case 109: //minus
+				scale(2/3);
+				e.preventDefault();
+				break;
+		}
+	});
 	
 	/**
 	 * Vyhledání dotazu a vizualizace výsledků.
 	 * @param data Konfigurační parametry (submit - potvrzení vyhledávání).
 	 */
 	var search = function () {
-		var queryval = query.val();
-		
-		try {
-			var querymatch = new RegExp(queryval, 'i');
-		} catch (e) {
-			results.html('<p><span class="error">Zadaná fráze je neplatným regulárním výrazem.</span> Nejčastější příčinou jsou chybějící výraz pro libovolný znak (<code>.</code>) nebo chybějící escape znak (<code>\\</code>) před následujícími znaky <code>*</code>, <code>?</code>, <code>+</code>, <code>[</code>, <code>]</code>, <code>(</code>, <code>)</code>, <code>{</code>, <code>}</code>, <code>\\</code>. Podrobnosti naleznete v nápovědě.</p>');
-			return false;
-		}
-		
-		unpointAllAreas();
+		results.html('<p><img src="img/load.gif" alt="Vyhledávám..."/> Vyhledávám...</p>');
+		var queryval = $.trim(query.val());
 		
 		/**
 		 * Normalizace řetězce pro hledání.
@@ -105,56 +125,70 @@ tab.navigation.getContent = function () {
 		 */
 		var normalize = function (term) {
 			var norm = '';
-			term = term.toLowerCase();
-			
 			for (var i = 0, max = term.length; i < max; ++i) {
-				norm += diacriticsjs[term.charAt(i)] || term.charAt(i);
+				norm += (typeof diacriticsjs[term.charAt(i)] !== 'undefined' ? diacriticsjs[term.charAt(i)] : term.charAt(i));
 			}
-			
 			return norm;
 		};
+		
+		try {
+			var querymatch = new RegExp(queryval, 'i');
+			var querymatchnorm = new RegExp(normalize(queryval), 'i');
+		} catch (e) {
+			results.html('<p><span class="error">Zadaná fráze je neplatným regulárním výrazem.</span> Nejčastější příčinou jsou chybějící výraz pro libovolný znak (<code>.</code>) nebo chybějící escape znak (<code>\\</code>) před následujícími znaky <code>*</code>, <code>?</code>, <code>+</code>, <code>[</code>, <code>]</code>, <code>(</code>, <code>)</code>, <code>{</code>, <code>}</code>, <code>\\</code>. Podrobnosti naleznete v nápovědě. </p>');
+			var corrector = $('<a href="#" class="button">Naprav a hledej</a>');
+			corrector.click(function () {
+				query.val(queryval.replace(/[[\]{}()*+?.\\^$|]/g, '\\$&'));
+				search();
+				return false;
+			});
+			results.find('p').first().append(corrector);
+			return false;
+		}
+		
+		unpointAreas();
 		
 		var places = config.map.places; //databáze míst, ve kterých se vyhledává
 		var found = []; //nalezená místa
 		
-		var i = config.map.places.length, j;
+		var i = places.length, j;
 		while (i--) {
 			j = places[i].phrase.length;
 			while (j--) {
-				if (querymatch.test(places[i].phrase[j]) || querymatch.test(normalize(places[i].phrase[j]))) {
+				if (querymatch.test(places[i].phrase[j]) || querymatchnorm.test(normalize(places[i].phrase[j]))) {
 					found.push(places[i]);
 					break;
 				}
 			}
 		}
 		
-		if (found.length === 0) {
+		if (found.length === 0) { //nic nenalezeno
 			results.html('<p><span class="error">Nic nenalezeno.</span> Vyhledávejte budovy (<code>TK</code>), místnosti (<code>T9:349</code>), alternativní názvy (<code>Gočár</code>), body zájmu (<code>občerstvení</code>)...</p>');
-		} else if (found.length === 1) {
+		} else if (found.length === 1) { //nalezen pouze jeden objekt
 			var othernames = '';
 			for (j = 1; j < found[0].phrase.length; ++j) {
-				if (querymatch.test(found[0].phrase[j]) || querymatch.test(normalize(found[0].phrase[j]))) {
+				if (querymatch.test(found[0].phrase[j]) || querymatchnorm.test(normalize(found[0].phrase[j]))) {
 					othernames += ', <small>' + found[0].phrase[j] + '</small>';
 				}
 			}
 			results.html('<p>Nalezené místo, <em>' + found[0].phrase[0] + othernames + '</em>, bylo vyznačeno na mapě.</p>');
-			pointArea(found[0].selector);
-		} else {
+			pointAreas(found[0].selector);
+		} else { //nalezeno několik objektů
 			var foundlist = $('<p>Nalezena tato místa: </p>');
 			
 			i = found.length;
-			while (i--) {
+			while (i--) { //vytvoření tlačítek reprezentujících nalezené objekty
 				(function () { //uzávěr
 					var foundselector = found[i].selector;
 					var item = $('<a href="#" class="button">' + found[i].phrase[0] + '</a>');
 					for (j = 1; j < found[i].phrase.length; ++j) {
-						if (querymatch.test(found[i].phrase[j]) || querymatch.test(normalize(found[i].phrase[j]))) {
+						if (querymatch.test(found[i].phrase[j]) || querymatchnorm.test(normalize(found[i].phrase[j]))) {
 							item.append(', <small>' + found[i].phrase[j] + '</small>');
 						}
 					}
 					item.click(function () {
-						unpointAllAreas();
-						pointArea(foundselector);
+						unpointAreas();
+						pointAreas(foundselector);
 						return false;
 					});
 					foundlist.append(item);
@@ -169,7 +203,7 @@ tab.navigation.getContent = function () {
 	
 	form.submit(search);
 	submit.click(search);
-	query.blur(search);
+// 	query.blur(search);
 	query.keyup(search);
 	
 	form.append(query, results, submit);
@@ -244,10 +278,10 @@ tab.navigation.getContent = function () {
 	});
 	
 	/**
-	 * Vyznačení místa na mapě.
+	 * Vyznačení míst na mapě.
 	 * @param selector Selektor místa.
 	 */
-	var pointArea = function (selector) {
+	var pointAreas = function (selector) {
 		var found = $(svgmap).find(selector);
 		var originalpointer = $('#search-pointer')
 		var bBox = {top: Infinity, right: -Infinity, bottom: -Infinity, left: Infinity}; //oblast, na kterou bude přesunuto
@@ -279,7 +313,7 @@ tab.navigation.getContent = function () {
 	/**
 	 * Odznačení všech míst na mapě.
 	 */
-	var unpointAllAreas = function () {
+	var unpointAreas = function () {
 		map.find('*').removeSvgClass('point').removeSvgClass('visible').removeSvgClass('hidden').removeSvgClass('unimportant');
 		$('.search-pointer').remove();
 	};
@@ -308,9 +342,6 @@ tab.navigation.getContent = function () {
 		
 		svgp && ('x' in svgp) && (viewp.x = (svgp.x - svgmap.viewBox.baseVal.x)*(svgmap.width.baseVal.value/svgmap.viewBox.baseVal.width));
 		svgp && ('y' in svgp) && (viewp.y = (svgp.y - svgmap.viewBox.baseVal.y)*(svgmap.height.baseVal.value/svgmap.viewBox.baseVal.height));
-		
-// 		svgp && ('x' in svgp) && (viewp.x = (svgp.x - svgmap.viewBox.baseVal.x)*(svgmap.viewBox.baseVal.width/svgmap.width.baseVal.value));
-// 		svgp && ('y' in svgp) && (viewp.y = (svgp.y - svgmap.viewBox.baseVal.y)*(svgmap.viewBox.baseVal.height/svgmap.height.baseVal.value));
 			
 		return viewp;
 	};
@@ -351,7 +382,7 @@ tab.navigation.getContent = function () {
 	 * @param geo Ověřované souřadnice.
 	 * @return Pozice se nachází na mapě.
 	 */
-	var inMapRange = function (geo) {
+	var geoInMapRange = function (geo) {
 		if (geo.lat >= config.map.corners.northwest.lat) return false;
 		if (geo.lon <= config.map.corners.northwest.lon) return false;
 		if (geo.lat <= config.map.corners.southeast.lat) return false;
@@ -364,7 +395,7 @@ tab.navigation.getContent = function () {
 			navigator.geolocation.getCurrentPosition(function (pos) {
 				var geo = {lat: pos.coords.latitude, lon: pos.coords.longitude};
 // 				var geo = {lat: 50.104575, lon: 14.387451};///
-				if (inMapRange(geo)) {
+				if (geoInMapRange(geo)) {
 					var pointer = $('#position-pointer');
 					pointer[0].setAttribute('transform', 'translate(' +
 						(geoToSvgPosition({lon: geo.lon}).x - pointer[0].getBBox().width/2) + ', ' +
@@ -412,7 +443,7 @@ tab.navigation.getContent = function () {
 	});
 	
 	mapcontrol.append(position, scaleup, scaledown);
-	mapcontrol.append(center, moveup, movedown, moveleft, moveright);
+	mapcontrol.append(moveup, movedown, moveleft, moveright); //center - odebráno, nebylo využíváno
 	
 	return $('<div/>').append($('<div class="group"/>').append(form), mapcontrol, map);
 };

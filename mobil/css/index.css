@@ -75,9 +75,6 @@ th {
 	border: 2px solid #888888;
 	border-radius: 3px;
 }
-#search {
-	text-align: center;
-}
 #search textarea, #search input {
 	width: 99%;
 	margin: 2px;
@@ -88,6 +85,7 @@ th {
 	width: 99%;
 	display: inline-block;
 	margin: 2px;
+	text-align: center;
 	font-family: Arial, sans-serif;
 	color: #555555;
 	background-color: #38C5E0;

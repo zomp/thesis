@@ -25,7 +25,7 @@ config.map = { //parametry použité mapy
 	svg: svgmapjs, //soubor s mapou
 	places: placesjs, //soubor s místy na mapě
 	animation: {
-		steps: 4, //počet kroků animací
+		steps: 3, //počet kroků animací
 		delay: 100 //rozestup kroků v ms
 	},
 	corners: { //souřadnice rohů

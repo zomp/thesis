@@ -35,7 +35,8 @@ tab.help.getContent = function () {
 		' (<code>*</code>), pak následuje znak 8, kterým název objektu končí (<code>$</code>).' +
 		' Podrobný návod naleznete na webu <a href="http://www.regularnivyrazy.info/serial-javascript-regexp.html"' +
 		' target="_blank">Regulární výrazy</a>.</p>' +
-		'<p>Mapu lze ovládat (přibližovat, posouvat) ovládacími prvky z menu umístěného nad ní nebo gesty,' +
+		'<p>Mapu lze ovládat (přibližovat, posouvat) ovládacími prvky z menu umístěného nad ní, kurzorovými' +
+		' klávesami v kombinaci s klávesami <kbd>+</kbd> a <kbd>-</kbd> nebo gesty,' +
 		' například klikem na mapu dojde k vycentrování mapy na místo kliku.</p>' +
 		'</div>' +
 		'<h4>SPARQL</h4>' +
