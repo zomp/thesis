@@ -2,12 +2,12 @@
 
 \chapter{Realizace}
 % Popis implementace/realizace se zaměřením na nestandardní části řešení.
-Během implementace se objevila celá řada zádrhelů, z nichž mnoho souviselo s doposud ne zcela zdokumentovanými a odlazenými technologiemi, přesto pro mne byla realizace velmi přínosná -- neustálým hledáním různých řešení a alternativ jsem nutně narazil na mnoho dalších zajímavých postřehů a nápadů. Kapitola se zabývá řešenými problémy, komplikacemi a potenciální aplikací v ideálním světě. % implementací bezpečnosti, 
+Během implementace se objevila celá řada zádrhelů, z nichž mnoho souviselo s doposud ne zcela zdokumentovanými a odladěnými technologiemi, přesto pro mne byla realizace velmi přínosná -- neustálým hledáním různých řešení a alternativ jsem nutně narazil na mnoho dalších zajímavých postřehů a nápadů. Kapitola se zabývá řešenými problémy, komplikacemi a implementací bezpečnosti. % , potenciální aplikací v ideálním světě
 
 \section{Serverová aplikace}
-Když se zpětně ohlížím za implementací serverové aplikace, náročné to objektivně vůbec nebylo, osobně jsem ale žádnou z používaných technologií / knihoven\dots v té době neznal, takže mi náročnost přišla enormě vysoká. Rozsah popisu realizace serverové aplikace je tak krátký -- mnoho objektivně zajímavých míst se v ní nevyskytlo.
+Když se zpětně ohlížím za implementací serverové aplikace, náročná objektivně vůbec nebyla, osobně jsem ale žádnou z používaných technologií / knihoven\dots v té době neznal, takže mi náročnost přišla enormně vysoká. Rozsah popisu realizace serverové aplikace je tak krátký -- mnoho objektivně zajímavých míst se v ní nevyskytlo.
 
-Realizováno bylo pouze zpracování čtyř rozličných typů zdrojů -- implememtace ostatních by byla dlouhotrvajícím opakováním stejných postupů a práci by moc neobohatila.
+Realizováno bylo pouze zpracování čtyř rozličných typů zdrojů -- implementace ostatních by byla dlouhotrvajícím opakováním stejných postupů a práci by moc neobohatila.
 
 \subsection{Řešené problémy}
 V době, kdy byl vytvořený návrh, bylo vytvoření aplikace už poměrně snadné. Popíšu tedy jen ve stručnosti několik základních částí řešení.
@@ -75,13 +75,13 @@ var store = rdfstore.create(config, function (store) {
     });
 });
 \end{verbatim}
-Zdrojový kód je v tomto případě dobře čitelný, žádné další komentáře tedy asi nepotřebuje. Za povšimnutí pouze stojí asynchroní charakter celé aplikace -- nikde se neblokují zdroje zbytečně a nemůže se stát, že by nějaká událost předběhla jinou.
+Zdrojový kód je v tomto případě dobře čitelný, žádné další komentáře tedy asi nepotřebuje. Za povšimnutí pouze stojí asynchronní charakter celé aplikace -- nikde se neblokují zdroje zbytečně a nemůže se stát, že by nějaká událost předběhla jinou.
 
 \subsubsection{Zdroje uživatelských jmen}
 Nepodařilo se mi nalézt vhodný zdroj uživatelských jmen vyučujících a neakademických pracovníků. Zatímco uživatelská jména studentů jsou zveřejněna na \url{https://timetable.fit.cvut.cz/public/cz/studenti/}, na obdobné stránce věnované učitelům, \url{https://timetable.fit.cvut.cz/public/cz/ucitele/}, jsou pouze tituly, křestní jména a příjmení -- tedy nic, co by bylo vhodným identifikátorem. Zdroj uživatelských jmen neakademických pracovníků se mi nepodařilo nalézt žádný. Vzhledem k plánovanému budoucímu napojení aplikace na KOSapi (\url{http://kosapi.fit.cvut.cz/}), až získá přístup do \glsname{KOS}, byly jako dočasné řešení zvoleny soubory obsahující jména a uživatelská jména všech osob.
 
 \subsubsection{Routování}
-Aplikace je serverem\footnote{Pozor, zde je důležité vzít vpotaz vymezení pojmů z poznámky \ref{fnt:aplikace} na straně \pageref{fnt:aplikace} -- aplikace, o které je řeč, je \textit{serverovou aplikací} v užším slova smyslu -- není nazývána \textit{serverovou aplikací} proto, že by nutně musela být serverem, ale proto, že je jednou z komponent serverového řešení. Že je tedy také serverem je pouze shoda náhod.} a obsluhuje se \glsname{HTTP} požadavky, je tak dosaženo větší univerzálnosti. Například pro aktualizaci osob spjatých s fakultou je třeba odeslat požadavek \texttt{GET} na \glsname{URL} \texttt{http://\linebreak[0]localhost:1337/\linebreak[0]osoby/}, na které je server spuštěný. Zpracování takového požadavku je vyřízeno následujícím kódem ze \textit{spouštěcího} souboru aplikace:
+Aplikace je serverem\footnote{Pozor, zde je důležité vzít v potaz vymezení pojmů z poznámky \ref{fnt:aplikace} na straně \pageref{fnt:aplikace} -- aplikace, o které je řeč, je \textit{serverovou aplikací} v užším slova smyslu -- není nazývána \textit{serverovou aplikací} proto, že by nutně musela být serverem, ale proto, že je jednou z komponent serverového řešení. Že je tedy také serverem je pouze shoda náhod.} a obsluhuje se \glsname{HTTP} požadavky, je tak dosaženo větší univerzálnosti. Například pro aktualizaci osob spjatých s fakultou je třeba odeslat požadavek \texttt{GET} na \glsname{URL} \texttt{http://\linebreak[0]localhost:1337/\linebreak[0]osoby/}, na které je server spuštěný. Zpracování takového požadavku je vyřízeno následujícím kódem ze \textit{spouštěcího} souboru aplikace:
 \begin{verbatim}
 var express = require('express'); //načtení frameworku express
 
@@ -139,7 +139,7 @@ Node.js vznikl až po prosazení \glsname{UTF}-8, dá se tedy předpokládat, ž
 Problém vyvstává u vysokoúrovňových nástrojů, které například dokáží jednoduše stáhnout cizí internetovou stránku a předpřipravit ji k následnému zpracování -- pokud je u těchto nástrojů vrácen třeba \glsname{DOM}, v případě, že pocházela stránka ze zdroje, který využíval s Node.js nekompatibilní kódování, řekněme Windows-1250, převod kódování už nelze zpětně ovlivnit. Při zpracovávání některých stránek jsem tak musel zůstat u nízkoúrovňových nástrojů.
 
 \subsubsection{Špatně formované XML}
-Při práci se sémantickým úložištěm rdfstore-js jsem narazil na špatně formované XML. Chybu jsem identifikoval -- jednalo se o sekvenci \verb|<literal>>| v některých přápadech generovaného XML, nalezl chybu v kódu, nahlásil a odeslal \textit{patch}. V současné době je chyba již odstraněna \cite{IssueLiteral}.
+Při práci se sémantickým úložištěm rdfstore-js jsem narazil na špatně formované \glsname{XML}. Chybu jsem identifikoval -- jednalo se o sekvenci \verb|<literal>>| v některých případech generovaného \glsname{XML}, nalezl chybu v kódu, nahlásil a odeslal \textit{patch}. V současné době je chyba již odstraněna \cite{IssueLiteral}.
 
 % \subsection{Ideální implementace}
 
@@ -147,59 +147,66 @@ Při práci se sémantickým úložištěm rdfstore-js jsem narazil na špatně 
 \section{Mobilní aplikace}
 Pod pojmem \textit{mobilní aplikace} se skrývá aplikace pevně nezávislá na výše uvedené \textit{serverové}. Jejím hlavním cílem je sloužit studentovi \glsname{FIT} \glsname{CVUT} jako průvodce, zároveň má ale plnit i účel ukázky využití \glsname{SPARQL} endpointu vytvořeného v \textit{serverové} části.
 
-
 \subsection{Řešené problémy}
-\todo{Optimalizace, ...}
+Implementace mobilní aplikace přinesla mnoho menších problémů, které bylo třeba vyřešit. Mezi nejzajímavější patří:
 
-\subsubsection{Vyhledávání}
-\todo{Odstranění diakritiky, regolární výrazy + nezávislost na velikosti písmen.}
+\subsubsection{Vyhledávání v navigaci}
+Aby bylo vyhledávání pro uživatele co nejvíce přívětivé, je třeba mu věnovat hodně pozornosti. Změnou vyhledávací fráze (stiskem klávesy, stiskem vyhledávacího tlačítka, odesláním formuláře, změnou formuláře) je vyvoláno hledání, kde jsou nejprve z vyhledávané fráze ořezány (počáteční a koncové) bílé znaky a následně je převedena do dvou regulárních výrazů -- první je tvořený frází tak, jak je zadána, druhý je normalizovaný. Normalizací je odstraněna diakritika, interpunkce a zbylé bílé znaky. Nyní už jsou prohledána všechna místa z databáze, nejprve na přítomnost prvního zmiňovaného regulárního výrazu, poté se normalizují a testují na druhý regulární výraz. Ve vyhledávání nezáleží na velikosti písmen.
 
-\subsubsection{Změna velikosti displeje}
-chrome css v px
+V průběhu celého procesu jsou zpracovávány krajní situace a řešena otázka uživatelské přívětivosti -- v případě chyby v regulárním výrazu je uživateli nabídnuta oprava, jsou vypisována hlášení o průběhu vyhledávání a dle počtu nalezených výsledků jsou tyto prezentovány -- jediný výsledek je rovnou zobrazen, více výsledků se vypíše a uživatel má možnost si dále z nich vybrat, případně pokračovat v zadávání hledané fráze.
 
-\subsubsection{Chyby prohlížečů v implementaci specifikací}
-Při práci jsem několikrát narazil na situaci, kdy vše v jednom prohlížeči fungovalo, ve druhém nikoliv, a přesto bylo vše implementované správně podle specifikace. V takovém případě pak bývala chyba na straně prohlížeče, který špatně implementoval určitou specifikaci. Situace nastávala převážně u hodně specifických případů. Příkladem může být chybějící podpora pro nastavení transformace \glsname{SVG} elementu JavaScriptem v prohlížeči Google Chrome \cite{BugChromeTran}, tento problém ale lze obejít vlastním sestavením hodnoty celého atributu. 
+\subsubsection{Mapa v navigaci}
+Mapa v navigaci je tvořena \glsname{SVG} obrázkem, se kterým je manipulováno JavaScriptem. Z mapy je zobrazována pouze výseč, která je navíc dle potřeby škálována -- to nutně vede k mnoha různým algoritmům:
+\begin{itemize}
+ \item Změna velikosti mapy v případě změny velikosti okna (minimalizací prohlížeče nebo třeba překlopením mobilního zařízení) -- velikost mapy se totiž automaticky nastavuje na velikost obrazovky, aby nebyla zbytečně velká a přesto ji mohl mít uživatel zobrazenou na celém displeji.
+ \item Posun zobrazované výseče po vyžádání uživatelem nebo na nalezený objekt. Je nutné brát v potaz aktuální škálování mapy.
+ \item Škálování mapy vyžádané uživatelem nebo dle nalezeného objektu. Je nutné brát v potaz aktuální zobrazovanou výseč.
+ \item Zjištění pozice vykonaného gesta -- je odvozována na základě pozice obalového elementu, zjišťování pozice z mapy dávalo vlivem různých implementací jiné výsledky napříč prohlížeči.
+ \item Převedení zeměpisných souřadnic na místo na mapě.
+\end{itemize}
+
+% \subsubsection{Optimalizace}
+% vyhledávání
 
 \subsubsection{Rozdílné DOM u HTML a SVG}
-\glsname{SVG} je, co se týče návrhu \glsname{DOM}, komplikovanější, než HTML -- zatímco u HTML stačí pro přístup k hodnotě atributu 
+\glsname{SVG} je, co se týče návrhu \glsname{DOM}, komplikovanější, než \glsname{HTML} -- zatímco u \glsname{HTML} stačí k hodnotě atributu v \glsname{DOM} přímo přistoupit, v \glsname{SVG} se musí zpravidla ještě o dvě úrovně níže, tedy třeba místo k \texttt{.width} se musí přistupovat k \texttt{.width.baseVal.value}. Při implementaci to bylo třeba brát v potaz.
+
+\subsubsection{Malá velikost displeje}
+Ačkoliv je toto omezení u mobilních zařízení zřejmé, nic to nemění na faktu, že se s ním musí neustále počítat a je třeba vybírat vhodné komponenty a ty vhodně rozvrhovat. Malá velikost displeje byla omezením i z opačného hlediska -- prsty jsou u dotykových telefonů, vzhledem k velikosti displeje, poměrně velké a ovládací prvky tak musí být dostatečně rozměrné, což konzumuje další místo. Mým cílem proto bylo vizualizovat jen to nejnutnější.
+
+\subsubsection{Různé typy polohovacích zařízení}
+Různá zařízení poskytují různé ovládací prvky využívající různé principy, aplikaci je ale potřeba přizpůsobit pro všechny najednou. Jiné je ovládání pro myš (touchpad, trackpad), jiné pro klávesy a jiné pro dotyková zařízení -- právě s těmi je problém -- v rámci použitých technologií ještě nebyl vytvořen žádný standard pro zpracování zpracování gest, proto bylo nutné umístit nad mapu výrazné ovládací prvky.
+
+\subsubsection{Dynamické načítání lokálních souborů}
+Z bezpečnostních důvodů došlo v minulosti v prohlížečích k zamezení načítání jakýchkoliv souborů, mimo JavaScriptu, z jiných zdrojů, než ze kterých stránka pochází. To v některých případech\footnote{Příkladem je Google Chrome a jeho základ Chromium \cite{BugChromeOrigin}.} přerostlo v zamezení dynamického načítání jakýchkoliv lokálních souborů -- jejich zdroj nemá žádnou hodnotu (\texttt{null}), takže je nelze načíst. Aby byla zachována možnost offline využití aplikace na větší skupině zařízení, byla aplikace přepsána na jediné možné řešení -- explicitní uvedení všech potenciálně vkládaných souborů, což značně omezilo modularitu aplikace.
+
+Například v případě \glsname{SVG} je široká nabídka volby -- lze vložit JavaScriptem do elementů \texttt{img} (\texttt{<img src="map.svg"\ />}), \texttt{embed} (\texttt{<embed src="map.svg"\ />}), \texttt{object} (\texttt{<object type="image/svg+xml"\ data="map.svg"\ />}), \texttt{iframe} (\texttt{<iframe src="map.svg"\ />}), pokud je pak umožněna manipulace s obsahem pomocí JavaScriptu, tak jen velice neohrabaně. Další možností je vložit \glsname{SVG} přímo do \glsname{HTML} kódu -- v případě dynamicky generovaného kódu by bylo vhodné celý soubor načíst a na místo vložit, jenže zde narážíme na problém z předchozího odstavce -- některé prohlížeče to neumožní. Zbývá tedy poslední řešení -- celý soubor převést do JavaScriptového řetězce, uložit do proměnné a vložit z ní. Jedině tak zle vložit do stránky \glsname{SVG} soubor, aby s ním pak bylo snadné manipulovat prostřednictvím jediného \glsname{DOM}.
+
+% \subsubsection{Otevírání lokálních souborů}
+% Omezení zmíněná v předchozím odstavci stupňuje až do extrémů mobilní prohlížeč Chrome Beta, který nepovolí ani přímé otevření lokálního souboru. \todo{Ověřit, možná nefunguje celé Chrome\dots}
 
 \subsubsection{Zpracování Cross-Origin zdrojů}
 \label{sec:mobil:cross-origin}
-Cross-Origin Resource Sharing - neumožňuje lézt na cizí server bez ptaní.
-mobil/js/lib/jquery.xdomainajax.js, 
+Aplikace potřebuje získávat a zpracovávat cizí zdroje -- aby poskytovala aktuální informace, nevystačí si jen s lokálním úložištěm, musí přímo k jejich původci. To je ale zpravidla v doméně použitých technologií komplikované -- webové prohlížeče z bezpečnostních důvodů nepovolují k cizím zdrojům přístup (výjimkou je například JavaScript -- více dále), takže je třeba danou situaci řešit.
 
-\subsubsection{Detekce kódování}
-mb\_detect\_encoding - detekce funguje na základě nevalidity - jiné validní prioritnější kódování má přednost.
+\glsname{SPARQL} endpoint ze serverové aplikace, tedy hlavní předpokládaný zdroj informací, máme plně ve své režii, takže na něm můžeme povolit \gls{CORS}, tedy technologii umožňující serveru zpřístupnit své zdroje i z jiné domény. Jediný problém je u špatné podpory některých prohlížečů.
 
-\subsubsection{Neexistující DNS server}
-DNS - mezi DNS servery byl jako zaloha jeden ze serveru provozovany VIC a zda se, ze uz provozovan neni
+Z již dříve popsaných důvodů, tedy malého rozsahu sémantické databáze, ale finální aplikace podporuje mimo přístupu k samotnému \glsname{SPARQL} endpointu i přímý přístup k původním zdrojům. Zde vyvstává problém -- na cizích zdrojích \glsname{CORS} povolit nemůžeme, je tedy třeba najít jiné řešení. Tím je \gls{JSONP}, tedy postup umožňující získat data ve formátu \glsname{JSON} obalená funkcí námi zvoleného jména, která je po stažení zdroje v prohlížeči vykonána a tím jsou aplikaci předána data ke zpracování.
 
-\subsubsection{Dynamické načítání lokálních souborů}
-Z bezpečnostních důvodů došlo v minulosti v prohlížečích k zamezení načítání JavaScriptových souborů z jiných zdrojů, než ze kterých stránka pochází. To v některých případech\footnote{Příkladem je Google Chrome.} přerostlo v zamezení dynamického načítání jakýchkoliv lokálních souborů -- jejich zdroj nemá žádnou hodnotu (\texttt{null}), takže je nelze načíst. Aby byla zachována možnost offline využití aplikace na větší skupině zařízení, byla aplikace přepsána na jediné možné řešení -- explicitní uvedení všech potenciálně vkládaných souborů, což značně omezilo modularitu aplikace.
+\glsname{JSONP} sám o sobě ale nic nevyřeší -- je k němu stejně tak potřeba mít uzpůsobený server.   proč taky ne CORS (lepší podpora...)
 
-\todo{inline, , ajax}\verb|<script>|
-
-\todo{Mapa canvas x SVG; vložení SVG: JS string, img, element, object, inline, ajax...}
-
-\subsubsection{Otevírání lokálních souborů}
-Omezení zmíněná v předchozím odstavci stupňuje až do extrémů mobilní prohlížeč Chrome Beta, který nepovolí ani přímé otevření lokálního souboru. \todo{Ověřit, možná nefunguje celé Chrome\dots}
-
-\subsection{Implementace bezpečnosti}
-\todo{Proxy. jQuery...}
+Yahoo! Query Language (\url{http://developer.yahoo.com/yql/})
+cross-domain-ajax (\url{https://github.com/padolsey/jQuery-Plugins/tree/master/cross-domain-ajax})
+proxy
+whitelist
+HTML Purifier
 
 
+\subsection{Komplikace}
+Během implementace mobilní aplikace se objevily i komplikace, 
 
-\subsection{Ideální implementace}
-Finální implementace se od té ideální, co se týče omezení vzniklých neideálním světem, moc neliší. Vzhledem k cílení aplikace na současná nová zařízení bylo možné realizovat téměř vše, co bylo naplánováno -- v uplynulých letech bylo odvedeno mnoho práce na jednotných standardech napříč zařízeními, a co víc, tyto standardy byly implementovány a z velké části se i dodržují. Problémy se proto vyskytly spíše na poli stále ještě v některých ohledech omezených možnostech mobilních zařízení.
-
-\subsubsection{Malá velikost displeje}
-Ačkoliv je toto omezení u mobilních zařízení zřejmé, nic to nemění na faktu, že se s ním musí neustále počítat a je třeba vybírat vhodné komponenty a ty vhodně rozvrhovat. Mým cílem proto bylo vizualizovat jen to nejnutnější.
-
-\subsubsection{Různé typy polohovacích zařízení}
-Různá zařízení poskytují různé ovládací prvky využívající různé principy, aplikaci je ale nutné přizpůsobit pro všechny najednou. Jiné je ovládání pro myš (touchpad, trackpad), jiné pro klávesy a jiné pro dotyková zařízení. I přes malý displej je třeba u mobilních dotykových zařízení vytvářet ovládací prvky natolik veliké, aby bylo možné je používat prsty.
-
-\subsubsection{Optimalizace rozvržení prvků}
-Mobilní zařízení nabízejí pro lepší využití malých displejů mnoho různých otimalizací rozvržení zobrazovaných prvků. Zpravidla jsou tyto vlastnosti velmi užitečné -- komprimují nevyužité místo, ve specifických případech, jako je třeba přesné pozicování ukazatele, ale může docházet k obtížně řešitelným situacím. Jediné místo aplikace, které se bez přesného rozmístění neobejde, jsou mapy. Problém jsem se nakonec rozhodl řešit využitím  \glsname{SVG} mapových podkladů, ve kterých prohlížeče, zdá se, zatím rozvržení neoptimalizují.
+\subsubsection{Chyby prohlížečů v implementaci specifikací}
+Při práci jsem několikrát narazil na situaci, kdy vše v jednom prohlížeči fungovalo, ve druhém nikoliv, a přesto bylo vše implementované správně podle specifikace. V takovém případě pak bývala chyba na straně prohlížeče, který špatně implementoval určitou specifikaci. Situace nastávala převážně u hodně specifických případů. Příkladem může být chybějící podpora pro nastavení transformace \glsname{SVG} elementu JavaScriptem v prohlížeči Google Chrome \cite{BugChromeTran}, tento problém ale lze obejít vlastním sestavením hodnoty celého atributu. 
 
 \subsubsection{Implementace SVG}
 Implementace \glsname{SVG} je v desktopových prohlížečích na velmi dobré úrovni již nějakou dobu,\footnote{Posledním významným desktopovým prohlížečem podporujícím \glsname{SVG} se stal s dlouhým odstupem verzí 9.0 Internet Explorer \cite{CanIUse}, předtím pro něj ale byly dostupné vhodné pluginy.} v nedávné minulosti se ale podpora značně zlepšila i na poli mobilních zařízení \cite{CanIUse}.
@@ -208,6 +215,24 @@ U mobilních zařízení nepřekvapuje chybějící implementace některých nek
 
 Překvapením byla pomalá, ačkoliv jinak velmi rozsáhlá, implementace \glsname{SVG} v prohlížeči Mozilla Firefox -- po některých operacích, v mém případě to byla třeba změna hodnot atributu \texttt{viewBox} \glsname{SVG} elementu (posunutí mapy), prohlížeč vyžaduje překreslení celého obrázku, což je velmi zdlouhavé a zabraňuje to plynulému posunu mapy z aktuální na novou pozici, byť by to bylo vhodné pro lepší uživatelovo zorientování se. Tento nedostatek je známý již delší dobu \cite{Bugzilla}.
 
-\subsubsection{Absence popisků}
-Velmi užitečnou vlastností dostupnou u desktopových aplikací jsou popisky zobrazující se po najetí myši nad podporovaný prvek. Dá se tímto způsobem velmi dobře implementovat kontextová nápověda, která patří mezi nejpodstatnější zdroje pomoci uživateli. U dotykových mobilních zařízení ale bohužel popisky zpravidla zobrazovat nejdou -- najetím, tedy dotykem prstu, se rovnou vyvolá akce prvku, aniž by se popisek mohl zobrazit.
+Nalezené problémy byla snaha obejít, ne vždy se to ale bohužel podařilo.
 
+\subsubsection{Detekce kódování}
+mb\_detect\_encoding - detekce funguje na základě nevalidity - jiné validní prioritnější kódování má přednost.
+
+\subsubsection{Neexistující DNS server}
+DNS - mezi DNS servery byl jako zaloha jeden ze serveru provozovany VIC a zda se, ze uz provozovan neni
+
+\subsection{Implementace bezpečnosti}
+\todo{Proxy. jQuery...}
+
+
+
+% \subsection{Ideální implementace}
+% Finální implementace se od té ideální, co se týče omezení vzniklých neideálním světem, moc neliší. Vzhledem k cílení aplikace na současná nová zařízení bylo možné realizovat téměř vše, co bylo naplánováno -- v uplynulých letech bylo odvedeno mnoho práce na jednotných standardech napříč zařízeními, a co víc, tyto standardy byly implementovány a z velké části se i dodržují. Problémy se proto vyskytly spíše na poli stále ještě v některých ohledech omezených možnostech mobilních zařízení.
+% 
+% \subsubsection{Optimalizace rozvržení prvků}
+% Mobilní zařízení nabízejí pro lepší využití malých displejů mnoho různých otimalizací rozvržení zobrazovaných prvků. Zpravidla jsou tyto vlastnosti velmi užitečné -- komprimují nevyužité místo, ve specifických případech, jako je třeba přesné pozicování ukazatele, ale může docházet k obtížně řešitelným situacím. Jediné místo aplikace, které se bez přesného rozmístění neobejde, jsou mapy. Problém jsem se nakonec rozhodl řešit využitím  \glsname{SVG} mapových podkladů, ve kterých prohlížeče, zdá se, zatím rozvržení neoptimalizují.
+% 
+% \subsubsection{Absence popisků}
+% Velmi užitečnou vlastností dostupnou u desktopových aplikací jsou popisky zobrazující se po najetí myši nad podporovaný prvek. Dá se tímto způsobem velmi dobře implementovat kontextová nápověda, která patří mezi nejpodstatnější zdroje pomoci uživateli. U dotykových mobilních zařízení ale bohužel popisky zpravidla zobrazovat nejdou -- najetím, tedy dotykem prstu, se rovnou vyvolá akce prvku, aniž by se popisek mohl zobrazit.
