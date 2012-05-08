@@ -2,19 +2,78 @@
 
 \chapter{Realizace}
 % Popis implementace/realizace se zaměřením na nestandardní části řešení.
-% Architektonické obrázky. (class diagram asi ne)
-Během implementace se objevila celá řada zádrhelů, z nichž většina souvisela s doposud ne zcela zdokumentovanými a odlazenými technologiemi, přesto byla velmi přínosná -- neustálým hledáním různých řešení a alternativ jsem nutně narazil na mnoho dalších zajímavých postřehů a nápadů. Kapitola se zabývá strukturou aplikací, řešenými problémy, volbou použitých technologií, použitými knihovnami, nádtroji a potenciální aplikací v ideálním světě.
+Během implementace se objevila celá řada zádrhelů, z nichž mnoho souviselo s doposud ne zcela zdokumentovanými a odlazenými technologiemi, přesto pro mne byla realizace velmi přínosná -- neustálým hledáním různých řešení a alternativ jsem nutně narazil na mnoho dalších zajímavých postřehů a nápadů. Kapitola se zabývá řešenými problémy, implementací bezpečnosti, komplikacemi a potenciální aplikací v ideálním světě.
 
 \section{Serverová aplikace}
-Aplikace bě
+Když se zpětně ohlížím za implementací serverové aplikace, náročné to objektivně vůbec nebylo, osobně jsem ale žádnou z používaných technologií/knihoven\dots v té době neznal, takže mi náročnost přišla enormě vysoká. Rozsah popisu realizace serverové aplikace je tak krátký -- mnoho objektivně zajímavých míst se v ní nevyskytlo.
 
 \subsection{Řešené problémy}
-\todo{Optimalizace, komplikace...}
+V době, kdy byl vytvořený návrh, bylo vytvoření aplikace už poměrně snadné. Popíšu tedy jen ve stručnosti několik základních částí řešení.
 
+\subsubsection{Získání zdroje}
+
+
+\subsubsection{Zdroj uživatelských jmen}
+
+\subsubsection{Routování}
+Aplikace je serverem\footnote{Pozor, zde je důležité vzít vpotaz vymezení pojmů z poznámky \ref{fnt:aplikace} na straně \pageref{fnt:aplikace} -- aplikace, o které je řeč, je \textit{serverovou aplikací} v užším slova smyslu -- není nazývána \textit{serverovou aplikací} proto, že by nutně musela být serverem, ale proto, že je jednou z komponent serverového řešení. Že je tedy také serverem je pouze shoda náhod.} a obsluhuje se \glsname{HTTP} požadavky, je tak dosaženo větší univerzálnosti. Například pro aktualizaci osob spjatých s fakultou je třeba odeslat požadavek \texttt{GET} na \glsname{URL} \texttt{http://localhost:1337/osoby/}, na které je server spuštěný. Zpracování takového požadavku je vyřízeno následujícím kódem ze \textit{spouštěcího} souboru aplikace:
+\begin{verbatim}
+var express = require('express'); //načtení frameworku express
+
+var app = express.createServer(); //vytvoření serveru
+
+app.get('/osoby/:login?', function (req, res) {
+    require('./sources/usermap.js').process(req.params.login);
+    res.send("OK: Source enqueued for processing.");
+});
+
+//další zdroje zpracovávány obdobně
+
+app.get('*', function (req, res) { //neodchycené cesty
+    res.send("Error: Service not found.", 404);
+});
+
+app.listen(1337); //spuštění aplikace na portu 1337
+\end{verbatim}
+V těchto několika řádcích je vytvořený celý server zpracovávající příchozí požadavky. Na pátém řádku je řečeno, že cesta směřující do \textit{segmentu} osoby bude touto metodou odchycena. Odchycen bude i další, nepovinný, segment, který bude uložený do proměnné \texttt{login}. Je tedy možné volat i \glsname{URL} \texttt{http://localhost:1337/osoby/molnaja2}, aniž by došlo k odchycení dvanáctým řádkem, který klientovi vrátí patřičnou chybu.
+
+Uvnitř metody je na prvním řádku vyžadováno zavolání metody \texttt{process()} z uvedeného souboru s parametrem \texttt{login}. V této metodě je na základě přítomnosti parametru rozhodnuto, jestli se mají zpracovat všechny osoby nebo jen jedna konkrétní. Na druhém řádku je klientovi odesláno oznámení o úspěšném přijetí požadavku.
+
+\subsubsection{Nastavení časovače}
+Vzhledem k výše uvedené obsluze \textit{serverové aplikace} \glsname{HTTP} požadavky je možné časovač reprezentovaný cronem jednoduchým nastavením, například:
+\begin{verbatim}
+# aktualizace jidelnicku kazdy den 3 minuty po zverejneni
+3 9,10,16,17 * * * user curl localhost:1337/jidelnicky/\
+               2>&1 1> jidelnicky.all.log 2> jidelnicky.err.log
+
+# aktualizace osob kazdy den 10 minut po druhe hodine
+10 2 * * * user curl localhost:1337/osoby/\
+               2>&1 1> osoby.all.log 2> osoby.err.log
+
+# aktualizace akci 10 minut po kazde sude hodine
+10 */2 * * * user curl localhost:1337/akce/\
+               2>&1 1> akce.all.log 2> akce.err.log
+
+# aktualizace rozvrhu kazdy den 10 minut po druhe hodine
+10 2 * * * user curl localhost:1337/rozvrh/\
+               2>&1 1> rozvrh.all.log 2> rozvrh.err.log
+# aktualizace rozvrhu v dobe tvorby 10 minut po kazde hodine
+10 * * 6,9,10,1,2 * user curl localhost:1337/rozvrh/\
+               2>&1 1> rozvrh.all.log 2> rozvrh.err.log
+\end{verbatim}
+Prvních pět parametrů udává čas vykonání akce (minuta, hodina, den měsíce, měsíc, den týdne), šestý uživatele, zbytek je vykonání příkazu -- odeslání požadavku a zalogování výsledku.
+
+% \subsection{Implementace bezpečnosti}
+
+\subsection{Komplikace}
+
+\subsubsection{Převod kódování}
+Jiná kódování v node.js
+
+\subsubsection{Špatně formované XML}
+\verb|<literal>>| - https://github.com/antoniogarrote/rdfstore-js/issues/26
 
 % \subsection{Ideální implementace}
-
-\subsection{Implementace bezpečnosti}
 
 
 \section{Mobilní aplikace}
@@ -22,6 +81,7 @@ Pod pojmem \textit{mobilní aplikace} se skrývá aplikace pevně nezávislá na
 
 
 \subsection{Řešené problémy}
+\todo{Optimalizace, ...}
 
 \subsubsection{Vyhledávání}
 \todo{Odstranění diakritiky, regolární výrazy + nezávislost na velikosti písmen.}
@@ -37,6 +97,24 @@ Při práci jsem několikrát narazil na situaci, kdy vše v jednom prohlížeč
 
 \subsubsection{Zpracování Cross-Origin zdrojů}
 \label{sec:mobil:cross-origin}
+Cross-Origin Resource Sharing - neumožňuje lézt na cizí server bez ptaní.
+mobil/js/lib/jquery.xdomainajax.js, 
+
+\subsubsection{Detekce kódování}
+mb\_detect\_encoding - detekce funguje na základě nevalidity - jiné validní prioritnější kódování má přednost.
+
+\subsubsection{Neexistující DNS server}
+DNS - mezi DNS servery byl jako zaloha jeden ze serveru provozovany VIC a zda se, ze uz provozovan neni
+
+\subsubsection{Dynamické načítání lokálních souborů}
+Z bezpečnostních důvodů došlo v minulosti v prohlížečích k zamezení načítání JavaScriptových souborů z jiných zdrojů, než ze kterých stránka pochází. To v některých případech\footnote{Příkladem je Google Chrome.} přerostlo v zamezení dynamického načítání jakýchkoliv lokálních souborů -- jejich zdroj nemá žádnou hodnotu (\texttt{null}), takže je nelze načíst. Aby byla zachována možnost offline využití aplikace na větší skupině zařízení, byla aplikace přepsána na jediné možné řešení -- explicitní uvedení všech potenciálně vkládaných souborů, což značně omezilo modularitu aplikace.
+
+\todo{inline, , ajax}\verb|<script>|
+
+\todo{Mapa canvas x SVG; vložení SVG: JS string, img, element, object, inline, ajax...}
+
+\subsubsection{Otevírání lokálních souborů}
+Omezení zmíněná v předchozím odstavci stupňuje až do extrémů mobilní prohlížeč Chrome Beta, který nepovolí ani přímé otevření lokálního souboru. \todo{Ověřit, možná nefunguje celé Chrome\dots}
 
 \subsection{Implementace bezpečnosti}
 \todo{Proxy. jQuery...}
@@ -65,8 +143,3 @@ Překvapením byla pomalá, ačkoliv jinak velmi rozsáhlá, implementace \glsna
 \subsubsection{Absence popisků}
 Velmi užitečnou vlastností dostupnou u desktopových aplikací jsou popisky zobrazující se po najetí myši nad podporovaný prvek. Dá se tímto způsobem velmi dobře implementovat kontextová nápověda, která patří mezi nejpodstatnější zdroje pomoci uživateli. U dotykových mobilních zařízení ale bohužel popisky zpravidla zobrazovat nejdou -- najetím, tedy dotykem prstu, se rovnou vyvolá akce prvku, aniž by se popisek mohl zobrazit.
 
-\subsubsection{Dynamické načítání lokálních souborů}
-Z bezpečnostních důvodů došlo v minulosti v prohlížečích k zamezení načítání JavaScriptových souborů z jiných zdrojů, než ze kterých stránka pochází. To v některých případech\footnote{Příkladem je Google Chrome.} přerostlo v zamezení dynamického načítání jakýchkoliv lokálních souborů -- jejich zdroj nemá žádnou hodnotu (\texttt{null}), takže je nelze načíst. Aby byla zachována možnost offline využití aplikace na větší skupině zařízení, byla aplikace přepsána na jediné možné řešení -- explicitní uvedení všech potenciálně vkládaných souborů, což značně omezilo modularitu aplikace.
-
-\subsubsection{Otevírání lokálních souborů}
-Omezení zmíněná v předchozím odstavci stupňuje až do extrémů mobilní prohlížeč Chrome Beta, který nepovolí ani přímé otevření lokálního souboru. \todo{Ověřit, možná nefunguje celé Chrome\dots}

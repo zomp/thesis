@@ -257,7 +257,7 @@ Návrh (\textit{design}) byl prováděn po rozvržení architektury a za přisp�
 
 Pro tři ze čtyř dříve identifikovaných struktur systému jsem nalezl vhodné hotové řešení (viz část \ref{sec:server:technologies} na straně \pageref{sec:server:technologies}) -- plánovač je tvořen cronem, jako databáze je použita MongoDB a \glsname{SPARQL} endpoint poskytuje rdfstore. Zbývá tedy doimplementovat pouze \textit{serverovou aplikaci}.
 
-Na obrázku \ref{fig:server:class} je znázorněn třídní diagram (\textit{class diagram}) reprezentující strukturu serverové aplikace. Metoda \textbf{process()} má za úkol stažení dat z patřičných zdrojů, jejich zpracování, převedení do sémantických grafů a uložení do databáze. V návrhu byl použit návrhový vzor strategie (\textit{strategy}).
+Na obrázku \ref{fig:server:class} je znázorněn třídní diagram (\textit{class diagram}) reprezentující strukturu serverové aplikace. Metoda \texttt{process()} má za úkol stažení dat z patřičných zdrojů, jejich zpracování, převedení do sémantických grafů a uložení do databáze. V návrhu byl použit návrhový vzor strategie (\textit{strategy}).
 
 \begin{figure}[h]
  \centering
