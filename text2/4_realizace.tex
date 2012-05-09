@@ -191,22 +191,22 @@ Aplikace potřebuje získávat a zpracovávat cizí zdroje -- aby poskytovala ak
 
 \glsname{SPARQL} endpoint ze serverové aplikace, tedy hlavní předpokládaný zdroj informací, máme plně ve své režii, takže na něm můžeme povolit \gls{CORS}, tedy technologii umožňující serveru zpřístupnit své zdroje i z jiné domény. Jediný problém je u špatné podpory některých prohlížečů.
 
-Z již dříve popsaných důvodů, tedy malého rozsahu sémantické databáze, ale finální aplikace podporuje mimo přístupu k samotnému \glsname{SPARQL} endpointu i přímý přístup k původním zdrojům. Zde vyvstává problém -- na cizích zdrojích \glsname{CORS} povolit nemůžeme, je tedy třeba najít jiné řešení. Tím je \gls{JSONP}, tedy postup umožňující získat data ve formátu \glsname{JSON} obalená funkcí námi zvoleného jména, která je po stažení zdroje v prohlížeči vykonána a tím jsou aplikaci předána data ke zpracování.
+Z již dříve popsaných důvodů, tedy malého rozsahu sémantické databáze, ale finální aplikace podporuje mimo přístupu k samotnému \glsname{SPARQL} endpointu i přímý přístup k původním zdrojům. Zde vyvstává problém -- na cizích zdrojích \glsname{CORS} povolit nemůžeme, je tedy třeba najít jiné řešení. Tím je \gls{JSONP}, tedy postup umožňující získat přes JavaScriptový soubor (ten má výjimku) data ve formátu \glsname{JSON} obalená funkcí námi zvoleného jména, která je po stažení zdroje v prohlížeči vykonána, a tím jsou aplikaci předána data ke zpracování.
 
-\glsname{JSONP} sám o sobě ale nic nevyřeší -- je k němu stejně tak potřeba mít uzpůsobený server.   proč taky ne CORS (lepší podpora...)
+\glsname{JSONP} sám o sobě ale nic nevyřeší -- je k němu stejně tak potřeba mít uzpůsobený server. Tady nám pomůže jednoduchá \textit{proxy}, které zadáme požadavek na zdroj, ona ho získá a odešle nazpátek. I zde by nakonec nemuselo být \glsname{JSONP}   potřeba, proxy zase bude v naší režii, v případě existence jiné vhodné, v cizí, a šlo by použít \glsname{CORS}, protože se ale jedná o dočasné řešení v době, kdy ještě některé menšinové prohlížeče \glsname{CORS} nepodporují, rozhodl jsem se si vyzkoušet implementaci další technologie.
 
-Yahoo! Query Language (\url{http://developer.yahoo.com/yql/})
-cross-domain-ajax (\url{https://github.com/padolsey/jQuery-Plugins/tree/master/cross-domain-ajax})
-proxy
-whitelist
-HTML Purifier
+Z veřejně k použití dostupných proxy lze využít například server Yahoo! využívaný pro \textit{Yahoo! Query Language} (\url{http://developer.yahoo.com/yql/}) -- na něm je založeno jQuery rozšíření cross-domain-ajax (\url{https://github.com/padolsey/jQuery-Plugins/}), dále je možné na vlastním serveru použít nějaké hotové řešení, například \textit{AJAX Cross Domain} (\url{http://www.ajax-cross-domain.com/}), nebo si vše od základu vytvořit sám.
+
+Rozhodl jsem se pro třetí možnost -- veřejně dostupná řešení nenabízejí potřebné možnosti konfigurace, mezi již hotovými řešeními se mi nepodařilo nalézt vhodné pro konkrétní použití, takže jsem si vytvořil proxy vlastní.\footnote{Byla tedy přidána další serverová aplikace do již tak terminologicky složité situace. Z tohoto důvodu se u zmíněného serveru držím označení \textit{proxy}.}
+
+Proxy je požádána o zprostředkování zdroje, na základě \textit{whitelistu} je rozhodnuto o jeho poskytnutí -- z bezpečnostních důvodů je zamezen přístup ke všem mimo nutně potřebných serverů. Zdroj proxy stáhne, převede na přednastavené kódování -- v rámci JavaScriptu nejsou převody snadné, dojde tak k výraznému usnadnění mobilní aplikaci, a před odesláním odpovědi je zdroj pročištěn -- za využití knihovny \textit{HTML Purifier} je zdroj zvalidněn a je z něj odstraněno vše, co není explicitně dalším \textit{whitelistem} povoleno -- skripty, obrázky, rámce, další zdroje, potenciálně škodlivé atributy a elementy\dots V případě chyby je uživateli (mobilní aplikaci) navráceno příslušné chybové hlášení.
 
 
 \subsection{Komplikace}
-Během implementace mobilní aplikace se objevily i komplikace, 
+Během implementace mobilní aplikace se objevily i komplikace, mimo očekávaných, již zmíněných v předchozí části, mezi ně patřilo:
 
 \subsubsection{Chyby prohlížečů v implementaci specifikací}
-Při práci jsem několikrát narazil na situaci, kdy vše v jednom prohlížeči fungovalo, ve druhém nikoliv, a přesto bylo vše implementované správně podle specifikace. V takovém případě pak bývala chyba na straně prohlížeče, který špatně implementoval určitou specifikaci. Situace nastávala převážně u hodně specifických případů. Příkladem může být chybějící podpora pro nastavení transformace \glsname{SVG} elementu JavaScriptem v prohlížeči Google Chrome \cite{BugChromeTran}, tento problém ale lze obejít vlastním sestavením hodnoty celého atributu. 
+Při práci jsem několikrát narazil na situaci, kdy určitá vlastnost v jednom prohlížeči fungovala, ve druhém nikoliv, a přesto bylo vše implementované správně podle specifikace. V takovém případě pak bývala chyba na straně prohlížeče, který určitou specifikaci špatně implementoval. Situace nastávala převážně u hodně specifických případů. Příkladem může být chybějící podpora pro nastavení transformace \glsname{SVG} elementu JavaScriptem (nutné pro práci s mapou) v prohlížeči Google Chrome \cite{BugChromeTran}, tento problém ale lze obejít vlastním sestavením hodnoty celého atributu a přímým vložením. 
 
 \subsubsection{Implementace SVG}
 Implementace \glsname{SVG} je v desktopových prohlížečích na velmi dobré úrovni již nějakou dobu,\footnote{Posledním významným desktopovým prohlížečem podporujícím \glsname{SVG} se stal s dlouhým odstupem verzí 9.0 Internet Explorer \cite{CanIUse}, předtím pro něj ale byly dostupné vhodné pluginy.} v nedávné minulosti se ale podpora značně zlepšila i na poli mobilních zařízení \cite{CanIUse}.
@@ -217,15 +217,15 @@ Překvapením byla pomalá, ačkoliv jinak velmi rozsáhlá, implementace \glsna
 
 Nalezené problémy byla snaha obejít, ne vždy se to ale bohužel podařilo.
 
-\subsubsection{Detekce kódování}
-mb\_detect\_encoding - detekce funguje na základě nevalidity - jiné validní prioritnější kódování má přednost.
+% \subsubsection{Detekce kódování}
+% mb\_detect\_encoding - detekce funguje na základě nevalidity - jiné validní prioritnější kódování má přednost.
 
 \subsubsection{Neexistující DNS server}
-DNS - mezi DNS servery byl jako zaloha jeden ze serveru provozovany VIC a zda se, ze uz provozovan neni
+Po nasazení proxy na server \url{http://webdev.fit.cvut.cz/} byl zjištěn nepříjemný problém -- ačkoliv přes proxy nasazené na jiné testovací servery bylo připojení z mobilní aplikace promptní, přes server webdev trvalo pokaždé přibližně třicet a půl vteřiny. Pravidelnost takového zvláštního času mě vedla ke snaze problém identifikovat. Nakonec jsem z výpisů komunikace zjistil, že je problém ve webdevem využívaných \glsname{DNS} serverech -- trvalo jim vždy půl minuty, než převedly \glsname{URL} na \glsname{IP} adresu. Problém jsem nahlásil \glsname{IT} oddělení \glsname{FIT} a za pár dní byl odstraněn -- mezi \glsname{DNS} servery byl nastavený záložní provozovaný třetí stranou, ten byl ale bez upozornění zrušen.
 
-\subsection{Implementace bezpečnosti}
-\todo{Proxy. jQuery...}
 
+% \subsection{Implementace bezpečnosti}
+% \todo{Proxy. jQuery...}
 
 
 % \subsection{Ideální implementace}

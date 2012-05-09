@@ -35,6 +35,8 @@
 	\ClassError{FITthesis}{Language not specified}{Add option czech for Czech language or option english for English language.}
 \fi
 
+% \usepackage{color}
+% \definecolor{myblue}{RGB}{0,162,192}
 
 \LoadClass[a4paper,twoside]{memoir}[2008/08/07]
 % \LoadClass[a4paper,oneside]{memoir}[2008/08/07]
@@ -349,11 +351,11 @@
 	\cleardoublepage
 	\tableofcontents*
 
-	\cleardoublepage
-	\listoffigures*
+% 	\cleardoublepage
+% 	\listoffigures*
 
-	\cleardoublepage
-	\listoftables*
+% 	\cleardoublepage
+% 	\listoftables*
 
 	\pagestyle{ruled}
 	\iflanguage{czech}{\mainmatter*}{\mainmatter} %hlavni text prace
