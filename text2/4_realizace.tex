@@ -2,7 +2,7 @@
 
 \chapter{Realizace}
 % Popis implementace/realizace se zaměřením na nestandardní části řešení.
-Během implementace se objevila celá řada zádrhelů, z nichž mnoho souviselo s doposud ne zcela zdokumentovanými a odladěnými technologiemi, přesto pro mne byla realizace velmi přínosná -- neustálým hledáním různých řešení a alternativ jsem nutně narazil na mnoho dalších zajímavých postřehů a nápadů. Kapitola se zabývá řešenými problémy, komplikacemi a implementací bezpečnosti. % , potenciální aplikací v ideálním světě
+Během implementace (\textit{implementation}) se objevila celá řada zádrhelů, z nichž mnoho souviselo s doposud ne zcela zdokumentovanými a odladěnými technologiemi, přesto pro mne byla realizace velmi přínosná -- neustálým hledáním různých řešení a alternativ jsem nutně narazil na mnoho dalších zajímavých postřehů a nápadů. Kapitola se zabývá řešenými problémy, komplikacemi a implementací bezpečnosti. % , potenciální aplikací v ideálním světě
 
 \section{Serverová aplikace}
 Když se zpětně ohlížím za implementací serverové aplikace, náročná objektivně vůbec nebyla, osobně jsem ale žádnou z používaných technologií / knihoven\dots v té době neznal, takže mi náročnost přišla enormně vysoká. Rozsah popisu realizace serverové aplikace je tak krátký -- mnoho objektivně zajímavých míst se v ní nevyskytlo.
@@ -200,6 +200,19 @@ Z veřejně k použití dostupných proxy lze využít například server Yahoo!
 Rozhodl jsem se pro třetí možnost -- veřejně dostupná řešení nenabízejí potřebné možnosti konfigurace, mezi již hotovými řešeními se mi nepodařilo nalézt vhodné pro konkrétní použití, takže jsem si vytvořil proxy vlastní.\footnote{Byla tedy přidána další serverová aplikace do již tak terminologicky složité situace. Z tohoto důvodu se u zmíněného serveru držím označení \textit{proxy}.}
 
 Proxy je požádána o zprostředkování zdroje, na základě \textit{whitelistu} je rozhodnuto o jeho poskytnutí -- z bezpečnostních důvodů je zamezen přístup ke všem mimo nutně potřebných serverů. Zdroj proxy stáhne, převede na přednastavené kódování -- v rámci JavaScriptu nejsou převody snadné, dojde tak k výraznému usnadnění mobilní aplikaci, a před odesláním odpovědi je zdroj pročištěn -- za využití knihovny \textit{HTML Purifier} je zdroj zvalidněn a je z něj odstraněno vše, co není explicitně dalším \textit{whitelistem} povoleno -- skripty, obrázky, rámce, další zdroje, potenciálně škodlivé atributy a elementy\dots V případě chyby je uživateli (mobilní aplikaci) navráceno příslušné chybové hlášení.
+
+\subsubsection{Uživatelské rozhraní}
+Tvorba uživatelského rozhraní mobilní aplikace nepřinesla, mimo tvorby mapy a zpracování cizích zdrojů, žádné zvlášť komplikované úkony. Tvorba mapy byla již popsána. Zpracování cizích zdrojů bylo vyžadováno pro jejich různorodost -- každý poskytoval informace v jiném formátu, transformoval jsem je tedy do obdobnějších reprezentací vhodných pro mobilní zařízení. Pro ilustraci přikládám obrázek \ref{fig:mobil:android:pruvodce} znázorňující uživatelské rozhraní mobilního průvodce.
+\begin{figure}[h]
+ \centering
+ \setlength\fboxsep{0pt}
+ \setlength\fboxrule{0.5pt}
+ \fbox{\includegraphics[width=9.1cm]{./figures/android-pruvodce.png}}
+ % android-pruvodce.png: 800x480 pixel, 72dpi, 28.22x16.93 cm, bb=0 0 800 480
+ \caption{Snímek obrazovky aplikace v prohlížeči platformy Android}
+ \label{fig:mobil:android:pruvodce}
+\end{figure}
+
 
 
 \subsection{Komplikace}
