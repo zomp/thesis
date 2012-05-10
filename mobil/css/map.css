@@ -78,10 +78,10 @@
 	font-weight: bold;
 	text-align: center;
 }
-.point, .point path {
+.point, .point > path {
 	fill: #00D400;
 }
-.point path.light {
+.point > path.light {
 	fill: #ffffff;
 }
 .visible {

@@ -7,7 +7,7 @@ var tab = {}; //moduly menu
 
 config.tab = { //moduly menu
 	used: ['guide', 'navigation', 'sparql', 'help'], //použité moduly menu
-	default: 'guide' //výchozí modul
+	dflt: 'guide' //výchozí modul (mimochodem, IE nemá rád proměnnou default)
 };
 
 config.sparql = { //SPARQL endpoint

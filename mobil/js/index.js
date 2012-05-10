@@ -31,7 +31,7 @@ $(document).ready(function () {
 			menuli.append(menulink);
 			$('#menu ul').append(menuli);
 			
-			if (config.tab.default == tabnames[t]) setTab(tabnames[t]);
+			if (config.tab.dflt == tabnames[t]) setTab(tabnames[t]);
 		})();
 	}
 	

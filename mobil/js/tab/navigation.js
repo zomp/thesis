@@ -9,6 +9,11 @@ tab.navigation.getName = function () {
 };
 
 tab.navigation.getContent = function () {
+	//test podpory SVG
+	if (!document.createElementNS || !document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect) {
+		return $('<div><div class="group"><p class="error">Navigace bohužel není pro Váš prohlížeč dostupná &ndash; nepodporuje formát SVG, ve kterém je vytvořena.</p></div></div>')
+	}
+	
 	//vyhledávací formulář
 	var query = $('<input type="text" value="T9:349">');
 	var submit = $('<a href="#" class="submit">Hledej!</a>');
@@ -35,6 +40,11 @@ tab.navigation.getContent = function () {
 	map.html(config.map.svg);
 	
 	svgmap = $('#svgmap', map)[0];
+	
+	//test podpory SVG
+	if (!svgmap.width) {
+		return $('<div><div class="group"><p class="error">Navigace bohužel není pro Váš prohlížeč dostupná &ndash; dostatečně nepodporuje formát SVG, ve kterém je vytvořena.</p></div></div>')
+	}
 	
 	//originální velikost mapy
 	mapsize.width = svgmap.width.baseVal.value;
@@ -267,6 +277,20 @@ tab.navigation.getContent = function () {
 			});
 		},
 		/**
+		* Ověření přítomnosti třídy u některého z elementů.
+		* @param value Název třídy.
+		* @return Některý z elementů má třídu.
+		*/
+		hasSvgClass: function (value) {
+			if (!value) return false; //dle hasClass
+			var match = new RegExp('\\b' + value + '\\b', '');
+			var ret = false;
+			this.each(function () {
+				if (match.test(this.className.baseVal)) ret = true;
+			});
+			return ret;
+		},
+		/**
 		* Odstranění třídy SVG elementu.
 		* @param value Název třídy.
 		*/
@@ -288,10 +312,16 @@ tab.navigation.getContent = function () {
 		found.each(function () {
 			$(this).addSvgClass('point');
 			
-			if ($(this).css('visibility') === 'hidden')
-				$(this).closest('.floor').addSvgClass('visible').closest('.building').addSvgClass('hidden');
-			$(this).closest('.floor, .building').parentsUntil($(svgmap)).andSelf().siblings().addSvgClass('unimportant');
+			//zobrazení, pokud se jedná o místnost nebo patra uvnitř budovy
+			if ($(this).parent().hasSvgClass('floor')) {
+				$(this).parent().addSvgClass('visible').parent().addSvgClass('hidden');
+				$(this).parent().parentsUntil($(svgmap)).andSelf().siblings().addSvgClass('unimportant');
+			} else if ($(this).hasSvgClass('floor')) {
+				$(this).addSvgClass('visible').parent().addSvgClass('hidden');
+				$(this).parent().parentsUntil($(svgmap)).andSelf().siblings().addSvgClass('unimportant');
+			}
 			
+			//přidání ukazatele na místo
 			var pointer = originalpointer.clone();
 			pointer.removeAttr('id');
 			pointer.attr('transform', 'translate(' +
@@ -300,6 +330,7 @@ tab.navigation.getContent = function () {
 			pointer.addSvgClass('search-pointer');
 			$(svgmap).append(pointer);
 			
+			//rozšiřování rozsahu nalezených objektů
 			(this.getBBox().y < bBox.top) && (bBox.top = this.getBBox().y);
 			(this.getBBox().x + this.getBBox().width > bBox.right) && (bBox.right = this.getBBox().x + this.getBBox().width);
 			(this.getBBox().y + this.getBBox().height > bBox.bottom) && (bBox.bottom = this.getBBox().y + this.getBBox().height);
