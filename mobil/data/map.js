@@ -1,3 +1,25 @@
+/**
+ * This file is part of Průvodce FIT ČVUT.
+ * Copyright (C) 2011-2012 Jan Molnár
+ *
+ * Průvodce FIT ČVUT is free software: you  can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * Průvodce FIT ČVUT is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with Průvodce FIT ČVUT. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * Mapa dejvického kampusu ve formátu SVG
+ */
+
 var svgmapjs = '<svg id="svgmap" xmlns="http://www.w3.org/2000/svg" width="1416" height="1397" version="1.1">' +
 	'	<path d="m517.3,77.88,12.51-14.96,11.51,9.624-12.51,14.96z" class="big1 area ctuarea"/>' +
 	'	<path d="m421.2,192.4,12.51-14.96,11.51,9.624-12.51,14.96z" class="big1 area ctuarea"/>' +
