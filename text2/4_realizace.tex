@@ -162,8 +162,9 @@ Mapa v navigaci je tvořena \glsname{SVG} obrázkem, se kterým je manipulováno
  \item Posun zobrazované výseče po vyžádání uživatelem nebo na nalezený objekt. Je nutné brát v potaz aktuální škálování mapy.
  \item Škálování mapy vyžádané uživatelem nebo dle nalezeného objektu. Je nutné brát v potaz aktuální zobrazovanou výseč.
  \item Zjištění pozice vykonaného gesta -- je odvozována na základě pozice obalového elementu, zjišťování pozice z mapy dávalo vlivem různých implementací jiné výsledky napříč prohlížeči.
- \item Převedení zeměpisných souřadnic na místo na mapě.
+ \item Převedení zeměpisných souřadnic na místo na mapě -- je realizováno prostým odvozením od souřadnic rohů mapy, zakřivení země je zanedbáno, pro dané účely tento přístup dostačuje.
 \end{itemize}
+V mapových podkladech jsou z důvodu velkého rozsahu dopodrobna na úrovni místností rozpracovány pouze první a třetí podlaží budovy T9 a na úrovni budov pouze dejvický kampus.
 
 % \subsubsection{Optimalizace}
 % vyhledávání
@@ -224,7 +225,7 @@ Při práci jsem několikrát narazil na situaci, kdy určitá vlastnost v jedno
 \subsubsection{Implementace SVG}
 Implementace \glsname{SVG} je v desktopových prohlížečích na velmi dobré úrovni již nějakou dobu,\footnote{Posledním významným desktopovým prohlížečem podporujícím \glsname{SVG} se stal s dlouhým odstupem verzí 9.0 Internet Explorer \cite{CanIUse}, předtím pro něj ale byly dostupné vhodné pluginy.} v nedávné minulosti se ale podpora značně zlepšila i na poli mobilních zařízení \cite{CanIUse}.
 
-U mobilních zařízení nepřekvapuje chybějící implementace některých neklíčových možností \glsname{SVG}, jako je třeba průhlednost v případě Opery Mobile. V této oblasti v současné době rozsáhlému nasazení nepřeje \glsname{SVG} nepodporující hojně využívaný nativní webový prohlížeč Androidu verze 2, od verze 3 je podpora zavedena. Problém lze obejít využitím jiného dostupného prohlížeče.
+U mobilních zařízení nepřekvapuje chybějící implementace některých neklíčových možností \glsname{SVG}. V této oblasti v současné době rozsáhlému nasazení nepřeje \glsname{SVG} nepodporující hojně využívaný nativní webový prohlížeč Androidu verze 2; od verze 3 je podpora zavedena. Problém lze obejít využitím jiného dostupného prohlížeče.
 
 Překvapením byla pomalá, ačkoliv jinak velmi rozsáhlá, implementace \glsname{SVG} v prohlížeči Mozilla Firefox -- po některých operacích, v mém případě to byla třeba změna hodnot atributu \texttt{viewBox} \glsname{SVG} elementu (posunutí mapy), prohlížeč vyžaduje překreslení celého obrázku, což je velmi zdlouhavé a zabraňuje to plynulému posunu mapy z aktuální na novou pozici, byť by to bylo vhodné pro lepší uživatelovo zorientování se. Tento nedostatek je známý již delší dobu \cite{Bugzilla}.
 

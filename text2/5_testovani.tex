@@ -2,63 +2,107 @@
 % (h) Srovnání s podobnými implementacemi (pokud existují).
 
 \chapter{Testování}
-Testování (\textit{testing}) provázelo aplikaci po celou dobu vývoje -- od 
-% Testování provázelo celý vývoj aplikace, začínalo evaluací návrhu uživatelského rozhraní při vytvoření prvních low fidelity prototypů, pokračovalo testy high fidelity prototypů a~skon\-či\-lo u testování téměř finální aplikace v terénu a komparativního testu s ostatními řešeními.
+Testování (\textit{testing}) provázelo vzniklé aplikace po celou dobu vývoje -- od evaluece požadavků na počátku, až po akceptační testy na konci. Testování probíhala, byť v jinou dobu, obdobně u serverové i mobilní aplikace, pro větší přehlednost jejich popis tedy sloučím.
 
 \section{Serverová aplikace}
-\todo{Testování sys,. integrace netřeba - běží na jednom místě. Komparativní testování nemá vůči čemu probíhat. Použitelnost netřeba řešit.}
+\todo{Komparativní testování nemá vůči čemu probíhat. Použitelnost netřeba řešit.}
 
-\subsection{Testování programátorem}
+\section{Testování programátorem}
 \todo{Kód jsem opětovně revidoval a opravoval chyby. Testování vstupů. Review...}
 
-% \subsection{Testování funkcionalit}
-% \todo{Splnění požadavků bylo testováno mnou i vedoucím práce.}
-
-\subsection{Integrační testování}
-\todo{Po zařazení nové funkcionality byly dotčené části programu otestovány.}
-
-\subsection{Zátěžové testování}
-
-\subsection{Akceptační testování}
-\todo{Bylo prováděno vedoucím práce.}
-
-
-\section{Mobilní aplikace}
-
-
-\subsection{Testování programátorem}
 \todo{Kód jsem opětovně revidoval a opravoval chyby.}
 % nefungující SPARQL v Chrome - špatný parametr accepts (místo {json: 'application/json'} pouze 'application/json')
+% zbytečné zelenění
 
-\subsection{Testování funkcionalit}
+\section{Testování funkcionalit}
 \todo{Splnění požadavků bylo testováno mnou i vedoucím práce.}
 
-\subsection{Integrační testování}
-\todo{Po zařazení nové funkcionality byly dotčené části programu otestovány.}
+\section{Integrační testování}
+Integrační testování (\textit{integration testing}) bylo prováděno u všech vyvíjených aplikací. Po přidání nové funkcionality byla vždy příslušná část aplikace důkladně otestována, aby bylo zamezeno situacím, kdy nově zanesené úpravy poškodí již existující funkcionality aplikace -- takto vzniklé a neošetřené chyby totiž bývají velmi záludné -- vývojář otestoval všechny části, nenalezl v nich žádný problém, takže je považuje za korektní, možnost chyb daných integrací ho nenapadne a při pozdějším výskytu problému pak hledá řešení na špatných místech, protože skutečné místo považuje za již důkladně otestované.
 
-\subsection{Testování systémové integrace}
-\todo{Kompatibilita.}
-% \todo{Otestování v Opeře (Mini, Mobile), NetFrontu, IE, FF, Nokia Mini Map, BB...}
+\section{Testování kompatibility}
+\label{sec:test:compat}
+Testování kompatibility (\textit{compatibility testing}) je proces ověřující správný chod systému v různých prostředích -- zařízeních, operačních systémech, běhových prostředích\dots Serverová aplikace je nasazena na konkrétním serveru a s častým přemisťováním se nepočítá, věnovat se proto budu v této sekci pouze mobilní aplikaci, která je na tom přesně opačně -- bude nasazena na zařízeních uživatelů, která jsou vzájemně dosti odlišná.
 
-\subsection{Zátěžové testování}
-\todo{Má tu smysl? Proxy? SPARQL?}
+Testování bylo v omezeném počtu prohlížečů prováděno po celou dobu vývoje, ve zbylých až v době finalizace. Testovalo se v prohlížečích:
+\begin{itemize}
+ \item Mozilla Firefox (\url{http://www.mozilla.org/firefox/}).
+ \item Chromium (\url{http://chromium.org/}).\footnote{Chromium je základem prohlížeče Google Chrome, dá se tedy předpokládat, že ten bude aplikaci podporovat na stejné úrovni.}
+ \item rekonq (\url{http://rekonq.kde.org/}).
+ \item Konqueror (\url{http://www.konqueror.org/}).
+ \item Internet Explorer (\url{http://ie.microsoft.com/}).
+ \item Prohlížeč platformy Android (\url{http://android.com/}) -- verze 2 a 4.
+ \item Opera Mobile (\url{http://www.opera.com/mobile/}).
+ \item Opera Mini (\url{http://www.opera.com/mini/}).
+ \item Internet Explorer Mobile (\url{http://www.microsoft.com/windowsphone/en-us/features/default.aspx#internet-explorer}).
+\end{itemize}
+Mimo výše uvedených navíc nabídl pan inženýr Havryluk, vedoucí práce, otestování v následujících prohlížečích:
+\begin{itemize}
+ \item Google Chrome for Android (\url{https://www.google.com/intl/en/chrome/android/}).
+ \item Prohlížeč platformy Android (\url{http://android.com/}) -- verze 3.
+ \item Dolphin Browser (\url{http://dolphin-browser.com/}).
+ \item Nokia Browser for Symbian  (\url{http://browser.nokia.com/}).
+ \item Prohlížeč platformy BlackBerry (\url{http://us.blackberry.com/smartphones/features/internet.jsp}).
+ \item Safari (\url{http://www.apple.com/safari/}).
+\end{itemize}
 
-\subsection{Akceptační testování}
-\todo{Bylo prováděno vedoucím práce.}
+\subsection{Testované prohlížeče}
+V následující části jsou popsány nalezené problémy jednotlivých prohlížečů, pokud není uvedené jinak, aktuálních verzí:
 
-\subsection{Testování použitelnosti}
+\subsubsection{Mozilla Firefox}
+Mozilla Firefox po pozměnění vynucuje překreslení \glsname{SVG}, které je navíc poměrně pomalé, snažil jsem se proto algoritmy upravit tak, aby \glsname{SVG} zbytečně nepozměňovaly. Jinak vše funguje, jak má.
+
+\subsubsection{Chromium}
+Nelze nastavit transformaci \glsname{SVG} elementu, problém ale lze obejít méně elegantním způsobem. Vše funguje, jak má.
+
+\subsubsection{rekonq}
+Prohlížeč nepodporuje geolokační \glsname{API}, takže nelze určit polohu uživalete. Prohlížeč také výchozím fontem zobrazuje velmi úzké bílé znaky, takže nemusí být tolik přehledné formátování například ve \glsname{SPARQL} konzoli. Jinak vše funguje, jak má.
+
+\subsubsection{Konqueror}
+Prohlížeč ve výchozím \textit{renderovacím} jádru, KHTML, nepodporuje přímé vkládání \glsname{SVG} do \glsname{HTML}, nefunguje v něm tedy navigace -- uživatel je na toto omezení upozorněn. Jinak vše funguje, jak má.
+
+\subsubsection{Internet Explorer}
+Do verze 9 neměl Internet Explorer bez přidaných rozšíření dostatečnou podporu \glsname{SVG} a nepodporoval tak navigaci; od verze 9, včetně, je vše v pořádku. V tomto prohlížeči jsem také narazil na chybu ve specifikaci JavaScriptu: není zde povoleno pojmenovat vlastnost objektu rezervovaným slovem \texttt{default}, což by mělo být zakázané pouze na místech označených jako \textit{Identifiers}, nikoliv tedy jako \textit{Identifier Names} \cite{JsIdentifiers}, přejmenování proměnné zde problém vyřešilo. Jinak vše funguje, jak má.
+
+\subsubsection{Opera}
+V Opeře se při vyhledávání v rámci navigace nezobrazovaly objekty uvnitř budov, nejprve jsem z toho velmi chybně vinil špatnou implementaci průhlednosti,\footnote{Nejprve jsem se s tímto problémem setkal u Opera Mobile, kde by to bylo pochopitelné.} po dlouhém zkoumání jsem ale zjistil, že Opera nedokáže v některých případech vlivem odlišného \glsname{DOM} \glsname{SVG} pracovat přímo se třídami \glsname{SVG} elementů, ale musí se k jejich hodnotám v \glsname{DOM} přistupovat skrze delší cestu -- většina ostatních prohlížečů si s tímto problémem poradila. Problematické algoritmy byly přepracovány a problém odstraněn. Vše funguje, jak má.
+
+\subsubsection{Prohlížeč platformy Android}
+Do verze 2, včetně, nepodporuje prohlížeč \glsname{SVG} -- tudíž nefunguje navigace, to se ale ve verzích 3 a 4 změnilo a podpora celé aplikace je tak bezproblémová. Vše funguje, jak má.
+
+\subsubsection{Opera Mobile}
+V Opeře Mobile se vyskytoval stejný problém, jaký byl odhalen u \textit{desktopové} verze -- nezobrazovaly se objekty uvnitř budov. Odstraněním problému v \textit{desktopové} verzi byl odstraněn i zde. Vše funguje, jak má.
+
+\subsubsection{Opera Mini}
+Prohlížeč Opera Mini nepodporuje přímé vkládání \glsname{SVG} do \glsname{HTML}, nefunguje v něm tedy navigace -- uživatel je na toto omezení upozorněn. Také tento prohlížeč nedokáže zobrazit tabulátor v textových polích, například ve \glsname{SPARQL} konzoli -- byly tedy nahrazeny za mezery. Jinak vše funguje, jak má.
+
+\subsubsection{Internet Explorer Mobile}
+Testována byla pouze verze 6, v té ještě nebyla přidána podpora \glsname{SVG}, která je již v aktuální verzi přítomná -- v testované verzi tedy nefunguje navigace. Také se zde projevovala, jako v \textit{desktopové} verzi, již opravená, chybná implementace omezení rezervovaných slov. Jinak vše funguje, jak má.
+
+\subsubsection{Google Chrome for Android}
+Google Chrome for Android je teprve v betaverzi a některé věci tak ještě nejsou úplně odladěné. V aplikaci se projevila chyba, jinak velmi užitečné, funkce pro automatické přibližování v reakci na stisknutí odkazu -- uživateli je tak usnadněno jeho finální potvrzení, aniž by byl omylem aktivován jiný odkaz v blízkosti zamýšleného. Zdá se, že jinak vše funguje, jak má.
+
+
+\section{Zátěžové testování}
+\todo{Má u mobilní smysl? Proxy? SPARQL?}
+
+\section{Akceptační testování}
+\todo{Bylo prováděno i vedoucím práce.}
+
+\section{Testování použitelnosti}
 \todo{Chvíle na seznámení. Vyhledání budovy T9. Získání jídelníčku menzy Strahov. Vyhledání občerstvení od TK. SPARQL dotaz.}
-\todo{Nápověda k regulárním výrazům. Našeptávání. Přesun na nalezené. Trim výrazu. Odebrání Centrovat.}
 \todo{Tlačítko na přechod nahoru. Zvětšovat na nalezené. Navigace není mapa webu. Hromadné zavření rolet, případně dole. Fixní zobrazení menu. Posun mapy kliknutím. Nečte nápovědu. Nevyužívá vyhledávání u mapy.}
 \todo{Nenalézá navigaci. Fixní zobrazení menu. Posun mapy kliknutím. Nečte nápovědu. Nevyužívá vyhledávání u mapy.}
 \todo{Navigaci nalézá, nenapadá ho ale použít vyhledávání a prochází mapou manuálně. nenapadá ho gesto pro posun, nakonec objeví tlačítka a budovu nalézá. Jídelníček bez problémů. Občerstvení na mapě nevidí, přechází do průvodce, nenalézá, vrací se na mapu, zkouší vyhledat a úspěch. SPARQL v pohodě.}
+\todo{Navigaci nalézá okamžitě, budovu vyhledává, není si jistá, co je je výsledkem (nezobrazil se overlay). Jídelníček okamžitě. Občerstvení v pohodě, zkouší i bufet, v pohodě. }
+\todo{Nápověda k regulárním výrazům. Našeptávání. Přesun na nalezené. Trim výrazu. Odebrání Centrovat. Zvětšení vstupního pole.}
 % \label{sec:testhfp}
 % Testování návrhu bylo prováděno po konzultaci s vedoucím práce testováním tří osob online high fidelity prototypy -- vzhledem k použitým technologiím se naskytla možnost jednoduše vytvořit prototypy velmi podobné finální aplikaci. Bylo zjištěno několik závažných nedostatků, které byly později v aplikaci realizovány.
 
-\subsubsection{Cíl testu}
+\subsection{Cíl testu}
 % Cílem testu je v rané fázi vývoje ověřit životaschopnost aplikační logiky, návrhu uživatelského rozhraní, použitelnosti aplikace a dalších faktorů pro následné zapracování objevených nedostatků do finální verze aplikace.
 % 
-\subsubsection{Charakteristika účastníků}
+\subsection{Charakteristika účastníků}
 % Návrh aplikace byl otestován na třech osobách charakterizovaných v tabulce \ref{tab:charakteristikaUcastniku}. Tito lidé se nacházejí v rolích potencionální uchazečky o studium a již s místem obeznámených studentů druhého a třetího ročníku.
 % \begin{table}
 % \begin{center}
@@ -81,10 +125,10 @@ Testování (\textit{testing}) provázelo aplikaci po celou dobu vývoje -- od
 % \end{center}
 % \end{table}
 % 
-\subsubsection{Nastavení testu}
-% Test proběhl za použití online prototypů na pomezí low a high fidelity prototypů -- vzhledem k použitým technologiím se naskytla možnost jednoduše vytvořit prototypy velmi podobné finální aplikaci. Prototypy byly zkoušeny buď v prostředí běžného desktopového internetového prohlížeče pouze za použití klávesnice (bez myši) nebo v emulátoru prohlížeče Opera Mini dostupného na \cite{OperaMiniDemo}. Test byl prováděn v klidném prostředí bez rušivých vlivů.
+\subsection{Nastavení testu}
+% Test proběhl za použití online prototypů na pomezí low a high fidelity prototypů -- vzhledem k použitým technologiím se naskytla možnost jednoduše vytvořit prototypy velmi podobné finální aplikaci. Prototypy byly zkoušeny buď v prostředí běžného \textit{desktopové}ho internetového prohlížeče pouze za použití klávesnice (bez myši) nebo v emulátoru prohlížeče Opera Mini dostupného na \cite{OperaMiniDemo}. Test byl prováděn v klidném prostředí bez rušivých vlivů.
 % 
-\subsubsection{Seznam testovaných úloh}
+\subsection{Seznam testovaných úloh}
 % Testovány byly tyto úlohy pokrývající běžnou práci s aplikací:
 % \subsubsection*{V rozvrhu máte uvedenou další hodinu v učebně KN:E-9, nalezněte ji}
 % Úloha ověřuje základní práci s aplikací -- nalezení přesně identifikované místnosti.
@@ -98,7 +142,7 @@ Testování (\textit{testing}) provázelo aplikaci po celou dobu vývoje -- od
 % Úloha sleduje práci s regulárními výrazy.
 % 
 % 
-\subsubsection{Průběh testu}
+\subsection{Průběh testu}
 % \subsubsection{P01}
 % \subsubsection*{V rozvrhu máte uvedenou další hodinu v učebně KN:E-9, nalezněte ji}
 % Nemá problém učebnu vyhledat -- zadává několik prvních znaků, poté vybere hledanou učebnu ze seznamu. Problém přichází s plánkem -- nedokáže učebnu lokalizovat, několik minut prochází plánkem a kvůli tomu, že je nalezená místnost vyznačena stejně červeně jako dveře, ji považuje za další obyčejný objekt.
@@ -135,7 +179,7 @@ Testování (\textit{testing}) provázelo aplikaci po celou dobu vývoje -- od
 % \subsubsection*{Pokuste se nalézt učebnu, o které si pamatujete jen to, že její číslo končí na 13 a je v Dejvicích}
 % Nachází bez problémů, i když nejdříve zkoušel \emph{13\$}, čímž nenašel \emph{.*13a}, ale protože nenašel nic jiného, upravuje výraz na \emph{t2.*13} a nachází.
 % 
-\subsubsection{Shrnutí testu}
+\subsection{Shrnutí testu}
 % Test návrhu přinesl následující podněty ke zlepšení:
 % \subsubsection*{Zvýraznění nalezené místnosti}
 % Je potřeba lépe zvýraznit nalezenou místnost, podbarvení červenou barvou (shodnou s~barvou dveří) nestačí. Označit nalezenou místnost šipkou, ne číslem -- neznalý uživatel si ho v době nalezení už nemusí pamatovat a může jím být zmatený.
@@ -245,7 +289,7 @@ Testování (\textit{testing}) provázelo aplikaci po celou dobu vývoje -- od
 % % \subsubsection*{Zpět v historii}
 % % Přepínání obrazovek evokuje přechod na novou stránku, takže si uživatel oprávněně myslí, že se na původní místo vrátí tlačítkem prohlížeče \emph{Zpět}. Ve skutečnosti se ale celou dobu pohyboval na jedné, dynamicky se měnící, stránce, takže se v historii přesune úplně nečekaně jinam. Tento problém potřebuje vyřešit.
 
-\subsection{Komparativní testování}
+\section{Komparativní testování}
 \todo{Porovnání mobilní aplikace s konkurencí.}
 % Podařilo se mi objevit pouze jedinou aplikaci, která se zabývá podobnou tematikou -- Průvodce ČVUT FEL \cite{PruvodceCvut}, je vysoce pravděpodobné, že víc podobných aplikací ani není. Srovnání probíhá pouze v rozdílných vlastnostech a není určená žádná metrika, která by vybírala lepší aplikaci -- nemělo by to smysl, pomineme-li moji zaujatost, Průvodce ČVUT FEL je starší, nemá aktualizovanou databázi místností, aby reflektovala současný stav, takže je v současné době nepoužitelný. Porovnání se nachází v tabulce \ref{tab:srovnaniReseni}.
 % \begin{table}
