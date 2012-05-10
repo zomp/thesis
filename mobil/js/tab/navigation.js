@@ -319,6 +319,10 @@ tab.navigation.getContent = function () {
 			} else if ($(this).hasSvgClass('floor')) {
 				$(this).addSvgClass('visible').parent().addSvgClass('hidden');
 				$(this).parent().parentsUntil($(svgmap)).andSelf().siblings().addSvgClass('unimportant');
+			} else if ($(this).parent().hasSvgClass('building')) {
+				$(this).parentsUntil($(svgmap)).andSelf().siblings().addSvgClass('unimportant');
+			} else if ($(this).hasSvgClass('building')) {
+				$(this).parentsUntil($(svgmap)).andSelf().siblings().addSvgClass('unimportant');
 			}
 			
 			//přidání ukazatele na místo
