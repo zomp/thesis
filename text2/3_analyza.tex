@@ -1,14 +1,6 @@
 % (e) Analýza a návrh implementace produktu (včetně diskuse různých alternativ a volby implementačního prostředí).
 
 \chapter{Analýza a návrh implementace}
-% Analýza a návrh implementace (včetně diskuse různých alternativ a volby implementačního prostředí).
-% Detailní popis uživatele a jeho potřeb.
-% Analýzu odkázat na komparativní test.
-% Návrh odkázat na low fidelity test.
-% V analýze neprezentovat finální řešení ale dopodrobna celý proces.
-
-% TODO kolik času bylo věnováno
-
 Analýza s návrhem probíhaly nezávisle na dvou místech -- po krátké analýze celku a určení vzájemných komunikačních rozhraní byly provedeny analýza s návrhem serverové aplikace a až po jejím dokončení začaly analýza s návrhem mobilní aplikace. V průběhu času jsem se k analýze a návrhu ještě několikrát vrátil a vylepšil / rozšířil to, co se ne vždy na poprvé povedlo.
 
 Analýza se skládala z identifikace potřeb uživatelů, vytvoření případů užití, ze kterých byly odvozeny funkční požadavky, ke kterým byly doplněny nefunkční požadavky. Poté byl vytvořen návrh řešení, zapracován návrh bezpečnosti a celý koncept byl podložen návrhem nasazení. Nakonec byly voleny technologie.
@@ -473,10 +465,8 @@ Přehledy rozšiřují poznatky získané při tvorbě bakalářské práce \cit
 Zvláště, pokud máme mapu nebo jsme v jiné situaci, kdy víme, kam jít, vyvstává potřeba určit aktuální pozici -- bez té totiž nelze určit směr, vzdálenost, a v případě, že hledáme nejbližší místo daného typu, ani cíl cesty.
 
 \subsubsection{Potřeba nezávislosti}
-Cílová skupina má díky specifickému životnímu stylu silnou potřebu nezávislosti v mnoha oblastech -- pokud jim má být poskytnu aplikace, ani ta je nesmí příliš omezovat -- je proto vhodné, aby se jednalo o aplikaci mobilní a aby umožňovala offline provoz, jinak hrozí nemožnost jejího využití v situacích jako je cesta do školy nebo přítomnost na některém z mnoha signálem nepokrytých míst budovy T9.
+Cílová skupina má díky specifickému životnímu stylu silnou potřebu nezávislosti v mnoha oblastech -- pokud jim má být poskytnu aplikace, ani ta je nesmí příliš omezovat -- je proto vhodné, aby se jednalo o aplikaci multiplatformní, mobilní a aby umožňovala offline provoz, jinak hrozí nemožnost jejího využití v situacích jako je cesta do školy nebo přítomnost na některém z mnoha signálem nepokrytých míst budovy T9.
 
-% \subsection{Potřeba multiplatformní aplikace}
-% 
 % \subsubsection{Potřeby návštěvníků na aplikaci}
 % \todo{externí přednášející, dny otevřených dveří, partnerky studentů...}
 
@@ -635,7 +625,6 @@ Nefunkčními požadavky (\textit{non-functional requirements}) jsou myšleny ta
  \item Zveřejněte aplikaci a její data pod svobodnými licencemi z rodin \glsname{GNU}, Creative Commons a kompatibilními, aby byl umožněn další rozvoj nezávislý na původním autorovi.
  \item Aplikace umožní využití offline.
 \end{enumerate}
-% \todo{Přidat požadavky -- na základě UC nebo potřeb.}
 
 
 \subsection{Návrh architektury}

@@ -2,7 +2,7 @@
 
 \chapter{Realizace}
 % Popis implementace/realizace se zaměřením na nestandardní části řešení.
-Během implementace (\textit{implementation}) se objevila celá řada zádrhelů, z nichž mnoho souviselo s doposud ne zcela zdokumentovanými a odladěnými technologiemi, přesto pro mne byla realizace velmi přínosná -- neustálým hledáním různých řešení a alternativ jsem nutně narazil na mnoho dalších zajímavých postřehů a nápadů. Kapitola se zabývá řešenými problémy, komplikacemi a implementací bezpečnosti. % , potenciální aplikací v ideálním světě
+Během implementace (\textit{implementation}) se objevila celá řada zádrhelů, z nichž mnoho souviselo s doposud ne zcela zdokumentovanými a odladěnými technologiemi, přesto pro mne byla realizace velmi přínosná -- neustálým hledáním různých řešení a alternativ jsem nutně narazil na mnoho dalších zajímavých postřehů a nápadů. Kapitola se zabývá řešenými problémy, komplikacemi a celá je protkána implementací bezpečnosti. % , potenciální aplikací v ideálním světě
 
 \section{Serverová aplikace}
 Když se zpětně ohlížím za implementací serverové aplikace, náročná objektivně vůbec nebyla, osobně jsem ale žádnou z používaných technologií / knihoven\dots v té době neznal, takže mi náročnost přišla enormně vysoká. Rozsah popisu realizace serverové aplikace je tak krátký -- mnoho objektivně zajímavých míst se v ní nevyskytlo.
@@ -126,7 +126,7 @@ Vzhledem k výše uvedené obsluze \textit{serverové aplikace} \glsname{HTTP} p
 10 * * 6,9,10,1,2 * user curl localhost:1337/rozvrh/\
                2>&1 1> rozvrh.all.log 2> rozvrh.err.log
 \end{verbatim}
-Prvních pět parametrů udává čas vykonání akce (minuta, hodina, den měsíce, měsíc, den týdne), šestý uživatele, zbytek je vykonání příkazu -- odeslání požadavku a zalogování výsledku.
+Prvních pět parametrů udává čas vykonání akce (minuta, hodina, den měsíce, měsíc, den týdne), šestý uživatele, zbytek je vykonání příkazu -- odeslání požadavku a \textit{zalogování} výsledku.
 
 % \subsection{Implementace bezpečnosti}
 
@@ -176,7 +176,7 @@ V mapových podkladech jsou z důvodu velkého rozsahu dopodrobna na úrovni mí
 Ačkoliv je toto omezení u mobilních zařízení zřejmé, nic to nemění na faktu, že se s ním musí neustále počítat a je třeba vybírat vhodné komponenty a ty vhodně rozvrhovat. Malá velikost displeje byla omezením i z opačného hlediska -- prsty jsou u dotykových telefonů, vzhledem k velikosti displeje, poměrně velké a ovládací prvky tak musí být dostatečně rozměrné, což konzumuje další místo. Mým cílem proto bylo vizualizovat jen to nejnutnější.
 
 \subsubsection{Různé typy polohovacích zařízení}
-Různá zařízení poskytují různé ovládací prvky využívající různé principy, aplikaci je ale potřeba přizpůsobit pro všechny najednou. Jiné je ovládání pro myš (touchpad, trackpad), jiné pro klávesy a jiné pro dotyková zařízení -- právě s těmi je problém -- v rámci použitých technologií ještě nebyl vytvořen žádný standard pro zpracování zpracování gest, proto bylo nutné umístit nad mapu výrazné ovládací prvky.
+Různá zařízení poskytují různé ovládací prvky využívající různé principy, aplikaci je ale potřeba přizpůsobit pro všechny najednou. Jiné je ovládání pro myš (touchpad, trackpad\dots), jiné pro klávesy a jiné pro dotyková zařízení -- právě s těmi je problém -- v rámci použitých technologií ještě nebyl vytvořen žádný standard pro zpracování zpracování gest, proto bylo nutné umístit nad mapu výrazné ovládací prvky.
 
 \subsubsection{Dynamické načítání lokálních souborů}
 Z bezpečnostních důvodů došlo v minulosti v prohlížečích k zamezení načítání jakýchkoliv souborů, mimo JavaScriptu, z jiných zdrojů, než ze kterých stránka pochází. To v některých případech\footnote{Příkladem je Google Chrome a jeho základ Chromium \cite{BugChromeOrigin}.} přerostlo v zamezení dynamického načítání jakýchkoliv lokálních souborů -- jejich zdroj nemá žádnou hodnotu (\texttt{null}), takže je nelze načíst. Aby byla zachována možnost offline využití aplikace na větší skupině zařízení, byla aplikace přepsána na jediné možné řešení -- explicitní uvedení všech potenciálně vkládaných souborů, což značně omezilo modularitu aplikace.
