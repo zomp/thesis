@@ -44,12 +44,18 @@
 		text-align: center;
 		margin: 0 auto;
 		max-width: 30em;
+		clear: both;
 	}
-	dt, dd {
+	dt {
+		width: 8em;
+		clear: both;
+		float: left;
+		text-align: right;
+	}
+	dd {
+		margin: 0 0 0 9em;
 		text-align: left;
-	}
-	.important {
-		color: #FF0000;
+		padding-bottom: 0.3em;
 	}
     </style>
   </head>
@@ -63,63 +69,43 @@
 
     <h3>Obsah tohoto CD</h3>
     <dl>
-      <dt><a href="aplikace/">aplikace/</a></dt><dd>Aplikace vytvořená v rámci bakalářské práce
-	<dl>
-	  <dt><a href="aplikace/index.html" class="important">index.html</a></dt><dd>Spouštěcí soubor aplikace</dd>
-	  <dt><a href="aplikace/data/">data/</a></dt><dd>Data aplikace
-	    <dl>
-	      <dt><a href="aplikace/data/script.js">script.js</a></dt><dd>Logika aplikace</dd>
-	      <dt><a href="aplikace/data/db.js">db.js</a></dt><dd>Databáze aplikace</dd>
-	      <dt><a href="aplikace/data/maps/">maps/</a></dt><dd>Adresář s mapami</dd>
-	      <dt><a href="aplikace/data/style.css">style.css</a></dt><dd>Nastavení vzhledu aplikace</dd>
-	    </dl>
-	  </dd>
-	</dl>
+      <dt><a href="text/">text</a></dt><dd>text diplomové práce
+      	<dl>
+      	  <dt><a href="text/DP_Molnár_Jan_2012.pdf">DP_Molnár_Jan _2012.pdf</a></dt><dd>text diplomové práce ve formátu PDF</dd>
+      	</dl>
       </dd>
-      <dt><a href="data/">data/</a></dt><dd>Data související s bakalářskou prací
-	<dl>
-	  <dt><a href="data/plany/">plany/</a></dt><dd>Plány vytvořené pro potřeby práce
-	    <dl>
-	      <dt><a href="data/plany/areal-dejvice.svg">areal-dejvice.svg</a></dt><dd>Plán dejvického kampusu</dd>
-	      <dt><a href="data/plany/kn-e-1np.svg">kn-e-1np.svg</a></dt><dd>Plán prvního podlaží budovy E na KN</dd>
-	      <dt><a href="data/plany/kn-e-2np.svg">kn-e-2np.svg</a></dt><dd>Plán druhého podlaží budovy E na KN</dd>
-	      <dt><a href="data/plany/mistnosti.txt">mistnosti.txt</a></dt><dd>Kompletní seznam ověřených místností</dd>
-	      <dt><a href="data/plany/mistnosti-impl.txt">mistnosti-impl.txt</a></dt><dd>Seznam místností obsažených v implementaci</dd>
-	    </dl>
-	  </dd>
-	  <dt><a href="data/Pruvodce%20CVUT%20FEL/">Pruvodce CVUT FEL/</a></dt><dd>Aplikace podobného zaměření</dd>
-	</dl>
+      <dt><a href="mobil/">mobil</a></dt><dd>zdrojové kódy mobilní aplikace
+      	<dl>
+      	  <dt><a href="mobil/index.html">index.html</a></dt><dd>spouštěcí soubor mobilní aplikace</dd>
+      	</dl>
       </dd>
-      <dt><a href="specifikace/">specifikace/</a></dt><dd>Archiv citovaných specifikací</dd>
-      <dt><a href="text/">text/</a></dt><dd>Zdrojové soubory textu bakalářské práce
-	<dl>
-	  <dt><a href="text/Molnar-project-2010.pdf" class="important">Molnar-project-2010.pdf</a></dt><dd>Bakalářská práce ve formátu PDF</dd>
-	</dl>
+      <dt><a href="proxy/">proxy</a></dt><dd>zdrojové kódy proxy mobilní aplikace
+      	<dl>
+      	  <dt><a href="proxy/index.php">index.php</a></dt><dd>spouštěcí soubor proxy mobilní aplikace</dd>
+      	</dl>
       </dd>
-      <dt><a href="vyvoj/">vyvoj/</a></dt><dd>Soubory vytvořené při vývoji aplikace
-	<dl>
-	  <dt><a href="vyvoj/realizace/">realizace/</a></dt><dd>Soubory týkající se realizace aplikace
-	    <dl>
-	      <dt><a href="vyvoj/realizace/dbCreator.php">dbCreator.php</a></dt><dd>Skript na tvorbu databáze místností</dd>
-	      <dt><a href="vyvoj/realizace/cookies.html">cookies.html</a></dt><dd>Ukázka ukládání dat pomocí cookies</dd>
-	      <dt><a href="vyvoj/realizace/fromTo.html">fromTo.html</a></dt><dd>Ukázka navigace překrývajícími se obrázky</dd>
-	      <dt><a href="vyvoj/realizace/funkcniObrazek.svg">funkcniObrazek.svg</a></dt><dd>Zvenku ovlivnitelný SVG obrázek</dd>
-	      <dt><a href="vyvoj/realizace/img/">img/</a></dt><dd>Obrázky příkladů</dd>
-	      <dt><a href="vyvoj/realizace/svgOuterInteraction.html">svgOuterInteraction.html</a></dt><dd>Ukázka vnější interakce s SVG obrázkem</dd>
-	    </dl>
-	  </dd>
-	  <dt><a href="vyvoj/testovani/">testovani/</a></dt><dd>Soubory týkající se testování aplikace
-	    <dl>
-	      <dt><a href="vyvoj/testovani/prototype.html">prototype.html</a></dt><dd>Stránka obalující aplikaci pro testování v PC</dd>
-	      <dt><a href="vyvoj/testovani/lf-prototype.png">lf-prototype.png</a></dt><dd>Low fidelity prototyp</dd>
-	      <dt><a href="vyvoj/testovani/hf-prototype/">hf-prototype/</a></dt><dd>High fidelity prototyp
-		<dl>
-		  <dt><a href="vyvoj/testovani/hf-prototype/index.html">index.html</a></dt><dd>Spouštěcí soubor high fidelity prototypu</dd>
-		</dl>
-	      </dd>
-	    </dl>
-	  </dd>
-	</dl>
+      <dt><a href="server/">server</a></dt><dd>zdrojové kódy serverové aplikace
+      	<dl>
+      	  <dt><a href="server/index.js">index.js</a></dt><dd>spouštěcí soubor serverové aplikace</dd>
+      	</dl>
+      </dd>
+      <dt><a href="navrh/">navrh</a></dt><dd>materiály vzniklé při návrhu
+      	<dl>
+      	  <dt><a href="navrh/diagramy/">diagramy</a></dt><dd>diagramy obou aplikací</dd>
+      	  <dt><a href="navrh/prototypy/">prototypy</a></dt><dd>prototypy mobilní aplikace</dd>
+      	</dl>
+      </dd>
+      <dt><a href="podklady/">podklady</a></dt><dd>podklady diplomové práce
+      	<dl>
+      	  <dt><a href="podklady/mapy/">mapy</a></dt><dd>mapy vytvořené pro potřeby práce</dd>
+      	  <dt><a href="podklady/ontologie/">ontologie</a></dt><dd>použité ontologie</dd>
+      	</dl>
+      </dd>
+      <dt><a href="jine/">jine</a></dt><dd>další soubory spjaté s prací
+      	<dl>
+      	  <dt><a href="jine/obrazovky/">obrazovky</a></dt><dd>ofocené obrazovky mobilní aplikace</dd>
+      	  <dt><a href="jine/pruvodce%20CVUT%20FEL/">pruvodce CVUT FEL</a></dt><dd>aplikace Průvodce ČVUT FEL</dd>
+      	</dl>
       </dd>
     </dl>
 
