@@ -78,6 +78,7 @@ th {
 #search textarea, #search input {
 	width: 99%;
 	margin: 2px;
+	padding: 0.35em 0;
 	border: 2px solid #888888;
 	border-radius: 3px;
 }
