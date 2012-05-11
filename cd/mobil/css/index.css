@@ -1,0 +1,120 @@
+/**
+ * This file is part of Průvodce FIT ČVUT.
+ * Copyright (C) 2011-2012 Jan Molnár
+ *
+ * Průvodce FIT ČVUT is free software: you  can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * Průvodce FIT ČVUT is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with Průvodce FIT ČVUT. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * Všeobecné styly
+ */
+
+body {
+	font-size: 120%;
+}
+a {
+	color: #00A2C0;
+	text-decoration: none;
+	font-weight: bold;
+}
+h1, h2, h3, h4, h5 {
+	margin: 0.3em;
+	font-family: Arial, sans-serif;
+}
+p, dl, ul, ol, pre {
+	margin: 0.3em;
+}
+dt {
+	font-weight: bold;
+}
+td, th {
+	padding: 2px 0.3em;
+}
+th {
+	text-align: left;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.group {
+	margin: 0.6em 0.3em;
+	padding: 0.3em;
+	background-color: #DDDDDD;
+	border: 2px solid #888888;
+	border-radius: 3px;
+	overflow: auto;
+}
+.innergroup {
+	padding: 0.3em;
+	background-color: #EEEEEE;
+	border: 2px solid #888888;
+	border-radius: 3px;
+	overflow: auto;
+}
+#menu ul{
+	padding: 0;
+	text-align: center;
+}
+#menu li {
+	display: inline-block;
+}
+#menu li a, .button {
+	min-width: 2.5cm;
+	min-height: 0.5cm;
+	display: inline-block;
+	padding: 0.3em 0.6em;
+	margin: 0.3em;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	color: #555555;
+	background-color: #38C5E0;
+	border: 2px solid #888888;
+	border-radius: 3px;
+}
+#menu li a:hover, .button:hover {
+	background-color: #00A2C0;
+	cursor: pointer;
+}
+#content {
+	padding: 0.3em 0.6em;
+	background-color: #EEEEEE;
+	border: 2px solid #888888;
+	border-radius: 3px;
+}
+#search textarea, #search input {
+	width: 99%;
+	margin: 2px;
+	padding: 0.35em 0;
+	border: 2px solid #888888;
+	border-radius: 3px;
+}
+#search .submit {
+	width: 99%;
+	display: inline-block;
+	margin: 2px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	color: #555555;
+	background-color: #38C5E0;
+	border: 2px solid #888888;
+	border-radius: 3px;
+}
+#search .submit:hover {
+	background-color: #00A2C0;
+	cursor: pointer;
+}
+#map {
+	padding: 0;
+}

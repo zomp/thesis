@@ -1,0 +1,122 @@
+/**
+ * This file is part of Průvodce FIT ČVUT.
+ * Copyright (C) 2011-2012 Jan Molnár
+ *
+ * Průvodce FIT ČVUT is free software: you  can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * Průvodce FIT ČVUT is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with Průvodce FIT ČVUT. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * Styly SVG mapy
+ */
+
+.light {
+	fill: #FFFFFF;
+}
+.dark {
+	fill: #000000;
+}
+.label {
+	font-size: 14px;
+	font-family: Arial;
+	text-anchor: middle;
+	font-weight: bold;
+	text-align: center;
+}
+.buildingpartlabel {
+	fill: #FFFFFF;
+}
+.buildinglabel {
+	fill: #000000;
+}
+.big1 {
+	stroke-width: 1px;
+}
+.big2 {
+	stroke-width: 2px;
+}
+.small1 {
+	stroke-width: 0.15px;
+}
+.small2 {
+	stroke-width: 0.3px;
+}
+.area {
+	stroke: #000000;
+}
+.fitarea {
+	fill: #0066FF;
+}
+.neutralarea {
+	fill: #FFFFFF;
+}
+.ctuarea {
+	fill: #8DA6CC;
+}
+.otherarea {
+	fill: #BBBBBB;
+}
+.floor {
+	visibility: hidden;
+}
+.floorframe {
+	stroke: #000000;
+	fill: #FFFFFF;
+}
+.wall {
+	stroke: #000000;
+	fill: none;
+}
+.door {
+	stroke-dasharray: none;
+	stroke: #D40000;
+	fill: none;
+}
+.smallicon {
+	/*stroke: #FFFFFF;
+	stroke-width: 0.02;*/
+	stroke: none;
+	fill: #000000;
+}
+.iconlabel {
+	font-size: 5px;
+	font-family: Arial;
+	fill: #000000;
+	text-anchor: middle;
+	font-weight: bold;
+	text-align: center;
+}
+.point, .point > path {
+	fill: #00D400;
+}
+.point > path.light {
+	fill: #ffffff;
+}
+.visible {
+	visibility: visible;
+}
+.hidden {
+	visibility: hidden;
+}
+.unimportant {
+	opacity: 0.3;
+}
+#position-pointer, #search-pointer {
+	visibility: hidden;
+}
+#position-pointer, .search-pointer {
+	opacity: 0.6;
+}
+#position-pointer .dark, .search-pointer .dark {
+	fill: #D40000;
+}
