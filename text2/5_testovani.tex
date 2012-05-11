@@ -2,7 +2,7 @@
 % (h) Srovnání s podobnými implementacemi (pokud existují).
 
 \chapter{Testování}
-Testování (\textit{testing}) provázelo vzniklé aplikace po celou dobu vývoje -- od evaluece požadavků na počátku, až po akceptační testy na konci. Testování probíhala, byť v jinou dobu, obdobně u serverové i mobilní aplikace, pro větší přehlednost jejich popis tedy sloučím.
+Testování (\textit{testing}) provázelo vzniklé aplikace po celou dobu vývoje -- od evaluace požadavků na počátku, až po akceptační testy na konci. Testování probíhala, byť v jinou dobu, obdobně u serverové i mobilní aplikace, pro větší přehlednost jejich popis tedy sloučím.
 
 \section{Funkční testování}
 Funkční testování (\textit{functional testing}) reprezentuje skupinu různorodých testů, které ověřují, zda byly splněny všechny funkční požadavky na systém. Jeho výsledky jsou tedy zpravidla velmi kategorické. Nevyužil jsem proto formálních metodik -- jejich závěry by měly být shodné s těmi mými založenými na prosté důkladné kontrole projektu.
@@ -10,7 +10,7 @@ Funkční testování (\textit{functional testing}) reprezentuje skupinu různor
 \subsection{Testování programátorem}
 Testování programátorem zahrnuje širokou skupinu testů prováděných přímo programátorem v průběhu vývoje. Patří mezi ně jednotkové testování (\textit{unit testing}), revize kódu (\textit{code review}), testování mezních hodnot (\textit{boundary testing})\dots
 
-Každou přidávanou jednotku jsem testoval mezními hodnotami. V průběhu vývoje jsem opakovaně revidoval v předchozích iteracích napsaný kód a v případě potřeby ho komentoval a refaktoroval pro větší kvalitu (lepší čitelnost, deduplikakace, zjednodušení\dots). Tato činnost sloužila k eliminaci lokálních chyb v kódu a přinášela pozitivní výsledky. Po změně vždy proběhlo nutné otestování.
+Každou přidávanou jednotku jsem testoval mezními hodnotami. V průběhu vývoje jsem opakovaně revidoval v předchozích iteracích napsaný kód a v~případě potřeby ho komentoval a refaktoroval pro větší kvalitu (lepší čitelnost, deduplikakace, zjednodušení\dots). Tato činnost sloužila k eliminaci lokálních chyb v kódu a přinášela pozitivní výsledky. Po změně vždy proběhlo nutné otestování, zda opravou nebyla zanesena další chyba.
 
 % nefungující SPARQL v Chrome - špatný parametr accepts (místo {json: 'application/json'} pouze 'application/json')
 % zbytečné zelenění
@@ -24,7 +24,7 @@ Každou přidávanou jednotku jsem testoval mezními hodnotami. V průběhu výv
 Integrační testování (\textit{integration testing}) bylo prováděno u všech vyvíjených aplikací. Po přidání nové funkcionality byla vždy příslušná část aplikace důkladně otestována, aby bylo zamezeno situacím, kdy nově zanesené úpravy poškodí již existující funkcionality aplikace -- takto vzniklé a neošetřené chyby totiž bývají velmi záludné -- vývojář otestoval všechny části, nenalezl v nich žádný problém, takže je považuje za korektní, možnost chyb daných integrací ho nenapadne a při pozdějším výskytu problému pak hledá řešení na špatných místech, protože skutečné místo považuje za již důkladně otestované.
 
 \subsection{Akceptační testování}
-Akceptačního testování (\textit{acceptance testing}) ověřuje, zda byly do požadované míry naplněny všechny požadavky a po jeho úspěšném dokončení je systém zpravidla předán.
+Akceptační testování (\textit{acceptance testing}) ověřuje, zda byly do požadované míry naplněny všechny požadavky a po jeho úspěšném dokončení je systém zpravidla předán.
 
 Akceptační testování bylo prováděno bez formální metodiky vedoucím práce, inženýrem Havrylukem, a mnou, jako osobou mající největší zájem na úspěšném naplnění všech požadavků. Systém byl akceptován.
 
@@ -113,12 +113,12 @@ První jmenovaný \textit{benchmark} pochází z Lehigh University, poslední ve
 
 Druhý jmenovaný pochází z Universität Freiburg, poslední verze je z roku 2009 a testování probíhá v doméně počítačové bibliografie, která je doméně našeho systému alespoň vzdáleně blízká.
 
-Poslední jmenovaný pochází z Freie Universität Berlin, aktuální verze je z roku 2011 a testování probíhá v doméně elektronického obchodního systému.
+Poslední jmenovaný pochází z Freie Universität Berlin, aktuální verze je z~roku 2011 a testování probíhá v doméně elektronického obchodního systému.
 
 Po hrubém prozkoumání jmenovaných \textit{benchmarků} jsem se rozhodl vydat jinou cestou -- vytvořit si vlastní jednoduchý test zkoumající pouze chování \glsname{SPARQL} endpointu v zatížení o několik řádů větším, než maximálním předpokládaném. Výše uvedené \textit{benchmarky} mi tedy nakonec posloužily pouze jako zdroj inspirace, přesto je zde nechávám případným zájemcům pro pozdější podrobnější přezkoumání.
 
 \subsubsection{Charakteristika testu}
-K testování byl použit jednoduchý konzolový nástroj ApacheBench (\url{http://httpd.apache.org/docs/2.4/programs/ab.html}), jehož prostřednictvím byl \glsname{SPARQL} endpoint vystavován kontinuální paralelní zátěži. Tento nástroj stačil pouze po nějakou dobu -- v případě extrémních testů se projevilo jeho historické omezení -- umožňuje práci pouze s protokolem \glsname{HTTP} 1.0, zatímco Node.js, nad kterým je postavený \glsname{SPARQL} endpoint, naopak využívá perzistentní připojení \glsname{HTTP} 1.1, takže v ApacheBench dojde po nějaké době k vypršení jednoho z několika vnitřních časových limitů a následnému ukončení.
+K testování byl použit jednoduchý konzolový nástroj ApacheBench (\url{http://httpd.apache.org/docs/2.4/programs/ab.html}), jehož prostřednictvím byl \glsname{SPARQL} endpoint vystavován kontinuální paralelní zátěži. Tento nástroj stačil pouze po nějakou dobu -- v případě extrémních testů se projevilo jeho historické omezení -- umožňuje práci pouze s protokolem \glsname{HTTP} 1.0, zatímco Node.js, nad kterým je postavený \glsname{SPARQL} endpoint, naopak využívá perzistentní připojení \glsname{HTTP} 1.1, takže v ApacheBench dojde po nějaké době k~vypršení jednoho z několika vnitřních časových limitů a následnému ukončení.
 
 \glsname{SPARQL} endpoint byl pro potřeby testování umístěn na virtuálním stroji řešení VirtualBox (\url{http://www.virtualbox.org/}) o jednom procesoru frekvence 2~GHz, 2~GB operační paměti a dostatečně rychlém síťovém připojení k hostitelskému počítači, ze kterého byly testy spouštěny.
 
@@ -129,8 +129,7 @@ SELECT ?name ?email
 WHERE {
     ?person a foaf:Person.
     ?person foaf:name ?name.
-    ?person foaf:mbox ?email.
-}
+    ?person foaf:mbox ?email. }
 \end{verbatim}
 
 % \begin{verbatim}
@@ -144,7 +143,7 @@ WHERE {
 % \end{verbatim}
 
 \subsubsection{Průběh testu}
-Test byl prováděn příkazem \texttt{ab -n 1000 -c 100 -H "Accept: application\linebreak /json"\ -e benchmark http://server:8080/sparql?query=PREFIX+f\dots},\linebreak kde parametr \texttt{n} značí počet požadavků, \texttt{c} počet souběžných požadavků, \texttt{H} hlavičku požadavku (jinak by server navrátil data ve formátu \glsname{XML}, místo využívaného \glsname{JSON}), \texttt{e} soubor, do kterého se zapíšou výsledky a zbytek příkazu tvoří zakódovaný \glsname{SPARQL} požadavek.
+Test byl prováděn příkazem \texttt{ab -n 1000 -c 100 -H "Accept: application\linebreak /json"\ -e benchmark http://server:8080/sparql?query=PREFIX+f\dots},\linebreak kde parametr \texttt{n} značí počet požadavků, \texttt{c} počet souběžných požadavků, \texttt{H} hlavičku požadavku (jinak by server navrátil data ve formátu \glsname{XML}, místo využívaného \glsname{JSON}), \texttt{e} soubor, do kterého se zapíšou výsledky, a zbytek příkazu tvoří zakódovaný \glsname{SPARQL} požadavek.
 
 Testování bylo provedeno se třemi různými počty souběžných požadavků (1, 10, 100) vždy z celkového počtu 1000 (navýšení na 10000 už nemělo vliv).
 
@@ -195,7 +194,7 @@ V průběhu testu nebyl pozorován znatelný nárůst spotřeby operační pamě
 \subsubsection{Shrnutí testu}
 Bylo ověřeno, že je možné provozovat systém bez jakýchkoliv obav, bude dostačovat pro předpokládaný provoz. Bohužel se mi nepodařilo zjistit, kolik souběžných požadavků by muselo být na server odesláno, aby vznikly vážné komplikace, z naměřených výsledků je ale patrné, že k tomu, mimo případy útoků, nikdy za stávajícího stavu nedojde.
 
-V případě desíti požadavků za vteřinu, tedy s odezvou pod jednu vteřinu, uživatelé stále nepocítí žádné výkonnostní problémy, v případě sta požadavků za vteřinu, s odezvou pod deset vteřin, by dle \cite{PagesizeUseit} stále měli být schopní se soustředit na řešenou úlohu. Velmi pozitivní je nulová chybovost požadavků i při vysoké zátěži.
+V případě desíti požadavků za vteřinu, tedy s odezvou pod jednu vteřinu, uživatelé stále nepocítí žádné výkonnostní problémy, v případě sta požadavků za vteřinu, s odezvou pod deset vteřin, by dle \cite{PagesizeUseit} stále měli být schopní se soustředit na řešenou úlohu. Velmi pozitivní je nulová chybovost požadavků i~při vysoké zátěži.
 
 Pokud by za nějakých nepředpokládaných okolností nastala situace vyžadující navýšení výkonu, lze postupovat jednou z následujících cest:
 \begin{itemize}
@@ -212,7 +211,7 @@ Předchozí cesty lze samozřejmě kombinovat a jejich výčet rozhodně není k
 Na použitelnost (\textit{usability}) byl kladen důraz hlavně v případě mobilní aplikace, u serverové jsem se naopak použitelností příliš nezabýval -- nemá obsluhu, případně zaškoleného správce. Testování použitelnosti (\textit{usability testing}) bylo prováděno po celou dobu vývoje, formalizovaně ale až těsně před jeho dokončením, aby byla finální aplikace k uživatelům co nejpřívětivější.
 
 \subsubsection{Charakteristika testu}
-Testování probíhalo na čtyřech osobách podle následujícího scénáře: Účastníkovi byla předložena mobilní aplikace a byl mu ponechán čas na zběžné seznámení. V případě, že měl účastník vlastní vhodné zařízení, testování probíhalo na něm, jinak mu bylo poskytnuto jiné včetně pomoci s ovládáním, aby nebyly výsledky testu zbytečně zkreslovány. Poté byly účastníkovi zadány následující čtyři úkoly pokrývající předpokládané využití aplikace:
+Testování probíhalo na čtyřech osobách podle následujícího scénáře: Účastníkovi byla předložena mobilní aplikace a byl mu ponechán čas na zběžné seznámení. V případě, že měl účastník vlastní vhodné zařízení, probíhalo testování na něm, jinak mu bylo poskytnuto jiné včetně pomoci s ovládáním, aby nebyly výsledky testu zbytečně zkreslovány. Poté byly účastníkovi zadány následující čtyři úkoly pokrývající předpokládané využití aplikace:
 \begin{enumerate}
  \item[UT1] Vyhledejte pozici budovy T9. Úloha sleduje orientaci v základní struktuře aplikace.
  \item[UT2] Vyhledejte jídelníček menzy Masarykova kolej. Úloha sleduje schopnost využít průvodce.
@@ -280,7 +279,7 @@ Vykonává předpřipravený dotaz a dále se o \glsname{SPARQL} nezajímá.
 
 \subsubsection*{P04}
 \paragraph*{UT1}
-Sekci \textit{Navigace} nalézá okamžitě, budovu vyhledává, není si ale hned jistá, co je je výsledkem -- v mapě se nezobrazilo překrytí okolí vyhledaného místa. 
+Sekci \textit{Navigace} nalézá okamžitě, budovu vyhledává, není si ale hned jistá, co je výsledkem -- v mapě se nezobrazilo překrytí okolí vyhledaného místa. 
 \paragraph*{UT2}
 Nalézá bez sebemenších problémů.
 \paragraph*{UT3}
@@ -295,19 +294,21 @@ Je vhodné motivovat uživatele k přečtení krátké nápovědy vysvětlujíc�
 \subsubsection*{Našeptávání}
 V průběhu testů použitelnosti byl na základě zpětné vazby od uživatelů realizován podstatně lepší vyhledávací algoritmus s našeptáváním.
 \subsubsection*{Zvětšení vstupního pole navigace}
-Vstupní pole vyhledávacího pole navigace bylo zvětšeno na základě dvou postřehů vyvstalých při testování použitelnosti: Pole bylo málo výrazné, takže uživatelé vyhledávání přehlíželi a bylo poměrně malé, takže se do něj na dotykových zařízeních špatně trefovalo prstem.
+Vstupní pole vyhledávacího pole navigace bylo zvětšeno na základě dvou postřehů vyvstalých při testování použitelnosti: Pole bylo málo výrazné, takže uživatelé vyhledávání přehlíželi, a bylo poměrně malé, takže se do něj na dotykových zařízeních špatně trefovalo prstem.
 \subsubsection*{Odřezání bílých znaků z okolí dotazu}
 V průběhu testování byl několikrát nevědomky zadán k vyhledání výraz, který předcházel nebo následoval bílý znak, tudíž neodpovídal tomu v databázi, takže nebylo nic nalezeno. Problém jsem se rozhodl řešit odstraněním takových znaků.
 \subsubsection*{Přesun na nalezené objekty}
 Zpočátku uživatelé nezaregistrovávali nalezení hledaného objektu -- pouhé zobrazení šipky někde na mapě nebylo dostatečné. Implementoval jsem proto algoritmus pro přesun na vyhledávané místo a následné přeškálování mapy tak, aby byl zobrazen hledaný objekt i jeho okolí.
 \subsubsection*{Odebrání tlačítka Centrovat}
-Tlačítko pro vycentrování mapy se po přidání předchozí funkce ukázalo jako zbytečné -- uživatelé se už nemuseli při neúspěšném hledání nalezeného objektu vracet na původní místo, aby to zkusili od začátku, ale vyhledávaný objekt jim byl automaticky vycentrován.
+Tlačítko pro vycentrování mapy se po přidání předchozí funkce ukázalo jako zbytečné -- uživatelé se už nemuseli při neúspěšném hledání nalezeného objektu vracet na původní místo, aby to zkusili od začátku, ale vyhledávaný objekt jim byl automaticky zobrazen.
 \subsubsection*{Nápověda k regulárním výrazům}
 Původně v nápovědě nebyla žádná zmínka o regulárních výrazech a jejich užití, ukázalo se to jako potřebné, proto byla přidána.
+\subsubsection*{SPARQL konzole}
+Potvrdilo se očekávání, že \glsname{SPARQL} konzole nebude patřit mezi nejoblíbenější funkce aplikace. Kdyby nebylo její užití testem přímo vyžadováno, nepoužil by ji nikdo. Z pohledu uživatelské přívětivosti by ji tedy bylo vhodné odstranit, neučinil jsem tak ale -- jedním z cílů práce je popularizovat nové důležité technologie mezi studenty a toto je vhodnou příležitostí k realizaci takového záměru.
 % \subsubsection*{Fixní zobrazení menu}
 % \subsubsection*{Legenda}
 
-
+\pagebreak
 \subsection{Srovnávací testování}
 Srovnávací testování (\textit{comparative testing}) proběhlo pouze velmi zběžně -- neexistuje pravděpodobně totiž žádný jiný systém mající podobně specifické cíle. Pro potřeby testování jsem proto systém rozdělil na jednotlivé části tak, jak byly vyvíjeny -- serverovou a mobilní aplikaci. V případě serverové aplikace se mi nepodařilo objevit žádný konkurenční systém, na poli mobilních aplikací jich několik doménou obdobných již je, přesto je každá zaměřena na něco jiného.
 
@@ -331,7 +332,7 @@ Vzhledem k výše uvedeným důvodům nebyla pro srovnání stanovena řádná m
 \tdh{Průvodce} & \td{Navigace, dopravní spojení} & \td{Navigace} & \td{Navigace, studium, menzy, kontakty\dots} \\
 \tdh{\color{dark}Objekty\linebreak navigace} & \td{Budovy, místnosti} & \td{Místnosti, body zájmu\tnote{e}} & \td{Budovy, místnosti, body zájmu\tnote{e}} \\
 \tdh{\color{dark}Vyhledávání objektů} & \td{Označení místnosti} & \td{Označení místnosti, staré označení, zažitý název, jméno vyučujícího} & \td{Označení místnosti/budovy, neoficiální označení, body zájmu} \\
-\tdh{\color{dark}Možnosti navigace} & \td{Popis, obrys budovy} & \td{Plán podlaží, RegEx\tnote{f}} & \td{Plán kampusu/podlaží, aktuální pozice, RegEx\tnote{f}} \\
+\tdh{\color{dark}Možnosti navigace} & \td{Popis, obrys budovy} & \td{Plán podlaží, \glsname{PCRE}} & \td{Plán kampusu/podlaží, aktuální pozice, \glsname{PCRE}} \\
 \tdh{Další\linebreak vlastnosti} &  & Nápověda & \td{Nápověda, \glsname{SPARQL} konzole} \\
 \hline
 \end{tabular}
@@ -341,7 +342,6 @@ Vzhledem k výše uvedeným důvodům nebyla pro srovnání stanovena řádná m
  \item[c] Rozsáhlý vzorek -- dejvický kampus nahrubo a první a třetí podlaží budovy T9 dopodrobna.
  \item[d] Velikost je brána z aktuálního stavu, s kompletními podklady naroste.
  \item[e] Občerstvení, toalety, výtahy\dots
- \item[f] Regulární výraz.
 \end{tablenotes}
 \caption{Srovnání s ostatními mobilními aplikacemi}
 \label{tab:srovnaniReseni}

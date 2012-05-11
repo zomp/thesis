@@ -1,7 +1,7 @@
 % (e) Analýza a návrh implementace produktu (včetně diskuse různých alternativ a volby implementačního prostředí).
 
 \chapter{Analýza a návrh implementace}
-Analýza s návrhem probíhaly nezávisle na dvou místech -- po krátké analýze celku a určení vzájemných komunikačních rozhraní byly provedeny analýza s návrhem serverové aplikace a až po jejich dokončení začaly analýza s návrhem mobilní aplikace. V průběhu času jsem se k analýze a návrhu ještě několikrát vrátil a vylepšil / rozšířil to, co se ne vždy na poprvé povedlo.
+Analýza s návrhem probíhaly nezávisle na dvou místech -- po krátké analýze celku a určení vzájemných komunikačních rozhraní byly provedeny analýza s~návrhem serverové aplikace a až po jejich dokončení začaly analýza s~návrhem mobilní aplikace. V průběhu času jsem se k analýze a návrhu ještě několikrát vrátil a vylepšil / rozšířil to, co se ne vždy na poprvé povedlo.
 
 Analýza se skládala z identifikace potřeb uživatelů, vytvoření případů užití, ze kterých byly odvozeny funkční požadavky, ke kterým byly doplněny nefunkční požadavky. Poté byl vytvořen návrh řešení, zapracován návrh bezpečnosti a celý koncept byl podložen návrhem nasazení. Nakonec byly voleny technologie.
 
@@ -29,7 +29,7 @@ Potřeba aktuálních informací opět souvisí s již zmíněnými potřebami -
 Někdy nestačí jen pravdivé a aktuální informace, naopak vědomí záruky pravdivosti a aktuálnosti může i uškodit -- pokud totiž informace nejsou kompletní, může dojít k jejich misinterpretaci a pod vlivem záruk nedojde ke kritickému posouzení. Proto je zde i potřeba kompletních informací.
 
 \subsubsection{Potřeba nalézt, co nehledám}
-Na první pohled tato potřeba nedává smysl, v praxi se ale často vyskytují informace, které bychom měli znát a o jejich existenci nemáme ani ponětí. Je proto důležité ve vhodné chvíli sdělit i nepožadované informace, které jsou s velkou pravděpodobností pro adresáta důležité.
+Na první pohled tato potřeba nedává smysl, v praxi se ale často vyskytují informace, které bychom měli znát a o jejich existenci nemáme ani ponětí. Je proto důležité ve vhodné chvíli sdělit i nepožadované informace, které jsou s~velkou pravděpodobností pro adresáta důležité.
 
 
 \subsection{Případy užití}
@@ -170,7 +170,7 @@ Funkčními požadavky (\textit{functional requirements}) jsou myšleny takové 
  \item Aplikace bude čerpat informace o kancelářích neakademických pracovníků z Usermap ČVUT.
  \item Aplikace bude čerpat informace o kontaktech neakademických pracovníků z Usermap ČVUT.
  \item Aplikace bude čerpat informace o akcích \glsname{CVUT} z Kalendáře akcí ČVUT (\url{http://akce.cvut.cz/}).
- \item Aplikace bude čerpat informace o harmonogramu akademického roku z předstíraného adaptéru (na základě \url{http://fit.cvut.cz/}).\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
+ \item Aplikace bude čerpat informace o harmonogramu akademického roku z~předstíraného adaptéru (na základě \url{http://fit.cvut.cz/}).\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
  \item Aplikace bude čerpat informace o datech \glsname{MAR} budovy T9.\footnote{Jednání o udělení přístupu nedopadla -- vyskytly se blíže nespecifikované technické komplikace na straně technickoprovozních služeb Fakulty architektury.}
  \item Aplikace bude čerpat informace o datech \glsname{MAR} kolejí Orlík.\footnote{Vynecháno. Implementováno na straně \textit{mobilní aplikace}.}
  \item Aplikace bude čerpat informace o datech \glsname{MAR} Masarykovy koleje.\footnote{Vynecháno -- data poskytována pouze pod licencí, kterou nebylo možné naplnit.}
@@ -207,7 +207,7 @@ Tvorbě ontologie bylo věnováno velmi dlouhé období -- neměl jsem s tímto 
 
 Zpočátku jsem vytvářel ontologii od základů vlastní, s přibývajícími zkušenostmi jsem si ale uvědomil, že to nebyl dobrý nápad -- ve světě sémantického webu je jednou z nejdůležitějších priorit vzájemná interoperabilita -- s každou novou ontologií je tak vzájemné mapování informací čím dál tím těžší. V té době jsem veškerou svou dosavadní práci zahodil a začal znovu.
 
-Nejprve jsem se vrátil k výsledkům rešeršního zpracování ontologií a vybral z nich tu, která se mi zdála po v mezičase nabitých zkušenostech nejlepší -- \gls{AIISO}. Tato ontologie je již předurčená k využití s ontologiemi Participation, \gls{FOAF} a AIISO Roles. Ontologie jsou to již zaběhlé, takže problém s interoperabilitou pozbyl platnosti.
+Nejprve jsem se vrátil k výsledkům rešeršního zpracování ontologií a vybral z nich tu, která se mi zdála po v mezičase nabitých zkušenostech nejlepší -- \gls{AIISO}. Tato ontologie je již předurčená k využití s ontologiemi Participation, \gls{FOAF} a AIISO Roles. Ontologie jsou to již zaběhlé, takže problém s~interoperabilitou pozbyl platnosti.
 
 Dalším bodem zvratu bylo zjištění, jak složité může být nalezení styčných bodů mezi obecnou ontologií a konkrétní situací. Bylo třeba v některých případech nalézt další vhodné ontologie reprezentující doposud nepokryté oblasti, případně již použité ontologie rozšířit (zpravidla je použita licence Creative Commons, takže je rozšiřování možné). Příkladem může být reprezentace akcí \glsname{CVUT} -- žádná z použitých ontologií nemodeluje události. Abych se držel kurzu ve směru interoperability, bylo třeba nalézt vhodnou ontologii. Nabízelo se jich několik, nakonec byla použita \gls{LODE}, právě kvůli svému zastřešení obdobných ontologií.
 
@@ -234,7 +234,7 @@ Identifikovány byly následující základní struktury systému:
 \end{itemize}
 Pod pojmem \textit{serverová aplikace} se skrývá aplikace, která získává data přímo ze zdrojů, z nich vybírá informace, ty strukturuje a ukládá do databáze. Plánovač je reprezentován aplikací, která ve vhodné časy vyžádá na serveru aktualizaci informací. \glsname{SPARQL} endpoint je aplikace, která na požadavek v dotazovacím jazyku vrátí odpovídající data z databáze. Databáze je úložištěm informací.
 
-Nasazení bylo nakonec navrženo, jak je vidět na obrázku \ref{fig:server:deployment}, umístěním všech prvků serverové aplikace na jediný server, který získává informace z prostředí Internetu a zároveň poskytuje informace uživatelům.
+Nasazení bylo nakonec navrženo, jak je vidět na obrázku \ref{fig:server:deployment}, umístěním všech prvků serverové aplikace na jediný server, který získává informace z~prostředí Internetu a zároveň poskytuje informace uživatelům.
 \begin{figure}[h]
  \centering
  \includegraphics[width=10cm]{./figures/deployment-s.png}
@@ -249,7 +249,7 @@ Návrh (\textit{design}) byl prováděn po rozvržení architektury a za přisp�
 
 Pro tři ze čtyř dříve identifikovaných struktur systému jsem nalezl vhodné hotové řešení (viz část \ref{sec:server:technologies} na straně \pageref{sec:server:technologies}) -- plánovač je tvořen cronem, jako databáze je použita MongoDB a \glsname{SPARQL} endpoint poskytuje rdfstore-js. Zbývá tedy doimplementovat pouze \textit{serverovou aplikaci}.
 
-Na obrázku \ref{fig:server:class} je znázorněn třídní diagram (\textit{class diagram}) reprezentující strukturu serverové aplikace. Metoda \texttt{process()} má za úkol stažení dat z patřičných zdrojů, jejich zpracování, převedení do sémantických grafů a uložení do databáze. V návrhu byl použit návrhový vzor strategie (\textit{strategy}).
+Na obrázku \ref{fig:server:class} je znázorněn třídní diagram (\textit{class diagram}) reprezentující strukturu serverové aplikace. Metoda \texttt{process()} má za úkol stažení dat z~patřičných zdrojů, jejich zpracování, převedení do sémantických grafů a uložení do databáze. V návrhu byl použit návrhový vzor strategie (\textit{strategy}).
 
 \begin{figure}[h]
  \centering
@@ -297,7 +297,7 @@ U komponenty \emph{\glsname{SPARQL} endpoint} byly identifikovány následujíc�
 U komponenty \emph{plánovač} nebyly identifikovány, vzhledem k jednoúčelovému zaměření, žádné hrozby.
 
 \subsubsection{Identifikace zranitelností}
-Všechny výše uvedené hrozby mohou vyústit ve zranitelnosti, nejvyšší prioritu mají ty nejpravděpodobnější -- na hranicích důvěry směrem k uživatelům a zdrojům dat. S hrozbou můžeme naložit následovně:
+Všechny výše uvedené hrozby mohou vyústit ve zranitelnosti, nejvyšší prioritu mají ty nejpravděpodobnější -- na hranicích důvěry směrem k uživatelům a~zdrojům dat. S hrozbou můžeme naložit následovně:
 \begin{itemize}
  \item Ponechat v programu.
  \item Odstranit problém.
@@ -308,7 +308,7 @@ Preferovaná je zpravidla poslední možnost.
 \subsubsection{Důsledky}
 \begin{itemize}
  \item Je třeba důsledně ošetřovat vstupy (aby nedošlo k uložení škodlivých dat do databáze, aby na \glsname{SPARQL} endpointu nebyly prováděny jiné operace, než dotazovací\dots).
- \item Je třeba ve výchozím nastavení vše zakázat a k potřebným úkonům udělit výjimky (pouze dotazy nad \glsname{SPARQL} endpointem, přístup jen k některým zdrojům ze serverové aplikace\dots).
+ \item Je třeba ve výchozím nastavení vše zakázat a k potřebným úkonům udělit výjimky (pouze dotazy nad \glsname{SPARQL} endpointem, přístup jen k~některým zdrojům ze serverové aplikace\dots).
  \item Je třeba zamezit odepření služeb (přetížením \glsname{SPARQL} endpointu, zahlcením databáze\dots).
 \end{itemize}
 
@@ -325,7 +325,7 @@ Využití JavaScriptu bylo, pro svoje pravděpodobné vzrůstající nasazení v
 \subsubsection{Node.js}
 Node.js (\url{http://nodejs.org/}) je platforma postavená nad běhovým prostředím JavaScriptu z webového prohlížeče Google Chrome. Slouží ke tvorbě rychlých, škálovatelných síťových aplikací. Node.js využívá událostmi řízený neblokovací I/O model, který ho činí nenáročným a efektivním, vhodným pro datově náročné \textit{real-timové} aplikace běžící v distribuovaném prostředí \cite{Node}.
 
-Použití Node.js bylo vynuceno nefunkčním požadavkem, jedná se ale o velmi cennou zkušenost -- je novou technologií a ačkoliv je jeho dokumentace na slušné úrovni, není zatím vytvořena dostatečně velká báze příkladů a nejlepších praktik.\footnote{K dobrým praktikám jsem se tedy musel postupně propracovat a při té příležitosti se toho hodně naučil. Navíc, zdá se, se budou nabité vědomosti v budoucnu hodit.}
+Použití Node.js bylo vynuceno nefunkčním požadavkem, jedná se ale o~velmi cennou zkušenost -- je novou technologií a ačkoliv je jeho dokumentace na slušné úrovni, není zatím vytvořena dostatečně velká báze příkladů a nejlepších praktik.\footnote{K dobrým praktikám jsem se tedy musel postupně propracovat a při té příležitosti se toho hodně naučil. Navíc, zdá se, se budou nabité vědomosti v budoucnu hodit.}
 
 \subsubsection{MongoDB}
 MongoDB (\url{http://www.mongodb.org/}) je škálovatelnou, vysoce výkonnou, otevřenou NoSQL databází napsanou v C++ \cite{Mongo}.
@@ -335,7 +335,7 @@ Databázi jsem volil z dalších sémantických / NoSQL databází (zaměření 
 Poslední jmenovaná databáze byla na základě předchozích zkušeností vybrána nejdříve, později se ale ukázalo, že jsou její správa i obsluha pro konkrétní použití těžkopádné, takže jsem nakonec přešel k podstatně vhodnější databázi, MongoDB, kterou lze navíc snadno využít v kombinaci s JavaScriptovým \glsname{RDF} úložištěm rdfstore-js (viz část \ref{sec:rdfstore}).
 
 \subsubsection{Cron}
-Cron je démonem vykonávajícím naplánované úlohy. Název neoznačuje konkrétní implementaci, ale používá se pro označení programu splňujícího určité specifikace (jak je u Unixových nástrojů zvykem). Byla vybrána implementace, jejímž autorem je Paul Vixie -- jedná se o verzi využitou například v \glsname{GNU}/Linuxu a \glsname{BSD} (odkud pochází).
+Cron je démonem vykonávajícím naplánované úlohy. Název neoznačuje konkrétní implementaci, ale používá se pro označení programu splňujícího určité specifikace (jak je u Unixových nástrojů zvykem). Byla vybrána implementace, jejímž autorem je Paul Vixie -- jedná se o verzi využitou například v~\glsname{GNU}/Linuxu a \glsname{BSD} (odkud pochází).
 
 Cron byl vybrán pro svou vhodnost pro daný účel -- plánovat, a pro svoji prověřenost.
 
@@ -362,10 +362,10 @@ Node-icalendar (\url{https://github.com/tritech/node-icalendar}) je knihovnou pr
 Zvažovány byly i další knihovny, například node-ical (\url{https://github.com/peterbraden/node-ical}), ty ale neimplementují dostatek funkcionality potřebné pro tvorbu aplikace.
 
 \subsubsection{Node-iconv}
-Node-iconv (\url{https://github.com/bnoordhuis/node-iconv}) je knihovnou pro obsluhu systémového příkazu iconv sloužícího k převádění kódování. Knihovna byla vybrána pro bezpečnou implementaci převodu kódování.
+Node-iconv (\url{https://github.com/bnoordhuis/node-iconv}) je knihovna pro obsluhu systémového příkazu iconv sloužícího k převádění kódování. Knihovna byla vybrána pro bezpečnou implementaci převodu kódování.
 
 \subsubsection{Node-jquery}
-Node-jquery (\url{https://github.com/coolaj86/node-jquery}) je \textit{wrapperem} umožňujícím využít renomovanou JavaScriptovou knihovnu jQuery (\url{http://jquery.com/}) v prostředí Node.js.
+Node-jquery (\url{https://github.com/coolaj86/node-jquery}) zaobaluje renomovanou JavaScriptovou knihovnu jQuery (\url{http://jquery.com/}) v prostředí Node.js.
 
 jQuery bylo vybráno pro usnadnění zpracování externích zdrojů dat -- nabízí prověřené způsoby selekce, traverzování a manipulace s \glsname{DOM}.
 
@@ -386,14 +386,14 @@ Právě pro implementaci manipulace s \glsname{RDF}, grafové úložiště a pod
 Pro tvorbu serverové aplikace byly vybrány následující nástroje:
 \subsubsection{Kate}
 \label{sec:server:tools:kate}
-Pro implementaci serverové aplikace, stejně jako pro mnoho dalších činností, byl vybrán textový editor \glsname{Kate} (\url{http://kate-editor.org/}) z prostředí \glsname{GNU}/Linuxového desktopového prostředí \glsname{KDE}. \glsname{Kate} nabízí zvýrazňování syntaxe všech v diplomové práci použitých formátů, poskytuje velmi užitečnou práci s regulárními výrazy, umožňuje pracovat s mnoha soubory najednou a, co je asi nejpodstatnější, plně se integruje do (mnou používaného) \glsname{KDE}, takže ním například lze prostřednictvím \gls{KIO} transparentně pracovat se vzdálenými soubory. \glsname{Kate} neumožňuje automatické doplňování kódu, nabízí ale již použitá slova kdekoliv v dokumentu, což je vlastnost v mnoha ohledech srovnatelná. \Glsname{Kate} byl zvolen i na základě velice kladných zkušeností pro vytvoření zdrojového kódu a konfiguračních souborů.
+Pro implementaci serverové aplikace, stejně jako pro mnoho dalších činností, byl vybrán textový editor \glsname{Kate} (\url{http://kate-editor.org/}) z prostředí \glsname{GNU} /Linuxového desktopového prostředí \glsname{KDE}. \glsname{Kate} nabízí zvýrazňování syntaxe všech v diplomové práci použitých formátů, poskytuje velmi užitečnou práci s regulárními výrazy, umožňuje pracovat s mnoha soubory najednou a, co je asi nejpodstatnější, plně se integruje do (mnou používaného) \glsname{KDE}, takže ním například lze prostřednictvím \gls{KIO} transparentně pracovat se vzdálenými soubory. \glsname{Kate} neumožňuje automatické doplňování kódu, nabízí ale již použitá slova kdekoliv v dokumentu, což je vlastnost v~mnoha ohledech srovnatelná. \Glsname{Kate} byl zvolen i na základě velice kladných zkušeností pro vytvoření zdrojového kódu a konfiguračních souborů.
 
 \subsubsection{Kompare}
 \label{sec:server:tools:kompare}
 Pro případ potřeby důkladného porovnání souborů byl vybrán Kompare (\url{http://www.caffeinated.me.uk/kompare/}). Nástroj umožňuje velmi přehledně porovnat, mimo jednotlivých souborů, i celé jejich adresáře. Kompare neporovnává soubory sám, ale je nadstavbou nad konzolovou aplikací diff či obdobnou. Mimo již popsaných vlastností byl Kompare vybrán i pro svou integraci s \glsname{KDE}.
 
 \subsubsection{Webové prohlížeče}
-Pro průzkum zdrojů a jejich struktur byly zvoleny internetové prohlížeče a jejich rozšíření:
+Pro průzkum zdrojů a jejich struktur byly zvoleny internetové prohlížeče a~jejich rozšíření:
 \begin{itemize}
  \item Mozilla Firefox (\url{http://www.mozilla.org/firefox}) + Firebug (\url{http://getfirebug.com/}).
  \item Chromium (\url{http://chromium.org/}).
@@ -407,7 +407,7 @@ Konzolový nástroj curl z projektu \glsname{cURL} (\url{http://curl.haxx.se/}) 
 
 \subsubsection{Git}
 \label{sec:server:tools:git}
-Pro správu verzí práce byl zvolen nástroj Git (\url{http://git\-scm.com/}), čímž má být zajištěné pohodlné zálohování, jak ve smyslu možnosti návratu k některé z minulých verzí, tak i ve smyslu vzdáleného duplikování na serveru GitHub (\url{http://github.com/}). Pozitivním vedlejším efektem tohoto přístupu je možnost sledování vývoje prostřednictvím veřejného repozitáře.
+Pro správu verzí práce byl zvolen nástroj Git (\url{http://git-scm.com/}), čímž má být zajištěné pohodlné zálohování, jak ve smyslu možnosti návratu k některé z minulých verzí, tak i ve smyslu vzdáleného duplikování na serveru GitHub (\url{http://github.com/}). Pozitivním vedlejším efektem tohoto přístupu je možnost sledování vývoje prostřednictvím veřejného repozitáře.
 
 
 \section{Mobilní aplikace}
@@ -703,7 +703,7 @@ Obě výše uvedené hrozby mohou vyústit ve zranitelnosti. S podvržením nepr
 
 
 \subsection{Návrh uživatelského rozhraní}
-Na základě požadavků byl, ve spojitosti s návrhem aplikace, vytvářen návrh uživatelského rozhraní (\textit{user interface design}). Návrh probíhal hlavně za využití \textit{low fidelity} prototypů, na těch bylo uživatelské rozhraní odzkoušeno a podle nich pak bylo uživatelské rozhraní aplikace realizováno. Tvorba samostatných \textit{high fidelity} prototypů byla svým způsobem vynechána -- použité technologie jsou natolik flexibilní, že byla za podobným účelem využita samotná finální aplikace.
+Na základě požadavků byl, ve spojitosti s návrhem aplikace, vytvářen návrh uživatelského rozhraní (\textit{user interface design}). Návrh probíhal hlavně za využití \textit{low fidelity} prototypů, na těch bylo uživatelské rozhraní odzkoušeno a~podle nich pak bylo uživatelské rozhraní aplikace realizováno. Tvorba samostatných \textit{high fidelity} prototypů byla svým způsobem vynechána -- použité technologie jsou natolik flexibilní, že byla za podobným účelem využita samotná finální aplikace.
 
 \subsubsection{Low fidelity prototypy}
 Pod pojmem \textit{low fidelity prototypy} se skrývají jednoduché, velmi snadno vytvořitelné a editovatelné prototypy uživatelského rozhraní aplikace, které mimo jiné ověřují vhodnost rozvržení ovládacích komponent a uživatelských procesů zamýšlené aplikace.
@@ -738,7 +738,7 @@ Tyto akce mají být implementovány i pomocí gest přímo na mapě, pro obsluh
 Níže uvádím soupis použitých technologií s odůvodněním, proč byly vybrány a v jakém kontextu použity.
 
 \subsubsection{HTML5}
-Většina technologií tvořících mobilní aplikaci by se dala zahrnout do pojmu HTML5 (v širším smyslu významu). Pomocí JavaScriptu se manipuluje s \glsname{HTML} strukturou, která je prezentována za pomocí \glsname{CSS}, klíčová část aplikace -- mapa -- má být tvořena \glsname{SVG} (o tom ještě dále).
+Většina technologií tvořících mobilní aplikaci by se dala zahrnout do pojmu HTML5 (v širším smyslu významu). Pomocí JavaScriptu se manipuluje s~\glsname{HTML} strukturou, která je prezentována za pomocí \glsname{CSS}, klíčová část aplikace -- mapa -- má být tvořena \glsname{SVG} (o tom ještě dále).
 
 Technologie byly vybrány pro jejich výbornou portovatelnost -- téměř všechna dnešní zařízení je implementují podobně (nebo alespoň mají takové výkonnostní parametry, že na nich lze provozovat přidanou vrstvu abstrahující od skutečné implementace).
 
@@ -751,7 +751,7 @@ Mapa použitá v aplikaci je implementována prostřednictvím \glsname{SVG}. Ro
  \item Statické \glsname{SVG} s dynamickými úpravami.
 \end{itemize}
 
-První zmíněné řešení bylo zavrženo kvůli nízké flexibilitě -- není možné dopředu vygenerovat všechny varianty obrázků, které by pokrývaly možné situace -- i kdyby to možné bylo, množství obrázků by bylo velmi vysoké\footnote{Pro pokrytí všech situací by byly třeba zvlášť obrázky s vyznačením kterékoliv místnosti, kteréhokoliv bodu zájmu, kterékoliv výchozí pozice\dots Vzhledem k rozsáhlosti mapy by tak počet obrázků byl enormní.} a pro omezenou paměťovou kapacitu cílových zařízení nevhodné.
+První zmíněné řešení bylo zavrženo kvůli nízké flexibilitě -- není možné dopředu vygenerovat všechny varianty obrázků, které by pokrývaly možné situace -- i kdyby to možné bylo, množství obrázků by bylo velmi vysoké\footnote{Pro pokrytí všech situací by byly třeba zvlášť obrázky s vyznačením kterékoliv místnosti, kteréhokoliv bodu zájmu, kterékoliv výchozí pozice\dots Vzhledem k rozsáhlosti mapy by tak počet obrázků byl enormní.} a~pro omezenou paměťovou kapacitu cílových zařízení nevhodné.
 
 Druhý přístup, dynamické pozicování, byl zavržen z důvodů optimalizací rozvržení prvků mobilními prohlížeči -- není zaručené, že se prvek (například ukazatel nalezené místnosti) skutečně umístí, kam má.
 

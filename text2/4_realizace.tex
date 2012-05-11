@@ -2,18 +2,19 @@
 
 \chapter{Realizace}
 % Popis implementace/realizace se zaměřením na nestandardní části řešení.
-Během implementace (\textit{implementation}) se objevila celá řada zádrhelů, z nichž mnoho souviselo s doposud ne zcela zdokumentovanými a odladěnými technologiemi, přesto pro mne byla realizace velmi přínosná -- neustálým hledáním různých řešení a alternativ jsem nutně narazil na mnoho dalších zajímavých postřehů a nápadů. Kapitola se zabývá řešenými problémy, komplikacemi a celá je protkána implementací bezpečnosti. % , potenciální aplikací v ideálním světě
+Během implementace (\textit{implementation}) se objevila celá řada zádrhelů, z nichž mnoho souviselo s doposud ne zcela zdokumentovanými a odladěnými technologiemi, přesto pro mne byla realizace velmi přínosná -- neustálým hledáním různých řešení a alternativ jsem nutně narazil na mnoho dalších zajímavých postřehů a nápadů. Kapitola se zabývá řešenými problémy, komplikacemi a~celá je protkána implementací bezpečnosti. % , potenciální aplikací v ideálním světě
 
 \section{Serverová aplikace}
 Když se zpětně ohlížím za implementací serverové aplikace, náročná objektivně vůbec nebyla, osobně jsem ale žádnou z používaných technologií / knihoven\dots v té době neznal, takže mi náročnost přišla enormně vysoká. Rozsah popisu realizace serverové aplikace je tak krátký -- mnoho objektivně zajímavých míst se v ní nevyskytlo.
 
-Realizováno bylo pouze zpracování čtyř rozličných typů zdrojů -- implementace ostatních by byla dlouhotrvajícím opakováním stejných postupů a práci by moc neobohatila.
+Realizováno bylo pouze zpracování čtyř rozličných typů zdrojů -- implementace ostatních by byla dlouhotrvajícím opakováním stejných postupů a~práci by moc neobohatila.
 
 \subsection{Řešené problémy}
 V době, kdy byl vytvořený návrh, bylo vytvoření aplikace už poměrně snadné. Popíšu tedy jen ve stručnosti několik základních částí řešení.
 
 \subsubsection{Zpracování zdroje}
 Proces zpracování zdroje je poměrně přímočarý. Nejprve je zdroj po jednotlivých \textit{chuncích} stažen, následně sestaven:
+\pagebreak
 \begin{verbatim}
 var http = require('http'); //načtení modulu
 
@@ -140,11 +141,11 @@ Node.js vznikl až po prosazení \glsname{UTF}-8, dá se tedy předpokládat, ž
 Problém vyvstává u vysokoúrovňových nástrojů, které například dokáží jednoduše stáhnout cizí internetovou stránku a předpřipravit ji k následnému zpracování -- pokud je u těchto nástrojů vrácen třeba \glsname{DOM}, v případě, že pocházela stránka ze zdroje, který využíval s Node.js nekompatibilní kódování, řekněme Windows-1250, převod kódování už nelze zpětně ovlivnit. Při zpracovávání některých stránek jsem tak musel zůstat u nízkoúrovňových nástrojů.
 
 \subsubsection{Špatně formované XML}
-Při práci se sémantickým úložištěm rdfstore-js jsem narazil na špatně formované \glsname{XML}. Chybu jsem identifikoval -- jednalo se o sekvenci \verb|<literal>>| v některých případech generovaného \glsname{XML}, nalezl chybu v kódu, nahlásil a odeslal \textit{patch}. V současné době je chyba již odstraněna \cite{IssueLiteral}.
+Při práci se sémantickým úložištěm rdfstore-js jsem narazil na špatně formované \glsname{XML}. Chybu jsem identifikoval -- jednalo se o sekvenci \verb|<literal>>| v~některých případech generovaného \glsname{XML}, nalezl chybu v kódu, nahlásil a~odeslal \textit{patch}. V současné době je chyba již odstraněna \cite{IssueLiteral}.
 
 % \subsection{Ideální implementace}
 
-
+\pagebreak
 \section{Mobilní aplikace}
 Pod pojmem \textit{mobilní aplikace} se skrývá aplikace pevně nezávislá na výše uvedené \textit{serverové}. Jejím hlavním cílem je sloužit studentovi \glsname{FIT} \glsname{CVUT} jako průvodce, zároveň má ale plnit i účel ukázky využití \glsname{SPARQL} endpointu vytvořeného v \textit{serverové} části.
 
@@ -171,7 +172,7 @@ V mapových podkladech jsou z důvodu velkého rozsahu dopodrobna na úrovni mí
 % vyhledávání
 
 \subsubsection{Rozdílné DOM u HTML a SVG}
-\glsname{SVG} je, co se týče návrhu \glsname{DOM}, komplikovanější, než \glsname{HTML} -- zatímco u \glsname{HTML} stačí k hodnotě atributu v \glsname{DOM} přímo přistoupit, v \glsname{SVG} se musí zpravidla ještě o dvě úrovně níže, tedy třeba místo k \texttt{.width} se musí přistupovat k \texttt{.width.baseVal.value}. Při implementaci to bylo třeba brát v potaz.
+\glsname{SVG} je, co se týče návrhu \glsname{DOM}, komplikovanější, než \glsname{HTML} -- zatímco u~\glsname{HTML} stačí k hodnotě atributu v \glsname{DOM} přímo přistoupit, v \glsname{SVG} se musí zpravidla ještě o dvě úrovně níže, tedy třeba místo k \texttt{.width} se musí přistupovat k \texttt{.width.baseVal.value}. Při implementaci to bylo třeba brát v potaz.
 
 \subsubsection{Malá velikost displeje}
 Ačkoliv je toto omezení u mobilních zařízení zřejmé, nic to nemění na faktu, že se s ním musí neustále počítat a je třeba vybírat vhodné komponenty a ty vhodně rozvrhovat. Malá velikost displeje byla omezením i z opačného hlediska -- prsty jsou u dotykových telefonů, vzhledem k velikosti displeje, poměrně velké a ovládací prvky tak musí být dostatečně rozměrné, což konzumuje další místo. Mým cílem proto bylo vizualizovat jen to nejnutnější.
@@ -182,7 +183,7 @@ Různá zařízení poskytují různé ovládací prvky využívající různé 
 \subsubsection{Dynamické načítání lokálních souborů}
 Z bezpečnostních důvodů došlo v minulosti v prohlížečích k zamezení načítání jakýchkoliv souborů, mimo JavaScriptu, z jiných zdrojů, než ze kterých stránka pochází. To v některých případech\footnote{Příkladem je Google Chrome a jeho základ Chromium \cite{BugChromeOrigin}.} přerostlo v zamezení dynamického načítání jakýchkoliv lokálních souborů -- jejich zdroj nemá žádnou hodnotu (\texttt{null}), takže je nelze načíst. Aby byla zachována možnost offline využití aplikace na větší skupině zařízení, byla aplikace přepsána na jediné možné řešení -- explicitní uvedení všech potenciálně vkládaných souborů, což značně omezilo modularitu aplikace.
 
-Například v případě \glsname{SVG} je široká nabídka volby -- lze vložit JavaScriptem do elementů \texttt{img} (\texttt{<img src="map.svg"\ />}), \texttt{embed} (\texttt{<embed src="map.svg"\ />}), \texttt{object} (\texttt{<object type="image/svg+xml"\ data="map.svg"\ />}), \texttt{iframe} (\texttt{<iframe src="map.svg"\ />}), pokud je pak umožněna manipulace s obsahem pomocí JavaScriptu, tak jen velice neohrabaně. Další možností je vložit \glsname{SVG} přímo do \glsname{HTML} kódu -- v případě dynamicky generovaného kódu by bylo vhodné celý soubor načíst a na místo vložit, jenže zde narážíme na problém z předchozího odstavce -- některé prohlížeče to neumožní. Zbývá tedy poslední řešení -- celý soubor převést do JavaScriptového řetězce, uložit do proměnné a vložit z ní. Jedině tak zle vložit do stránky \glsname{SVG} soubor, aby s ním pak bylo snadné manipulovat prostřednictvím jediného \glsname{DOM}.
+Například v případě \glsname{SVG} je široká nabídka volby -- lze vložit JavaScriptem do elementů \texttt{img} (\texttt{<img src="map.svg"\ />}), \texttt{embed} (\texttt{<embed src="map.svg"\ />}), \texttt{object} (\texttt{<object type="image/svg+xml"\ data="map.svg"\ />}), \texttt{iframe} (\texttt{<iframe src="map.svg"\ />}), pokud je pak umožněna manipulace s obsahem pomocí JavaScriptu, tak jen velice neohrabaně. Další možností je vložit \glsname{SVG} přímo do \glsname{HTML} kódu -- v případě dynamicky generovaného kódu by bylo vhodné celý soubor načíst a na místo vložit, jenže zde narážíme na problém z~předchozího odstavce -- některé prohlížeče to neumožní. Zbývá tedy poslední řešení -- celý soubor převést do JavaScriptového řetězce, uložit do proměnné a~vložit z ní. Jedině tak zle vložit do stránky \glsname{SVG} soubor, aby s ním pak bylo snadné manipulovat prostřednictvím jediného \glsname{DOM}.
 
 % \subsubsection{Otevírání lokálních souborů}
 % Omezení zmíněná v předchozím odstavci stupňuje až do extrémů mobilní prohlížeč Chrome Beta, který nepovolí ani přímé otevření lokálního souboru. \todo{Ověřit, možná nefunguje celé Chrome\dots}
@@ -199,7 +200,7 @@ Z již dříve popsaných důvodů, tedy malého rozsahu sémantické databáze,
 
 Z veřejně k použití dostupných proxy lze využít například server Yahoo! využívaný pro \textit{Yahoo! Query Language} (\url{http://developer.yahoo.com/yql/}) -- na něm je založeno jQuery rozšíření cross-domain-ajax (\url{https://github.com/padolsey/jQuery-Plugins/}), dále je možné na vlastním serveru použít nějaké hotové řešení, například \textit{AJAX Cross Domain} (\url{http://www.ajax-cross-domain.com/}), nebo si vše od základu vytvořit sám.
 
-Rozhodl jsem se pro třetí možnost -- veřejně dostupná řešení nenabízejí potřebné možnosti konfigurace, mezi již hotovými řešeními se mi nepodařilo nalézt vhodné pro konkrétní použití, takže jsem si vytvořil proxy vlastní.\footnote{Byla tedy přidána další serverová aplikace do již tak terminologicky složité situace. Z tohoto důvodu se u zmíněného serveru držím označení \textit{proxy}.}
+Rozhodl jsem se pro třetí možnost -- veřejně dostupná řešení nenabízejí potřebné možnosti konfigurace, mezi již hotovými řešeními se mi nepodařilo nalézt vhodné pro konkrétní použití, takže jsem si vytvořil proxy vlastní.\footnote{Byla tedy přidána další serverová aplikace do již tak terminologicky složité situace. Z~tohoto důvodu se u zmíněného serveru držím označení \textit{proxy}.}
 
 Proxy je požádána o zprostředkování zdroje, na základě \textit{whitelistu} je rozhodnuto o jeho poskytnutí -- z bezpečnostních důvodů je zamezen přístup ke všem mimo nutně potřebných serverů. Zdroj proxy stáhne, převede na přednastavené kódování (v rámci JavaScriptu nejsou převody snadné, dojde tak k výraznému usnadnění mobilní aplikaci) a před odesláním odpovědi je zdroj pročištěn -- za využití knihovny \textit{HTML Purifier} je zdroj zvalidněn a je z něj odstraněno vše, co není explicitně dalším \textit{whitelistem} povoleno -- skripty, obrázky, rámce, další zdroje, potenciálně škodlivé atributy a elementy\dots V případě chyby je uživateli (mobilní aplikaci) navráceno příslušné chybové hlášení.
 
@@ -221,7 +222,7 @@ Tvorba uživatelského rozhraní mobilní aplikace nepřinesla, mimo tvorby mapy
 Během implementace mobilní aplikace se objevily i komplikace, mimo očekávaných, již zmíněných v předchozí části, mezi ně patřilo:
 
 \subsubsection{Chyby prohlížečů v implementaci specifikací}
-Při práci jsem několikrát narazil na situaci, kdy určitá vlastnost v jednom prohlížeči fungovala, ve druhém nikoliv, a přesto bylo vše implementované správně podle specifikace. V takovém případě pak bývala chyba na straně prohlížeče, který určitou specifikaci špatně implementoval. Situace nastávala převážně u hodně specifických případů. Příkladem může být chybějící podpora pro nastavení transformace \glsname{SVG} elementu JavaScriptem (nutné pro práci s mapou) v prohlížeči Google Chrome \cite{BugChromeTran}, tento problém ale lze obejít vlastním sestavením hodnoty celého atributu a přímým vložením. 
+Při práci jsem několikrát narazil na situaci, kdy určitá vlastnost v jednom prohlížeči fungovala, ve druhém nikoliv, a přesto bylo vše implementované správně podle specifikace. V takovém případě pak bývala chyba na straně prohlížeče, který určitou specifikaci špatně implementoval. Situace nastávala převážně u~hodně specifických případů. Příkladem může být chybějící podpora pro nastavení transformace \glsname{SVG} elementu JavaScriptem (nutné pro práci s~mapou) v~prohlížeči Google Chrome \cite{BugChromeTran}, tento problém ale lze obejít vlastním sestavením hodnoty celého atributu a přímým vložením. 
 
 \subsubsection{Implementace SVG}
 Implementace \glsname{SVG} je v desktopových prohlížečích na velmi dobré úrovni již nějakou dobu,\footnote{Posledním významným desktopovým prohlížečem podporujícím \glsname{SVG} se stal s dlouhým odstupem verzí 9.0 Internet Explorer \cite{CanIUse}, předtím pro něj ale byly dostupné vhodné pluginy.} v nedávné minulosti se ale podpora značně zlepšila i na poli mobilních zařízení \cite{CanIUse}.
