@@ -120,7 +120,7 @@ Poslední jmenovaný pochází z Freie Universität Berlin, aktuální verze je 
 Po hrubém prozkoumání jmenovaných \textit{benchmarků} jsem se rozhodl vydat jinou cestou -- vytvořit si vlastní jednoduchý test zkoumající pouze chování \glsname{SPARQL} endpointu v zatížení o několik řádů větším, než maximálním předpokládaném. Výše uvedené \textit{benchmarky} mi tedy nakonec posloužily pouze jako zdroj inspirace, přesto je zde nechávám případným zájemcům pro pozdější podrobnější přezkoumání.
 
 \subsubsection{Charakteristika testu}
-K testování byl použit jednoduchý konzolový nástroj ApacheBench (\url{http://httpd.apache.org/docs/2.4/programs/ab.html}), jehož prostřednictvím byl \glsname{SPARQL} endpoint vystavován kontinuální paralelní zátěži.
+K testování byl použit jednoduchý konzolový nástroj ApacheBench (\url{http://httpd.apache.org/docs/2.4/programs/ab.html}), jehož prostřednictvím byl \glsname{SPARQL} endpoint vystavován kontinuální paralelní zátěži. Tento nástroj stačil pouze po nějakou dobu -- v případě extrémních testů se projevilo jeho historické omezení -- umožňuje práci pouze s protokolem \glsname{HTTP} 1.0, zatímco Node.js, nad kterým je postavený \glsname{SPARQL} endpoint, naopak využívá perzistentní připojení \glsname{HTTP} 1.1, takže v ApacheBench dojde po nějaké době k vypršení jednoho z několika vnitřních časových limitů.
 
 \glsname{SPARQL} endpoint byl pro potřeby testování umístěn na virtuálním stroji řešení VirtualBox (\url{http://www.virtualbox.org/}) o jednom procesoru frekvence 2~GHz, 2~GB operační paměti a dostatečně rychlém síťovém připojení k hostitelskému počítači, ze kterého byly testy prováděny.
 
@@ -146,7 +146,52 @@ WHERE {
 % \end{verbatim}
 
 \subsubsection{Průběh testu}
-\todo{dodělat}
+Test byl prováděn příkazem \texttt{ab -n 1000 -c 100 -H "Accept: application\linebreak /json"\ -e benchmark http://server:8080/sparql?query=PREFIX+f\dots},\linebreak kde parametr \texttt{n} značí počet požadavků, \texttt{c} počet konkurenčních požadavků, \texttt{H} hlavičku požadavku (jinak by server navrátil data ve formátu \glsname{XML}), \texttt{e} soubor, do kterého se zapíšou výsledky a zbytek příkazu tvoří zakódovaný \glsname{SPARQL} požadavek.
+
+Testování bylo provedeno se třemi různými nastaveními počtu konkurenčních požadavků (1, 10, 100) vždy z celkového počtu 1000.
+
+Výsledky jednotlivých měření jsou zaznamenány v tabulce \ref{tab:vykonnostniTesty} a na obrázku \ref{fig:vykonnostniTesty} je znázorněn graf procentuálního rozložení doby odpovědi pro 100 konkurenčních požadavků z celkového počtu 1000 -- ostatní průběhy byly velmi podobné.\footnote{Na přiloženém \glsname{CD} se nacházejí ostatní grafy a další podkladové materiály tohoto testu.}
+
+\begin{table}
+\begin{center}
+\begin{threeparttable}
+\begin{tabular}{|l|r|r|r|}
+\hline
+\textbf{Charak\-te\-ristika} & \textbf{1c/1000n\tnote{a}} & \textbf{10c/1000n\tnote{a}} & \textbf{100c/1000n\tnote{a}} \\
+\hline
+\textbf{Doba testu [s]} & {97.000} & {92.860} & {92.767} \\
+\textbf{Dokončené požadavky} & {1000} & {1000} & {1000} \\
+\textbf{Chybné požadavky} & {0} & {0} & {0} \\
+\textbf{Požadavky/s} & {10.31} & {10.77} & {10.78} \\
+\textbf{Doba požadavku\tnote{b} [s]} & {97.00} & {928.60} & {9276.69} \\
+\textbf{Doba požadavku\tnote{c} [s]} & {97.00} & {92.86} & {92.77} \\
+\textbf{Rychlost přenosu [KB/s]} & {140.40} & {146.66} & {146.81} \\
+\hline
+\textbf{Nejkr. doba požadavku [s]} & {75} & {630} & {7556} \\
+\textbf{Prům. doba požadavku [s]} & {97} & {926} & {9246} \\
+\textbf{Medián doby požadavku [s]} & {87} & {908} & {9231} \\
+\textbf{Nejd. doba požadavku [s]} & {483} & {1470} & {10902} \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+ \item[a] Počet konkurenčních požadavků najednou v celkovém počtu.
+ \item[b] Průměrná doba požadavku z pohledu uživatele.
+ \item[c] Průměrná doba požadavku z pohledu serveru.
+\end{tablenotes}
+\caption{Průběh výkonnostního testování}
+\label{tab:vykonnostniTesty}
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=12cm]{./figures/100-1000.pdf}
+ % 100-1000.pdf: 453x255 pixel, 72dpi, 15.98x9.00 cm, bb=0 0 453 255
+ \caption{Graf rozložení doby odpovědi}
+ \label{fig:vykonnostniTesty}
+\end{figure}
+
 
 \subsubsection{Shrnutí testu}
 \todo{dodělat}
@@ -259,9 +304,6 @@ Porovnávány byly aplikace Průvodce ČVUT FEL (\url{http://lr.czechian.net/j2m
 
 Vzhledem k výše uvedeným důvodům nebyla pro srovnání stanovena řádná metrika, ale je ponecháno na interpretovi, aby si z nalezených rozdílů vyvodil pro své potřeby patřičné závěry. Výsledky srovnání se nacházejí v tabulce \ref{tab:srovnaniReseni}.
 
-\newcommand{\td}[1]{\parbox{0.24\textwidth}{\smallskip\begin{center}#1\end{center}\smallskip}}
-\newcommand{\tdh}[1]{\parbox{0.18\textwidth}{\smallskip\textbf{#1}\smallskip}}
-\definecolor{dark}{RGB}{50,50,50}
 \begin{table}
 \begin{center}
 \begin{threeparttable}

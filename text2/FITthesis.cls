@@ -355,11 +355,11 @@
 	\cleardoublepage
 	\tableofcontents*
 
-% 	\cleardoublepage
-% 	\listoffigures*
+	\cleardoublepage
+	\listoffigures*
 
-% 	\cleardoublepage
-% 	\listoftables*
+	\cleardoublepage
+	\listoftables*
 
 	\pagestyle{ruled}
 	\iflanguage{czech}{\mainmatter*}{\mainmatter} %hlavni text prace
