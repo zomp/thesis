@@ -1,7 +1,7 @@
 % (e) Analýza a návrh implementace produktu (včetně diskuse různých alternativ a volby implementačního prostředí).
 
 \chapter{Analýza a návrh implementace}
-Analýza s návrhem probíhaly nezávisle na dvou místech -- po krátké analýze celku a určení vzájemných komunikačních rozhraní byly provedeny analýza s návrhem serverové aplikace a až po jejím dokončení začaly analýza s návrhem mobilní aplikace. V průběhu času jsem se k analýze a návrhu ještě několikrát vrátil a vylepšil / rozšířil to, co se ne vždy na poprvé povedlo.
+Analýza s návrhem probíhaly nezávisle na dvou místech -- po krátké analýze celku a určení vzájemných komunikačních rozhraní byly provedeny analýza s návrhem serverové aplikace a až po jejich dokončení začaly analýza s návrhem mobilní aplikace. V průběhu času jsem se k analýze a návrhu ještě několikrát vrátil a vylepšil / rozšířil to, co se ne vždy na poprvé povedlo.
 
 Analýza se skládala z identifikace potřeb uživatelů, vytvoření případů užití, ze kterých byly odvozeny funkční požadavky, ke kterým byly doplněny nefunkční požadavky. Poté byl vytvořen návrh řešení, zapracován návrh bezpečnosti a celý koncept byl podložen návrhem nasazení. Nakonec byly voleny technologie.
 
@@ -14,7 +14,7 @@ Začal jsem pracovat nejprve na serverové aplikaci -- jednak na ní měla být 
 Tato část se věnuje potřebám uživatelů serverové aplikace, zejména uživatelů rozhraní, přes které poskytuje informace. Potřeb je mnoho -- proto zde uvedu pouze reprezentativní vzorek.
 
 \subsubsection{Potřeba zjistit informaci}
-Potřeba zjistit informaci je základní potřebou, kvůli které se mají uživatelé obracet na systém. Tato potřeba může vzniknout z velikého množství příčin -- od hledání informací spjatých s průchodem studiem, až například po zjišťování jídelního lístku v menze.
+Potřeba zjistit informaci je základní potřebou, kvůli které se mají uživatelé obracet na systém. Tato potřeba může vzniknout z velikého množství příčin -- od hledání informací spjatých s průchodem studiem, až například po zjišťování jídelního lístku v menze. % pojem 'průchod studia' se, dle vyhledávače, vyskytuje především jen na FIT ČVUT a FEL ČVUT
 
 \subsubsection{Potřeba ověřit informaci}
 Často je cílová skupina uživatelů v situaci, kdy má požadovanou informaci, není si jí ale jistá a potřebuje ji ověřit / vyvrátit. Bez jistoty pravdivosti informace je její hodnota podstatně nižší.
@@ -209,7 +209,7 @@ Zpočátku jsem vytvářel ontologii od základů vlastní, s přibývajícími 
 
 Nejprve jsem se vrátil k výsledkům rešeršního zpracování ontologií a vybral z nich tu, která se mi zdála po v mezičase nabitých zkušenostech nejlepší -- \gls{AIISO}. Tato ontologie je již předurčená k využití s ontologiemi Participation, \gls{FOAF} a AIISO Roles. Ontologie jsou to již zaběhlé, takže problém s interoperabilitou pozbyl platnosti.
 
-Dalším bodem zvratu bylo zjištění, jak složité může být nalezení styčných bodů mezi obecnou ontologií a konkrétní situací. Bylo třeba v některých případech nalézt další vhodné ontologie reprezentující doposud nepokryté oblasti, případně již použité ontologie rozšířit (zpravidla je použita licence Creative Commons, takže je rozšiřování možné). Příkladem může být reprezentace akcí \glsname{CVUT} -- žádná z použitých ontologií nemodeluje události. Abych se dodržel kurzu ve směru interoperability, bylo třeba nalézt vhodnou ontologii. Nabízelo se jich několik, nakonec byla použita \gls{LODE}, právě kvůli svému zastřešení obdobných ontologií.
+Dalším bodem zvratu bylo zjištění, jak složité může být nalezení styčných bodů mezi obecnou ontologií a konkrétní situací. Bylo třeba v některých případech nalézt další vhodné ontologie reprezentující doposud nepokryté oblasti, případně již použité ontologie rozšířit (zpravidla je použita licence Creative Commons, takže je rozšiřování možné). Příkladem může být reprezentace akcí \glsname{CVUT} -- žádná z použitých ontologií nemodeluje události. Abych se držel kurzu ve směru interoperability, bylo třeba nalézt vhodnou ontologii. Nabízelo se jich několik, nakonec byla použita \gls{LODE}, právě kvůli svému zastřešení obdobných ontologií.
 
 Následuje seznam zvolených ontologií, pro specifické případy se ale počítá s jeho dalším rozšiřováním:
 \begin{itemize}
@@ -308,7 +308,7 @@ Preferovaná je zpravidla poslední možnost.
 \subsubsection{Důsledky}
 \begin{itemize}
  \item Je třeba důsledně ošetřovat vstupy (aby nedošlo k uložení škodlivých dat do databáze, aby na \glsname{SPARQL} endpointu nebyly prováděny jiné operace, než dotazovací\dots).
- \item Je třeba vše ve výchozím nastavení vše zakázat a k potřebným úkonům udělit výjimky (pouze dotazy nad \glsname{SPARQL} endpointem, přístup jen k některým zdrojům ze serverové aplikace\dots).
+ \item Je třeba ve výchozím nastavení vše zakázat a k potřebným úkonům udělit výjimky (pouze dotazy nad \glsname{SPARQL} endpointem, přístup jen k některým zdrojům ze serverové aplikace\dots).
  \item Je třeba zamezit odepření služeb (přetížením \glsname{SPARQL} endpointu, zahlcením databáze\dots).
 \end{itemize}
 
@@ -325,7 +325,7 @@ Využití JavaScriptu bylo, pro svoje pravděpodobné vzrůstající nasazení v
 \subsubsection{Node.js}
 Node.js (\url{http://nodejs.org/}) je platforma postavená nad běhovým prostředím JavaScriptu z webového prohlížeče Google Chrome. Slouží ke tvorbě rychlých, škálovatelných síťových aplikací. Node.js využívá událostmi řízený neblokovací I/O model, který ho činí nenáročným a efektivním, vhodným pro datově náročné \textit{real-timové} aplikace běžící v distribuovaném prostředí \cite{Node}.
 
-Použití Node.js bylo vynuceno nefunkčním požadavkem, jedná se ale o velmi cennou zkušenost -- je novou technologií a ačkoliv je jeho dokumentace na slušné úrovni, není zatím vytvořena dostatečně velká báze příkladů a nejlepších praktik.\footnote{Takže jsem se k dobrým praktikám musel postupně propracovat a při té příležitosti se toho hodně naučil. Navíc, zdá se, se budou nabité vědomosti v budoucnu hodit.}
+Použití Node.js bylo vynuceno nefunkčním požadavkem, jedná se ale o velmi cennou zkušenost -- je novou technologií a ačkoliv je jeho dokumentace na slušné úrovni, není zatím vytvořena dostatečně velká báze příkladů a nejlepších praktik.\footnote{K dobrým praktikám jsem se tedy musel postupně propracovat a při té příležitosti se toho hodně naučil. Navíc, zdá se, se budou nabité vědomosti v budoucnu hodit.}
 
 \subsubsection{MongoDB}
 MongoDB (\url{http://www.mongodb.org/}) je škálovatelnou, vysoce výkonnou, otevřenou NoSQL databází napsanou v C++ \cite{Mongo}.
@@ -334,10 +334,10 @@ Databázi jsem volil z dalších sémantických / NoSQL databází (zaměření 
 
 Poslední jmenovaná databáze byla na základě předchozích zkušeností vybrána nejdříve, později se ale ukázalo, že jsou její správa i obsluha pro konkrétní použití těžkopádné, takže jsem nakonec přešel k podstatně vhodnější databázi, MongoDB, kterou lze navíc snadno využít v kombinaci s JavaScriptovým \glsname{RDF} úložištěm rdfstore (viz část \ref{sec:rdfstore}).
 
-\subsubsection{cron}
+\subsubsection{Cron}
 Cron je démonem vykonávajícím naplánované úlohy. Název neoznačuje konkrétní implementaci, ale používá se pro označení programu splňujícího určité specifikace (jak je u Unixových nástrojů zvykem). Byla vybrána implementace, jejímž autorem je Paul Vixie -- jedná se o verzi využitou například v \glsname{GNU}/Linuxu a \glsname{BSD} (odkud pochází).
 
-Cron byl vybrán pro svou vhodnost pro daný účel, plánovat, a pro svoji prověřenost.
+Cron byl vybrán pro svou vhodnost pro daný účel -- plánovat, a pro svoji prověřenost.
 
 \subsubsection*{ }
 Celé prostředí serverové aplikace je umístěno v serverové edici \glsname{GNU}/linuxové distribuce Ubuntu (\url{http://www.ubuntu.com/}) a ta je pro snadnou přenositelnost nainstalována do kontejneru virtuálního stroje virtualizačního řešení VirtualBox (\url{http://www.virtualbox.org/}). Technologie byly vybrány na základě výborných předchozích zkušeností.
@@ -345,32 +345,32 @@ Celé prostředí serverové aplikace je umístěno v serverové edici \glsname{
 \subsection{Použité knihovny}
 Mimo standardního JavaScriptu lze v Node.js využívat i specifická rozšíření a množství modulů třetích stran. Z těch jsem po zvážení z různých příčin využil:
 
-\subsubsection{node-date-utils}
+\subsubsection{Node-date-utils}
 Node-date-utils (\url{https://github.com/JerrySievert/node-date-utils}) je mikro frameworkem doplňujícím funkcionalitu JavaScriptového objektu Date. Nástroj byl vybrán z potřeby snadno formátovat čas.
 
 Zvažováno bylo i použití obdobného nástroje node-dateformat (\url{https://github.com/felixge/node-dateformat}), ten je ale svou nabídkou funkcionalit pro projekt méně vhodný. Oba moduly jsou stále ve vývoji.
 
-\subsubsection{express}
+\subsubsection{Express}
 Express (\url{http://expressjs.com/}) je renomovaným frameworkem pro tvorbu webových aplikací. Je založený na middleware frameworku connect (\url{http://www.senchalabs.org/connect/}).
 
 Express byl vybrán jako ověřené řešení pro vytvoření struktury webové aplikace -- nejenže v sobě zahrnuje mnoho dobrých praktik, ke kterým bych jen stěží došel vlastním zkoumáním, ale přináší zároveň i markantní zjednodušení struktury kódu aplikace.
 
-\subsubsection{node-icalendar}
+\subsubsection{Node-icalendar}
 Node-icalendar (\url{https://github.com/tritech/node-icalendar}) je knihovnou pro práci s formátem iCalendar. Je stále ve vývoji, nicméně množina poskytovaných funkcionalit je pro tuto práci dostatečná.
 
 Zvažovány byly i další knihovny, například node-ical (\url{https://github.com/peterbraden/node-ical}), ty ale neimplementují dostatek funkcionality potřebné pro tvorbu aplikace.
 
-\subsubsection{node-iconv}
+\subsubsection{Node-iconv}
 Node-iconv (\url{https://github.com/bnoordhuis/node-iconv}) je knihovnou pro obsluhu systémového příkazu iconv sloužícího k převádění kódování. Knihovna byla vybrána pro bezpečnou implementaci převodu kódování.
 
-\subsubsection{node-jquery}
+\subsubsection{Node-jquery}
 Node-jquery (\url{https://github.com/coolaj86/node-jquery}) je \textit{wrapperem} umožňujícím využít renomovanou JavaScriptovou knihovnu jQuery (\url{http://jquery.com/}) v prostředí Node.js.
 
 jQuery bylo vybráno pro usnadnění zpracování externích zdrojů dat -- nabízí prověřené způsoby selekce, traverzování a manipulace s \glsname{DOM}.
 
 Node-jquery interně využívá modul jsdom (\url{https://github.com/tmpvar/jsdom}), který mu poskytuje JavaScriptovou implementaci \glsname{DOM}.
 
-\subsubsection{rdfstore-js}
+\subsubsection{Rdfstore-js}
 \label{sec:rdfstore}
 Rdfstore-js (\url{https://github.com/antoniogarrote/rdfstore-js}) je JavaScriptovou implementací \glsname{RDF} grafového úložiště s podporou pro \glsname{SPARQL}. Data mohou být (a v implementaci \glsname{DP} jsou) persistentně ukládána prostřednictvím Node.js modulu-ovladače node-mongodb (\url{https://github.com/christkv/node-mongodb-native}) do NoSQL databáze MongoDB (\url{http://www.mongodb.org/}). Modul je stále ve vývoji.
 
@@ -389,7 +389,7 @@ Pro implementaci serverové aplikace, stejně jako pro mnoho dalších činnost�
 
 \subsubsection{Kompare}
 \label{sec:server:tools:kompare}
-Pro případ potřeby důkladného porovnání souborů byl vybrán Kompare (\url{http://www.caffeinated.me.uk/kompare/}). Nástroj umožňuje velmi přehledně porovnat mimo jednotlivých souborů i celé jejich adresáře. Kompare neporovnává soubory sám, ale je nadstavbou nad konzolovou aplikací diff či obdobnou. Mimo již popsaných vlastností byl Kompare vybrán i pro svou integraci s \glsname{KDE}.
+Pro případ potřeby důkladného porovnání souborů byl vybrán Kompare (\url{http://www.caffeinated.me.uk/kompare/}). Nástroj umožňuje velmi přehledně porovnat, mimo jednotlivých souborů, i celé jejich adresáře. Kompare neporovnává soubory sám, ale je nadstavbou nad konzolovou aplikací diff či obdobnou. Mimo již popsaných vlastností byl Kompare vybrán i pro svou integraci s \glsname{KDE}.
 
 \subsubsection{Webové prohlížeče}
 Pro průzkum zdrojů a jejich struktur byly zvoleny internetové prohlížeče a jejich rozšíření:
@@ -399,9 +399,9 @@ Pro průzkum zdrojů a jejich struktur byly zvoleny internetové prohlížeče a
 \end{itemize}
 
 \subsubsection{Protégé}
-Pro průzkum a práci s ontologiemi byl zvolen editor Protégé (\url{http://protege.stanford.edu/}). Rozhodnutí bylo učiněno pro nabídku funkcionalit a předchozí zkušenosti.
+Pro průzkum a práci s ontologiemi byl zvolen editor Protégé (\url{http://protege.stanford.edu/}). Rozhodnutí bylo učiněno pro nabídku funkcionalit a na základě předchozích zkušeností.
 
-\subsubsection{curl}
+\subsubsection{Curl}
 Konzolový nástroj curl z projektu \glsname{cURL} (\url{http://curl.haxx.se/}) byl zvolen pro snadnou kontrolu cizích zdrojů i vlastní vytvářené aplikace.
 
 \subsubsection{Git}
@@ -465,7 +465,7 @@ Přehledy rozšiřují poznatky získané při tvorbě bakalářské práce \cit
 Zvláště, pokud máme mapu nebo jsme v jiné situaci, kdy víme, kam jít, vyvstává potřeba určit aktuální pozici -- bez té totiž nelze určit směr, vzdálenost, a v případě, že hledáme nejbližší místo daného typu, ani cíl cesty.
 
 \subsubsection{Potřeba nezávislosti}
-Cílová skupina má díky specifickému životnímu stylu silnou potřebu nezávislosti v mnoha oblastech -- pokud jim má být poskytnu aplikace, ani ta je nesmí příliš omezovat -- je proto vhodné, aby se jednalo o aplikaci multiplatformní, mobilní a aby umožňovala offline provoz, jinak hrozí nemožnost jejího využití v situacích jako je cesta do školy nebo přítomnost na některém z mnoha signálem nepokrytých míst budovy T9.
+Cílová skupina má díky specifickému životnímu stylu silnou potřebu nezávislosti v mnoha oblastech -- pokud jim má být poskytnutá aplikace užitečná, ani ta je nesmí příliš omezovat -- je proto vhodné, aby se jednalo o aplikaci multiplatformní, mobilní a aby umožňovala offline provoz, jinak hrozí nemožnost jejího využití v situacích jako je cesta do školy nebo přítomnost na některém z mnoha signálem nepokrytých míst budovy T9.
 
 % \subsubsection{Potřeby návštěvníků na aplikaci}
 % \todo{externí přednášející, dny otevřených dveří, partnerky studentů...}
@@ -579,7 +579,7 @@ Dále byly identifikovány tři hlavní případy užití:
  \item Uživatel potvrdí dotaz.
  \item Systém odešle dotaz na server.
  \item Server zpracuje požadavek a odešle odpověď.
- \item Systém přijme odpověď
+ \item Systém přijme odpověď.
  \item Systém zpracuje odpověď.
  \item Systém vizualizuje odpověď.
 \end{itemize}
@@ -682,7 +682,7 @@ Hrozby je třeba identifikovat pouze na komponentě \emph{mobilní aplikace}, os
 \end{itemize}
 
 \subsubsection{Identifikace zranitelností}
-Obě výše uvedené hrozby mohou vyústit ve zranitelnosti. S podvržením nepravdivých dat se bohužel nevypořádáme - data jsou čerpána z oficiálních zdrojů a v případě, že někdo kompromituje je, nám žádné z opatření nepomůže. Zranitelnosti plynoucí z druhé hrozby omezil ale lze. Mohou jimi být:
+Obě výše uvedené hrozby mohou vyústit ve zranitelnosti. S podvržením nepravdivých dat se bohužel nevypořádáme - data jsou čerpána z oficiálních zdrojů a v případě, že někdo kompromituje je, nám žádné z opatření nepomůže. Zranitelnosti plynoucí z druhé hrozby omezit ale lze. Mohou jimi být:
 \begin{itemize}
  \item Injektáž škodlivého skriptu ze zdroje -- vzhledem k použitým technologiím, JavaScriptu.
  \item Injektáž škodlivého značkovacího kódu ze zdroje -- neuzavřené \glsname{HTML} elementy, identifikátory duplicitní k již existujícím, destruktivní formátování\dots
@@ -778,7 +778,7 @@ Z důvodů popsaných v části \ref{sec:mobil:cross-origin} na straně \pageref
 \subsection{Použité knihovny}
 V práci byla, po úvaze, nakonec využita i práce třetích stran -- svobodné knihovny \emph{jQuery} a \emph{HTML Purifier}. Jejich krátký popis a odůvodnění následují:
 
-\subsubsection{jQuery}
+\subsubsection{JQuery}
 Stále více projektů využívá renomovanou JavaScriptovou knihovnu jQuery (\url{http://jquery.com/}). Osobně z toho moc nadšený zpravidla nejsem, často se nadužívá -- velikost každé stránky se tak zvýší řádově minimálně o sto kilobytů, což není zanedbatelné\footnote{V průzkumu \cite{PagesizeUseit} věnovanému maximální velikosti stránky je přesně tato velikost uvedená jako maximální přijatelná pro celou stránku. Průzkum je sice patnáct let starý, rychlosti připojení k některým webovým serverům ale za tu dobu nevzrostly.} -- na druhou stranu se knihovna ve velkém počtu případů \textit{cachuje}. Po důkladném zvážení jsem se jQuery ale nakonec rozhodl využít i v případě mobilní aplikace -- aplikace má být určena pro offline použití, takže se předpokládá už tak rozsáhlá aplikační logika, velikost jQuery tak bude zanedbatelná a knihovna může být dobrým základem stabilní multiplatformní aplikace.
 
 Mimo abstrakce od různých implementací specifikací webovými prohlížeči nabízí jQuery selekci, traverzování a manipulaci s \glsname{DOM}.

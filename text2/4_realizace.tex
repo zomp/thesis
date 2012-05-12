@@ -13,7 +13,7 @@ Realizováno bylo pouze zpracování čtyř rozličných typů zdrojů -- implem
 V době, kdy byl vytvořený návrh, bylo vytvoření aplikace už poměrně snadné. Popíšu tedy jen ve stručnosti několik základních částí řešení.
 
 \subsubsection{Zpracování zdroje}
-Proces zpracování zdroje je poměrně přímočarý. Nejprve je zdroj po jednotlivých \textit{chuncích} stažen následně sestaven:
+Proces zpracování zdroje je poměrně přímočarý. Nejprve je zdroj po jednotlivých \textit{chuncích} stažen, následně sestaven:
 \begin{verbatim}
 var http = require('http'); //načtení modulu
 
@@ -105,7 +105,7 @@ V těchto několika řádcích je vytvořený celý server zpracovávající př
 Uvnitř metody je na prvním řádku vyžadováno zavolání metody \texttt{process()} z uvedeného souboru s parametrem \texttt{login}. V této metodě je na základě přítomnosti parametru rozhodnuto, jestli se mají zpracovat všechny osoby nebo jen jedna konkrétní. Na druhém řádku je klientovi odesláno oznámení o úspěšném přijetí požadavku.
 
 \subsubsection{Nastavení časovače}
-Vzhledem k výše uvedené obsluze \textit{serverové aplikace} \glsname{HTTP} požadavky je možné časovač reprezentovaný cronem jednoduchým nastavením, například:
+Vzhledem k výše uvedené obsluze \textit{serverové aplikace} \glsname{HTTP} požadavky je možné časovač reprezentovaný cronem jednoduše nastavit, například:
 \begin{verbatim}
 # aktualizace jidelnicku kazdy den 3 minuty po zverejneni
 3 9,10,16,17 * * * user curl localhost:1337/jidelnicky/\
@@ -194,13 +194,13 @@ Aplikace potřebuje získávat a zpracovávat cizí zdroje -- aby poskytovala ak
 
 Z již dříve popsaných důvodů, tedy malého rozsahu sémantické databáze, ale finální aplikace podporuje mimo přístupu k samotnému \glsname{SPARQL} endpointu i přímý přístup k původním zdrojům. Zde vyvstává problém -- na cizích zdrojích \glsname{CORS} povolit nemůžeme, je tedy třeba najít jiné řešení. Tím je \gls{JSONP}, tedy postup umožňující získat přes JavaScriptový soubor (ten má výjimku) data ve formátu \glsname{JSON} obalená funkcí námi zvoleného jména, která je po stažení zdroje v prohlížeči vykonána, a tím jsou aplikaci předána data ke zpracování.
 
-\glsname{JSONP} sám o sobě ale nic nevyřeší -- je k němu stejně tak potřeba mít uzpůsobený server. Tady nám pomůže jednoduchá \textit{proxy}, které zadáme požadavek na zdroj, ona ho získá a odešle nazpátek. I zde by nakonec nemuselo být \glsname{JSONP}   potřeba, proxy zase bude v naší režii, v případě existence jiné vhodné, v cizí, a šlo by použít \glsname{CORS}, protože se ale jedná o dočasné řešení v době, kdy ještě některé menšinové prohlížeče \glsname{CORS} nepodporují, rozhodl jsem se si vyzkoušet implementaci další technologie.
+\glsname{JSONP} sám o sobě ale nic nevyřeší -- je k němu stejně tak potřeba mít uzpůsobený server. Tady nám pomůže jednoduchá \textit{proxy}, které zadáme požadavek na zdroj, ona ho získá a odešle nazpátek. I zde by nakonec nemuselo být \glsname{JSONP}   potřeba, proxy zase bude v naší režii (v případě existence jiné vhodné, v cizí), a šlo by pak použít \glsname{CORS}; protože se ale jedná o dočasné řešení v době, kdy ještě některé menšinové prohlížeče \glsname{CORS} nepodporují, rozhodl jsem se si vyzkoušet implementaci další technologie.
 
 Z veřejně k použití dostupných proxy lze využít například server Yahoo! využívaný pro \textit{Yahoo! Query Language} (\url{http://developer.yahoo.com/yql/}) -- na něm je založeno jQuery rozšíření cross-domain-ajax (\url{https://github.com/padolsey/jQuery-Plugins/}), dále je možné na vlastním serveru použít nějaké hotové řešení, například \textit{AJAX Cross Domain} (\url{http://www.ajax-cross-domain.com/}), nebo si vše od základu vytvořit sám.
 
 Rozhodl jsem se pro třetí možnost -- veřejně dostupná řešení nenabízejí potřebné možnosti konfigurace, mezi již hotovými řešeními se mi nepodařilo nalézt vhodné pro konkrétní použití, takže jsem si vytvořil proxy vlastní.\footnote{Byla tedy přidána další serverová aplikace do již tak terminologicky složité situace. Z tohoto důvodu se u zmíněného serveru držím označení \textit{proxy}.}
 
-Proxy je požádána o zprostředkování zdroje, na základě \textit{whitelistu} je rozhodnuto o jeho poskytnutí -- z bezpečnostních důvodů je zamezen přístup ke všem mimo nutně potřebných serverů. Zdroj proxy stáhne, převede na přednastavené kódování -- v rámci JavaScriptu nejsou převody snadné, dojde tak k výraznému usnadnění mobilní aplikaci, a před odesláním odpovědi je zdroj pročištěn -- za využití knihovny \textit{HTML Purifier} je zdroj zvalidněn a je z něj odstraněno vše, co není explicitně dalším \textit{whitelistem} povoleno -- skripty, obrázky, rámce, další zdroje, potenciálně škodlivé atributy a elementy\dots V případě chyby je uživateli (mobilní aplikaci) navráceno příslušné chybové hlášení.
+Proxy je požádána o zprostředkování zdroje, na základě \textit{whitelistu} je rozhodnuto o jeho poskytnutí -- z bezpečnostních důvodů je zamezen přístup ke všem mimo nutně potřebných serverů. Zdroj proxy stáhne, převede na přednastavené kódování (v rámci JavaScriptu nejsou převody snadné, dojde tak k výraznému usnadnění mobilní aplikaci) a před odesláním odpovědi je zdroj pročištěn -- za využití knihovny \textit{HTML Purifier} je zdroj zvalidněn a je z něj odstraněno vše, co není explicitně dalším \textit{whitelistem} povoleno -- skripty, obrázky, rámce, další zdroje, potenciálně škodlivé atributy a elementy\dots V případě chyby je uživateli (mobilní aplikaci) navráceno příslušné chybové hlášení.
 
 \subsubsection{Uživatelské rozhraní}
 Tvorba uživatelského rozhraní mobilní aplikace nepřinesla, mimo tvorby mapy a zpracování cizích zdrojů, žádné zvlášť komplikované úkony. Tvorba mapy byla již popsána. Zpracování cizích zdrojů bylo vyžadováno pro jejich různorodost -- každý poskytoval informace v jiném formátu, transformoval jsem je tedy do obdobnějších reprezentací vhodných pro mobilní zařízení. Pro ilustraci přikládám obrázek \ref{fig:mobil:android:pruvodce} znázorňující uživatelské rozhraní mobilního průvodce.
@@ -235,7 +235,7 @@ Nalezené problémy byla snaha obejít, ne vždy se to ale bohužel podařilo.
 % mb\_detect\_encoding - detekce funguje na základě nevalidity - jiné validní prioritnější kódování má přednost.
 
 \subsubsection{Neexistující DNS server}
-Po nasazení proxy na server \url{http://webdev.fit.cvut.cz/} byl zjištěn nepříjemný problém -- ačkoliv přes proxy nasazené na jiné testovací servery bylo připojení z mobilní aplikace promptní, přes server webdev trvalo pokaždé přibližně třicet a půl vteřiny. Pravidelnost takového zvláštního času mě vedla ke snaze problém identifikovat. Nakonec jsem z výpisů komunikace zjistil, že je problém ve webdevem využívaných \glsname{DNS} serverech -- trvalo jim vždy půl minuty, než převedly \glsname{URL} na \glsname{IP} adresu. Problém jsem nahlásil \glsname{IT} oddělení \glsname{FIT} a za pár dní byl odstraněn -- mezi \glsname{DNS} servery byl nastavený záložní provozovaný třetí stranou, ten byl ale bez upozornění zrušen.
+Po nasazení proxy na server \url{http://webdev.fit.cvut.cz/} byl zjištěn nepříjemný problém -- ačkoliv přes proxy nasazené na jiné testovací servery bylo připojení z mobilní aplikace promptní, přes server webdev trvalo pokaždé přibližně třicet a půl vteřiny. Pravidelnost takového zvláštního času mě vedla ke snaze problém identifikovat. Nakonec jsem z výpisů komunikace zjistil, že je problém ve webdevem využívaných \glsname{DNS} serverech -- trvalo jim vždy půl minuty, než převedly \glsname{URL} na \glsname{IP} adresu. Problém jsem nahlásil \glsname{IT} oddělení \glsname{FIT} a za pár dní byl odstraněn -- mezi \glsname{DNS} servery byl nastavený záložní, provozovaný třetí stranou, ten byl ale bez upozornění zrušen.
 
 
 % \subsection{Implementace bezpečnosti}
