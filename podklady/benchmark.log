@@ -1,0 +1,183 @@
+zomp@zomp-comp:~$ ab -n 1000 -c 100 -H "Accept: application/json" -e benchmark http://server:8080/sparql?query=PREFIX+foaf%3A+%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E%0ASELECT+%3Fname+%3Femail%0AWHERE+%7B%0A++++%3Fperson+a+foaf%3APerson.%0A++++%3Fperson+foaf%3Aname+%3Fname.%0A++++%3Fperson+foaf%3Ambox+%3Femail.%0A%7D%0A
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking server (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Completed 600 requests
+Completed 700 requests
+Completed 800 requests
+Completed 900 requests
+Completed 1000 requests
+Finished 1000 requests
+
+
+Server Software:        
+Server Hostname:        server
+Server Port:            8080
+
+Document Path:          /sparql?query=PREFIX+foaf%3A+%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E%0ASELECT+%3Fname+%3Femail%0AWHERE+%7B%0A++++%3Fperson+a+foaf%3APerson.%0A++++%3Fperson+foaf%3Aname+%3Fname.%0A++++%3Fperson+foaf%3Ambox+%3Femail.%0A%7D%0A
+Document Length:        13653 bytes
+
+Concurrency Level:      100
+Time taken for tests:   92.767 seconds
+Complete requests:      1000
+Failed requests:        0
+Write errors:           0
+Total transferred:      13946000 bytes
+HTML transferred:       13653000 bytes
+Requests per second:    10.78 [#/sec] (mean)
+Time per request:       9276.691 [ms] (mean)
+Time per request:       92.767 [ms] (mean, across all concurrent requests)
+Transfer rate:          146.81 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   4.8      0      21
+Processing:  7555 9244 751.6   9217   10902
+Waiting:     7365 8776 729.8   8677   10774
+Total:       7556 9246 753.4   9231   10902
+
+Percentage of the requests served within a certain time (ms)
+  50%   9231
+  66%   9523
+  75%   9661
+  80%   9806
+  90%  10395
+  95%  10435
+  98%  10775
+  99%  10888
+ 100%  10902 (longest request)
+
+
+
+
+
+
+
+
+
+zomp@zomp-comp:~$ ab -n 1000 -c 10 -H "Accept: application/json" -e benchmark http://server:8080/sparql?query=PREFIX+foaf%3A+%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E%0ASELECT+%3Fname+%3Femail%0AWHERE+%7B%0A++++%3Fperson+a+foaf%3APerson.%0A++++%3Fperson+foaf%3Aname+%3Fname.%0A++++%3Fperson+foaf%3Ambox+%3Femail.%0A%7D%0A
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking server (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Completed 600 requests
+Completed 700 requests
+Completed 800 requests
+Completed 900 requests
+Completed 1000 requests
+Finished 1000 requests
+
+
+Server Software:        
+Server Hostname:        server
+Server Port:            8080
+
+Document Path:          /sparql?query=PREFIX+foaf%3A+%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E%0ASELECT+%3Fname+%3Femail%0AWHERE+%7B%0A++++%3Fperson+a+foaf%3APerson.%0A++++%3Fperson+foaf%3Aname+%3Fname.%0A++++%3Fperson+foaf%3Ambox+%3Femail.%0A%7D%0A
+Document Length:        13653 bytes
+
+Concurrency Level:      10
+Time taken for tests:   92.860 seconds
+Complete requests:      1000
+Failed requests:        0
+Write errors:           0
+Total transferred:      13946000 bytes
+HTML transferred:       13653000 bytes
+Requests per second:    10.77 [#/sec] (mean)
+Time per request:       928.598 [ms] (mean)
+Time per request:       92.860 [ms] (mean, across all concurrent requests)
+Transfer rate:          146.66 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.8      1      16
+Processing:   629  926 134.4    908    1469
+Waiting:      626  895 132.7    881    1466
+Total:        630  926 134.5    908    1470
+
+Percentage of the requests served within a certain time (ms)
+  50%    908
+  66%    956
+  75%   1000
+  80%   1034
+  90%   1113
+  95%   1172
+  98%   1275
+  99%   1388
+ 100%   1470 (longest request)
+
+
+
+
+
+
+
+
+zomp@zomp-comp:~$ ab -n 1000 -c 1 -H "Accept: application/json" -e benchmark http://server:8080/sparql?query=PREFIX+foaf%3A+%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E%0ASELECT+%3Fname+%3Femail%0AWHERE+%7B%0A++++%3Fperson+a+foaf%3APerson.%0A++++%3Fperson+foaf%3Aname+%3Fname.%0A++++%3Fperson+foaf%3Ambox+%3Femail.%0A%7D%0A
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking server (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Completed 600 requests
+Completed 700 requests
+Completed 800 requests
+Completed 900 requests
+Completed 1000 requests
+Finished 1000 requests
+
+
+Server Software:        
+Server Hostname:        server
+Server Port:            8080
+
+Document Path:          /sparql?query=PREFIX+foaf%3A+%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E%0ASELECT+%3Fname+%3Femail%0AWHERE+%7B%0A++++%3Fperson+a+foaf%3APerson.%0A++++%3Fperson+foaf%3Aname+%3Fname.%0A++++%3Fperson+foaf%3Ambox+%3Femail.%0A%7D%0A
+Document Length:        13653 bytes
+
+Concurrency Level:      1
+Time taken for tests:   97.000 seconds
+Complete requests:      1000
+Failed requests:        0
+Write errors:           0
+Total transferred:      13946000 bytes
+HTML transferred:       13653000 bytes
+Requests per second:    10.31 [#/sec] (mean)
+Time per request:       97.000 [ms] (mean)
+Time per request:       97.000 [ms] (mean, across all concurrent requests)
+Transfer rate:          140.40 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.3      1       5
+Processing:    74   96  30.6     87     483
+Waiting:       72   93  30.4     84     480
+Total:         75   97  30.6     87     483
+
+Percentage of the requests served within a certain time (ms)
+  50%     87
+  66%     92
+  75%     96
+  80%    100
+  90%    135
+  95%    157
+  98%    180
+  99%    232
+ 100%    483 (longest request)
+zomp@zomp-comp:~$ 
