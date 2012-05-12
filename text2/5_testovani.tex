@@ -5,30 +5,40 @@
 Testování (\textit{testing}) provázelo vzniklé aplikace po celou dobu vývoje -- od evaluece požadavků na počátku, až po akceptační testy na konci. Testování probíhala, byť v jinou dobu, obdobně u serverové i mobilní aplikace, pro větší přehlednost jejich popis tedy sloučím.
 
 \section{Funkční testování}
+Funkční testování (\textit{functional testing}) reprezentuje skupinu různorodých testů, která ověřuje, zda byly splněny všechny funkční požadavky na systém, jeho výsledky jsou tedy zpravidla velmi kategorické. Nevyužil jsem proto formálních metodik -- jejich výsledky by měly být shodné s těmi mými založenými na prosté důkladné kontrole projektu.
 
 \subsection{Testování programátorem}
-\todo{Kód jsem opětovně revidoval a opravoval chyby. Testování vstupů. Review...}
+Testování programátorem zahrnuje širokou skupinu testů prováděných přímo programátorem v průběhu vývoje. Patří mezi ně jednotkové testování (\textit{unit testing}), revize kódu (\textit{code review}), testování mezních hodnot (\textit{boundary testing})\dots
 
-\todo{Kód jsem opětovně revidoval a opravoval chyby.}
+Každou přidávanou jednotku jsem testoval mezními hodnotami. V průběhu vývoje jsem opakovaně revidoval v předchozích iteracích napsaný kód a v případě potřeby ho komentoval a refaktoroval pro větší kvalitu (lepší čitelnost, deduplikakace, zjednodušení\dots). Tato činnost sloužila k eliminaci lokálních chyb v kódu a přinášela pozitivní výsledky. Po změně vždy proběhlo nutné otestování.
+
 % nefungující SPARQL v Chrome - špatný parametr accepts (místo {json: 'application/json'} pouze 'application/json')
 % zbytečné zelenění
+% mezní hodnoty
 
-\subsection{Testování funkcionalit}
-\todo{Splnění požadavků bylo testováno mnou i vedoucím práce.}
+% \subsection{Testování funkcionalit}
+% (\textit{feature testing}) moc se nepoužívá, neuvádím
+% \todo{Splnění požadavků bylo testováno mnou i vedoucím práce.}
 
 \subsection{Integrační testování}
 Integrační testování (\textit{integration testing}) bylo prováděno u všech vyvíjených aplikací. Po přidání nové funkcionality byla vždy příslušná část aplikace důkladně otestována, aby bylo zamezeno situacím, kdy nově zanesené úpravy poškodí již existující funkcionality aplikace -- takto vzniklé a neošetřené chyby totiž bývají velmi záludné -- vývojář otestoval všechny části, nenalezl v nich žádný problém, takže je považuje za korektní, možnost chyb daných integrací ho nenapadne a při pozdějším výskytu problému pak hledá řešení na špatných místech, protože skutečné místo považuje za již důkladně otestované.
 
 \subsection{Akceptační testování}
-\todo{Bylo prováděno i vedoucím práce.}
+Akceptačního testování (\textit{acceptance testing}) ověřuje, zda byly do požadované míry naplněny všechny požadavky a po jeho úspěšném dokončení je systém zpravidla předán.
+
+Akceptačního testování bylo prováděno bez formální metodiky vedoucím práce, inženýrem Havrylukem, a mnou, jako osobou mající největší zájem na úspěšném naplnění všech požadavků.
+
+Systém byl úspěšně akceptován.
+
 
 \section{Nefunkční testování}
-
+Nefunkční testování (\textit{non-functional testing}) zahrnuje skupinu testů ověřujících naplnění nefunkčních požadavků na systém. Zde se z principu očekávají výsledky více vágní, než v případě funkčního testování, proto jsem také věnoval podstatně více času na provedení formalizovanějších testů. Jeho výsledky by měly korelovat s kvalitou vytvořeného produktu.
 
 \subsection{Testování kompatibility}
 \label{sec:test:compat}
 Testování kompatibility (\textit{compatibility testing}) je proces ověřující správný chod systému v různých prostředích -- zařízeních, operačních systémech, běhových prostředích\dots Serverová aplikace je nasazena na konkrétním serveru a s častým přemisťováním se nepočítá, věnovat se proto budu v této sekci pouze mobilní aplikaci, která je na tom přesně opačně -- bude nasazena na zařízeních uživatelů, která jsou vzájemně dosti odlišná.
 
+\subsubsection{Charakteristika testu}
 Testování bylo v omezeném počtu prohlížečů prováděno po celou dobu vývoje, ve zbylých až v době finalizace. Testovalo se v prohlížečích:
 \begin{itemize}
  \item Mozilla Firefox (\url{http://www.mozilla.org/firefox/}).
@@ -53,43 +63,94 @@ Mimo výše uvedených navíc nabídl pan inženýr Havryluk, vedoucí práce, o
 
 V následující části jsou popsány nalezené problémy jednotlivých prohlížečů, pokud není uvedené jinak, aktuálních verzí:
 
-\subsubsection{Mozilla Firefox}
+\subsubsection{Průběh a shrnutí testu}
+\subsubsection*{Mozilla Firefox}
 Mozilla Firefox po pozměnění vynucuje překreslení \glsname{SVG}, které je navíc poměrně pomalé, snažil jsem se proto algoritmy upravit tak, aby \glsname{SVG} zbytečně nepozměňovaly. Jinak vše funguje, jak má.
 
-\subsubsection{Chromium}
+\subsubsection*{Chromium}
 Nelze nastavit transformaci \glsname{SVG} elementu, problém ale lze obejít méně elegantním způsobem. Vše funguje, jak má.
 
-\subsubsection{rekonq}
+\subsubsection*{rekonq}
 Prohlížeč nepodporuje geolokační \glsname{API}, takže nelze určit polohu uživalete. Prohlížeč také výchozím fontem zobrazuje velmi úzké bílé znaky, takže nemusí být tolik přehledné formátování například ve \glsname{SPARQL} konzoli. Jinak vše funguje, jak má.
 
-\subsubsection{Konqueror}
+\subsubsection*{Konqueror}
 Prohlížeč ve výchozím \textit{renderovacím} jádru, KHTML, nepodporuje přímé vkládání \glsname{SVG} do \glsname{HTML}, nefunguje v něm tedy navigace -- uživatel je na toto omezení upozorněn. Jinak vše funguje, jak má.
 
-\subsubsection{Internet Explorer}
+\subsubsection*{Internet Explorer}
 Do verze 9 neměl Internet Explorer bez přidaných rozšíření dostatečnou podporu \glsname{SVG} a nepodporoval tak navigaci; od verze 9, včetně, je vše v pořádku. V tomto prohlížeči jsem také narazil na chybu ve specifikaci JavaScriptu: není zde povoleno pojmenovat vlastnost objektu rezervovaným slovem \texttt{default}, což by mělo být zakázané pouze na místech označených jako \textit{Identifiers}, nikoliv tedy jako \textit{Identifier Names} \cite{JsIdentifiers}, přejmenování proměnné zde problém vyřešilo. Jinak vše funguje, jak má.
 
-\subsubsection{Opera}
+\subsubsection*{Opera}
 V Opeře se při vyhledávání v rámci navigace nezobrazovaly objekty uvnitř budov, nejprve jsem z toho velmi chybně vinil špatnou implementaci průhlednosti,\footnote{Nejprve jsem se s tímto problémem setkal u Opera Mobile, kde by to bylo pochopitelné.} po dlouhém zkoumání jsem ale zjistil, že Opera nedokáže v některých případech vlivem odlišného \glsname{DOM} \glsname{SVG} pracovat přímo se třídami \glsname{SVG} elementů, ale musí se k jejich hodnotám v \glsname{DOM} přistupovat skrze delší cestu -- většina ostatních prohlížečů si s tímto problémem poradila. Problematické algoritmy byly přepracovány a problém odstraněn. Vše funguje, jak má.
 
-\subsubsection{Prohlížeč platformy Android}
+\subsubsection*{Prohlížeč platformy Android}
 Do verze 2, včetně, nepodporuje prohlížeč \glsname{SVG} -- tudíž nefunguje navigace, to se ale ve verzích 3 a 4 změnilo a podpora celé aplikace je tak bezproblémová. Vše funguje, jak má.
 
-\subsubsection{Opera Mobile}
+\subsubsection*{Opera Mobile}
 V Opeře Mobile se vyskytoval stejný problém, jaký byl odhalen u \textit{desktopové} verze -- nezobrazovaly se objekty uvnitř budov. Odstraněním problému v \textit{desktopové} verzi byl odstraněn i zde. Vše funguje, jak má.
 
-\subsubsection{Opera Mini}
+\subsubsection*{Opera Mini}
 Prohlížeč Opera Mini nepodporuje přímé vkládání \glsname{SVG} do \glsname{HTML}, nefunguje v něm tedy navigace -- uživatel je na toto omezení upozorněn. Také tento prohlížeč nedokáže zobrazit tabulátor v textových polích, například ve \glsname{SPARQL} konzoli -- byly tedy nahrazeny za mezery. Jinak vše funguje, jak má.
 
-\subsubsection{Internet Explorer Mobile}
+\subsubsection*{Internet Explorer Mobile}
 Testována byla pouze verze 6, v té ještě nebyla přidána podpora \glsname{SVG}, která je již v aktuální verzi přítomná -- v testované verzi tedy nefunguje navigace. Také se zde projevovala, jako v \textit{desktopové} verzi, již opravená, chybná implementace omezení rezervovaných slov. Jinak vše funguje, jak má.
 
-\subsubsection{Google Chrome for Android}
+\subsubsection*{Google Chrome for Android}
 Google Chrome for Android je teprve v betaverzi a některé věci tak ještě nejsou úplně odladěné. V aplikaci se projevila chyba, jinak velmi užitečné, funkce pro automatické přibližování v reakci na stisknutí odkazu -- uživateli je tak usnadněno jeho finální potvrzení, aniž by byl omylem aktivován jiný odkaz v blízkosti zamýšleného. Zdá se, že jinak vše funguje, jak má.
 
 
-\subsection{Zátěžové testování}
-Zátěžové testování (\textit{stress testing}) je součástí výkonnostního testování (\textit{performance testing})
-\todo{Má u mobilní smysl? Proxy? SPARQL?}
+\subsection{Výkonnostní testování}
+Výkonnostní testování (\textit{performance testing}) se zabývá, jak již název napovídá, testováním odezvy a stability systému za určitého zatížení. Lze ho dělit na zátěžové testování (\textit{load testing}), \textit{stress} testy\footnote{Český ekvivalent anglického \textit{stress} se v tomto případě pravděpodobně nevyužívá.}, testování výdrže (\textit{endurance testing}), testování konfigurací (\textit{configuration testing})\dots
+
+Výkonnostní testování má smysl provádět jen na větších systémech dostupných většímu počtu potencionálních uživatelů -- což je v případě této práce pouze \glsname{SPARQL} endpoint \textit{serverové aplikace}.
+
+Pro testování \glsname{SPARQL} endpointů jsou zpravidla využívány tyto \textit{benchmarky}:
+
+\begin{itemize}
+ \item \glsfirst{LUBM}\\ (\url{http://swat.cse.lehigh.edu/projects/lubm/})
+ \item \glsfirst{SP2B}\\ (\url{http://dbis.informatik.uni-freiburg.de/?project=SP2B})
+ \item \glsfirst{BSBM}\\ (\url{http://www4.wiwiss.fu-berlin.de/bizer/BerlinSPARQLBenchmark/})
+\end{itemize}
+
+První jmenovaný \textit{benchmark} pochází z Lehigh University, poslední verze je přibližně z roku 2005 a testování probíhá v doméně univerzity, tedy přesně v té, kterou potřebujeme. Pro potřeby tohoto \textit{benchmarku} vznikla ontologie zkoumaná v části \ref{sec:ontol:lubm} na straně \pageref{sec:ontol:lubm}.
+
+Druhý jmenovaný pochází z Universität Freiburg, poslední verze je z roku 2009 a testování probíhá v doméně počítačové bibliografie, která je doméně našeho systému alespoň vzdáleně blízká.
+
+Poslední jmenovaný pochází z Freie Universität Berlin, aktuální verze je z roku 2011 a testování probíhá v doméně elektronického obchodního systému.
+
+Po hrubém prozkoumání jmenovaných \textit{benchmarků} jsem se rozhodl vydat jinou cestou -- vytvořit si vlastní jednoduchý test zkoumající pouze chování \glsname{SPARQL} endpointu v zatížení o několik řádů větším, než maximálním předpokládaném. Výše uvedené \textit{benchmarky} mi tedy nakonec posloužily pouze jako zdroj inspirace, přesto je zde nechávám případným zájemcům pro pozdější podrobnější přezkoumání.
+
+\subsubsection{Charakteristika testu}
+K testování byl použit jednoduchý konzolový nástroj ApacheBench (\url{http://httpd.apache.org/docs/2.4/programs/ab.html}), jehož prostřednictvím byl \glsname{SPARQL} endpoint vystavován kontinuální paralelní zátěži.
+
+\glsname{SPARQL} endpoint byl pro potřeby testování umístěn na virtuálním stroji řešení VirtualBox (\url{http://www.virtualbox.org/}) o jednom procesoru frekvence 2~GHz, 2~GB operační paměti a dostatečně rychlém síťovém připojení k hostitelskému počítači, ze kterého byly testy prováděny.
+
+Testy byly prováděny na jednoduchém dotazu využitém jako ukázkový příklad ve \glsname{SPARQL} konzoli mobilní aplikace:
+\begin{verbatim}
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+SELECT ?name ?email
+WHERE {
+    ?person a foaf:Person.
+    ?person foaf:name ?name.
+    ?person foaf:mbox ?email.
+}
+\end{verbatim}
+(Výběr všech jmen a k nim příslušných emailových adres.)
+% \begin{verbatim}
+% PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+% SELECT ?object
+% WHERE {
+%     ?person a foaf:Person.
+%     ?person foaf:name "Bc. Jan Molnár".
+%     ?person ?predicate ?object.
+% }
+% \end{verbatim}
+
+\subsubsection{Průběh testu}
+\todo{dodělat}
+
+\subsubsection{Shrnutí testu}
+\todo{dodělat}
+
 
 \subsection{Testování použitelnosti}
 Na použitelnost (\textit{usability}) byl kladen důraz hlavně v případě mobilní aplikace, u serverové jsem se naopak použitelností příliš nezabýval -- nemá obsluhu, případně zaškoleného správce. Testování použitelnosti (\textit{usability testing}) bylo prováděno po celou dobu vývoje, formalizovaně ale až těsně před jeho dokončením, aby byla finální aplikace k uživatelům co nejpřívětivější.
