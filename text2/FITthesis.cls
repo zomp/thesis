@@ -303,7 +303,7 @@
 % Prohla{\v s}uji, {\v z}e jsem tuto pr{\' a}ci vytvo{\v r}il samostatn{\v e} a pou{\v z}il jsem pouze podklady uveden{\' e} v~p{\v r}ilo{\v z}en{\' e}m seznamu.
 
 		\noindent
-		Beru na v{\v e}dom{\' i}, {\v z}e se na moji pr{\' a}ci vztahuj{\' i} pr{\' a}va a povinnosti v{\' y}pl{\' y}vaj{\' i}c{\' i} ze z{\' a}kona {\v c}.~121/2000 Sb., autorsk{\' e}ho z{\' a}kona, ve zn{\v e}n{\' i} pozd{\v e}j{\v s}{\' i}ch p{\v r}edpis{\r u}, zejm{\' e}na skute{\v c}nost, {\v z}e {\v C}esk{\' e} v{\' y}sok{\' e} u{\v c}en{\' i} technick{\' e} v Praze m{\' a} pr{\' a}vo na~uzav{\v r}en{\' i} licen{\v c}n{\' i} smlouv{\' y} o u{\v z}it{\' i} t{\' e}to pr{\' a}ce jako {\v s}koln{\' i}ho d{\' i}la podle \S~60~odst.~1 autorsk{\' e}ho z{\' a}kona.
+		Beru na v{\v e}dom{\' i}, {\v z}e se na moji pr{\' a}ci vztahuj{\' i} pr{\' a}va a povinnosti vypl{\' y}vaj{\' i}c{\' i} ze z{\' a}kona {\v c}.~121/2000 Sb., autorsk{\' e}ho z{\' a}kona, ve zn{\v e}n{\' i} pozd{\v e}j{\v s}{\' i}ch p{\v r}edpis{\r u}, zejm{\' e}na skute{\v c}nost, {\v z}e {\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze m{\' a} pr{\' a}vo na~uzav{\v r}en{\' i} licen{\v c}n{\' i} smlouvy o u{\v z}it{\' i} t{\' e}to pr{\' a}ce jako {\v s}koln{\' i}ho d{\' i}la podle \S~60~odst.~1 autorsk{\' e}ho z{\' a}kona.
 
 % 		Ve smyslu \S60 Z{\' a}kona {\v c}.~121/2000~Sb., o~pr{\' a}vu autorsk{\' e}m, o~pr{\' a}vech souvisej{\' i}c{\' i}ch s~pr{\' a}vem autorsk{\' y}m a o~zm{\v e}n{\v e} n{\v e}kter{\' y} z{\' a}kon{\r u} (autorsk{\' y} z{\' a}kon), nem{\' a}m z{\' a}va{\v z}n{\' y} d{\r u}vod proti u{\v z}it{\' i} tohoto {\v s}koln{\' i}ho d{\' i}la a k~u{\v z}it{\' i} ud{\v e}luji svolen{\' i}.
 

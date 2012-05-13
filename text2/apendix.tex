@@ -12,7 +12,6 @@
 \chapter{Instalační a uživatelská příručka}
 \section{Serverová aplikace}
 \subsection{Nároky aplikace}
-Systém není určený pro běh mimo vymezený server, nároky jsou proto specifické:
 \begin{itemize}
  \item Platforma Node.js ve verzi 0.6.9 nebo novější.
  \item Databáze MongoDB ve verzi 1.8.2 nebo novější.
@@ -20,27 +19,27 @@ Systém není určený pro běh mimo vymezený server, nároky jsou proto specif
 \end{itemize}
 
 \subsection{Instalace aplikace}
-Adresářovou strukturu aplikace vložte na požadovanou pozici. Do cronu vložte požadovaná pravidla pro obsluhu zdrojů informací. Systém je připravený k~použití.
+Adresářovou strukturu aplikace vložte na požadovanou pozici. Do cronu vložte požadovaná pravidla pro obsluhu zdrojů informací (viz část \ref{sec:server:scheduler} na straně \pageref{sec:server:scheduler}). Systém je připravený k~použití.
 
 \subsection{Spuštění aplikace}
 \begin{itemize}
- \item Nejprve spusťte databázi: \texttt{mongod -{}-rest \&}
- \item Nyní spusťte aplikaci: \texttt{node mi-dip/index.js \&}
+ \item Nejprve spusťte databázi: \texttt{mongod \&}
+ \item Nyní spusťte aplikaci: \texttt{node index.js \&}
  \item \glsname{SPARQL} endpoint spustíte příkazem: \\ \texttt{\textasciitilde /node\_modules/rdfstore/bin/rdfstorejs webserver \linebreak -{}-store-name pruvodcefitcvut -{}-store-engine mongodb -p 8080}
 \end{itemize}
 
 \subsection{Obsluha aplikace}
 \begin{itemize}
- \item Zpracování zdroje: \texttt{curl localhost:1337/akce}
+ \item Zpracování zdroje: \texttt{curl localhost:1337/<název\_zdroje>}
  \item Test \glsname{SPARQL} endpointu: \texttt{curl -v localhost:8080/sparql \\ -{}-data-urlencode "query=select * \{ ?s ?p ?o \} limit 3"}
 \end{itemize}
 
 \section{Mobilní aplikace}
 \subsection{Nároky aplikace}
-Pro běh mobilní aplikace je třeba webový prohlížeč podporující technologie spjaté s HTML5.
+Pro běh mobilní aplikace je třeba webový prohlížeč podporující technologie spjaté s HTML5 (JavaScript, CSS, SVG\dots).
 
 \subsection{Instalace aplikace}
-Adresářovou strukturu aplikace vložte na požadovanou pozici. Systém je připravený k~použití.
+Adresářovou strukturu aplikace vložte na požadovanou pozici. Aplikace je připravena k~použití.
 
 \subsection{Spuštění aplikace}
 Ve webovém prohlížeči otevřete soubor \texttt{index.html} z adresáře s aplikací.
@@ -66,7 +65,7 @@ Přiložené CD je strukturováno:
 .2 server\DTcomment{zdrojové kódy serverové aplikace}.
 .3 index.js\DTcomment{spouštěcí soubor serverové aplikace}.
 .2 navrh\DTcomment{dokumenty vzniklé při návrhu}.
-.3 diagramy\DTcomment{diagramy obou aplikací}.
+.3 diagramy\DTcomment{diagramy aplikací}.
 .3 prototypy\DTcomment{prototypy mobilní aplikace}.
 .2 testovani\DTcomment{dokumenty vzniklé při testování}.
 .3 vykonnostni\DTcomment{dokumenty vzniklé při výkonnostním testování}.

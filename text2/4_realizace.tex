@@ -104,8 +104,9 @@ V těchto několika řádcích je vytvořený celý server zpracovávající př
 
 Uvnitř metody je na prvním řádku vyžadováno zavolání metody \texttt{process()} z uvedeného souboru s parametrem \texttt{login}. V této metodě je na základě přítomnosti parametru rozhodnuto, jestli se mají zpracovat všechny osoby nebo jen jedna konkrétní. Na druhém řádku je klientovi odesláno oznámení o úspěšném přijetí požadavku.
 
-\subsubsection{Nastavení časovače}
-Vzhledem k výše uvedené obsluze \textit{serverové aplikace} \glsname{HTTP} požadavky je možné časovač reprezentovaný cronem jednoduše nastavit, například:
+\subsubsection{Nastavení plánovače}
+\label{sec:server:scheduler}
+Vzhledem k výše uvedené obsluze \textit{serverové aplikace} \glsname{HTTP} požadavky je možné plánovač reprezentovaný cronem jednoduše nastavit, například:
 \begin{verbatim}
 # aktualizace jidelnicku kazdy den 3 minuty po zverejneni
 3 9,10,16,17 * * * user curl localhost:1337/jidelnicky/\
