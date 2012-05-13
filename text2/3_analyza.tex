@@ -247,7 +247,7 @@ Nasazení bylo nakonec navrženo, jak je vidět na obrázku \ref{fig:server:depl
 \subsection{Návrh řešení}
 Návrh (\textit{design}) byl prováděn po rozvržení architektury a za přispění volby použitých technologií.
 
-Pro tři ze čtyř dříve identifikovaných struktur systému jsem nalezl vhodné hotové řešení (viz část \ref{sec:server:technologies} na straně \pageref{sec:server:technologies}) -- plánovač je tvořen cronem, jako databáze je použita MongoDB a \glsname{SPARQL} endpoint poskytuje rdfstore. Zbývá tedy doimplementovat pouze \textit{serverovou aplikaci}.
+Pro tři ze čtyř dříve identifikovaných struktur systému jsem nalezl vhodné hotové řešení (viz část \ref{sec:server:technologies} na straně \pageref{sec:server:technologies}) -- plánovač je tvořen cronem, jako databáze je použita MongoDB a \glsname{SPARQL} endpoint poskytuje rdfstore-js. Zbývá tedy doimplementovat pouze \textit{serverovou aplikaci}.
 
 Na obrázku \ref{fig:server:class} je znázorněn třídní diagram (\textit{class diagram}) reprezentující strukturu serverové aplikace. Metoda \texttt{process()} má za úkol stažení dat z patřičných zdrojů, jejich zpracování, převedení do sémantických grafů a uložení do databáze. V návrhu byl použit návrhový vzor strategie (\textit{strategy}).
 
@@ -332,7 +332,7 @@ MongoDB (\url{http://www.mongodb.org/}) je škálovatelnou, vysoce výkonnou, ot
 
 Databázi jsem volil z dalších sémantických / NoSQL databází (zaměření dáno požadavkem na použití nových inovativních technologií), zvažovány byly mimo jiné i CouchDB (\url{http://couchdb.apache.org/}), Neo4j (\url{http://neo4j.org/}) a Openlink Virtuoso (\url{http://virtuoso.openlinksw.com/}).
 
-Poslední jmenovaná databáze byla na základě předchozích zkušeností vybrána nejdříve, později se ale ukázalo, že jsou její správa i obsluha pro konkrétní použití těžkopádné, takže jsem nakonec přešel k podstatně vhodnější databázi, MongoDB, kterou lze navíc snadno využít v kombinaci s JavaScriptovým \glsname{RDF} úložištěm rdfstore (viz část \ref{sec:rdfstore}).
+Poslední jmenovaná databáze byla na základě předchozích zkušeností vybrána nejdříve, později se ale ukázalo, že jsou její správa i obsluha pro konkrétní použití těžkopádné, takže jsem nakonec přešel k podstatně vhodnější databázi, MongoDB, kterou lze navíc snadno využít v kombinaci s JavaScriptovým \glsname{RDF} úložištěm rdfstore-js (viz část \ref{sec:rdfstore}).
 
 \subsubsection{Cron}
 Cron je démonem vykonávajícím naplánované úlohy. Název neoznačuje konkrétní implementaci, ale používá se pro označení programu splňujícího určité specifikace (jak je u Unixových nástrojů zvykem). Byla vybrána implementace, jejímž autorem je Paul Vixie -- jedná se o verzi využitou například v \glsname{GNU}/Linuxu a \glsname{BSD} (odkud pochází).
@@ -343,6 +343,7 @@ Cron byl vybrán pro svou vhodnost pro daný účel -- plánovat, a pro svoji pr
 Celé prostředí serverové aplikace je umístěno v serverové edici \glsname{GNU}/linuxové distribuce Ubuntu (\url{http://www.ubuntu.com/}) a ta je pro snadnou přenositelnost nainstalována do kontejneru virtuálního stroje virtualizačního řešení VirtualBox (\url{http://www.virtualbox.org/}). Technologie byly vybrány na základě výborných předchozích zkušeností.
 
 \subsection{Použité knihovny}
+\label{sec:server:libs}
 Mimo standardního JavaScriptu lze v Node.js využívat i specifická rozšíření a množství modulů třetích stran. Z těch jsem po zvážení z různých příčin využil:
 
 \subsubsection{Node-date-utils}
