@@ -1,4 +1,21 @@
 <?php
+/**
+ * This file is part of Průvodce FIT ČVUT.
+ * Copyright (C) 2011-2012 Jan Molnár
+ *
+ * Průvodce FIT ČVUT is free software: you  can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * Průvodce FIT ČVUT is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with Průvodce FIT ČVUT. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /**
  * Proxy pro načítání HTML stránek (a jiných zdrojů) z jiných domén (cross-origin).
@@ -109,7 +126,7 @@ if ($encoding != $charset && $encoding != strtolower($charset)) {
 }
 
 //pročištění stránky
-require_once 'htmlpurifier/HTMLPurifier.auto.php';
+require_once 'php/htmlpurifier/HTMLPurifier.auto.php';
 $config = HTMLPurifier_Config::createDefault();
 $config->set('Attr.EnableID', true);
 $config->set('Attr.IDPrefix', 'ap-'); //prefix ID dokumentu - aby se nemotala s existujícími

@@ -1,0 +1,117 @@
+\documentclass[thesis=M,czech]{FITthesis}[2011/06/14]
+
+\usepackage[utf8]{inputenc} % LaTeX source encoded as UTF-8
+\usepackage{textcomp}
+\usepackage{dirtree}
+\usepackage{upquote}
+\usepackage{threeparttable}
+\usepackage[usenames,dvipsnames]{xcolor}
+\setcounter{tocdepth}{2}
+
+\usepackage{graphicx} %graphics files inclusion
+% \usepackage{amsmath} %advanced maths
+% \usepackage{amssymb} %additional math symbols
+
+\usepackage[acronym,nonumberlist,toc,sanitize={name=false,description=false},xindy={language=czech,codepage=utf8,glsnumbers=false}]{glossaries}
+% \addto\captionsczech{\renewcommand\acronymname{Seznam pou{\v z}it{\' y}ch zkratek}}
+% \addto\captionsczech{\renewcommand\glossaryname{Glosář}}
+% \deftranslation[to=czech]{Acronyms}{Seznam pou{\v z}it{\' y}ch zkratek}
+% \deftranslation[to=czech]{Glossary}{Glosář}
+
+% \newcommand{\tg}{\mathop{\mathrm{tg}}} %cesky tangens
+% \newcommand{\cotg}{\mathop{\mathrm{cotg}}} %cesky cotangens
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% ODTUD DAL VSE ZMENTE
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+% http://www.ctan.org/tex-archive/macros/latex/contrib/fixme/
+% \usepackage{xkvltxp}
+% \usepackage[footnote,draft,silent,nomargin]{fixme}
+
+% tabulky
+\newcommand{\td}[1]{\parbox{0.24\textwidth}{\smallskip\begin{center}#1\end{center}\smallskip}}
+\newcommand{\tdh}[1]{\parbox{0.18\textwidth}{\smallskip\textbf{#1}\smallskip}}
+\definecolor{dark}{RGB}{50,50,50}
+
+% % todo
+% \definecolor{poznamka}{rgb}{1.0,0.7,0.0}
+% \newglossary[tlg]{todo}{tdo}{tdu}{Seznam úkolů}
+% \newcounter{todo}
+% \newcommand{\todo}[1]{{{\newglossaryentry{\arabic{todo}}{type=todo,name={\arabic{todo}},description={#1},sort={#1}}} {\color{poznamka} \textbf{TODO} \glsdesc{\arabic{todo}}} {\stepcounter{todo}}}}
+% % \newcommand{\todo}[1]{{\color{poznamka}{TODO #1}}}
+\newcommand{\mytitle}{Průvodce studenta FIT ČVUT}
+\newcommand{\myauthor}{Jan Molnár}
+
+\department{Katedra softwarového inženýrství}
+\title{\mytitle}
+\author{\myauthor} %jméno autora bez akademických titulů
+\authorWithDegrees{Bc. Jan Molnár} %jméno autora včetně akademických titulů
+\supervisor{Ing. Michal Havryluk}
+\acknowledgements{V první řadě bych rád poděkoval vedoucímu práce, inženýru Havrylukovi, za~veškerou pomoc, kterou mi při tvorbě diplomové práce poskytl. V této souvislosti bych chtěl poděkovat i docentu Vitvarovi, že mi pomohl vytvořit zadání.
+Velké díky patří Kristýně Řehákové za podporu a provedení jazykové korektury práce.
+V neposlední řadě bych chtěl poděkovat rodičům za možnost ničím nerušeného studia a tvorby diplomové práce.
+Zvláštní dík patří testerům aplikace, autorům svobodných technologií, na kterých je práce založena, a~autorům svobodných nástrojů, ve kterých byla vytvořena.
+}
+% Na základě vybraných zdrojů vytvořte ontologii ČVUT FIT a demonstrujte její využití mobilní aplikací sloužící jako průvodce studenta. Analyzujte zdroje vhodné pro vznik ontologie reprezentující ČVUT FIT, tu na základě automatického dolování vybraných zdrojů vytvořte a perzistentně ukládejte. Analyzujte, navrhněte, vytvořte a otestujte ukázkovou mobilní aplikaci sloužící jako průvodce studenta ČVUT FIT, na níž demonstrujete využití ontologie.
+\abstractCS{Diplomová práce se zabývá doménou informací potřebných pro studium na Fakultě informačních technologií ČVUT a přístupem studentů k těmto informacím. Cílem práce je vytvořit ontologii reprezentující danou doménu a~demonstrovat její užití na mobilní aplikaci sloužící jako průvodce studenta. Dosaženo toho je serverovou aplikací implementovanou na \textit{Node.js} shromažďující informace a poskytující je prostřednictvím \textit{SPARQL} \textit{endpointu} mobilní aplikaci implementované v \textit{HTML5}. Práce se zaměřuje na analýzu, návrh, realizaci i~testování vzniklých aplikací. % Důraz byl kladen na 
+% V~několika větách shrňte obsah a přínos této práce v~češtině. Po přečtení abstraktu by se čtenář měl mít čtenář dost informací pro rozhodnutí, zda chce Vaši práci číst.
+}
+\abstractEN{The master's thesis deals with the domain of information needed for studying at CTU, Faculty of Information Technology and the students' access to this information. The goal of the work is to create an ontology representing the given domain and demonstrate its usage on a mobile application used as a student's guide. The goal is achieved by a server information gathering application implemented on \textit{Node.js} which provides this information through a \textit{SPARQL} endpoint to a mobile application implemented in \textit{HTML5}. The thesis is focused on an analysis, design, implementation and testing of the created applications.}
+\placeForDeclarationOfAuthenticity{V~Praze}
+\keywordsCS{Průvodce, ČVUT FIT, ontologie, mobilní aplikace.}
+\keywordsEN{Guide, CTU FIT, Ontology, Mobile application.}
+
+
+\hypersetup{pdftitle={\mytitle},pdfauthor={\myauthor}}
+\makeglossaries
+\begin{document}
+% \selectlanguage{czech}
+\include{acronym}
+\include{hyphen}
+
+
+% (a) Úvod charakterizující kontext zadání.
+
+% (b) Popis řešeného problému, stanovení cílů DP a požadavků na implementovaný produkt.
+% (c) Popis struktury DP ve vztahu k vytyčeným cílům.
+% (d) Rešeršní zpracování existujících/dostupných implementací (jsou-li známy).
+
+% (e) Analýza a návrh implementace produktu (včetně diskuse různých alternativ a volby implementačního prostředí).
+
+% (f) Popis implementace/realizace produktu se zaměřením na nestandardní části řešení.
+
+% (g) Popis metodiky testování a jeho výsledky.
+% (h) Srovnání s podobnými implementacemi (pokud existují).
+
+% (i) Zhodnocení splnění cílů DP, doporučení dalšího pokračování práce.
+% (j) Závěr - shrnutí výsledků a vlastního přínosu DP.
+
+% (k) Seznam použité literatury a informačních zdrojů.
+
+% (l) Přílohy.
+
+\include{1_uvod}
+
+\include{2_problematika}
+
+\include{3_analyza}
+
+\include{4_realizace}
+
+\include{5_testovani}
+
+\include{6_zaver}
+
+\bibliographystyle{csn690}{\bibliography{reference}}
+
+\appendix
+\include{apendix}
+
+% \chapter{TODO}
+% \renewcommand*{\glspostdescription}{}
+% \printglossary[type=todo]
+% \noindent (Shodné položky jsou vynechány.)
+% % \listoffixmes
+
+\end{document}

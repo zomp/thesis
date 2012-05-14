@@ -1,0 +1,86 @@
+\chapter{Seznam použitých zkratek}
+\renewcommand{\glossarysection}[2][]{}
+\printglossary[type=acronym]
+
+
+
+% \chapter{UML diagramy}
+% \textbf{\large Tato příloha není povinná a zřejmě se neobjeví v každé práci. Máte-li ale větší množství podobných diagramů popisujících systém, není nutné všechny umísťovat do hlavního textu, zvláště pokud by to snižovalo jeho čitelnost.}
+
+
+
+\chapter{Instalační a uživatelská příručka}
+\section{Serverová aplikace}
+\subsection{Nároky aplikace}
+\begin{itemize}
+ \item Platforma Node.js ve verzi 0.6.9 nebo novější.
+ \item Databáze MongoDB ve verzi 1.8.2 nebo novější.
+ \item Použité knihovny (viz část \ref{sec:server:libs} na straně \pageref{sec:server:libs}), zejména rdfstore-js.
+\end{itemize}
+
+\subsection{Instalace aplikace}
+Adresářovou strukturu aplikace vložte na požadovanou pozici. Do cronu vložte požadovaná pravidla pro obsluhu zdrojů informací (viz část \ref{sec:server:scheduler} na straně \pageref{sec:server:scheduler}). Systém je připravený k~použití.
+
+\subsection{Spuštění aplikace}
+\begin{itemize}
+ \item Nejprve spusťte databázi: \texttt{mongod \&}
+ \item Nyní spusťte aplikaci: \texttt{node index.js \&}
+ \item \glsname{SPARQL} endpoint spustíte příkazem: \\ \texttt{\textasciitilde /node\_modules/rdfstore/bin/rdfstorejs webserver \linebreak -{}-store-name pruvodcefitcvut -{}-store-engine mongodb -p 8080}
+\end{itemize}
+
+\subsection{Obsluha aplikace}
+\begin{itemize}
+ \item Zpracování zdroje: \texttt{curl localhost:1337/<název\_zdroje>}
+ \item Test \glsname{SPARQL} endpointu: \texttt{curl -v localhost:8080/sparql \\ -{}-data-urlencode "query=select * \{ ?s ?p ?o \} limit 3"}
+\end{itemize}
+
+\section{Mobilní aplikace}
+\subsection{Nároky aplikace}
+Pro běh mobilní aplikace je třeba webový prohlížeč podporující technologie spjaté s HTML5 (JavaScript, CSS, SVG\dots).
+
+\subsection{Instalace aplikace}
+Adresářovou strukturu aplikace vložte na požadovanou pozici. Aplikace je připravena k~použití.
+
+\subsection{Spuštění aplikace}
+Ve webovém prohlížeči otevřete soubor \texttt{index.html} z adresáře s aplikací.
+
+\subsection{Obsluha aplikace}
+Podrobná nápověda je uvedena přímo v aplikaci, doporučuji si ji přečíst.
+
+\section{Proxy mobilní aplikace}
+\subsection{Nároky aplikace}
+Pro běh proxy mobilní aplikace je třeba webový server s \glsname{PHP} verze 5.
+
+\subsection{Instalace aplikace}
+Adresářovou strukturu aplikace vložte na požadovanou pozici. Aplikace je připravena k~použití.
+
+
+
+
+\chapter{Obsah přiloženého CD}
+
+Přiložené CD je strukturováno:
+
+\dirtree{%
+.1 /.
+.2 index.html\DTcomment{popis obsahu CD}.
+.2 text\DTcomment{text diplomové práce}.
+.3 DP\_Molnár\_Jan\_2012.pdf\DTcomment{text diplomové práce ve formátu PDF}.
+.2 mobil\DTcomment{zdrojové kódy mobilní aplikace}.
+.3 index.html\DTcomment{spouštěcí soubor mobilní aplikace}.
+.2 proxy\DTcomment{zdrojové kódy proxy mobilní aplikace}.
+.3 index.php\DTcomment{spouštěcí soubor proxy mobilní aplikace}.
+.2 server\DTcomment{zdrojové kódy serverové aplikace}.
+.3 index.js\DTcomment{spouštěcí soubor serverové aplikace}.
+.2 navrh\DTcomment{dokumenty vzniklé při návrhu}.
+.3 diagramy\DTcomment{diagramy aplikací}.
+.3 prototypy\DTcomment{prototypy mobilní aplikace}.
+.2 testovani\DTcomment{dokumenty vzniklé při testování}.
+.3 vykonnostni\DTcomment{dokumenty vzniklé při výkonnostním testování}.
+.2 podklady\DTcomment{podklady diplomové práce}.
+.3 mapy\DTcomment{mapy vytvořené pro potřeby práce}.
+.3 ontologie\DTcomment{použité ontologie}.
+.2 jine\DTcomment{další soubory spjaté s prací}.
+.3 obrazovky\DTcomment{ofocené obrazovky mobilní aplikace}.
+.3 pruvodce CVUT FEL\DTcomment{aplikace Průvodce ČVUT FEL}.
+}
