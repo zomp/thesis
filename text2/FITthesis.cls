@@ -38,14 +38,14 @@
 % \usepackage{color}
 % \definecolor{myblue}{RGB}{0,162,192}
 
-\LoadClass[a4paper,twoside]{memoir}[2008/08/07]
-% \LoadClass[a4paper,oneside]{memoir}[2008/08/07]
+% \LoadClass[a4paper,twoside]{memoir}[2008/08/07]
+\LoadClass[a4paper,oneside]{memoir}[2008/08/07]
 \setsecnumdepth{all}
 \chapterstyle{veelo}
 
 \RequirePackage{babel}[2008/07/06]
-\RequirePackage[bookmarks=true,unicode=true,breaklinks=true,colorlinks=true,urlcolor=black,citecolor=black,linkcolor=black]{hyperref}
-% [bookmarks=true,unicode=true,breaklinks=true,colorlinks=true,urlcolor=red,citecolor=blue,linkcolor=blue]
+% \RequirePackage[bookmarks=true,unicode=true,breaklinks=true,colorlinks=true,urlcolor=black,citecolor=black,linkcolor=black]{hyperref}
+\RequirePackage[bookmarks=true,unicode=true,breaklinks=true,colorlinks=true,urlcolor=red,citecolor=blue,linkcolor=blue]{hyperref}
 \RequirePackage{color}
 
 \RequirePackage{chngcntr}
